@@ -1,0 +1,99 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 24, 2018, 7:02:59 PM
+    Author     : sharon
+*/
+/*sidebar*/
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+
+#sidebar-wrapper{
+    font-family: 'Lato', sans-serif;
+    font-size: 100%;
+    z-index: 1;
+    position: absolute;
+    width:250px;
+    height:100%;
+    overflow-y: hidden;
+    background: #5e5e5d;
+    /*border: 2px solid red;*/
+    opacity: 0.9%;
+}
+
+/*main content*/
+
+
+
+.user-image{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 60px;
+}
+
+.user-image img {
+    height:100px;
+    width:125px;
+    border-radius: 5px;
+}
+
+.user-type{
+    font-size: 15px;
+    color: white;
+    text-align: center;
+}
+
+.svg-inline--fa{
+    font-size:15px;
+    margin-right:7px;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(255,255,255, 0.9);
+}
+/*displaying sidebar
+#wrapper.menuDisplayed #sidebar-wrapper{
+    width: 250px;
+}
+*/
+/*to move the main content*/
+
+
+/*sidebar styling*/
+.sidebar-nav{
+    padding:0;
+    list-style: none;
+    
+}
+
+.sidebar-nav li{
+    text-indent: 20px;
+    line-height:40px;
+}
+
+.sidebar-nav li a{
+    display: block;
+    text-decoration: none;
+    color:#ffffff;
+}
+
+.sidebar-nav li a:hover{
+    color:#ffed89;
+    background:#D08D29;
+}
+
+/*
+#menu-toggle{
+    font-family: 'Lato', sans-serif;
+    background-color:#ffe268;
+    border: 2px solid #ffe268;
+    color: black;
+}
+*/
