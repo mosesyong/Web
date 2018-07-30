@@ -17,12 +17,32 @@
         %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%@ include file ="sidebar.jsp"%>
+        <link rel="stylesheet" href="CSS/mainbody.css">
         <title>Edit <%=employeeUsername%></title>
+        
+        <style>
+            .editAccess{
+                width: 50%;
+            }
+            
+            .btn:hover{
+                background:#D08D29;
+                color:white;
+            }
+            
+        </style>
+        
+        
     </head>
     <body>
-        <h1>Editing access for <%=employeeUsername%></h1>
-        <form action = "EmployeeEditWebServlet" method="post">
-            <input type="hidden" name="employeeUsername" value ="<%=employeeUsername%>">
+        <div id="page-content-wrapper">
+            <div class="containter-fluid">    
+                <div class="row">
+                    <div class="col-12">
+                        <h1>Editing access for <%=employeeUsername%></h1>
+                        <form action = "EmployeeEditWebServlet" method="post" class="editAccess">
+                            <input type="hidden" name="employeeUsername" value ="<%=employeeUsername%>">
         <%
             ArrayList<String> employeeAccessList = (ArrayList<String>)request.getAttribute("access");
             for(String access : u.getAccessList()){
@@ -40,7 +60,11 @@
             }
             out.println("Change password: <input type='password' name='password'><br>");
         %>
-        <input type="submit" value="Submit">
-        </form>
+                        <button type='submit' class='btn'>Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
