@@ -33,7 +33,7 @@
                     <div class="col-12">
                         <h1>Add New Item to Menu</h1>
                         <br><br>
-                        <form action="" method='post' class="addItem">
+                        <form action="AddItemWebServlet" method='post' class="addItem">
                             <div class='form-group'>
                                 <input type='text' class='form-control' placeholder='Name' name='name' required>    
                             </div>

@@ -32,6 +32,10 @@
         <servlet-name>EmployeePasswordChangeWebServlet</servlet-name>
         <servlet-class>Controller.EmployeePasswordChangeWebServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddItemWebServlet</servlet-name>
+        <servlet-class>Controller.AddItemWebServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>EmployeePasswordChangeWebServlet</servlet-name>
         <url-pattern>/EmployeePasswordChangeWebServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddItemWebServlet</servlet-name>
+        <url-pattern>/AddItemWebServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
