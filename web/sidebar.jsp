@@ -44,7 +44,7 @@
                 <li><a href="Main.jsp">Home</a></li>
                 <li><a href="CreateUser.jsp">Create User</a></li>
                 <li><a href="Settings.jsp">Edit User Settings</a></li>
-                <li><a href="UserManagement.jsp">Manage User</a></li>
+                <li><a href="UserManagement.jsp">Manage Employees</a></li>
                  <%
             if(((User)session.getAttribute("user")).getAccess().contains("menu")){
             %>

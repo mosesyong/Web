@@ -35,11 +35,15 @@
                         <br><br>
                         <form action="" method='post' class="addItem">
                             <div class='form-group'>
-                                <input type='text' class='form-control' placeholder='Name' name='name'>    
+                                <input type='text' class='form-control' placeholder='Name' name='name' required>    
                             </div>
                             <div class='form-group'>
-                                <input type='text' class='form-control' placeholder='Price' name='price'>    
+                                <input type='number' class='form-control' placeholder='Price' name='price' required>    
                             </div>
+                            <div class='form-group'>
+                                <input type='text' class='form-control' placeholder='Description' name='description' required>    
+                            </div>
+                            
                             
                             <div class='form-group'>
                                 <label for="menuImage">Image:</label> 
