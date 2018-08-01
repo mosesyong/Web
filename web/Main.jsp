@@ -26,10 +26,15 @@
     <body>
         <div id="page-content-wrapper">
             <div class="containter-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand"><%=u.getCompanyName()%></a>
+                </div>
+                <br><br><br>
                 <%=u%>
                 <br>
                  <div class="row">
                     <div class="col-12">
+                        <h2>Welcome back, <%=u.getUsername()%></h2>
                         <canvas id='outletChart' width="200" height="100"></canvas> 
                     </div>
                     <script>

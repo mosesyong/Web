@@ -18,6 +18,7 @@ public class User {
     private HashSet<String> access; // change to linked hash set, is there such a thing?
     private HashSet<String> employeeList;
     private static ArrayList<String> accessList;
+    private String companyName = "XYZ"; //to change
     
     public User(String username, String type, HashSet<String> access){
         this.username = username;
@@ -65,6 +66,10 @@ public class User {
     
     public HashSet<String> getEmployees(){
         return employeeList;
+    }
+    
+    public String getCompanyName(){
+        return companyName;
     }
     
     public boolean hasEmployee(String employeeName){

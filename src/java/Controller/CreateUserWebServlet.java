@@ -41,7 +41,9 @@ public class CreateUserWebServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String tempPassword = "" + (int)(Math.random()*1000);
+        String companyName = request.getParameter("companyName");
+        System.out.println("password: " + tempPassword);
         DefaultHttpClient httpclient = new DefaultHttpClient();
         String menuRights = request.getParameter("menu_rights");
         String menu = request.getParameter("menu");
@@ -58,7 +60,10 @@ public class CreateUserWebServlet extends HttpServlet {
           HttpPost postRequest = new HttpPost("/API/CreateUserServlet");
           ArrayList<NameValuePair> postParams = new ArrayList<>();
           postParams.add(new BasicNameValuePair("username", username));
-          postParams.add(new BasicNameValuePair("password", password));
+          postParams.add(new BasicNameValuePair("password", tempPassword));
+          if(companyName != null){
+            postParams.add(new BasicNameValuePair("companyName", companyName));
+          }
           postParams.add(new BasicNameValuePair("creator", ((User)session.getAttribute("user")).getUsername()));
           postParams.add(new BasicNameValuePair("type", "" + (Integer.parseInt(((User)session.getAttribute("user")).getType())+ 1)));
           System.out.println("Type (web)" + session.getAttribute("type"));
@@ -76,6 +81,7 @@ public class CreateUserWebServlet extends HttpServlet {
           if(statusCode == 202){
               System.out.println("Successfully created user");
               request.setAttribute("msg", username + " successfully created");
+              request.setAttribute("tempPassword", tempPassword);
               request.getRequestDispatcher("CreateUser.jsp").forward(request, response);
           }else{
               System.out.println("Error, redirect to create user page");

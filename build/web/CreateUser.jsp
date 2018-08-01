@@ -66,6 +66,10 @@
             if(msg != null){
                 out.println("<br><br><font color='red'>"  + msg + "</font>");
             }
+            String tempPassword = (String)request.getAttribute("tempPassword");
+            if(msg != null){
+                out.println("<br><br><font color='red'>Temporary password is "  + tempPassword + "</font>");
+            }
             %>
         <br><br>
                         
@@ -73,10 +77,16 @@
             <div class='form-group'>
                 <input type='text' class='form-control' placeholder='New Username' name='username' required>    
             </div>
-            <div class='form-group'>
+            <%
+                if(category.equals("0")){
+                    %>
+                <div class='form-group'>
+                    <input type='text' class='form-control' placeholder='Company Name' name='companyName'>    
+                </div>
+                    <% }  %>
+<!--            <div class='form-group'>
                 <input type='password' class='form-control' placeholder='New Password' name='password' required>    
-            </div>
-            <input type ="hidden" name ="type" value ="<%=toCreate%>">
+            </div>-->
             <%
                     HashSet<String> access = u.getAccess();
                     if(access.contains("menu_right")){
