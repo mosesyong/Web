@@ -83,7 +83,10 @@
                 <div class='form-group'>
                     <input type='text' class='form-control' placeholder='Company Name' name='companyName'>    
                 </div>
-                    <% }  %>
+                    <% }else{
+                        %>
+                        <input type="hidden" name="companyName" value="<%=u.getCompanyName()%>">
+                        <%}%>
 <!--            <div class='form-group'>
                 <input type='password' class='form-control' placeholder='New Password' name='password' required>    
             </div>-->

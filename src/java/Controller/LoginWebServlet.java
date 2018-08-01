@@ -72,6 +72,7 @@ public class LoginWebServlet extends HttpServlet {
                   String type = jo.get("type").getAsString();
                   String username = jo.get("username").getAsString();
                   String accessString = jo.get("access").toString();
+                  String companyName = jo.get("companyName").getAsString();
                   accessString = accessString.replace("[","");
                   accessString = accessString.replace("]","");
                   accessString = accessString.replace("\"","");
@@ -80,7 +81,7 @@ public class LoginWebServlet extends HttpServlet {
                   for(String a : accessArray){
                       access.add(a);
                   }                  
-                  User u = new User(username, type, access);
+                  User u = new User(username, type, companyName, access);
                   
                   String employeeData = jo.get("employees").toString();
                   employeeData = employeeData.replace("[","");

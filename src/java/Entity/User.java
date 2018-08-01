@@ -18,11 +18,12 @@ public class User {
     private HashSet<String> access; // change to linked hash set, is there such a thing?
     private HashSet<String> employeeList;
     private static ArrayList<String> accessList;
-    private String companyName = "XYZ"; //to change
+    private String companyName;
     
-    public User(String username, String type, HashSet<String> access){
+    public User(String username, String type, String companyName, HashSet<String> access){
         this.username = username;
         this.type = type;
+        this.companyName = companyName;
         this.access = access;
         employeeList = new HashSet<>();
         accessList = new ArrayList<>();
@@ -78,6 +79,6 @@ public class User {
     
     @Override
     public String toString(){
-        return("Username: " + username + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList);
+        return("Username: " + username + "\nCompany Name: " + companyName + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList);
     }
 }

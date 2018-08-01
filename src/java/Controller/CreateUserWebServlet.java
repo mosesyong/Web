@@ -61,9 +61,7 @@ public class CreateUserWebServlet extends HttpServlet {
           ArrayList<NameValuePair> postParams = new ArrayList<>();
           postParams.add(new BasicNameValuePair("username", username));
           postParams.add(new BasicNameValuePair("password", tempPassword));
-          if(companyName != null){
-            postParams.add(new BasicNameValuePair("companyName", companyName));
-          }
+          postParams.add(new BasicNameValuePair("companyName", companyName));
           postParams.add(new BasicNameValuePair("creator", ((User)session.getAttribute("user")).getUsername()));
           postParams.add(new BasicNameValuePair("type", "" + (Integer.parseInt(((User)session.getAttribute("user")).getType())+ 1)));
           System.out.println("Type (web)" + session.getAttribute("type"));
