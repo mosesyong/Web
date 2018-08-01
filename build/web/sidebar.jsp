@@ -29,16 +29,7 @@
             <hr>
             <div class ="col-12 user-type">
                 <i class="fas fa-user"></i>
-            <%   
-              String type = u.getType();
-              if(type.equals("1")){
-                  out.println("Admin");
-              }else if(type.equals("2")){
-                  out.println("Manager");
-              }else if(type.equals("3")){
-                  out.println("Cashier");
-              }
-            %>
+            <%=u.getUsername()%>
             </div>
             <hr>
             <ul class="sidebar-nav">
