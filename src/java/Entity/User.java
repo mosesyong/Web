@@ -19,6 +19,7 @@ public class User {
     private ArrayList<ArrayList<String>> employeeList;
     private static ArrayList<String> accessList;
     private String companyName;
+    private ArrayList<String> typeList;
     
     public User(String username, String type, String companyName, HashSet<String> access){
         this.username = username;
@@ -38,6 +39,11 @@ public class User {
         if(access.contains("refund")){
             accessList.add("refund");
         }
+        
+        typeList = new ArrayList<>();
+        typeList.add("Merchant");
+        typeList.add("Manager");
+        typeList.add("Cashier");
     }
     
     public void addEmployee(ArrayList<String> employees){
@@ -81,6 +87,10 @@ public class User {
     
     public String getCompanyName(){
         return companyName;
+    }
+    
+    public ArrayList<String> getTypeList(){
+        return typeList;
     }
     
     @Override
