@@ -176,19 +176,6 @@
                                 <form action="CreateUserWebServlet" method='post'>
                                     <div class="row">
                                         
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="AccountType">Account Type</label>
-                                                <input type="email" class="form-control" disabled placeholder="Account" value=<%=u.getUsername()%>>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Creating User Type (Disabled)</label>
-                                                <input type="text" class="form-control" disabled placeholder="Account Type" value=<%out.println(toCreate);%>>
-                                            </div>
-                                        </div>
-                                            
                     <%
                         if(category.equals("0")){
                     %>
@@ -203,10 +190,32 @@
                                             
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <label>Company (disabled)</label>
+                                                <label>Company</label>
                                                 <input type="text" class="form-control" disabled placeholder="Company" value=<%out.println(u.getCompanyName());%>>
                                             </div>
                                         </div>
+                                        
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="selectType">Creating User Type</label>
+                                                <select class="form-control" id="selectType">
+                                                    <option name="child">Manager</option>
+                                                    <option name="child">Cashier</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="childType">Select Manager</label>
+                                                <select class="form-control" id="childType">
+                                                    <option name="parent">Outlet 1</option>
+                                                    <option name="parent">Outlet 2</option>
+                                                    <option name="parent">Outlet 3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                            
+                  
                                         
                                         
                                     </div>
@@ -311,14 +320,20 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    
+            <%
+                String tempPassword = (String)request.getAttribute("tempPassword");
+                if(tempPassword != null){
+                    out.println("<font color='red'> Your Temporary Password is:"  + tempPassword + "</font>");
+                }   
+                //out.println();
+                //out.println();
+            %>                            
                                                                 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>About Me</label>
-                                                <textarea rows="5" class="form-control" placeholder="Optional Notes"></textarea>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
+                                                                
+                                       
                                                        
                                             
                                     <button type="submit" class="btn btn-info btn-fill pull-right">Create Profile</button>
