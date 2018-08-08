@@ -67,6 +67,18 @@ public class User {
         return employeeList;
     }
     
+    public ArrayList<String> getUniqueEmployees(){ //also ordered
+        ArrayList<String> uniqueEmployeeList = new ArrayList<>();
+        for(ArrayList<String> employees : employeeList){
+            for(String employee : employees){
+                if(!uniqueEmployeeList.contains(employee)){
+                    uniqueEmployeeList.add(employee);
+                }
+            }
+        }
+        return uniqueEmployeeList;
+    }
+    
     public String getCompanyName(){
         return companyName;
     }

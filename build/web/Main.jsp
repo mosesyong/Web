@@ -64,7 +64,7 @@
 
                     <ul class="nav">
                         <li class="active">
-                            <a href="main.jsp">
+                            <a href="Main.jsp">
                             <i class="pe-7s-home"></i>
                             <p>Home</p>
                             </a>
@@ -160,7 +160,7 @@
                                 <p class="category">Last Campaign Performance</p>
                             </div>
                             <div class="content">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"> hi</div>
+                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth">Chart should appear here</div>
 
                                 <div class="footer">
                                     <div class="legend">
@@ -210,6 +210,8 @@
                     </div>
                 </div>
                 -->
+                
+                <!--
                 <footer class="footer">
                     <div class="container-fluid">
                         <nav class="pull-left">
@@ -223,6 +225,8 @@
                         </nav>
                     </div>
                 </footer>
+                
+                -->
                 
             </div>
         </div>

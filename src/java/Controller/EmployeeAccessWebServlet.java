@@ -63,7 +63,7 @@ public class EmployeeAccessWebServlet extends HttpServlet {
                 accessString = accessString.replace("[","");
                 accessString = accessString.replace("]","");
                 accessString = accessString.replace("\"","");
-                ArrayList<String> accessArray = new ArrayList<String>(Arrays.asList(accessString.split(","))); 
+                ArrayList<String> accessArray = new ArrayList<>(Arrays.asList(accessString.split(","))); 
 //                    accessArray.add("password");
                 request.setAttribute("access", accessArray);
                 request.setAttribute("employeeName", employeeName);

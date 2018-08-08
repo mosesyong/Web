@@ -55,7 +55,7 @@
 
                     <ul class="nav">
                         <li class="active">
-                            <a href="main.jsp">
+                            <a href="Main.jsp">
                             <i class="pe-7s-graph"></i>
                             <p>Home</p>
                             </a>
