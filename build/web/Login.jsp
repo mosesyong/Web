@@ -17,7 +17,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
         <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-        <link rel="stylesheet" type="text/css" href="CSS/loginpage.css">
+        <link rel="stylesheet" type="text/css" href="design/css/loginpage.css">
   
     </head>
     <body>
@@ -28,7 +28,7 @@
                 <div class='modal-content'>
                   
                     <div class='col-12 user-image'>
-                        <img src='img/snapcoin-logo.png'>
+                        <img src='design/img/snapcoin-logo.png'>
                     </div>
                     <form action="LoginWebServlet" class='col-12' method='post'>
             
