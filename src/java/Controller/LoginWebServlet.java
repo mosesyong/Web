@@ -11,6 +11,7 @@ import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -83,15 +84,12 @@ public class LoginWebServlet extends HttpServlet {
                   }                  
                   User u = new User(username, type, companyName, access);
                   
-                  String employeeData = jo.get("employees").toString();
-                  employeeData = employeeData.replace("[","");
-                  employeeData = employeeData.replace("]","");
-                  employeeData = employeeData.replace("\"","");
-                  String[] employeeArray = employeeData.split(",");
-                  for(String employeeRecord : employeeArray){
-                      String[] employee = employeeRecord.split(" ");
-                      for(String employeeName : employee){
-                          u.addEmployee(employeeName);
+                  String employeeData = jo.get("employees").toString().replace("\"","").replace("admin,","");
+                  String[] employeeOverall = employeeData.split("  ");
+                  for(String employeeList : employeeOverall){
+                      String[] employees = employeeList.split(" ");
+                      for(String employee : employees){
+                        u.addEmployee(new ArrayList<>(Arrays.asList(employee.split(","))));
                       }
                   }
                   System.out.println(u);

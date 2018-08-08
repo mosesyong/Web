@@ -16,7 +16,7 @@ public class User {
     private String username;
     private String type;
     private HashSet<String> access; // change to linked hash set, is there such a thing?
-    private HashSet<String> employeeList;
+    private ArrayList<ArrayList<String>> employeeList;
     private static ArrayList<String> accessList;
     private String companyName;
     
@@ -25,7 +25,7 @@ public class User {
         this.type = type;
         this.companyName = companyName;
         this.access = access;
-        employeeList = new HashSet<>();
+        employeeList = new ArrayList<>();
         accessList = new ArrayList<>();
         if(access.contains("menu_right")){
             accessList.add("menu_right");
@@ -40,13 +40,11 @@ public class User {
         }
     }
     
-    public void addEmployee(String employeeName){
+    public void addEmployee(ArrayList<String> employees){
         if(employeeList == null){
-            employeeList = new HashSet<>();
+            employeeList = new ArrayList<>();
         }
-        if(!employeeName.equals("-1")){
-            employeeList.add(employeeName);
-        }
+        employeeList.add(employees);
     }
     
     public String getUsername(){
@@ -65,16 +63,12 @@ public class User {
         return accessList;
     }
     
-    public HashSet<String> getEmployees(){
+    public ArrayList<ArrayList<String>> getEmployees(){
         return employeeList;
     }
     
     public String getCompanyName(){
         return companyName;
-    }
-    
-    public boolean hasEmployee(String employeeName){
-        return employeeList.contains(employeeName);
     }
     
     @Override

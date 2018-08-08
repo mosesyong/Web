@@ -47,7 +47,7 @@
                 out.println("<font color='red'>"  + msg + "</font>");
             }
             %>
-            
+            <%=u%>
         <table class ="table table-bordered">
             <tr class="header">
                 <td align="center"><b>Username</b></td>
@@ -56,10 +56,10 @@
                 <td align="center"><b>Click to delete</b></td>
             </tr>
         <%
-            for(String employeeName : u.getEmployees()){
-                out.println("<tr><td align='center'>" + employeeName + "</td><td align='center'><a href='EmployeeAccessWebServlet?EmployeeName=" + employeeName + "'>Edit Access</a></td><td align='center'><a href='EmployeePasswordChangeWebServlet?username=" + employeeName + "'>Edit Password</a></td><td align='center'>Delete (not done yet)</td></tr>");
-                
-            }
+//            for(String employeeName : u.getEmployees()){
+//                out.println("<tr><td align='center'>" + employeeName + "</td><td align='center'><a href='EmployeeAccessWebServlet?EmployeeName=" + employeeName + "'>Edit Access</a></td><td align='center'><a href='EmployeePasswordChangeWebServlet?username=" + employeeName + "'>Edit Password</a></td><td align='center'>Delete (not done yet)</td></tr>");
+//                
+//            }
             %>
         </table>
                     </div>
