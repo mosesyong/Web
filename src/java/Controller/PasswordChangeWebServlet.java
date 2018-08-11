@@ -49,7 +49,8 @@ public class PasswordChangeWebServlet extends HttpServlet {
             
             try {
               // specify the host, protocol, and port 
-              HttpHost target = new HttpHost("localhost", 8080, "http");
+              HttpHost target = new HttpHost((String)session.getAttribute("url"), (Integer)session.getAttribute("port"), "http");
+
               HttpPost postRequest = new HttpPost("/API/PasswordChangeServlet");
               ArrayList<NameValuePair> postParams = new ArrayList<>();
               postParams.add(new BasicNameValuePair("username", username));

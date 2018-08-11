@@ -57,7 +57,7 @@ public class AnalyticsWebServlet extends HttpServlet {
             DefaultHttpClient httpclient = new DefaultHttpClient();
             try {
               // specify the host, protocol, and port 
-              HttpHost target = new HttpHost("localhost", 8080, "http");
+              HttpHost target = new HttpHost((String)session.getAttribute("url"), (Integer)session.getAttribute("port"), "http");
 
               HttpPost postRequest = new HttpPost("/API/TransactionOutputServlet");
               ArrayList<NameValuePair> postParams = new ArrayList<>();

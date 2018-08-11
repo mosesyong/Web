@@ -63,7 +63,7 @@
                       <li class="nav-item">
                           <a class="nav-link active" id="main-tab" data-toggle="tab" href="Main.jsp" role="tab" aria-controls="home" aria-selected="true">
                            <i class="pe-7s-home"></i>
-                           <p>Home</p>   
+                           <p>Home&#8291;&#8291;&#8291;&#8291;&#8291;&#8291;</p>   
                           </a>
                       </li>
                       <li class="nav-item">

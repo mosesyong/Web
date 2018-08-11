@@ -53,7 +53,8 @@ public class CreateUserWebServlet extends HttpServlet {
         
         try {
           // specify the host, protocol, and port 
-          HttpHost target = new HttpHost("localhost", 8080, "http");
+          HttpHost target = new HttpHost((String)session.getAttribute("url"), Integer.parseInt((String)session.getAttribute("port")), "http");
+
 
           // specify the get request
           // HttpGet getRequest = new HttpGet("/API/LoginServlet");

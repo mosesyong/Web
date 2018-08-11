@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Entity.Properties;
 import Entity.User;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -47,13 +48,16 @@ public class LoginWebServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            Properties prop = new Properties();
+            String url = prop.url;
+            int port = prop.port;
             HttpSession session = request.getSession();
             String enteredUsername = request.getParameter("username");
             String enteredPassword = request.getParameter("password");
             DefaultHttpClient httpclient = new DefaultHttpClient();
             try {
               // specify the host, protocol, and port 
-              HttpHost target = new HttpHost("localhost", 8080, "http");
+              HttpHost target = new HttpHost(url, port, "http"); // dont change first time run
 
               // specify the get request
               // HttpGet getRequest = new HttpGet("/API/LoginServlet");
@@ -84,7 +88,7 @@ public class LoginWebServlet extends HttpServlet {
                   }                  
                   User u = new User(username, type, companyName, access);
                   
-                  String employeeData = jo.get("employees").toString().replace("\"","").replace("admin,","");
+                  String employeeData = jo.get("employees").toString().replace("\"","").replace(username + ",","");
                   String[] employeeOverall = employeeData.split("  ");
                   for(String employeeList : employeeOverall){
                       String[] employees = employeeList.split(" ");
@@ -96,6 +100,8 @@ public class LoginWebServlet extends HttpServlet {
                   
                   
                   session.setAttribute("user",u);
+                  session.setAttribute("url", url);
+                  session.setAttribute("port", port);
                   response.sendRedirect("Main.jsp");
               }else{
                   System.out.println(httpResponse.getStatusLine() + "<br>");

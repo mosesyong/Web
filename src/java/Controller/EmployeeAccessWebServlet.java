@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -48,7 +49,10 @@ public class EmployeeAccessWebServlet extends HttpServlet {
             String employeeName = request.getParameter("EmployeeName");
             DefaultHttpClient httpclient = new DefaultHttpClient();
             try{
-                HttpHost target = new HttpHost("localhost", 8080, "http");
+                
+                HttpSession session = request.getSession();
+              HttpHost target = new HttpHost((String)session.getAttribute("url"), (Integer)session.getAttribute("port"), "http");
+
                 HttpPost postRequest = new HttpPost("/API/EmployeeAccessServlet");
                 ArrayList<NameValuePair> postParams = new ArrayList<>();
                 postParams.add(new BasicNameValuePair("EmployeeUsername", employeeName));
