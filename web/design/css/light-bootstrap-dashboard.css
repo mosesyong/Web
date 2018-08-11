@@ -14,6 +14,14 @@
 
  */
 /*      light colors         */
+
+/*--------------------------------
+
+nucleo-icons Web Font - built using nucleoapp.com
+License - nucleoapp.com/license/
+
+-------------------------------- */
+
 @keyframes spin {
     from {
         transform: rotate(0deg);
@@ -315,7 +323,7 @@ input:focus {
 }
 
 .logo img {
-    height:70px;
+    height:60px;
     width: 250px;
     border-radius: 0px;
 }
@@ -707,15 +715,15 @@ fieldset[disabled] .btn-success.active {
 }
 
 .btn-info {
-    border-color: #1DC7EA;
-    color: #1DC7EA;
+    border-color: #FFE37C;
+    color: #FFE37C;
 }
 
 .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active,
 .open > .btn-info.dropdown-toggle {
     background-color: transparent;
-    color: #42d0ed;
-    border-color: #42d0ed;
+    color: #FFE37C;
+    border-color: #FFE37C;
 }
 
 .btn-info.disabled, .btn-info.disabled:hover, .btn-info.disabled:focus, .btn-info.disabled.focus, .btn-info.disabled:active, .btn-info.disabled.active, .btn-info:disabled, .btn-info:disabled:hover, .btn-info:disabled:focus, .btn-info:disabled.focus, .btn-info:disabled:active, .btn-info:disabled.active, .btn-info[disabled], .btn-info[disabled]:hover, .btn-info[disabled]:focus, .btn-info[disabled].focus, .btn-info[disabled]:active, .btn-info[disabled].active,
@@ -726,20 +734,20 @@ fieldset[disabled] .btn-info.focus,
 fieldset[disabled] .btn-info:active,
 fieldset[disabled] .btn-info.active {
     background-color: transparent;
-    border-color: #1DC7EA;
+    border-color: #FFE37C;
 }
 
 .btn-info.btn-fill {
-    color: #FFFFFF;
-    background-color: #1DC7EA;
+    color: #000000;
+    background-color: #FFE37C;
     opacity: 1;
     filter: alpha(opacity=100);
 }
 
 .btn-info.btn-fill:hover, .btn-info.btn-fill:focus, .btn-info.btn-fill:active, .btn-info.btn-fill.active,
 .open > .btn-info.btn-fill.dropdown-toggle {
-    background-color: #42d0ed;
-    color: #FFFFFF;
+    background-color: #FEE5A3;
+    color: #000000;
 }
 
 .btn-info.btn-fill .caret {
@@ -747,7 +755,7 @@ fieldset[disabled] .btn-info.active {
 }
 
 .btn-info .caret {
-    border-top-color: #1DC7EA;
+    border-top-color: #FFE37C;
 }
 
 .btn-warning {
@@ -1258,6 +1266,7 @@ fieldset[disabled] .btn-neutral.active {
 .table > tfoot > tr > td {
     padding: 12px 8px;
     vertical-align: middle;
+    text-align: center;
 }
 
 .table > thead > tr > th {

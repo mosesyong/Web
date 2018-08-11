@@ -9,3 +9,4 @@ nbproject/project.properties
 *.properties
 *.properties
 nbproject/private/private.xml
+/dist/

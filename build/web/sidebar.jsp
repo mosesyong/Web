@@ -1,33 +1,34 @@
 <%-- 
-    Document   : sidebar
-    Created on : Jun 28, 2018, 1:34:05 PM
-    Author     : sharon
+    Document   : CreateUser
+    Created on : 20 Jun, 2018, 12:44:29 PM
+    Author     : Moses
 --%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.HashSet"%>
 <%@page import="Entity.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <%
-    
-            Object o = session.getAttribute("user");
-            if(o == null){
-                response.sendRedirect("Login.jsp");
-                return;
-            }
-            User u = (User)o;
-        %>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
-        <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-        <!--<link rel="stylesheet" href="CSS/sidebar.css">-->
-        
-        
+   <head>
+<%
+
+    Object o = session.getAttribute("user");
+    if(o == null){
+        response.sendRedirect("Login.jsp");
+        return;
+    }
+    User u = (User)o;
+%> 
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>SnapDash</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <meta name="viewport" content="width=device-width" />
+
+
         <!-- Bootstrap core CSS     -->
         <link href="design/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -37,70 +38,79 @@
         <!--  Light Bootstrap Table core CSS    -->
         <link href="design/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
 
+
+        <!--  CSS for Demo Purpose, don't include it in your project     -->
+        <link href="design/css/demo.css" rel="stylesheet" />
+
+
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
         <link href="design/css/pe-icon-7-stroke.css" rel="stylesheet" />
-        
-        
-    </head>
+      
+   </head>
+      
+
     <body>
-        <div class ="wrapper">
-            <div class="sidebar" data-color="purple" data-image="design/img/sidebar-5.jpg">
+            <div class="sidebar" data-color="yellow" data-image="design/img/sidebar-5.jpg">
                 
                 <div class="sidebar-wrapper">
                     <div class="logo">
-                         <img src="design/img/snapcoin-logo.png">
+                         <img src="design/img/sidebar-logo.png">
                     </div>
-
-                    <ul class="nav">
-                        <li class="active">
-                            <a href="Main.jsp">
-                            <i class="pe-7s-graph"></i>
-                            <p>Home</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="CreateUser.jsp">
-                            <i class="pe-7s-user"></i>
-                            <p>Create User</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Settings.jsp">
-                                <i class="pe-7s-user"></i>
-                                <p>Edit User Settings</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="UserManagement.jsp">
-                                <i class="pe-7s-user"></i>
-                                <p>Manage Employees</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Menu.jsp">
-                                <i class="pe-7s-user"></i>
-                                <p>Add item to Menu</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Analytics.jsp">
-                                <i class="pe-7s-user"></i>
-                                <p>View Analytics</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="LogoutServlet">
-                                <i class="pe-7s-user"></i>
-                                <p>Logout</p>
-                            </a>
-                        </li>
-
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-pills" id="sidebarTabs" role="tablist">
+                      <li class="nav-item">
+                          <a class="nav-link active" id="main-tab" data-toggle="tab" href="Main.jsp" role="tab" aria-controls="home" aria-selected="true">
+                           <i class="pe-7s-home"></i>
+                           <p>Home</p>   
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" id="create-tab" data-toggle="tab" href="CreateUser.jsp" role="tab" aria-controls="create" aria-selected="false">
+                           <i class="pe-7s-add-user"></i>
+                           <p>Create Role</p>   
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="settings-tab" data-toggle="tab" href="Settings.jsp" role="tab" aria-controls="settings" aria-selected="false">
+                        <i class="pe-7s-tools"></i>
+                        <p>Edit User Settings</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" id="management-tab" data-toggle="tab" href="UserManagement.jsp" role="tab" aria-controls="management" aria-selected="false">
+                          <i class="pe-7s-users"></i>
+                          <p>Manage Employees</p>    
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" id="menu-tab" data-toggle="tab" href="Menu.jsp" role="tab" aria-controls="menu" aria-selected="false">
+                          <i class="pe-7s-cart"></i>
+                          <p>Add item to Menu</p>    
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" id="analytics-tab" data-toggle="tab" href="Analytics.jsp" role="tab" aria-controls="analytics" aria-selected="false">
+                          <i class="pe-7s-graph1"></i>
+                          <p>View Analytics</p>   
+                          </a>
+                      </li>
                     </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="main" role="tabpanel" aria-labelledby="main-tab"></div>
+                      <div class="tab-pane" id="create" role="tabpanel" aria-labelledby="create-tab"></div>
+                      <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab"></div>
+                      <div class="tab-pane" id="management" role="tabpanel" aria-labelledby="management-tab"></div>
+                      <div class="tab-pane" id="menu" role="tabpanel" aria-labelledby="menu-tab"></div>
+                      <div class="tab-pane" id="analytics" role="tabpanel" aria-labelledby="analytics-tab"></div>
+                    </div>
+                    
                 </div>
             </div>
-            
+        
             <div class="main-panel">
                 <nav class="navbar navbar-default navbar-fixed">
                     <div class="container-fluid">
@@ -110,8 +120,26 @@
                                 <span class='icon-bar'></span>
                                 <span class='icon-bar'></span>
                                 <span class='icon-bar'></span>
-                            </button>
-                            <a class="navbar-brand" href="#">Company <%=u.getCompanyName()%></a>
+                            </button>                          
+            <%
+                            String userType = u.getType();
+                            String printType = "";
+                            if(userType.equals("1")){
+                                printType = "Admin";
+                            }else if(userType.equals("2")){
+                                printType = "Manager";
+                            }else if(userType.equals("3")){
+                                printType = "Cashier";
+                            }else if(userType.equals("0")){
+                                printType = "Super Admin";
+                            }
+                            
+                            String userName = u.getUsername();
+                                
+            %>
+                            
+                            
+                            <a class="navbar-brand" href="#">Welcome Back <% out.println(printType + ", " + userName + "!"); %></a>
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-left">
@@ -125,48 +153,42 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="#">
-                                        <%=u.getUsername()%>
+                                        Company <%=u.getCompanyName()%>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="LogoutServlet">
+                                        <p>Log out</p>
+                                    </a>
+                                </li>
+                                <li class="separator hidden-lg"></li>
                             </ul>
                         </div>
                     </div>
-                </nav>
+                </nav>   
             </div>
-        </div>
-    
 
-                                    
-        <!--                            
-        <div id="sidebar-wrapper">
-            <div class='col-12 user-image'>
-                    <img src='design/img/snapcoin-logo.png'>
-            </div>
-            <hr>
-            <div class ="col-12 user-type">
-                <i class="fas fa-user"></i>
-            <%//u.getUsername()%>
-            </div>
-            <hr>
-            <ul class="sidebar-nav">
-                <li><a href="Main.jsp">Home</a></li>
-                <li><a href="CreateUser.jsp">Create User</a></li>
-                <li><a href="Settings.jsp">Edit User Settings</a></li>
-                <li><a href="UserManagement.jsp">Manage Employees</a></li>
-                 <%
-            if(((User)session.getAttribute("user")).getAccess().contains("menu")){
-            %>
-                <li><a href="Menu.jsp">Add item to Menu</a></li>
-        <%
-            }
-            %>
-                <li><a href="Analytics.jsp">View Analytics</a></li>
-                <li><a href="LogoutServlet">Logout</a></li>
 
-            </ul>
-        </div>
-       -->     
-            <br><br>
-            
-    </body>
+
+</body>
+
+    <!--   Core JS Files   -->
+    <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <!--  Charts Plugin -->
+    <script src="assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/bootstrap-notify.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+    <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+
+    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+    <script src="assets/js/demo.js"></script>
+
 </html>

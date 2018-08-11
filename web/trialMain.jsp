@@ -1,7 +1,7 @@
 <%-- 
-    Document   : CreateUser
-    Created on : 20 Jun, 2018, 12:44:29 PM
-    Author     : Moses
+    Document   : trialMain
+    Created on : Aug 8, 2018, 6:29:56 PM
+    Author     : sharon
 --%>
 <%@page import="java.util.HashSet"%>
 <%@page import="Entity.User"%>
@@ -42,25 +42,29 @@
       
 
     <body>
-        <div class ="wrapper">         
-            <div class="main-panel">                
+        <div class ="wrapper">
+           <div class="main-panel"> 
+                
              <%
     
             String category = u.getType();
-            String role = "";
+            String userType = "";
             String toCreate = "";
             if(category.equals("0")){
-                role = "Super User";
+                userType = "Super User";
                 toCreate = "Admin";
             }else if(category.equals("1")){
-                role = "Admin";
+                userType = "Admin";
                 toCreate = "Manager";
             }else if(category.equals("2")){
-                role = "Manager";
+                userType = "Manager";
                 toCreate = "Cashier";
             }
             
-            %>       
+            %>
+         
+            
+                
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -71,15 +75,7 @@
                             </div>
             <%
             if(toCreate.length() == 0){
-            %>
-            <div class="content">
-                <div class="row">
-                    <div class="col-md-6">
-                        <% out.println("We're sorry, Cashiers are not allowed to create new roles."); %>
-                    </div>
-                </div>
-            </div>
-             <%   
+                out.println("Cashiers cannot create new Users");
             }else{
                 %>
                             <div class="content">
@@ -89,23 +85,23 @@
                     <%
                         if(category.equals("0")){
                     %>
-                                         <div class="col-md-5">
+                                        <div class='col-md-5'>
                                             <div class="form-group">
-                                                <label>Merchant</label>
-                                                <input type="text" class="form-control" disabled placeholder="Merchant" value="SnapCoin">
+                                                <input type='text' class="form-control" placeholder='Company' name='companyName'>    
                                             </div>
                                         </div>
                     <%  }else{ %>
-                                        <input type="hidden" name="companyName" value="<%=u.getCompanyName()%>">
+                                        <input type="hidden" name="companyName" value="KFC">
+                    <%  }%>
+                                            
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <label>Merchant</label>
-                                                <input type="text" class="form-control" disabled placeholder="Merchant" value=<%out.println(u.getCompanyName());%>>
+                                                <label>Company</label>
+                                                <input type="text" class="form-control" disabled placeholder="Company" value="KFC">
                                             </div>
                                         </div>
-                    <%  }%>
-                    
-                    <!--
+                                        
+                                            <!--
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="selectType">Creating User Type</label>
@@ -117,7 +113,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="childType">Select Parent Group</label>
+                                                <label for="childType">Select Manager</label>
                                                 <select class="form-control" id="childType">
                                                     <option name="parent">Outlet 1</option>
                                                     <option name="parent">Outlet 2</option>
@@ -128,23 +124,41 @@
                                             
                   
                                         
-                        -->                
-                                    </div>
-                                    <div class="row">
                                         
+                                    </div>
+
+                                    <div class="row">
                                         <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>First Name</label>
+                                                <input type="text" class="form-control" placeholder="First Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+                                                <input type="text" class="form-control" placeholder="Last Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    -->
+
+                                    <div class="row">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Username</label>
                                                 <input type="text" class="form-control" placeholder="Username" name="username">
                                             </div>
                                         </div>
-                                    
+                                    </div>
+                                            
+                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="card">                                         
                                                 <div class="content">
                                                     <div class="form-group">
                                                         <label>Permissions</label>
-                                                        
                                                         <div class="table-full-width">
                                                             <table class="table">
                                                                 <tbody>
@@ -193,7 +207,7 @@
                                                                     </tr>
         <%
             }
-            if(toCreate.equals("Cashier")||toCreate.equals("Admin")||toCreate.equals("Manager")){
+            if(toCreate.equals("Cashier")){
             %> 
                                                                     <tr>
                                                                         <td>
@@ -214,7 +228,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                       
                                     
             <%
                 String tempPassword = (String)request.getAttribute("tempPassword");
@@ -243,10 +256,28 @@
 
                 </div>
             </div>
+        </div>
+
+<!--
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                Home
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
+        </footer>
+-->
     </div>
 </div>
         </div>
+     
+        
 
 
 </body>
