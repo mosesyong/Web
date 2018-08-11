@@ -10,63 +10,79 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>User Management</title>
-        <%@ include file ="Protect.jsp"%>
-        <%//@ include file ="sidebar.jsp"%>
-        <link rel="stylesheet" href="CSS/mainbody.css">
-        <style>
-            .table{
-                width: 80%;
-                border-collapse:collapse;
-            }
-            
-            table, td{
-                border: 1px solid black;
-            }
-            
-            .header{
-                background-color: #FDCF18;
-                
-            }
-            
-        </style>
+        <%@include file="sidebar.jsp"%>
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    </head>
+	<title>SnapDash</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <meta name="viewport" content="width=device-width" />
+
+
+        <!-- Bootstrap core CSS     -->
+        <link href="design/css/bootstrap.min.css" rel="stylesheet" />
+
+        <!-- Animation library for notifications   -->
+        <link href="design/css/animate.min.css" rel="stylesheet"/>
+
+        <!--  Light Bootstrap Table core CSS    -->
+        <link href="design/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
+
+
+        <!--  CSS for Demo Purpose, don't include it in your project     -->
+        <link href="design/css/demo.css" rel="stylesheet" />
+
+
+        <!--     Fonts and icons     -->
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+        <link href="design/css/pe-icon-7-stroke.css" rel="stylesheet" />
+   </head>
     <body>
-        <div id="page-content-wrapper">
-            <div class="containter-fluid">    
-                <div class="row">
-                    <div class="col-12">
-                        <h1>User Management</h1>
-                        User Level: <%= u.getType()%><br>
-                        Access Rights: <%= u.getAccess()%><br>
-                        <br>
-        <%
+        <div class="wrapper">
+            <div class="main-panel">
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="header">
+                                        <h4 class="title">User Management</h4>
+                                    </div>
+            <%
             String msg = (String)request.getAttribute("msg");
             if(msg != null){
                 out.println("<font color='red'>"  + msg + "</font>");
             }
             %>
-            <%=u%>
-        <table class ="table table-bordered">
-            <tr class="header">
-                <td align="center"><b>Username</b></td>
-                <td align="center"><b>Click to edit access</b></td>
-                <td align="center"><b>Click to delete</b></td>
-            </tr>
-        <%
+           
+                                    <div class="content table-responsive table-full-width">
+                                        <table class="table table-hover table-striped">
+                                            <thead>
+                                                <th>Username</th>
+                                                <th>Click to Edit Access</th>
+                                                <th>Click to Delete</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+            <%
             for(String employeeName : u.getUniqueEmployees()){
                 out.println("<tr><td align='center'>" + employeeName + "</td><td align='center'><a href='EmployeeAccessWebServlet?EmployeeName=" + employeeName + "'>Edit Access</a></td><td align='center'>Delete (not done yet)</td></tr>");
 
             }
-            %>
-        </table>
+            %>    
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </div>    
             </div>
         </div>
-        
-        
     </body>
 </html>

@@ -9,16 +9,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-        <%@page import="Entity.User"%>
-<%
-
-    Object o = session.getAttribute("user");
-    if(o == null){
-        response.sendRedirect("Login.jsp");
-        return;
-    }
-    User u = (User)o;
-%> 
+       <%@include file="sidebar.jsp"%>
 	<meta charset="utf-8" />
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -51,114 +42,25 @@
       
 
     <body>
-        <div class ="wrapper">
-            <div class="sidebar" data-color="yellow" data-image="design/img/sidebar-5.jpg">
-                
-                <div class="sidebar-wrapper">
-                    <div class="logo">
-                         <img src="design/img/sidebar-logo.png">
-                    </div>
-
-                    <ul class="nav">
-                        <li>
-                            <a href="main.jsp">
-                            <i class="pe-7s-home"></i>
-                            <p>Home</p>
-                            </a>
-                        </li>
-                        <li class="active">
-                            <a href="CreateUser.jsp">
-                            <i class="pe-7s-add-user"></i>
-                            <p>Create User</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Settings.jsp">
-                                <i class="pe-7s-tools"></i>
-                                <p>Edit User Settings</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="UserManagement.jsp">
-                                <i class="pe-7s-users"></i>
-                                <p>Manage Employees</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Menu.jsp">
-                                <i class="pe-7s-cart"></i>
-                                <p>Add item to Menu</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Analytics.jsp">
-                                <i class="pe-7s-graph1"></i>
-                                <p>View Analytics</p>
-                            </a>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="main-panel">
-                <nav class="navbar navbar-default navbar-fixed">
-                    <div class="container-fluid">
-                        <div class='navbar-header'>
-                            <button type='button' class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                                <span class='sr-only'>Toggle Navigation</span>
-                                <span class='icon-bar'></span>
-                                <span class='icon-bar'></span>
-                                <span class='icon-bar'></span>
-                            </button>
-                            <a class="navbar-brand" href="#">Welcome Back, Company <%=u.getCompanyName()%>!</a>
-                        </div>
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-left">
-                                        <li>
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                <i class="fa fa-dashboard"></i>
-                                            </a>
-                                        </li>
-                            </ul>
-                            
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="#">
-                                        <%=u.getUsername()%>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="LogoutServlet">
-                                        <p>Log out</p>
-                                    </a>
-                                </li>
-                                <li class="separator hidden-lg"></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>        
-                
+        <div class ="wrapper">         
+            <div class="main-panel">                
              <%
     
             String category = u.getType();
-            String userType = "";
+            String role = "";
             String toCreate = "";
             if(category.equals("0")){
-                userType = "Super User";
+                role = "Super User";
                 toCreate = "Admin";
             }else if(category.equals("1")){
-                userType = "Admin";
+                role = "Admin";
                 toCreate = "Manager";
             }else if(category.equals("2")){
-                userType = "Manager";
+                role = "Manager";
                 toCreate = "Cashier";
             }
             
-            %>
-         
-            
-                
+            %>       
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -169,7 +71,15 @@
                             </div>
             <%
             if(toCreate.length() == 0){
-                out.println("Cashiers cannot create new Users");
+            %>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <% out.println("We're sorry, Cashiers are not allowed to create new roles."); %>
+                    </div>
+                </div>
+            </div>
+             <%   
             }else{
                 %>
                             <div class="content">
@@ -179,23 +89,23 @@
                     <%
                         if(category.equals("0")){
                     %>
-                                        <div class='col-md-5'>
+                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <input type='text' class="form-control" placeholder='Company' name='companyName'>    
+                                                <label>Merchant</label>
+                                                <input type="text" class="form-control" disabled placeholder="Merchant" value="SnapCoin">
                                             </div>
                                         </div>
                     <%  }else{ %>
                                         <input type="hidden" name="companyName" value="<%=u.getCompanyName()%>">
-                    <%  }%>
-                                            
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <label>Company</label>
-                                                <input type="text" class="form-control" disabled placeholder="Company" value=<%out.println(u.getCompanyName());%>>
+                                                <label>Merchant</label>
+                                                <input type="text" class="form-control" disabled placeholder="Merchant" value=<%out.println(u.getCompanyName());%>>
                                             </div>
                                         </div>
-                                        
-                                            <!--
+                    <%  }%>
+                    
+                    <!--
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="selectType">Creating User Type</label>
@@ -207,7 +117,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="childType">Select Manager</label>
+                                                <label for="childType">Select Parent Group</label>
                                                 <select class="form-control" id="childType">
                                                     <option name="parent">Outlet 1</option>
                                                     <option name="parent">Outlet 2</option>
@@ -218,41 +128,23 @@
                                             
                   
                                         
+                        -->                
+                                    </div>
+                                    <div class="row">
                                         
-                                    </div>
-
-                                    <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>First Name</label>
-                                                <input type="text" class="form-control" placeholder="First Name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input type="text" class="form-control" placeholder="Last Name">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    -->
-
-                                    <div class="row">
-                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Username</label>
                                                 <input type="text" class="form-control" placeholder="Username" name="username">
                                             </div>
                                         </div>
-                                    </div>
-                                            
-                                    <div class="row">
+                                    
                                         <div class="col-md-6">
                                             <div class="card">                                         
                                                 <div class="content">
                                                     <div class="form-group">
                                                         <label>Permissions</label>
+                                                        
                                                         <div class="table-full-width">
                                                             <table class="table">
                                                                 <tbody>
@@ -301,7 +193,7 @@
                                                                     </tr>
         <%
             }
-            if(toCreate.equals("Cashier")){
+            if(toCreate.equals("Cashier")||toCreate.equals("Admin")||toCreate.equals("Manager")){
             %> 
                                                                     <tr>
                                                                         <td>
@@ -322,6 +214,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                       
                                     
             <%
                 String tempPassword = (String)request.getAttribute("tempPassword");
@@ -350,25 +243,10 @@
 
                 </div>
             </div>
-        </div>
-
-<!--
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                Home
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
-        </footer>
--->
     </div>
 </div>
+        </div>
 
 
 </body>
