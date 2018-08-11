@@ -148,18 +148,18 @@
                                                         <div class="table-full-width">
                                                             <table class="table">
                                                                 <tbody>
-                                                                    <tr>
-                                                                        <td>
             <%
                 HashSet<String> access = u.getAccess();
                 if(access.contains("menu_right")){
             %>
+                                                                    <tr>
+                                                                        <td>
                                                                             <div class="checkbox">
                                                                                 <input id="menuRights" type="checkbox" name="menu_rights" value="1">
-                                                                                <label for="editRights"></label>
+                                                                                <label for="menuRights"></label>
                                                                             </div>
                                                                         </td>
-                                                                        <td>Menu Edit Right</td>
+                                                                        <td>Menu Edit Rights</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>
@@ -186,7 +186,7 @@
                                                                         <td>
                                                                             <div class="checkbox">
                                                                                 <input id="financeEdit" type="checkbox" name="finance" value="1">
-                                                                                <label for="financeEdits"></label>
+                                                                                <label for="financeEdit"></label>
                                                                             </div>
                                                                         </td>
                                                                         <td>Finance Edit</td>
@@ -216,6 +216,7 @@
                                         </div>
                                        
                                     
+                                        
             <%
                 String tempPassword = (String)request.getAttribute("tempPassword");
                 if(tempPassword != null){
@@ -225,12 +226,9 @@
                 //out.println();
             %>                            
                                                                 
-                                        
+                                         
                                     </div>
-                                                                
-                                       
-                                                       
-                                            
+            
                                     <button type="submit" class="btn btn-info btn-fill pull-right">Create Profile</button>
                                     <div class="clearfix"></div>
                                 </form>
