@@ -36,6 +36,10 @@
         <servlet-name>AddItemWebServlet</servlet-name>
         <servlet-class>Controller.AddItemWebServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddMenuItemWebServlet</servlet-name>
+        <servlet-class>Controller.AddMenuItemWebServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>AddItemWebServlet</servlet-name>
         <url-pattern>/AddItemWebServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddMenuItemWebServlet</servlet-name>
+        <url-pattern>/AddMenuItemWebServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
