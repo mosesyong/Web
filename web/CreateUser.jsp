@@ -59,7 +59,6 @@
                 role = "Manager";
                 toCreate = "Cashier";
             }
-            
             %>       
         <div class="content">
             <div class="container-fluid">
@@ -67,7 +66,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Create User</h4>
+                                <h4 class="title">Create Role</h4>
                             </div>
             <%
             if(toCreate.length() == 0){
@@ -145,6 +144,7 @@
                                                     <div class="form-group">
                                                         <label>Permissions</label>
                                                         
+                                                        <input type="hidden" name="type" value="<%=toCreate%>">
                                                         <div class="table-full-width">
                                                             <table class="table">
                                                                 <tbody>
