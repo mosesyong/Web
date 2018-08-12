@@ -209,6 +209,10 @@ input:focus {
     transition: all 300ms linear;
 }
 
+.permStyle{
+    text-align:left;
+}
+
 .sidebar .nav a,
 .table > tbody > tr .td-actions .btn {
     -webkit-transition: all 150ms ease-in;

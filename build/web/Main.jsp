@@ -11,7 +11,7 @@
     <head>
         <%@include file="sidebar.jsp"%>
 	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<title>SnapDash</title>
@@ -42,7 +42,7 @@
    </head>
     
     <body>
-        <%=u%>
+            
         <div class ="wrapper">
             <div class="main-panel">
                 
@@ -58,7 +58,7 @@
                                 <p class="category">Total Sales for the Day</p>
                             </div>
                             <div class="content">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth" >
+                                <div id="chartPreferences" class="ct-chart ct-square" >
                                     <canvas id="salesChart"></canvas>
                                 </div>
                                 
@@ -74,8 +74,8 @@
                                             datasets:[{
                                                     label:'$',
                                                     data:[5204, 7500],
-                                                    backgroundColor:['#87CB16',
-                                                    '#FF9500']   
+                                                    backgroundColor:['#FFC925',
+                                                    '#42B3C5']   
                                                 }]
                                             },
                                             options:{
@@ -91,12 +91,8 @@
 
                                 <div class="footer">
                                     <div class="legend">
-                                        <i class="fa fa-circle text-success"></i> Achieved
-                                        <i class="fa fa-circle text-warning"></i> Targeted
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
+                                        <i class="fa fa-circle text-warning"></i> Achieved
+                                        <i class="fa fa-circle text-info"></i> Targeted
                                     </div>
                                 </div>
                             </div>
@@ -110,17 +106,39 @@
                                 <p class="category">24 Hours performance</p>
                             </div>
                             <div class="content">
-                                <div id="chartHours" class="ct-chart"></div>
+                                <div id="chartPreferences" class="ct-chart ct-square" >
+                                    <canvas id="behaviourChart"></canvas>
+                                </div>
+                                
+                                <script>
+                                    var salesChart = document.getElementById('behaviourChart').getContext('2d');
+                                    
+                                   
+                                
+                                    var salesPerformanceChart = new Chart(behaviourChart,{
+                                        type:'bar',
+                                        data: {
+                                            labels:['Breakfast', 'Lunch', 'Dinnner'],
+                                            datasets:[{
+                                                    label:'tables',
+                                                    data:[24,69,97],
+                                                    backgroundColor:['#1DC7EA','#FF4A55','#87CB16']   
+                                                }]
+                                            },
+                                            options:{
+                                                legend:{
+                                                    display: false
+                                                }
+                                            }
+                                        }     
+                                    )
+                                </script>
                                 
                                 <div class="footer">
                                     <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> PPT
-                                        <i class="fa fa-circle text-danger"></i> SPT
-                                        <i class="fa fa-circle text-warning"></i> DPT
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
+                                        <i class="fa fa-circle text-info"></i> Breakfast
+                                        <i class="fa fa-circle text-danger"></i> Lunch
+                                        <i class="fa fa-circle text-success"></i> Dinner
                                     </div>
                                 </div>
                             </div>

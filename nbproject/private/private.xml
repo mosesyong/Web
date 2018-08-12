@@ -3,20 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/CreateUser.jsp</file>
             <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/trialMain.jsp</file>
+            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/src/java/Controller/EmployeePasswordChangeWebServlet.java</file>
+            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/src/java/Controller/EmployeeEditWebServlet.java</file>
+            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/design/js/light-bootstrap-dashboard.js</file>
+            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/src/java/Controller/LoginWebServlet.java</file>
+            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/src/java/Controller/PasswordChangeWebServlet.java</file>
+            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/UserManagement.jsp</file>
+            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/sidebar.jsp</file>
+            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/src/java/Entity/User.java</file>
+            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/EmployeeEdit.jsp</file>
+            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/src/java/Controller/AddItemWebServlet.java</file>
+            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/CreateUser.jsp</file>
             <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/Protect.jsp</file>
             <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/Login.jsp</file>
             <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/Menu.jsp</file>
             <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/design/css/loginpage.css</file>
-            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/design/js/light-bootstrap-dashboard.js</file>
-            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/src/java/Controller/LoginWebServlet.java</file>
-            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/UserManagement.jsp</file>
             <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/Settings.jsp</file>
-            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/src/java/Entity/User.java</file>
-            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/EmployeeEdit.jsp</file>
             <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/src/java/Controller/EmployeeAccessWebServlet.java</file>
             <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/Main.jsp</file>
+            <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/design/js/jquery.3.2.1.min.js</file>
             <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/Analytics.jsp</file>
             <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/annual.jsp</file>
             <file>file:/C:/Users/sharon/Documents/NetBeansProjects/Web/web/design/css/light-bootstrap-dashboard.css</file>

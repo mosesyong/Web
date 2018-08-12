@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
    <head>
+      <link rel="icon" type="image/png" href="design/img/topbaricon.ico"> 
 <%
 
     Object o = session.getAttribute("user");
@@ -59,11 +60,16 @@
                          <img src="design/img/sidebar-logo.png">
                     </div>
                     <!-- Nav tabs -->
+                
+                      
+                      <%
+                          if(!u.isLastChild()){
+                        %>
                     <ul class="nav nav-pills" id="sidebarTabs" role="tablist">
                       <li class="nav-item">
                           <a class="nav-link active" id="main-tab" data-toggle="tab" href="Main.jsp" role="tab" aria-controls="home" aria-selected="true">
                            <i class="pe-7s-home"></i>
-                           <p>Home&#8291;&#8291;&#8291;&#8291;&#8291;&#8291;</p>   
+                           <p>Home</p>   
                           </a>
                       </li>
                       <li class="nav-item">
@@ -97,6 +103,40 @@
                           </a>
                       </li>
                     </ul>
+                    <% }else{ %>
+                    <ul class="nav nav-pills" id="sidebarTabs" role="tablist">
+                      <li class="nav-item">
+                          <a class="nav-link active" id="main-tab" data-toggle="tab" href="Main.jsp" role="tab" aria-controls="home" aria-selected="true">
+                           <i class="pe-7s-home"></i>
+                           <p>Home</p>   
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="settings-tab" data-toggle="tab" href="Settings.jsp" role="tab" aria-controls="settings" aria-selected="false">
+                        <i class="pe-7s-tools"></i>
+                        <p>Edit User Settings</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" id="management-tab" data-toggle="tab" href="UserManagement.jsp" role="tab" aria-controls="management" aria-selected="false">
+                          <i class="pe-7s-users"></i>
+                          <p>Manage Employees</p>    
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" id="menu-tab" data-toggle="tab" href="Menu.jsp" role="tab" aria-controls="menu" aria-selected="false">
+                          <i class="pe-7s-cart"></i>
+                          <p>Add item to Menu</p>    
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" id="analytics-tab" data-toggle="tab" href="Analytics.jsp" role="tab" aria-controls="analytics" aria-selected="false">
+                          <i class="pe-7s-graph1"></i>
+                          <p>View Analytics</p>   
+                          </a>
+                      </li>
+                    </ul>
+                    <% } %>
 
                     <!-- Tab panes -->
                     <div class="tab-content">

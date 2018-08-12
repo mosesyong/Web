@@ -11,7 +11,7 @@
     <head>
         <%@include file="sidebar.jsp"%>
 	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<title>SnapDash</title>
@@ -70,10 +70,7 @@
                                                             <i class="fa fa-circle text-danger"></i> Cashier 2
                                                             <i class="fa fa-circle text-warning"></i> Cashier 3
                                                         </div>
-                                                        <hr>
-                                                        <div class="stats">
-                                                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -94,10 +91,7 @@
                                                             <i class="fa fa-circle text-danger"></i> Week 2
                                                             <i class="fa fa-circle text-warning"></i> Week 3
                                                         </div>
-                                                        <hr>
-                                                        <div class="stats">
-                                                            <i class="fa fa-history"></i> Updated 3 minutes ago
-                                                        </div>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>

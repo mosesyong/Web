@@ -91,12 +91,8 @@ public class User {
     }
     
     public boolean isLastChild(){
-        String role = "" + typeList.indexOf(type);
-        if(role.equals(type)){
-            return true;
-        }else{
-            return false;
-        }
+        int listSize = typeList.size();
+        return listSize == Integer.parseInt(type);
     }
     
     @Override
