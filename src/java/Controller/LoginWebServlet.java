@@ -85,8 +85,17 @@ public class LoginWebServlet extends HttpServlet {
                   HashSet<String> access = new HashSet<>();
                   for(String a : accessArray){
                       access.add(a);
-                  }                  
-                  User u = new User(username, type, companyName, access);
+                  }
+                 
+                  String roleString = jo.get("roles").toString();
+                  roleString = roleString.replace("[","");
+                  roleString = roleString.replace("]","");
+                  roleString = roleString.replace("\"","");
+                  String[] roleArray = roleString.split(",");
+                  ArrayList<String> roleList = new ArrayList<>(Arrays.asList(roleArray));
+                  
+                  
+                  User u = new User(username, type, companyName, access, roleList);
                   
                   String employeeData = jo.get("employees").toString().replace("\"","").replace(username + ",","");
                   String[] employeeOverall = employeeData.split("  ");

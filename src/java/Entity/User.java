@@ -19,9 +19,9 @@ public class User {
     private ArrayList<ArrayList<String>> employeeList;
     private static ArrayList<String> accessList;
     private String companyName;
-    private ArrayList<String> typeList;
+    private ArrayList<String> typeList; // same as roleList
     
-    public User(String username, String type, String companyName, HashSet<String> access){
+    public User(String username, String type, String companyName, HashSet<String> access, ArrayList<String> roleList){
         this.username = username;
         this.type = type;
         this.companyName = companyName;
@@ -40,10 +40,7 @@ public class User {
             accessList.add("refund");
         }
         
-        typeList = new ArrayList<>();
-        typeList.add("Merchant");
-        typeList.add("Manager");
-        typeList.add("Cashier");
+        typeList = roleList;
     }
     
     public void addEmployee(ArrayList<String> employees){
@@ -93,8 +90,17 @@ public class User {
         return typeList;
     }
     
+    public boolean isLastChild(){
+        String role = "" + typeList.indexOf(type);
+        if(role.equals(type)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
     @Override
     public String toString(){
-        return("Username: " + username + "\nCompany Name: " + companyName + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList);
+        return("Username: " + username + "\nCompany Name: " + companyName + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList + "\nRoles: " + typeList);
     }
 }
