@@ -104,6 +104,12 @@
                                                         <input type="text" class="form-control" disabled placeholder="Merchant" value=<%out.println(u.getCompanyName());%>>
                                                     </div> 
                                                 </div>
+                                                <div class="col-md-7">
+                                                    <div class="form-group">
+                                                        <label>Outlet Name</label>
+                                                        <input type="text" class="form-control" placeholder="Outlet" name="outletName">
+                                                    </div>
+                                                </div>
                                             </div>
                                                     
                                             <div class="row">
@@ -180,7 +186,15 @@
                                                         <input type="text" class="form-control" disabled placeholder="Merchant" value=<%out.println(u.getCompanyName());%>>
                                                     </div> 
                                                 </div>
+                                                    <div class="col-md-7">
+                                                        <input type="hidden" name="outletName" value="<%=u.getOutletName()%>">
+                                                        <div class="form-group">
+                                                            <label>Outlet Name</label>
+                                                            <input type="text" class="form-control" disabled placeholder="Outlet" value="<%out.println(u.getOutletName());%>">
+                                                        </div>
+                                                    </div>    
                                             </div>
+                                                    
                                                     
                                             <div class="row">
                                                 <div class="col-md-6">
