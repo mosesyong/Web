@@ -7,6 +7,7 @@ package Controller;
 
 import Entity.Properties;
 import Entity.User;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.IOException;
@@ -78,6 +79,13 @@ public class LoginWebServlet extends HttpServlet {
                   String username = jo.get("username").getAsString();
                   String accessString = jo.get("access").toString();
                   String companyName = jo.get("companyName").getAsString();
+                  JsonElement outletJsonElement = jo.get("outletName");
+                  String outletName = null;
+                  try{
+                    outletName = outletJsonElement.getAsString();
+                  }catch(Exception e){
+                      
+                  }
                   accessString = accessString.replace("[","");
                   accessString = accessString.replace("]","");
                   accessString = accessString.replace("\"","");
@@ -95,7 +103,7 @@ public class LoginWebServlet extends HttpServlet {
                   ArrayList<String> roleList = new ArrayList<>(Arrays.asList(roleArray));
                   
                   
-                  User u = new User(username, type, companyName, access, roleList);
+                  User u = new User(username, type, companyName, access, roleList, outletName);
                   
                   String employeeData = jo.get("employees").toString().replace("\"","").replace(username + ",","").replace(username,"");
                   String[] employeeOverall = employeeData.split("  ");

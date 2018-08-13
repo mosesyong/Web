@@ -19,13 +19,15 @@ public class User {
     private ArrayList<ArrayList<String>> employeeList;
     private static ArrayList<String> accessList;
     private String companyName;
+    private String outletName; // hardcoded for now
     private ArrayList<String> typeList; // same as roleList
     
-    public User(String username, String type, String companyName, HashSet<String> access, ArrayList<String> roleList){
+    public User(String username, String type, String companyName, HashSet<String> access, ArrayList<String> roleList, String outletName){
         this.username = username;
         this.type = type;
         this.companyName = companyName;
         this.access = access;
+        this.outletName = outletName;
         employeeList = new ArrayList<>();
         accessList = new ArrayList<>();
         if(access.contains("menu_right")){
@@ -95,8 +97,12 @@ public class User {
         return listSize == Integer.parseInt(type);
     }
     
+    public String getOutletName(){
+        return outletName;
+    }
+    
     @Override
     public String toString(){
-        return("Username: " + username + "\nCompany Name: " + companyName + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList + "\nRoles: " + typeList);
+        return("Username: " + username + "\nCompany Name: " + companyName + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList + "\nRoles: " + typeList + "\nOutlet Name: " + outletName);
     }
 }
