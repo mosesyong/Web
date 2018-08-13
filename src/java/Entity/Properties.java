@@ -15,12 +15,12 @@ public class Properties {
     
     public Properties(){
         String osName = System.getProperty("os.name");
-        if (osName.equals("Linux")) {
+//        if (osName.equals("Linux")) {
             url = "54.169.201.220";
             port = 80;
-        } else {
-            url = "localhost";
-            port = 8080;                    
-        }
+//        } else {
+//            url = "localhost";
+//            port = 8080;                    
+//        }
     }
 }

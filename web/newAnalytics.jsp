@@ -23,6 +23,7 @@
                 <option value="week">week</option>
                 <option value="month">month</option>
                 <option value="year">year</option>
+                <option value="all">all</option>
             </select><br>
             <input type="submit" value="submit">
         </form>
