@@ -97,7 +97,7 @@ public class LoginWebServlet extends HttpServlet {
                   
                   User u = new User(username, type, companyName, access, roleList);
                   
-                  String employeeData = jo.get("employees").toString().replace("\"","").replace(username + ",","");
+                  String employeeData = jo.get("employees").toString().replace("\"","").replace(username + ",","").replace(username,"");
                   String[] employeeOverall = employeeData.split("  ");
                   for(String employeeList : employeeOverall){
                       String[] employees = employeeList.split(" ");

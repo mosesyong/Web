@@ -74,7 +74,7 @@ public class User {
         ArrayList<String> uniqueEmployeeList = new ArrayList<>();
         for(ArrayList<String> employees : employeeList){
             for(String employee : employees){
-                if(!uniqueEmployeeList.contains(employee)){
+                if(!uniqueEmployeeList.contains(employee) && employee.length() > 0){
                     uniqueEmployeeList.add(employee);
                 }
             }

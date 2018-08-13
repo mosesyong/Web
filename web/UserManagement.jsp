@@ -41,6 +41,8 @@
         <link href="design/css/pe-icon-7-stroke.css" rel="stylesheet" />
    </head>
     <body>
+        <%=u%>
+        <%=u.getUniqueEmployees()%>
         <div class="wrapper">
             <div class="main-panel">
                 <div class="content">
