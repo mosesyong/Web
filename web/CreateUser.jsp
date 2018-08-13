@@ -77,7 +77,7 @@
                                             <div class="row">
                                                 <div class="col-md-5">
                                                    <div class="form-group">
-                                                        <label>Merchant</label>
+                                                        <label>Merchant Name</label>
                                                         <input type="text" class="form-control" placeholder="Merchant" name="companyName">
                                                     </div> 
                                                 </div>
@@ -100,7 +100,7 @@
                                                 <div class="col-md-5">
                                                     <input type="hidden" name="companyName" value="<%=u.getCompanyName()%>">
                                                     <div class="form-group">
-                                                        <label>Merchant</label>
+                                                        <label>Merchant Name</label>
                                                         <input type="text" class="form-control" disabled placeholder="Merchant" value=<%out.println(u.getCompanyName());%>>
                                                     </div> 
                                                 </div>
@@ -176,7 +176,7 @@
                                                 <div class="col-md-5">
                                                     <input type="hidden" name="companyName" value="<%=u.getCompanyName()%>">
                                                     <div class="form-group">
-                                                        <label>Merchant</label>
+                                                        <label>Merchant Name</label>
                                                         <input type="text" class="form-control" disabled placeholder="Merchant" value=<%out.println(u.getCompanyName());%>>
                                                     </div> 
                                                 </div>

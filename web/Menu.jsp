@@ -54,27 +54,25 @@
                                     <div class="content">
                                         <form action="AddItemWebServlet" method='post'>
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Name</label>
                                                         <input type="text" class="form-control" placeholder="Name" name="name" required>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Price</label>
                                                         <input type="number" class="form-control" placeholder="Price" name="price" required>
                                                     </div>
                                                 </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Item Description</label>
-                                                        <input type='text' class='form-control' placeholder='Description' name='description' required>
+                                                        <label>Cost</label>
+                                                        <input type="number" class="form-control" placeholder="Cost" name="cost" required>
                                                     </div>
                                                 </div>
+                                                    
                                             </div>
 
                                             <div class="row">

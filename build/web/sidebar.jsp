@@ -118,12 +118,6 @@
                         </a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" id="management-tab" data-toggle="tab" href="UserManagement.jsp" role="tab" aria-controls="management" aria-selected="false">
-                          <i class="pe-7s-users"></i>
-                          <p>Manage Employees</p>    
-                          </a>
-                      </li>
-                      <li class="nav-item">
                           <a class="nav-link" id="menu-tab" data-toggle="tab" href="Menu.jsp" role="tab" aria-controls="menu" aria-selected="false">
                           <i class="pe-7s-cart"></i>
                           <p>Add item to Menu</p>    
@@ -193,7 +187,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="#">
-                                        Company <%=u.getCompanyName()%>
+                                        <%=u.getCompanyName()%>
                                     </a>
                                 </li>
                                 <li>

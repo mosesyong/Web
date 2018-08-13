@@ -187,7 +187,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="#">
-                                        <%=u.getCompanyName()%>
+                                        Company <%=u.getCompanyName()%>
                                     </a>
                                 </li>
                                 <li>
