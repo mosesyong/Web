@@ -5,17 +5,35 @@
  */
 package Controller;
 
+import Entity.User;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 
 /**
  *
  * @author moses
  */
+@MultipartConfig
 public class AddItemWebServlet extends HttpServlet {
 
     /**
@@ -31,16 +49,63 @@ public class AddItemWebServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddItemWebServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddItemWebServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            HttpSession session = request.getSession();
+            DefaultHttpClient httpclient = new DefaultHttpClient();
+            String name = request.getParameter("name");
+            String price = request.getParameter("price");
+            String cost = request.getParameter("cost");
+            
+            
+            Part filePart = request.getPart("image"); // Retrieves <input type="file" name="file">
+            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+            InputStream fileContent = filePart.getInputStream();
+            
+            if(fileName.isEmpty()){
+                request.setAttribute("msg", "Failed to add item to menu");
+                request.getRequestDispatcher("AddMenu.jsp").forward(request, response);
+                return;
+            }
+            File tempFile = new File(fileName);
+            tempFile.deleteOnExit();
+            try (FileOutputStream streamOut = new FileOutputStream(tempFile)) {
+                IOUtils.copy(fileContent, streamOut);
+            }
+            
+            FileBody fileBody = new FileBody(tempFile);
+            MultipartEntityBuilder builder = MultipartEntityBuilder.create()
+                                     .setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
+                                     .addPart("randomkey", fileBody)
+                                     .addTextBody("name", name)
+                                     .addTextBody("cost", cost)
+                                     .addTextBody("price", price)
+                                     .addTextBody("outletId", ((User)session.getAttribute("user")).getOutletName());
+            HttpEntity multiPartEntity = builder.build();
+
+            HttpHost target = new HttpHost((String)session.getAttribute("url"), (Integer)session.getAttribute("port"), "http");
+
+            HttpPost postRequest = new HttpPost("/API/AddMenuItemServlet");
+            
+            postRequest.setEntity(multiPartEntity);
+            
+            
+            HttpResponse httpResponse = httpclient.execute(target, postRequest);
+            HttpEntity entity = httpResponse.getEntity();
+
+            int statusCode = httpResponse.getStatusLine().getStatusCode();
+            
+            if(statusCode == 202){
+                request.setAttribute("msg", "Successfully added " + name + " to menu");
+                request.getRequestDispatcher("AddMenu.jsp").forward(request, response);
+                return;
+            }else{
+                request.setAttribute("msg", "Failed to add " + name + " to menu");
+                request.getRequestDispatcher("AddMenu.jsp").forward(request, response);
+                return;
+            }
+        }catch(Exception e){
+            request.setAttribute("msg", "Failed to add item to menu");
+            request.getRequestDispatcher("AddMenu.jsp").forward(request, response);
+            return;
         }
     }
 

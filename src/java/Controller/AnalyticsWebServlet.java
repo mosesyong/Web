@@ -92,6 +92,7 @@ public class AnalyticsWebServlet extends HttpServlet {
                       transaction.addTransaction(data);
                   }
                   TransactionDao.addTransaction(transaction);
+                  System.out.println(TransactionDao.print());
                   response.sendRedirect("Analytics.jsp");
                   return;
               }else{
