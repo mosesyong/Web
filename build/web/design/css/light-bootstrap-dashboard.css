@@ -2452,11 +2452,52 @@ fieldset[disabled] .btn-neutral.active {
     border-radius: 4px;
 }
 
-.ct-label {
-    fill: rgba(0, 0, 0, 0.4);
-    color: rgba(0, 0, 0, 0.4);
-    font-size: 1.3rem;
-    line-height: 1;
+.card-contributions .card-stats {
+    flex-direction: column;
+  }
+  .card-contributions .card-stats .bootstrap-switch {
+    margin-bottom: 15px;
+  }
+  
+  .card-stats .card-body {
+  padding: 15px 15px 0px;
+}
+
+.card-stats .card-body .numbers {
+  text-align: right;
+  font-size: 2em;
+}
+
+.card-stats .card-body .numbers p {
+  margin-bottom: 0;
+}
+
+.card-stats .card-body .numbers .card-category {
+  color: #9A9A9A;
+  font-size: 16px;
+  line-height: 1.4em;
+}
+
+.card-stats .card-footer {
+  padding: 0px 15px 15px;
+}
+
+.card-stats .card-footer .stats {
+  color: #9A9A9A;
+}
+
+.card-stats .card-footer hr {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.card-stats .icon-big {
+  font-size: 3em;
+  min-height: 64px;
+}
+
+.card-stats .icon-big i {
+  line-height: 59px;
 }
 
 .ct-chart-line .ct-label,

@@ -44,10 +44,86 @@
     <body>
         <div class ="wrapper">
             <div class="main-panel">
-                
-            <div class="content">
-            <div class="container-fluid">
-           
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                  <div class="card-body ">
+                                    <div class="row">
+                                      <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                          <i class="pe-7s-cash text-warning"></i>
+                                        </div>
+                                      </div>
+                                      <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                          <p class="card-category">Today's Sales</p>
+                                          <p class="card-title">$1469.50<p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                  <div class="card-body ">
+                                    <div class="row">
+                                      <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                          <i class="pe-7s-cup text-success"></i>
+                                        </div>
+                                      </div>
+                                      <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                          <p class="card-category">Sales' Target</p>
+                                          <p class="card-title">$12000<p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                  <div class="card-body ">
+                                    <div class="row">
+                                      <div class="col-5 col-md-2">
+                                        <div class="icon-big text-center icon-warning">
+                                          <i class="pe-7s-like text-danger"></i>
+                                        </div>
+                                      </div>
+                                      <div class="col-7 col-md-10">
+                                        <div class="numbers">
+                                          <p class="card-category">Today's Best Seller</p>
+                                          <p class="card-title">Chocolate Cake<p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                  <div class="card-body ">
+                                    <div class="row">
+                                      <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                          <i class="pe-7s-attention text-primary"></i>
+                                        </div>
+                                      </div>
+                                      <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                          <p class="card-category">Refunds Made</p>
+                                          <p class="card-title">0</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
                 <div class="row">
                     <div class="col-md-5">
                         <div class="card">
