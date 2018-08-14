@@ -1,5 +1,5 @@
 <%-- 
-    Document   : CreateUser
+    Document   : Sidebar
     Created on : 20 Jun, 2018, 12:44:29 PM
     Author     : Moses
 --%>
@@ -48,26 +48,25 @@
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
         <link href="design/css/pe-icon-7-stroke.css" rel="stylesheet" />
+          
+        
       
    </head>
       
 
     <body>
-            <div class="sidebar" data-color="yellow" data-image="design/img/sidebar-5.jpg">
-                
-                <div class="sidebar-wrapper">
-                    <div class="logo">
-                         <img src="design/img/sidebar-logo.png">
-                    </div>
-                    <!-- Nav tabs -->
-                
-                      
-                      <%
-                          if(!u.isLastChild()){
-                              if(u.getType().equals("1")){
-                        %>
+        <div class="sidebar" data-color="yellow" data-image="design/img/sidebar-5.jpg">
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <img src="design/img/sidebar-logo.png">
+                </div>  
+                    <!-- Nav tabs -->       
+            <%
+                if(!u.isLastChild()){
+                    if(u.getType().equals("1")){
+              %>
                     <ul class="nav nav-pills" id="sidebarTabs" role="tablist">
-                      <li class="nav-item">
+                       <li class="nav-item">
                           <a class="nav-link active" id="main-tab" data-toggle="tab" href="Main.jsp" role="tab" aria-controls="home" aria-selected="true">
                            <i class="pe-7s-home"></i>
                            <p>Home</p>   
@@ -242,24 +241,5 @@
 
 
 </body>
-
-    <!--   Core JS Files   -->
-    <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
-    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-    <!--  Charts Plugin -->
-    <script src="assets/js/chartist.min.js"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="assets/js/bootstrap-notify.js"></script>
-
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-    <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
-
-    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-    <script src="assets/js/demo.js"></script>
 
 </html>

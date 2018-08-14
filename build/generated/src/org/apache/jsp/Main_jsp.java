@@ -122,6 +122,7 @@ public final class Main_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                      ");
 
                           if(!u.isLastChild()){
+                              if(u.getType().equals("1")){
                         
       out.write("\n");
       out.write("                    <ul class=\"nav nav-pills\" id=\"sidebarTabs\" role=\"tablist\">\n");
@@ -150,12 +151,7 @@ public final class Main_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                          </a>\n");
       out.write("                      </li>\n");
       out.write("                      <li class=\"nav-item\">\n");
-      out.write("                          <a class=\"nav-link\" id=\"menu-tab\" data-toggle=\"tab\" href=\"Menu.jsp\" role=\"tab\" aria-controls=\"menu\" aria-selected=\"false\">\n");
-      out.write("                          <i class=\"pe-7s-cart\"></i>\n");
-      out.write("                          <p>Add item to Menu</p>    \n");
-      out.write("                          </a>\n");
-      out.write("                      </li>\n");
-      out.write("                      <li class=\"nav-item\">\n");
+      out.write("                          <a class=\"nav-link\" id=\"menu-tab\" data-toggle=\"tab\" href=\"AddMenu.jsp\" role=\"tab\" aria-controls=\"menu\" aria-selected=\"false\">\n");
       out.write("                          <a class=\"nav-link\" id=\"analytics-tab\" data-toggle=\"tab\" href=\"Analytics.jsp\" role=\"tab\" aria-controls=\"analytics\" aria-selected=\"false\">\n");
       out.write("                          <i class=\"pe-7s-graph1\"></i>\n");
       out.write("                          <p>View Analytics</p>   \n");
@@ -173,13 +169,57 @@ public final class Main_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                          </a>\n");
       out.write("                      </li>\n");
       out.write("                      <li class=\"nav-item\">\n");
+      out.write("                          <a class=\"nav-link\" id=\"create-tab\" data-toggle=\"tab\" href=\"CreateUser.jsp\" role=\"tab\" aria-controls=\"create\" aria-selected=\"false\">\n");
+      out.write("                           <i class=\"pe-7s-add-user\"></i>\n");
+      out.write("                           <p>Create Role</p>   \n");
+      out.write("                          </a>\n");
+      out.write("                      </li>\n");
+      out.write("                      <li class=\"nav-item\">\n");
       out.write("                        <a class=\"nav-link\" id=\"settings-tab\" data-toggle=\"tab\" href=\"Settings.jsp\" role=\"tab\" aria-controls=\"settings\" aria-selected=\"false\">\n");
       out.write("                        <i class=\"pe-7s-tools\"></i>\n");
       out.write("                        <p>Edit User Settings</p>\n");
       out.write("                        </a>\n");
       out.write("                      </li>\n");
       out.write("                      <li class=\"nav-item\">\n");
-      out.write("                          <a class=\"nav-link\" id=\"menu-tab\" data-toggle=\"tab\" href=\"Menu.jsp\" role=\"tab\" aria-controls=\"menu\" aria-selected=\"false\">\n");
+      out.write("                          <a class=\"nav-link\" id=\"management-tab\" data-toggle=\"tab\" href=\"UserManagement.jsp\" role=\"tab\" aria-controls=\"management\" aria-selected=\"false\">\n");
+      out.write("                          <i class=\"pe-7s-users\"></i>\n");
+      out.write("                          <p>Manage Employees</p>    \n");
+      out.write("                          </a>\n");
+      out.write("                      </li>\n");
+      out.write("                      <li class=\"nav-item\">\n");
+      out.write("                          <a class=\"nav-link\" id=\"menu-tab\" data-toggle=\"tab\" href=\"AddMenu.jsp\" role=\"tab\" aria-controls=\"menu\" aria-selected=\"false\">\n");
+      out.write("                          <i class=\"pe-7s-cart\"></i>\n");
+      out.write("                          <p>Add item to Menu</p>    \n");
+      out.write("                          </a>\n");
+      out.write("                      </li>\n");
+      out.write("                      <li class=\"nav-item\">\n");
+      out.write("                          <a class=\"nav-link\" id=\"analytics-tab\" data-toggle=\"tab\" href=\"Analytics.jsp\" role=\"tab\" aria-controls=\"analytics\" aria-selected=\"false\">\n");
+      out.write("                          <i class=\"pe-7s-graph1\"></i>\n");
+      out.write("                          <p>View Analytics</p>   \n");
+      out.write("                          </a>\n");
+      out.write("                      </li>\n");
+      out.write("                    </ul>\n");
+      out.write("                    \n");
+      out.write("                    \n");
+      out.write("                    ");
+      }
+                       }else{ 
+      out.write("\n");
+      out.write("                    <ul class=\"nav nav-pills\" id=\"sidebarTabs\" role=\"tablist\">\n");
+      out.write("                      <li class=\"nav-item\">\n");
+      out.write("                          <a class=\"nav-link active\" id=\"main-tab\" data-toggle=\"tab\" href=\"Main.jsp\" role=\"tab\" aria-controls=\"home\" aria-selected=\"true\">\n");
+      out.write("                           <i class=\"pe-7s-home\"></i>\n");
+      out.write("                           <p>Home</p>   \n");
+      out.write("                          </a>\n");
+      out.write("                      </li>\n");
+      out.write("                      <li class=\"nav-item\">\n");
+      out.write("                        <a class=\"nav-link\" id=\"settings-tab\" data-toggle=\"tab\" href=\"Settings.jsp\" role=\"tab\" aria-controls=\"settings\" aria-selected=\"false\">\n");
+      out.write("                        <i class=\"pe-7s-tools\"></i>\n");
+      out.write("                        <p>Edit User Settings</p>\n");
+      out.write("                        </a>\n");
+      out.write("                      </li>\n");
+      out.write("                      <li class=\"nav-item\">\n");
+      out.write("                          <a class=\"nav-link\" id=\"menu-tab\" data-toggle=\"tab\" href=\"AddMenu.jsp\" role=\"tab\" aria-controls=\"menu\" aria-selected=\"false\">\n");
       out.write("                          <i class=\"pe-7s-cart\"></i>\n");
       out.write("                          <p>Add item to Menu</p>    \n");
       out.write("                          </a>\n");
@@ -375,12 +415,12 @@ public final class Main_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                <div class=\"card card-stats\">\n");
       out.write("                                  <div class=\"card-body \">\n");
       out.write("                                    <div class=\"row\">\n");
-      out.write("                                      <div class=\"col-5 col-md-4\">\n");
+      out.write("                                      <div class=\"col-5 col-md-2\">\n");
       out.write("                                        <div class=\"icon-big text-center icon-warning\">\n");
       out.write("                                          <i class=\"pe-7s-like text-danger\"></i>\n");
       out.write("                                        </div>\n");
       out.write("                                      </div>\n");
-      out.write("                                      <div class=\"col-7 col-md-8\">\n");
+      out.write("                                      <div class=\"col-7 col-md-10\">\n");
       out.write("                                        <div class=\"numbers\">\n");
       out.write("                                          <p class=\"card-category\">Today's Best Seller</p>\n");
       out.write("                                          <p class=\"card-title\">Chocolate Cake<p>\n");
