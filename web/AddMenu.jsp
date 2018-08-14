@@ -52,7 +52,7 @@
                                         <h4 class="title">Add Item To Menu</h4>
                                     </div>
                                     <div class="content">
-                                        <form action="AddItemWebServlet" method='post'>
+                                        <form action="AddItemWebServlet" method='post' enctype=multipart/form-data>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
@@ -63,13 +63,13 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Price</label>
-                                                        <input type="number" class="form-control" placeholder="Price" name="price" required>
+                                                        <input type="number" min = "0" class="form-control" placeholder="Price" name="price" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Cost</label>
-                                                        <input type="number" class="form-control" placeholder="Cost" name="cost" required>
+                                                        <input type="number" min = "0" class="form-control" placeholder="Cost" name="cost" required>
                                                     </div>
                                                 </div>
                                                     
@@ -83,7 +83,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                    <% 
+                                            String msg = (String)request.getAttribute("msg");
+                                            if(msg != null){
+                                                out.println("<font color='red'>" + msg + "</font>");
+                                            }
+                                    //out.println();
+                                    //out.println();
+                                %>
                                             <button type="submit" class="btn btn-info btn-fill pull-right">Add to Menu</button>
                                             <div class="clearfix"></div>
                                         </form>

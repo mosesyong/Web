@@ -11,7 +11,7 @@ package Entity;
  */
 public class Properties {
     public static String url; 
-    public static int port = 80;
+    public static int port;
     
     public Properties(){
         String osName = System.getProperty("os.name");

@@ -247,8 +247,12 @@
                     <%  }}; 
                         String tempPassword = (String)request.getAttribute("tempPassword");
                         if(tempPassword != null){
-                        out.println("<font color='red'> Your Temporary Password is:"  + tempPassword + "</font>");
+                            out.println("<font color='red'> Your Temporary Password is:"  + tempPassword + "</font>");
                         }   
+                        String msg = (String)request.getAttribute("msg");
+                        if(tempPassword != null){
+                            out.println("<font color='red'>" + msg + "</font>");
+                        }
                 //out.println();
                 //out.println();
             %>                            

@@ -90,7 +90,10 @@ public class CreateUserWebServlet extends HttpServlet {
 
 
         } catch (Exception e) {
-          e.printStackTrace();
+            e.printStackTrace();
+            System.out.println("Error, redirect to create user page");
+            request.setAttribute("msg", "Unable to create " + username);
+            request.getRequestDispatcher("CreateUser.jsp").forward(request, response);
         } finally {
           // When HttpClient instance is no longer needed,
           // shut down the connection manager to ensure

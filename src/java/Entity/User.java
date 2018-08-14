@@ -52,6 +52,10 @@ public class User {
         employeeList.add(employees);
     }
     
+    public boolean hasMenuAccess(){
+        return accessList.contains("menu");
+    }
+    
     public String getUsername(){
         return username;
     }
