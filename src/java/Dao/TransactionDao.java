@@ -13,7 +13,11 @@ import java.util.ArrayList;
  * @author moses
  */
 public class TransactionDao {
-    static ArrayList<Transaction> transactionList = new ArrayList<>();
+    static ArrayList<Transaction> transactionList;
+    
+    public TransactionDao(){
+        this.transactionList = new ArrayList<>();
+    }
     
     public static void addTransaction(Transaction t){
         transactionList.add(t);
@@ -30,6 +34,16 @@ public class TransactionDao {
             }
         }
         return null;
+    }
+    
+    public static ArrayList<Transaction> getTransaction(String filter){
+        ArrayList<Transaction> result = new ArrayList<>();
+        for(Transaction t : transactionList){
+            if(t.getPeriod().equals(filter) || t.getAnalyticsType().equals(filter)){
+                result.add(t);
+            }
+        }
+        return result;
     }
     
     public static String print(){

@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Dao.*;
 import Entity.Properties;
 import Entity.User;
 import com.google.gson.JsonElement;
@@ -49,6 +50,7 @@ public class LoginWebServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            TransactionDao transactionDao = new TransactionDao(); // to wipe the existing arrayList
             Properties prop = new Properties();
             String url = prop.url;
             int port = prop.port;
@@ -113,6 +115,9 @@ public class LoginWebServlet extends HttpServlet {
                         u.addEmployee(new ArrayList<>(Arrays.asList(employee.split(","))));
                       }
                   }
+                  
+                  AnalyticsDao.getAnalytics(username, outletName, "1", url, port);
+                  
                   System.out.println(u);
                   
                   

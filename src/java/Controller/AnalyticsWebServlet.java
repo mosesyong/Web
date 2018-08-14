@@ -57,59 +57,72 @@ public class AnalyticsWebServlet extends HttpServlet {
             String username = u.getUsername();
             String outletName = "1"; //hardcoded for now
             String count = "1"; //hardcoded for now
-            String period = request.getParameter("period");
-            String analyticsType = request.getParameter("analyticsType");
-            DefaultHttpClient httpclient = new DefaultHttpClient();
-            try {
-              // specify the host, protocol, and port 
-              HttpHost target = new HttpHost((String)session.getAttribute("url"), (Integer)session.getAttribute("port"), "http");
+            ArrayList<String> periodList = new ArrayList<>();
+            periodList.add("day");
+            periodList.add("week");
+            periodList.add("month");
+            periodList.add("year");
+            periodList.add("all");
+            ArrayList<String> analyticsTypeList = new ArrayList<>();
+            analyticsTypeList.add("sales");
+            analyticsTypeList.add("items");
+            for(String period : periodList){
+                for(String analyticsType : analyticsTypeList){
+                    DefaultHttpClient httpclient = new DefaultHttpClient();
+                    try {
+                      // specify the host, protocol, and port 
+                      HttpHost target = new HttpHost((String)session.getAttribute("url"), (Integer)session.getAttribute("port"), "http");
 
-              HttpPost postRequest = new HttpPost("/API/TransactionOutputServlet");
-              ArrayList<NameValuePair> postParams = new ArrayList<>();
-              postParams.add(new BasicNameValuePair("username", username));
-              postParams.add(new BasicNameValuePair("outletName", outletName));
-              postParams.add(new BasicNameValuePair("period", period));
-              postParams.add(new BasicNameValuePair("analyticsType", analyticsType));
-              postParams.add(new BasicNameValuePair("count", count));
-              postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
-              HttpResponse httpResponse = httpclient.execute(target, postRequest);
-              HttpEntity entity = httpResponse.getEntity();
-              
+                      HttpPost postRequest = new HttpPost("/API/TransactionOutputServlet");
+                      ArrayList<NameValuePair> postParams = new ArrayList<>();
+                      postParams.add(new BasicNameValuePair("username", username));
+                      postParams.add(new BasicNameValuePair("outletName", outletName));
+                      postParams.add(new BasicNameValuePair("period", period));
+                      postParams.add(new BasicNameValuePair("analyticsType", analyticsType));
+                      postParams.add(new BasicNameValuePair("count", count));
+                      postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
+                      HttpResponse httpResponse = httpclient.execute(target, postRequest);
+                      HttpEntity entity = httpResponse.getEntity();
 
-              int statusCode = httpResponse.getStatusLine().getStatusCode();
-              if(statusCode == 200){
-                  JsonParser parser = new JsonParser();
-                  JsonObject jo = (JsonObject) parser.parse(EntityUtils.toString(entity));
-                  JsonArray resultArray = jo.get("result").getAsJsonArray();
-                  Transaction transaction = new Transaction(period, analyticsType);
-                  for(Object obj : resultArray){
-                      JsonObject transactionDataObj = (JsonObject)obj;
-                      String name = transactionDataObj.get("name").getAsString();
-                      int quantity = transactionDataObj.get("quantity").getAsInt();
-                      double unitPrice = transactionDataObj.get("unitPrice").getAsDouble();
-                      double totalPrice = transactionDataObj.get("totalPrice").getAsDouble();
-                      TransactionData data = new TransactionData(name, quantity, unitPrice, totalPrice);
-                      transaction.addTransaction(data);
-                  }
-                  TransactionDao.addTransaction(transaction);
-                  System.out.println(TransactionDao.print());
-                  response.sendRedirect("Analytics.jsp");
-                  return;
-              }else{
-                  System.out.println(httpResponse.getStatusLine() + "<br>");
-                  request.setAttribute("msg", "Invalid Analyticcs");
-                  request.getRequestDispatcher("Analytics.jsp").forward(request, response);
-              }
-              
 
-            } catch (Exception e) {
-              e.printStackTrace();
-            } finally {
-              // When HttpClient instance is no longer needed,
-              // shut down the connection manager to ensure
-              // immediate deallocation of all system resources
-              httpclient.getConnectionManager().shutdown();
+                      int statusCode = httpResponse.getStatusLine().getStatusCode();
+                      if(statusCode == 200){
+                          JsonParser parser = new JsonParser();
+                          JsonObject jo = (JsonObject) parser.parse(EntityUtils.toString(entity));
+                          JsonArray resultArray = jo.get("result").getAsJsonArray();
+                          Transaction transaction = new Transaction(period, analyticsType);
+                          for(Object obj : resultArray){
+                              JsonObject transactionDataObj = (JsonObject)obj;
+                              String name = transactionDataObj.get("name").getAsString();
+                              int quantity = transactionDataObj.get("quantity").getAsInt();
+                              double unitPrice = transactionDataObj.get("unitPrice").getAsDouble();
+                              double totalPrice = transactionDataObj.get("totalPrice").getAsDouble();
+                              TransactionData data = new TransactionData(name, quantity, unitPrice, totalPrice);
+                              transaction.addTransaction(data);
+                          }
+                          TransactionDao.addTransaction(transaction);
+                      }else{
+                          System.out.println(httpResponse.getStatusLine() + "<br>");
+                          request.setAttribute("msg", "Invalid Analyticcs");
+                          request.getRequestDispatcher("Analytics.jsp").forward(request, response);
+                          return;
+                      }
+
+
+                    } catch (Exception e) {
+                      e.printStackTrace();
+                    } finally {
+                      // When HttpClient instance is no longer needed,
+                      // shut down the connection manager to ensure
+                      // immediate deallocation of all system resources
+                      httpclient.getConnectionManager().shutdown();
+                    }
+                }
             }
+            
+            System.out.println(TransactionDao.print());
+            response.sendRedirect("Analytics.jsp");
+            return;
         }
     }
 

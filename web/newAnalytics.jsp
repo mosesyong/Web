@@ -14,7 +14,7 @@
     <body>
         <h1>Temp analytics page</h1>
         <form method="get" action="AnalyticsWebServlet">
-            Select type:<select name="analyticsType">
+<!--            Select type:<select name="analyticsType">
                 <option value="sales">Sales Numbers</option>
                 <option value="items">Item Numbers</option>
             </select><br>
@@ -24,7 +24,7 @@
                 <option value="month">month</option>
                 <option value="year">year</option>
                 <option value="all">all</option>
-            </select><br>
+            </select><br>-->
             <input type="submit" value="submit">
         </form>
     </body>
