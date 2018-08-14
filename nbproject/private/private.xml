@@ -4,8 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/moses/Documents/FYP/Web/src/java/Controller/LoginWebServlet.java</file>
-            <file>file:/Users/moses/Documents/FYP/Web/src/java/Controller/CreateUserWebServlet.java</file>
             <file>file:/Users/moses/Documents/FYP/Web/src/java/Entity/User.java</file>
+            <file>file:/Users/moses/Documents/FYP/Web/nbproject/build-impl.xml</file>
+            <file>file:/Users/moses/Documents/FYP/Web/web/CreateUser.jsp</file>
+            <file>file:/Users/moses/Documents/FYP/Web/web/Main.jsp</file>
         </group>
     </open-files>
 </project-private>
