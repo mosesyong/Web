@@ -5,7 +5,12 @@
  */
 package Controller;
 
+import Dao.TransactionDao;
+import Entity.Transaction;
+import Entity.TransactionData;
 import Entity.User;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.IOException;
@@ -75,14 +80,24 @@ public class AnalyticsWebServlet extends HttpServlet {
               if(statusCode == 200){
                   JsonParser parser = new JsonParser();
                   JsonObject jo = (JsonObject) parser.parse(EntityUtils.toString(entity));
-//                  String type = jo.get("result").getAsString();
-                  
-                  out.println(jo);
+                  JsonArray resultArray = jo.get("result").getAsJsonArray();
+                  Transaction transaction = new Transaction(period, analyticsType);
+                  for(Object obj : resultArray){
+                      JsonObject transactionDataObj = (JsonObject)obj;
+                      String name = transactionDataObj.get("name").getAsString();
+                      int quantity = transactionDataObj.get("quantity").getAsInt();
+                      double unitPrice = transactionDataObj.get("unitPrice").getAsDouble();
+                      double totalPrice = transactionDataObj.get("totalPrice").getAsDouble();
+                      TransactionData data = new TransactionData(name, quantity, unitPrice, totalPrice);
+                      transaction.addTransaction(data);
+                  }
+                  TransactionDao.addTransaction(transaction);
+                  response.sendRedirect("Analytics.jsp");
+                  return;
               }else{
                   System.out.println(httpResponse.getStatusLine() + "<br>");
-                  System.out.println("Error, redirect to login page with error");
-                  request.setAttribute("msg", "Invalid Username/Password");
-                  request.getRequestDispatcher("Login.jsp").forward(request, response);
+                  request.setAttribute("msg", "Invalid Analyticcs");
+                  request.getRequestDispatcher("Analytics.jsp").forward(request, response);
               }
               
 
