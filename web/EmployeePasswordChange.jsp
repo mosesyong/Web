@@ -10,7 +10,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Employee Password Change</title>
-        <%@ include file ="Protect.jsp"%>
         <%@ include file ="sidebar.jsp"%>
         <link rel="stylesheet" href="CSS/mainbody.css">
         <%String username = (String)request.getAttribute("username");%>

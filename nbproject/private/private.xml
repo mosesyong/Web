@@ -3,22 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/Users/moses/Documents/FYP/Web/src/java/Controller/LoginWebServlet.java</file>
-            <file>file:/Users/moses/Documents/FYP/Web/src/java/Entity/User.java</file>
-            <file>file:/Users/moses/Documents/FYP/Web/nbproject/build-impl.xml</file>
-            <file>file:/Users/moses/Documents/FYP/Web/web/CreateUser.jsp</file>
-            <file>file:/Users/moses/Documents/FYP/Web/web/Main.jsp</file>
-=======
-            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Controller/AddItemWebServlet.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/Login.jsp</file>
             <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/sidebar.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Controller/AnalyticsWebServlet.java</file>
             <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Controller/AddMenuItemWebServlet.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Controller/CreateUserWebServlet.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/EmployeeEdit.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/newAnalytics.jsp</file>
             <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/trialMain.jsp</file>
-            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Entity/User.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/js/demo.js</file>
             <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/Menu.jsp</file>
-            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/Analytics.jsp</file>
             <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/CreateUser.jsp</file>
->>>>>>> 16345be19ef819cc659de0073995b9b0ef460f9b
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/js/jquery.3.2.1.min.js</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Controller/AddItemWebServlet.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/UserManagement.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Entity/User.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/Analytics.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/Settings.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/EditMenu.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/EmployeePasswordChange.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/Main.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/css/light-bootstrap-dashboard.css</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/js/light-bootstrap-dashboard.js</file>
         </group>
     </open-files>
 </project-private>
