@@ -63,13 +63,13 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Price</label>
-                                                        <input type="number" min = "0" class="form-control" placeholder="Price" name="price" required>
+                                                        <input type="number" step="0.01" min = "0" class="form-control" placeholder="Price" name="price" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Cost</label>
-                                                        <input type="number" min = "0" class="form-control" placeholder="Cost" name="cost" required>
+                                                        <input type="number" step="0.01" min = "0" class="form-control" placeholder="Cost" name="cost" required>
                                                     </div>
                                                 </div>
                                                     
