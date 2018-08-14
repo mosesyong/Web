@@ -91,7 +91,6 @@
                           </a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" id="menu-tab" data-toggle="tab" href="AddMenu.jsp" role="tab" aria-controls="menu" aria-selected="false">
                           <a class="nav-link" id="analytics-tab" data-toggle="tab" href="Analytics.jsp" role="tab" aria-controls="analytics" aria-selected="false">
                           <i class="pe-7s-graph1"></i>
                           <p>View Analytics</p>   
