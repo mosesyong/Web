@@ -103,7 +103,7 @@ public class AnalyticsWebServlet extends HttpServlet {
                           TransactionDao.addTransaction(transaction);
                       }else{
                           System.out.println(httpResponse.getStatusLine() + "<br>");
-                          request.setAttribute("msg", "Invalid Analyticcs");
+                          request.setAttribute("msg", "Invalid Analytics");
                           request.getRequestDispatcher("Analytics.jsp").forward(request, response);
                           return;
                       }

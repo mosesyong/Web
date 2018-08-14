@@ -16,6 +16,7 @@ public class TransactionData {
     public int quantity;
     public double unitPrice;
     public double totalPrice;
+    public String date;
     
     public TransactionData(String name, int quantity, double unitPrice, double totalPrice){
         this.name = name;
@@ -23,6 +24,13 @@ public class TransactionData {
         this.unitPrice = unitPrice;
         this.totalPrice = totalPrice;
     }
+    
+    public TransactionData(String name, double totalPrice, String date){
+        this.name = name;
+        this.totalPrice = totalPrice;
+        this.date = date;
+    }
+
     
     public String getName(){
         return name;
@@ -38,6 +46,10 @@ public class TransactionData {
     
     public double getTotalPrice(){
         return totalPrice;
+    }
+    
+    public String getDate(){
+        return date;
     }
     
     @Override
