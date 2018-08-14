@@ -116,7 +116,6 @@ public class LoginWebServlet extends HttpServlet {
                       }
                   }
                   
-                  AnalyticsDao.getAnalytics(username, outletName, "1", url, port);
                   
                   System.out.println(u);
                   
@@ -124,6 +123,7 @@ public class LoginWebServlet extends HttpServlet {
                   session.setAttribute("user",u);
                   session.setAttribute("url", url);
                   session.setAttribute("port", port);
+                  AnalyticsDao.getAnalytics(username, outletName, "1", url, port);
                   response.sendRedirect("Main.jsp");
               }else{
                   System.out.println(httpResponse.getStatusLine() + "<br>");
