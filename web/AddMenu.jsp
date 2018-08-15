@@ -104,14 +104,4 @@
         </div>
     </body>
 
-    <!--   Core JS Files   -->
-    <script src="design/js/jquery.3.2.1.min.js" type="text/javascript"></script>
-    <script src="design/js/bootstrap.min.js" type="text/javascript"></script>
-    <!--  Charts Plugin -->
-    <script src="design/js/chartist.min.js"></script>
-    <!--  Notifications Plugin    -->
-    <script src="design/js/bootstrap-notify.js"></script>
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-    <script src="design/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
-
 </html>
