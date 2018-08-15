@@ -19,7 +19,7 @@ public class User {
     private ArrayList<ArrayList<String>> employeeList;
     private static ArrayList<String> accessList;
     private String companyName;
-    private String outletName; // hardcoded for now
+    private String outletName; 
     private ArrayList<String> typeList; // same as roleList
     
     public User(String username, String type, String companyName, HashSet<String> access, ArrayList<String> roleList, String outletName){

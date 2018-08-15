@@ -60,25 +60,37 @@ public class AddItemWebServlet extends HttpServlet {
             String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
             InputStream fileContent = filePart.getInputStream();
             
-            if(fileName.isEmpty()){
-                request.setAttribute("msg", "Failed to add item to menu");
-                request.getRequestDispatcher("AddMenu.jsp").forward(request, response);
-                return;
-            }
-            File tempFile = new File(fileName);
-            tempFile.deleteOnExit();
-            try (FileOutputStream streamOut = new FileOutputStream(tempFile)) {
-                IOUtils.copy(fileContent, streamOut);
-            }
             
-            FileBody fileBody = new FileBody(tempFile);
-            MultipartEntityBuilder builder = MultipartEntityBuilder.create()
-                                     .setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
-                                     .addPart("randomkey", fileBody)
-                                     .addTextBody("name", name)
-                                     .addTextBody("cost", cost)
-                                     .addTextBody("price", price)
-                                     .addTextBody("outletId", ((User)session.getAttribute("user")).getOutletName());
+            FileBody fileBody;
+            MultipartEntityBuilder builder;
+            if(!fileName.isEmpty()){
+//                request.setAttribute("msg", "Failed to add item to menu");
+//                request.getRequestDispatcher("AddMenu.jsp").forward(request, response);
+//                return;
+            
+                File tempFile = new File(fileName);
+                tempFile.deleteOnExit();
+                try (FileOutputStream streamOut = new FileOutputStream(tempFile)) {
+                    IOUtils.copy(fileContent, streamOut);
+                }
+
+                fileBody = new FileBody(tempFile);
+                
+                builder = MultipartEntityBuilder.create()
+                                         .setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
+                                         .addPart("randomkey", fileBody)
+                                         .addTextBody("name", name)
+                                         .addTextBody("cost", cost)
+                                         .addTextBody("price", price)
+                                         .addTextBody("outletId", ((User)session.getAttribute("user")).getOutletName());
+            }else{
+                builder = MultipartEntityBuilder.create()
+                                         .setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
+                                         .addTextBody("name", name)
+                                         .addTextBody("cost", cost)
+                                         .addTextBody("price", price)
+                                         .addTextBody("outletId", ((User)session.getAttribute("user")).getOutletName());
+            }
             HttpEntity multiPartEntity = builder.build();
 
             HttpHost target = new HttpHost((String)session.getAttribute("url"), (Integer)session.getAttribute("port"), "http");
@@ -103,6 +115,7 @@ public class AddItemWebServlet extends HttpServlet {
                 return;
             }
         }catch(Exception e){
+            e.printStackTrace();
             request.setAttribute("msg", "Failed to add item to menu");
             request.getRequestDispatcher("AddMenu.jsp").forward(request, response);
             return;

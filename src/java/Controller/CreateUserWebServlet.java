@@ -43,6 +43,7 @@ public class CreateUserWebServlet extends HttpServlet {
         String username = request.getParameter("username");
         String tempPassword = "" + (int)(Math.random()*1000);
         String companyName = request.getParameter("companyName");
+        String outletName = request.getParameter("outletName");
         System.out.println("password: " + tempPassword);
         DefaultHttpClient httpclient = new DefaultHttpClient();
         String menuRights = request.getParameter("menu_rights");
