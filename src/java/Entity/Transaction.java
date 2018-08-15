@@ -28,7 +28,7 @@ public class Transaction {
         transactionDataList.add(data);
     }
     
-    public ArrayList<TransactionData> getTransationDataList(){
+    public ArrayList<TransactionData> getTransactionDataList(){
         return transactionDataList;
     }
     

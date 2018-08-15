@@ -4,6 +4,9 @@
     Author     : Moses
 --%>
 
+<%@page import="Entity.TransactionData"%>
+<%@page import="Dao.TransactionDao"%>
+<%@page import="Entity.Transaction"%>
 <%@page import="java.util.HashSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -46,6 +49,33 @@
             <div class="main-panel">
                 <div class="content">
                     <div class="container-fluid">
+                        <%
+                                        double dailySales = 0.0;
+                                        double weeklySales = 0.0;
+                                        double monthlySales = 0.0;
+                                        double yearlySales = 0.0;
+                                        double sales = 0.0;
+                                        ArrayList<Double> totalPriceList = new ArrayList<>();
+                                        
+                                        ArrayList<Transaction> transactionList = TransactionDao.getTransaction("sales");  
+                                        for (Transaction t : transactionList){
+                                            ArrayList<TransactionData> tDataList = t.getTransactionDataList();
+                                            
+                                            for (TransactionData tData : tDataList){
+                                                sales = tData.getTotalPrice();
+                                                totalPriceList.add(sales);
+                                            }
+                                        }
+                                        
+                                       
+                                        
+                                        dailySales = totalPriceList.get(0);
+                                        weeklySales = totalPriceList.get(1);
+                                        monthlySales = totalPriceList.get(2);
+                                        yearlySales = totalPriceList.get(3); 
+
+                                        %>
+                        
                         <div class="row">
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="card card-stats">
@@ -59,7 +89,7 @@
                                       <div class="col-7 col-md-8">
                                         <div class="numbers">
                                           <p class="card-category">Today's Sales</p>
-                                          <p class="card-title">$1469.50<p>
+                                          <p class="card-title"><%out.println(dailySales);%><p>
                                         </div>
                                       </div>
                                     </div>
@@ -77,8 +107,8 @@
                                       </div>
                                       <div class="col-7 col-md-8">
                                         <div class="numbers">
-                                          <p class="card-category">Sales' Target</p>
-                                          <p class="card-title">$12000<p>
+                                          <p class="card-category">Weekly Total Sales</p>
+                                          <p class="card-title"><%out.println(weeklySales);%><p>
                                         </div>
                                       </div>
                                     </div>
@@ -89,15 +119,15 @@
                                 <div class="card card-stats">
                                   <div class="card-body ">
                                     <div class="row">
-                                      <div class="col-5 col-md-2">
+                                      <div class="col-5 col-md-4">
                                         <div class="icon-big text-center icon-warning">
                                           <i class="pe-7s-like text-danger"></i>
                                         </div>
                                       </div>
-                                      <div class="col-7 col-md-10">
+                                      <div class="col-7 col-md-8">
                                         <div class="numbers">
-                                          <p class="card-category">Today's Best Seller</p>
-                                          <p class="card-title">Chocolate Cake<p>
+                                          <p class="card-category">Monthly Total Sales</p>
+                                          <p class="card-title"><%out.println(monthlySales);%><p>
                                         </div>
                                       </div>
                                     </div>
@@ -115,8 +145,8 @@
                                       </div>
                                       <div class="col-7 col-md-8">
                                         <div class="numbers">
-                                          <p class="card-category">Refunds Made</p>
-                                          <p class="card-title">0</p>
+                                          <p class="card-category">Annual Total Sales</p>
+                                          <p class="card-title"><%out.println(yearlySales);%></p>
                                         </div>
                                       </div>
                                     </div>
@@ -124,108 +154,183 @@
                                 </div>
                             </div>
                         </div>
-                <div class="row">
-                    <div class="col-md-5">
+            <%
+                ArrayList<String> weeklyItems = new ArrayList<>();
+                ArrayList<String> weeklyItemsQty = new ArrayList<>();
+                ArrayList<String> monthlyItems = new ArrayList<>();
+                ArrayList<String> monthlyItemsQty = new ArrayList<>();
+                ArrayList<String> yearlyItems = new ArrayList<>();
+                ArrayList<String> yearlyItemsQty = new ArrayList<>();
+                
+                transactionList = TransactionDao.getTransaction("items");
+                for(Transaction i : transactionList){
+                    String period = i.getPeriod();
+                    if(period.equals("week")){
+                        ArrayList<TransactionData> iDataList = i.getTransactionDataList();
+                        for(TransactionData iData : iDataList){
+                                String itemName = "\'" + iData.getName() + "\'";
+                                weeklyItems.add(itemName);
+                                String itemQty = "\'" + Integer.toString(iData.getQuantity()) + "\'";
+                                weeklyItemsQty.add(itemQty);
+                        }
+                    }else if(period.equals("month")){
+                        ArrayList<TransactionData> iDataList = i.getTransactionDataList();
+                        for(TransactionData iData : iDataList){
+                                String itemName = "\'" + iData.getName() + "\'";
+                                monthlyItems.add(itemName);
+                                String itemQty = "\'" + Integer.toString(iData.getQuantity()) + "\'";
+                                monthlyItemsQty.add(itemQty);
+                        }
+                    }else if(period.equals("year")){
+                        ArrayList<TransactionData> iDataList = i.getTransactionDataList();
+                        for(TransactionData iData : iDataList){
+                                String itemName =  "\'" + iData.getName()+ "\'";
+                                yearlyItems.add(itemName);
+                                String itemQty = "\'" + Integer.toString(iData.getQuantity()) + "\'";
+                                yearlyItemsQty.add(itemQty);
+                            }  
+                    }  
+                }
+                
+            %>                        
+                
+            <div class="row">
+                    <div class="col-md-5" style='height:400px;'>
                         <div class="card">
-
                             <div class="header">
-                                <h4 class="title">Today's Revenue</h4>
-                                <p class="category">Total Sales for the Day</p>
+                                <h4 class="title">Item's Weekly Sales</h4>
+                                <p class="category">Total Sales of Each Item for the Week</p>
                             </div>
                             <div class="content">
                                 <div id="chartPreferences" class="ct-chart ct-square" >
-                                    <canvas id="salesChart"></canvas>
+                                    <canvas id="weeklyItems"></canvas>
                                 </div>
-                                
                                 <script>
-                                    var salesChart = document.getElementById('salesChart').getContext('2d');
-                                    
-                                   
-                                
-                                    var salesPerformanceChart = new Chart(salesChart,{
-                                        type:'doughnut',
-                                        data: {
-                                            labels:['achieved', 'targeted'],
-                                            datasets:[{
-                                                    label:'$',
-                                                    data:[5204, 7500],
-                                                    backgroundColor:['#FFC925',
-                                                    '#42B3C5']   
-                                                }]
-                                            },
-                                            options:{
-                                                legend:{
-                                                    display: false
-                                                }
-                                            }
-                                        }     
-                                    )
-                                </script>
-                                    
-                                   
-
-                                <div class="footer">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-warning"></i> Achieved
-                                        <i class="fa fa-circle text-info"></i> Targeted
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-7">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Consumer Behavior</h4>
-                                <p class="category">24 Hours performance</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartPreferences" class="ct-chart ct-square" >
-                                    <canvas id="behaviourChart"></canvas>
-                                </div>
-                                
-                                <script>
-                                    var salesChart = document.getElementById('behaviourChart').getContext('2d');
-                                    
-                                   
-                                
-                                    var salesPerformanceChart = new Chart(behaviourChart,{
+                                    var weeklyItems = document.getElementById('weeklyItems').getContext('2d');
+                                    var weeklyItemsChart = new Chart(weeklyItems,{
                                         type:'bar',
                                         data: {
-                                            labels:['Breakfast', 'Lunch', 'Dinnner'],
+                                            labels:<%=weeklyItems%>,
                                             datasets:[{
-                                                    label:'tables',
-                                                    data:[24,69,97],
-                                                    backgroundColor:['#1DC7EA','#FF4A55','#87CB16']   
+                                                    label:'Orders',
+                                                    data:<%=weeklyItemsQty%>,
+                                                    backgroundColor:'#FFC925'  
                                                 }]
                                             },
                                             options:{
                                                 legend:{
-                                                    display: false
-                                                }
+                                                    display: true
+                                                },
+                                                scales:{
+                                                    yAxes: [{
+                                                        ticks:{
+                                                        beginAtZero:true
+                                                        }
+                                                    }]
+                                                },
+                                                responsive: true,
+                                                maintainAspectRatio: false
                                             }
                                         }     
-                                    )
-                                </script>
-                                
-                                <div class="footer">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Breakfast
-                                        <i class="fa fa-circle text-danger"></i> Lunch
-                                        <i class="fa fa-circle text-success"></i> Dinner
-                                    </div>
-                                </div>
+                                    );
+                                </script>   
                             </div>
                         </div>
                     </div>
-                </div>    
+                   <div class="col-md-7" style="height:50px;">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Items Monthly Sales</h4>
+                                <p class="category">Total Sales of Each Item for the Month</p>
+                            </div>
+                            <div class="content">
+                                <div id="chartPreferences" class="ct-chart ct-square" >
+                                    <canvas id="monthlyItems"></canvas>
+                                </div>
+                                
+                                <script>
+                                    var monthlyItems = document.getElementById('monthlyItems').getContext('2d');
+                                    var monthlyItemsChart = new Chart(monthlyItems,{
+                                        type:'bar',
+                                        data: {
+                                            labels:<%=monthlyItems%>,
+                                            datasets:[{
+                                                    label:'Orders',
+                                                    data:<%=monthlyItemsQty%>,
+                                                    backgroundColor:'#FFC925'  
+                                                }]
+                                            },
+                                        options:{
+                                            legend:{
+                                                display: true
+                                            },
+                                            scales:{
+                                                yAxes: [{
+                                                    ticks:{
+                                                        beginAtZero:true
+                                                    }
+                                                }]
+                                            },
+                                            responsive: true,
+                                            maintainAspectRatio: false
+                                            }
+                                        }     
+                                    );
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-md-12" style='height:400px;'>
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Item's Annual Sales</h4>
+                                <p class="category">Total Sales of Each Item for the Year</p>
+                            </div>
+                            <div class="content">
+                                <div id="chartPreferences" class="ct-chart ct-square" >
+                                    <canvas id="yearlyItems"></canvas>
+                                </div>
+                                <script>
+                                    var yearlyItems = document.getElementById('yearlyItems').getContext('2d');
+                                    var yearlyItemsChart = new Chart(yearlyItems,{
+                                        type:'bar',
+                                        data: {
+                                            labels:<%=yearlyItems%>,
+                                            datasets:[{
+                                                    label:'Orders',
+                                                    data:<%=yearlyItemsQty%>,
+                                                    backgroundColor:'#FFC925'  
+                                                }]
+                                            },
+                                            options:{
+                                                legend:{
+                                                    display: true
+                                                },
+                                                scales:{
+                                                    yAxes: [{
+                                                        ticks:{
+                                                        beginAtZero:true
+                                                        }
+                                                    }]
+                                                },
+                                                responsive: true,
+                                                maintainAspectRatio: false
+                                            }
+                                        }     
+                                    );
+                                </script>   
+                            </div>
+                        </div>
+                    </div>
+                </div> 
             </div>
-            </div>
-            </div>
-            
         </div>
-    </body>
+    </div>
+            
+</div>
+</body>
              
               
 </html>

@@ -19,9 +19,12 @@
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
         <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script>
-
+        
+<!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
         <!-- Bootstrap core CSS     -->
         <link href="design/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -40,6 +43,29 @@
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
         <link href="design/css/pe-icon-7-stroke.css" rel="stylesheet" />
+          
+        <script>
+            /* When the user clicks on the button, 
+            toggle between hiding and showing the dropdown content */
+            function myFunction() {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
+
+            // Close the dropdown menu if the user clicks outside of it
+            window.onclick = function(event) {
+              if (!event.target.matches('.dropbtn')) {
+
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                  var openDropdown = dropdowns[i];
+                  if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                  }
+                }
+              }
+            }
+        </script>
    </head>
     
     <body>
@@ -47,7 +73,11 @@
             <div class="main-panel">
                 <div class="content">
                     <div class="container-fluid">
+<<<<<<< HEAD
                         <%=TransactionDao.print()%>
+=======
+                        
+>>>>>>> 67d53be8cf28ce3683b9ec61031d50a4e2415ac3
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
@@ -58,47 +88,16 @@
                                     <div class="content">
                                         <div class="row">
                                             <div class="col-md-5">
-                                                <div class="card">
-                                                    <div class="header">
-                                                        <h4 class="title">Weekly Performance</h4>
-                                                        <p class="category">6-12 August 2018</p>
-                                                    </div>
-                                                    <div class="content">
-                                                    <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-
-                                                    <div class="footer">
-                                                        <div class="legend">
-                                                            <i class="fa fa-circle text-info"></i> Cashier 1
-                                                            <i class="fa fa-circle text-danger"></i> Cashier 2
-                                                            <i class="fa fa-circle text-warning"></i> Cashier 3
-                                                        </div>
-                                                        
+                                                <div class="dropdown">
+                                                    <button onclick="myFunction()" class="dropbtn">Select Report</button>
+                                                    <div id="myDropdown" class="dropdown-content">
+                                                      <a href="SalesAnalytics.jsp">Sales Report</a>
+                                                      <a href="ItemsAnalytics.jsp">Items Report</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="col-md-7">
-                                            <div class="card">
-                                                <div class="header">
-                                                    <h4 class="title">Monthly Performance</h4>
-                                                    <p class="category">August 2018</p>
-                                                </div>
-                                                <div class="content">
-                                                    <div id="chartHours" class="ct-chart"></div>
-
-                                                    <div class="footer">
-                                                        <div class="legend">
-                                                            <i class="fa fa-circle text-info"></i> Week 1
-                                                            <i class="fa fa-circle text-danger"></i> Week 2
-                                                            <i class="fa fa-circle text-warning"></i> Week 3
-                                                        </div>
-                                                       
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                       
                                     </div>
                                 </div>
                             </div>
