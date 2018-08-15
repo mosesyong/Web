@@ -52,14 +52,14 @@
                             <div class="header">
                                 <h4 class="title">Edit Password</h4>
                             </div>
-                            <input type='hidden' name='username' value='<%=u.getUsername()%>'>
                             <div class="content">
                                 <form action="PasswordChangeWebServlet" method='post'>
+                                <input type='hidden' name='username' value='<%=u.getUsername()%>'>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>New Password</label>
-                                                <input type="text" class="form-control" placeholder="New Password" name="newPassword">
+                                                <input type="password" class="form-control" placeholder="New Password" name="newPassword">
                                             </div>
                                         </div>
                                     </div>

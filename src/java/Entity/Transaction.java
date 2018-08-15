@@ -12,14 +12,16 @@ import java.util.ArrayList;
  * @author moses
  */
 public class Transaction {
+    String outletName;
     String period;
     String analyticsType;
     ArrayList<TransactionData> transactionDataList;
     
-    public Transaction(String period, String analyticsType){
+    public Transaction(String period, String analyticsType, String outletName){
         this.period = period;
         this.analyticsType = analyticsType;
         transactionDataList = new ArrayList<>();
+        this.outletName = outletName;
     }
     
     public void addTransaction(TransactionData data){
@@ -40,7 +42,7 @@ public class Transaction {
     
     @Override
     public String toString(){
-        return "Period: " + period + ", Analytics Type: " + analyticsType + "\nTransactions: " + transactionDataList + "\n";
+        return "Outlet: " + outletName + ", Period: " + period + ", Analytics Type: " + analyticsType + "\nTransactions: " + transactionDataList + "\n";
     }
 }
 

@@ -54,8 +54,7 @@ public class CreateUserWebServlet extends HttpServlet {
         
         try {
           // specify the host, protocol, and port 
-          HttpHost target = new HttpHost((String)session.getAttribute("url"), Integer.parseInt((String)session.getAttribute("port")), "http");
-
+          HttpHost target = new HttpHost((String)session.getAttribute("url"), (Integer)session.getAttribute("port"), "http");
 
           // specify the get request
           // HttpGet getRequest = new HttpGet("/API/LoginServlet");
@@ -64,6 +63,7 @@ public class CreateUserWebServlet extends HttpServlet {
           postParams.add(new BasicNameValuePair("username", username));
           postParams.add(new BasicNameValuePair("password", tempPassword));
           postParams.add(new BasicNameValuePair("companyName", companyName));
+          postParams.add(new BasicNameValuePair("outletName", outletName));
           postParams.add(new BasicNameValuePair("creator", ((User)session.getAttribute("user")).getUsername()));
           postParams.add(new BasicNameValuePair("type", "" + (Integer.parseInt(((User)session.getAttribute("user")).getType())+ 1)));
           System.out.println("Type (web)" + session.getAttribute("type"));

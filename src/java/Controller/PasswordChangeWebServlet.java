@@ -66,18 +66,11 @@ public class PasswordChangeWebServlet extends HttpServlet {
               if(statusCode == 202){
                   System.out.println("Successfully changed password");
                   request.setAttribute("msg", "Password successfully changed");
-                  if(isSelf){
-                    request.getRequestDispatcher("Settings.jsp").forward(request, response);
-                  }else{
-                    request.getRequestDispatcher("UserManagement.jsp").forward(request, response);
-                  }
+                  request.getRequestDispatcher("Settings.jsp").forward(request, response);
+                  
               }else{
                   request.setAttribute("msg", "Error with password change");
-                  if(isSelf){
-                    request.getRequestDispatcher("Settings.jsp").forward(request, response);
-                  }else{
-                    request.getRequestDispatcher("UserManagement.jsp").forward(request, response);
-                  }
+                  request.getRequestDispatcher("Settings.jsp").forward(request, response);
               }
               
 

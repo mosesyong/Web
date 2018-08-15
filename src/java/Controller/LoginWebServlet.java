@@ -74,7 +74,7 @@ public class LoginWebServlet extends HttpServlet {
               
 
               int statusCode = httpResponse.getStatusLine().getStatusCode();
-              if(statusCode == 200){
+              if(statusCode == 200 && !enteredUsername.equals("su")){
                   JsonParser parser = new JsonParser();
                   JsonObject jo = (JsonObject) parser.parse(EntityUtils.toString(entity));
                   String type = jo.get("type").getAsString();
@@ -82,12 +82,8 @@ public class LoginWebServlet extends HttpServlet {
                   String accessString = jo.get("access").toString();
                   String companyName = jo.get("companyName").getAsString();
                   JsonElement outletJsonElement = jo.get("outletName");
-                  String outletName = null;
-                  try{
-                    outletName = outletJsonElement.getAsString();
-                  }catch(Exception e){
-                      
-                  }
+                  String outletNames = outletJsonElement.getAsString();
+                  ArrayList<String> outletNameList = new ArrayList<>(Arrays.asList(outletNames.split(",")));
                   accessString = accessString.replace("[","");
                   accessString = accessString.replace("]","");
                   accessString = accessString.replace("\"","");
@@ -105,7 +101,7 @@ public class LoginWebServlet extends HttpServlet {
                   ArrayList<String> roleList = new ArrayList<>(Arrays.asList(roleArray));
                   
                   
-                  User u = new User(username, type, companyName, access, roleList, outletName);
+                  User u = new User(username, type, companyName, access, roleList, outletNameList);
                   
                   String employeeData = jo.get("employees").toString().replace("\"","").replace(username + ",","").replace(username,"");
                   String[] employeeOverall = employeeData.split("  ");
@@ -123,7 +119,19 @@ public class LoginWebServlet extends HttpServlet {
                   session.setAttribute("user",u);
                   session.setAttribute("url", url);
                   session.setAttribute("port", port);
-                  AnalyticsDao.getAnalytics(username, outletName, "1", url, port);
+                  AnalyticsDao.getAnalytics(u, "1", url, port);
+                  response.sendRedirect("Main.jsp");
+              }else if(statusCode == 200){
+                  HashSet<String> access = new HashSet<>();
+                  access.add("su");
+                  ArrayList<String> roleList = new ArrayList<>();
+                  roleList.add("su");
+                  ArrayList<String> outletNameList = new ArrayList<>(Arrays.asList("0"));
+                  User u = new User(enteredUsername, "0", "Snapcoin", access, roleList, outletNameList);
+                  System.out.println(u);
+                  session.setAttribute("user",u);
+                  session.setAttribute("url", url);
+                  session.setAttribute("port", port);
                   response.sendRedirect("Main.jsp");
               }else{
                   System.out.println(httpResponse.getStatusLine() + "<br>");

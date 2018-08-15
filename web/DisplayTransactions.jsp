@@ -20,7 +20,16 @@
                     <div class="container-fluid">
                         <h1>List all transactions</h1>
                         <form action='TransactionListWebServlet' method='get'>
-                            <input type='hidden' name='outletName' value="<%=u.getOutletName()%>">
+                            <select name="outletName">
+                                <option value=""></option>
+                                <%
+                                    for(String outletName : u.getOutletNames()){
+                                        %>
+                                <option value="<%=outletName%>"><%=outletName%></option>"
+                                        <%
+                                            }
+                                        %>
+                             </select>
                             <input type ='submit' name='submit' value='submit'>
                         </form>
                             <%

@@ -19,15 +19,15 @@ public class User {
     private ArrayList<ArrayList<String>> employeeList;
     private static ArrayList<String> accessList;
     private String companyName;
-    private String outletName; 
+    private ArrayList<String> outletNameList; 
     private ArrayList<String> typeList; // same as roleList
     
-    public User(String username, String type, String companyName, HashSet<String> access, ArrayList<String> roleList, String outletName){
+    public User(String username, String type, String companyName, HashSet<String> access, ArrayList<String> roleList, ArrayList<String> outletNameList){
         this.username = username;
         this.type = type;
         this.companyName = companyName;
         this.access = access;
-        this.outletName = outletName;
+        this.outletNameList = outletNameList;
         employeeList = new ArrayList<>();
         accessList = new ArrayList<>();
         if(access.contains("menu_right")){
@@ -102,11 +102,22 @@ public class User {
     }
     
     public String getOutletName(){
-        return outletName;
+        String outletName = outletNameList.get(0);
+        if(outletName.equals("null")){
+            return "";
+        }else{
+            return outletName;
+        }
+    }
+    
+    public ArrayList<String> getOutletNames(){
+        ArrayList<String> temp = (ArrayList<String>)outletNameList.clone();
+        temp.remove("null");
+        return temp;
     }
     
     @Override
     public String toString(){
-        return("Username: " + username + "\nCompany Name: " + companyName + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList + "\nRoles: " + typeList + "\nOutlet Name: " + outletName);
+        return("Username: " + username + "\nCompany Name: " + companyName + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList + "\nRoles: " + typeList + "\nOutlets: " + outletNameList);
     }
 }

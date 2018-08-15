@@ -7,6 +7,7 @@ package Dao;
 
 import Entity.Transaction;
 import Entity.TransactionData;
+import Entity.User;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -26,7 +27,9 @@ import org.apache.http.util.EntityUtils;
  * @author moses
  */
 public class AnalyticsDao {
-    public static void getAnalytics(String username, String outletName, String count, String url, int port){
+    public static void getAnalytics(User u, String count, String url, int port){
+        String username = u.getUsername();
+        ArrayList<String> outletNameList = u.getOutletNames();
         ArrayList<String> periodList = new ArrayList<>();
         periodList.add("day");
         periodList.add("week");
@@ -36,49 +39,52 @@ public class AnalyticsDao {
         ArrayList<String> analyticsTypeList = new ArrayList<>();
         analyticsTypeList.add("sales");
         analyticsTypeList.add("items");
-        for(String period : periodList){
-            for(String analyticsType : analyticsTypeList){
-                DefaultHttpClient httpclient = new DefaultHttpClient();
-                try {
-                  // specify the host, protocol, and port 
-                  HttpHost target = new HttpHost(url, port, "http");
+        
+        for(String outletName : outletNameList){
+            for(String period : periodList){
+                for(String analyticsType : analyticsTypeList){
+                    DefaultHttpClient httpclient = new DefaultHttpClient();
+                    try {
+                      // specify the host, protocol, and port 
+                      HttpHost target = new HttpHost(url, port, "http");
 
-                  HttpPost postRequest = new HttpPost("/API/TransactionOutputServlet");
-                  ArrayList<NameValuePair> postParams = new ArrayList<>();
-                  postParams.add(new BasicNameValuePair("username", username));
-                  postParams.add(new BasicNameValuePair("outletName", outletName));
-                  postParams.add(new BasicNameValuePair("period", period));
-                  postParams.add(new BasicNameValuePair("analyticsType", analyticsType));
-                  postParams.add(new BasicNameValuePair("count", count));
-                  postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
-                  HttpResponse httpResponse = httpclient.execute(target, postRequest);
-                  HttpEntity entity = httpResponse.getEntity();
+                      HttpPost postRequest = new HttpPost("/API/TransactionOutputServlet");
+                      ArrayList<NameValuePair> postParams = new ArrayList<>();
+                      postParams.add(new BasicNameValuePair("username", username));
+                      postParams.add(new BasicNameValuePair("outletName", outletName));
+                      postParams.add(new BasicNameValuePair("period", period));
+                      postParams.add(new BasicNameValuePair("analyticsType", analyticsType));
+                      postParams.add(new BasicNameValuePair("count", count));
+                      postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
+                      HttpResponse httpResponse = httpclient.execute(target, postRequest);
+                      HttpEntity entity = httpResponse.getEntity();
 
 
-                  int statusCode = httpResponse.getStatusLine().getStatusCode();
-                  if(statusCode == 200){
-                      JsonParser parser = new JsonParser();
-                      JsonObject jo = (JsonObject) parser.parse(EntityUtils.toString(entity));
-                      JsonArray resultArray = jo.get("result").getAsJsonArray();
-                      Transaction transaction = new Transaction(period, analyticsType);
-                      for(Object obj : resultArray){
-                          JsonObject transactionDataObj = (JsonObject)obj;
-                          String name = transactionDataObj.get("name").getAsString();
-                          int quantity = transactionDataObj.get("quantity").getAsInt();
-                          double unitPrice = transactionDataObj.get("unitPrice").getAsDouble();
-                          double totalPrice = transactionDataObj.get("totalPrice").getAsDouble();
-                          TransactionData data = new TransactionData(name, quantity, unitPrice, totalPrice);
-                          transaction.addTransaction(data);
+                      int statusCode = httpResponse.getStatusLine().getStatusCode();
+                      if(statusCode == 200){
+                          JsonParser parser = new JsonParser();
+                          JsonObject jo = (JsonObject) parser.parse(EntityUtils.toString(entity));
+                          JsonArray resultArray = jo.get("result").getAsJsonArray();
+                          Transaction transaction = new Transaction(period, analyticsType, outletName);
+                          for(Object obj : resultArray){
+                              JsonObject transactionDataObj = (JsonObject)obj;
+                              String name = transactionDataObj.get("name").getAsString();
+                              int quantity = transactionDataObj.get("quantity").getAsInt();
+                              double unitPrice = transactionDataObj.get("unitPrice").getAsDouble();
+                              double totalPrice = transactionDataObj.get("totalPrice").getAsDouble();
+                              TransactionData data = new TransactionData(name, quantity, unitPrice, totalPrice);
+                              transaction.addTransaction(data);
+                          }
+                          TransactionDao.addTransaction(transaction);
                       }
-                      TransactionDao.addTransaction(transaction);
-                  }
-                } catch (Exception e) {
-                  e.printStackTrace();
-                } finally {
-                  // When HttpClient instance is no longer needed,
-                  // shut down the connection manager to ensure
-                  // immediate deallocation of all system resources
-                  httpclient.getConnectionManager().shutdown();
+                    } catch (Exception e) {
+                      e.printStackTrace();
+                    } finally {
+                      // When HttpClient instance is no longer needed,
+                      // shut down the connection manager to ensure
+                      // immediate deallocation of all system resources
+                      httpclient.getConnectionManager().shutdown();
+                    }
                 }
             }
         }
