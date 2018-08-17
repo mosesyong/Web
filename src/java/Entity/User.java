@@ -53,7 +53,7 @@ public class User {
     }
     
     public boolean hasMenuAccess(){
-        return accessList.contains("menu");
+        return access.contains("menu");
     }
     
     public String getUsername(){
@@ -101,13 +101,17 @@ public class User {
         return listSize == Integer.parseInt(type);
     }
     
+    public boolean isSecondLastChild(){
+        int listSize = typeList.size();
+        return listSize == (Integer.parseInt(type)-1);
+    }
+    
     public String getOutletName(){
         String outletName = outletNameList.get(0);
         if(outletName.equals("null")){
             return "";
-        }else{
-            return outletName;
         }
+        return outletName;
     }
     
     public ArrayList<String> getOutletNames(){

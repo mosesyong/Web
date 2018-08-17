@@ -36,11 +36,29 @@ public class TransactionDao {
         return null;
     }
     
-    public static ArrayList<Transaction> getTransaction(String filter){
+    public static ArrayList<Transaction> getTransactions(String filter){
         ArrayList<Transaction> result = new ArrayList<>();
         for(Transaction t : transactionList){
             if(t.getPeriod().equals(filter) || t.getAnalyticsType().equals(filter)){
                 result.add(t);
+            }
+        }
+        return result;
+    }
+    
+    public static ArrayList<Transaction> getTransactions(String outletName, String filter){
+        ArrayList<Transaction> result = new ArrayList<>();
+        if(outletName.equals("all")){
+            for(Transaction t : transactionList){
+                if(t.getAnalyticsType().equals(filter)){
+                    result.add(t);
+                }
+            }
+        }else{
+            for(Transaction t : transactionList){
+                if(t.getOutletName().equals(outletName) && t.getAnalyticsType().equals(filter)){
+                    result.add(t);
+                }
             }
         }
         return result;

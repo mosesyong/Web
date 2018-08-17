@@ -5,7 +5,9 @@
  */
 package Controller;
 
+import Dao.AnalyticsDao;
 import Entity.TransactionData;
+import Entity.User;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -47,9 +49,15 @@ public class TransactionListWebServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
+            User u = (User)session.getAttribute("user");
+            
+            String url = (String)session.getAttribute("url");
+            int port = (Integer)session.getAttribute("port");
+            AnalyticsDao.getAnalytics(u, "1", url, port);
+            
             String outletName = request.getParameter("outletName");
             
-            HttpHost target = new HttpHost((String)session.getAttribute("url"), (Integer)session.getAttribute("port"), "http");
+            HttpHost target = new HttpHost(url, port , "http");
 
             HttpPost postRequest = new HttpPost("/API/TransactionListServlet");
             ArrayList<NameValuePair> postParams = new ArrayList<>();

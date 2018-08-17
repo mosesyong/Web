@@ -102,7 +102,7 @@
                                             ArrayList<String> yearlyItems = new ArrayList<>();
                                             ArrayList<String> yearlyItemsQty = new ArrayList<>();
 
-                                            ArrayList<Transaction> transactionList = TransactionDao.getTransaction("items");
+                                            ArrayList<Transaction> transactionList = TransactionDao.getTransactions("items");
                                             for(Transaction i : transactionList){
                                                 String period = i.getPeriod();
                                                 if(period.equals("week")){
@@ -138,7 +138,7 @@
                     <div class="col-md-5" style='height:400px;'>
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Item's Weekly Sales</h4>
+                                <h4 class="title">Weekly Item Orders</h4>
                                 <p class="category">Total Sales of Each Item for the Week</p>
                             </div>
                             <div class="content">
@@ -161,10 +161,16 @@
                                                 legend:{
                                                     display: true
                                                 },
+                                                scaleShowValues:true,
                                                 scales:{
                                                     yAxes: [{
                                                         ticks:{
-                                                        beginAtZero:true
+                                                            beginAtZero:true
+                                                        }
+                                                    }],
+                                                    xAxes: [{
+                                                        ticks:{
+                                                            autoSkip:false
                                                         }
                                                     }]
                                                 },
@@ -180,7 +186,7 @@
                     <div class="col-md-7" style="height:50px;">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Items Monthly Sales</h4>
+                                <h4 class="title">Monthly Item Orders</h4>
                                 <p class="category">Total Sales of Each Item for the Month</p>
                             </div>
                             <div class="content">
@@ -204,10 +210,16 @@
                                                 legend:{
                                                     display: true
                                                 },
+                                                scaleShowValues:true,
                                                 scales:{
                                                     yAxes: [{
                                                         ticks:{
-                                                        beginAtZero:true
+                                                            beginAtZero:true
+                                                        }
+                                                    }],
+                                                    xAxes: [{
+                                                        ticks:{
+                                                            autoSkip:false
                                                         }
                                                     }]
                                                 },
@@ -226,7 +238,7 @@
                     <div class="col-md-12" style='height:400px;'>
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Item's Annual Sales</h4>
+                                <h4 class="title">Annual Item Orders</h4>
                                 <p class="category">Total Sales of Each Item for the Year</p>
                             </div>
                             <div class="content">
@@ -255,10 +267,16 @@
                                                 legend:{
                                                     display: true
                                                 },
+                                                scaleShowValues:true,
                                                 scales:{
                                                     yAxes: [{
                                                         ticks:{
-                                                        beginAtZero:true
+                                                            beginAtZero:true
+                                                        }
+                                                    }],
+                                                    xAxes: [{
+                                                        ticks:{
+                                                            autoSkip:false
                                                         }
                                                     }]
                                                 },

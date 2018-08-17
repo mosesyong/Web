@@ -101,7 +101,7 @@
                                                     <input type="hidden" name="companyName" value="<%=u.getCompanyName()%>">
                                                     <div class="form-group">
                                                         <label>Merchant Name</label>
-                                                        <input type="text" class="form-control" disabled placeholder="Merchant" value=<%out.println(u.getCompanyName());%>>
+                                                        <input type="text" class="form-control" disabled placeholder="Merchant" value="<%out.println(u.getCompanyName());%>">
                                                     </div> 
                                                 </div>
                                                 <div class="col-md-7">
@@ -183,7 +183,7 @@
                                                     <input type="hidden" name="companyName" value="<%=u.getCompanyName()%>">
                                                     <div class="form-group">
                                                         <label>Merchant Name</label>
-                                                        <input type="text" class="form-control" disabled placeholder="Merchant" value=<%out.println(u.getCompanyName());%>>
+                                                        <input type="text" class="form-control" disabled placeholder="Merchant" value="<%out.println(u.getCompanyName());%>">
                                                     </div> 
                                                 </div>
                                                     <div class="col-md-7">
@@ -252,6 +252,8 @@
                         String msg = (String)request.getAttribute("msg");
                         if(tempPassword != null){
                             out.println("<font color='red'>" + msg + "</font>");
+                        }else{
+                            out.println("<font color='red'>Unable to create user</font>");
                         }
                 //out.println();
                 //out.println();

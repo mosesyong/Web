@@ -28,6 +28,7 @@ import org.apache.http.util.EntityUtils;
  */
 public class AnalyticsDao {
     public static void getAnalytics(User u, String count, String url, int port){
+        TransactionDao transactionDao = new TransactionDao();
         String username = u.getUsername();
         ArrayList<String> outletNameList = u.getOutletNames();
         ArrayList<String> periodList = new ArrayList<>();

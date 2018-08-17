@@ -61,11 +61,7 @@
                 <div class="logo">
                     <img src="design/img/sidebar-logo.png">
                 </div>  
-                    <!-- Nav tabs -->       
-            <%
-                if(!u.isLastChild()){
-                    if(u.getType().equals("1")){
-              %>
+                    <!-- Nav tabs -->
                     <ul class="nav nav-pills" id="sidebarTabs" role="tablist">
                        <li class="nav-item">
                           <a class="nav-link active" id="main-tab" data-toggle="tab" href="Main.jsp" role="tab" aria-controls="home" aria-selected="true">
@@ -73,101 +69,50 @@
                            <p>Home</p>   
                           </a>
                       </li>
+                      <% if(!u.isLastChild()){ %>
                       <li class="nav-item">
                           <a class="nav-link" id="create-tab" data-toggle="tab" href="CreateUser.jsp" role="tab" aria-controls="create" aria-selected="false">
                            <i class="pe-7s-add-user"></i>
                            <p>Create Role</p>   
                           </a>
                       </li>
+                      <%}%>
                       <li class="nav-item">
                         <a class="nav-link" id="settings-tab" data-toggle="tab" href="Settings.jsp" role="tab" aria-controls="settings" aria-selected="false">
                         <i class="pe-7s-tools"></i>
                         <p>Edit User Settings</p>
                         </a>
                       </li>
+                      <% if(!u.isLastChild() && !u.getType().equals("0")){%>
                       <li class="nav-item">
                           <a class="nav-link" id="management-tab" data-toggle="tab" href="UserManagement.jsp" role="tab" aria-controls="management" aria-selected="false">
                           <i class="pe-7s-users"></i>
                           <p>Manage Employees</p>    
                           </a>
                       </li>
-                      <li class="nav-item">
-                          <a class="nav-link" id="analytics-tab" data-toggle="tab" href="Analytics.jsp" role="tab" aria-controls="analytics" aria-selected="false">
-                          <i class="pe-7s-graph1"></i>
-                          <p>View Analytics</p>   
-                          </a>
-                      </li>
-                    </ul>
-                    <% }else{ %>
-                    <ul class="nav nav-pills" id="sidebarTabs" role="tablist">
-                      <li class="nav-item">
-                          <a class="nav-link active" id="main-tab" data-toggle="tab" href="Main.jsp" role="tab" aria-controls="home" aria-selected="true">
-                           <i class="pe-7s-home"></i>
-                           <p>Home</p>   
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" id="create-tab" data-toggle="tab" href="CreateUser.jsp" role="tab" aria-controls="create" aria-selected="false">
-                           <i class="pe-7s-add-user"></i>
-                           <p>Create Role</p>   
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="settings-tab" data-toggle="tab" href="Settings.jsp" role="tab" aria-controls="settings" aria-selected="false">
-                        <i class="pe-7s-tools"></i>
-                        <p>Edit User Settings</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" id="management-tab" data-toggle="tab" href="UserManagement.jsp" role="tab" aria-controls="management" aria-selected="false">
-                          <i class="pe-7s-users"></i>
-                          <p>Manage Employees</p>    
-                          </a>
-                      </li>
+                      <%}if(!u.getType().equals("0") && u.hasMenuAccess()){%>
                       <li class="nav-item">
                           <a class="nav-link" id="menu-tab" data-toggle="tab" href="AddMenu.jsp" role="tab" aria-controls="menu" aria-selected="false">
                           <i class="pe-7s-cart"></i>
                           <p>Add item to Menu</p>    
                           </a>
                       </li>
+                      <%}if(!u.isLastChild()){%>
                       <li class="nav-item">
                           <a class="nav-link" id="analytics-tab" data-toggle="tab" href="Analytics.jsp" role="tab" aria-controls="analytics" aria-selected="false">
                           <i class="pe-7s-graph1"></i>
                           <p>View Analytics</p>   
                           </a>
                       </li>
+                      <%}if(!u.isLastChild()){%>
+                      <li class="nav-item">
+                          <a class="nav-link" id="analytics-tab" data-toggle="tab" href="DisplayTransactions.jsp" role="tab" aria-controls="analytics" aria-selected="false">
+                          <i class="pe-7s-news-paper"></i>
+                          <p>View Transactions</p>   
+                          </a>
+                      </li>
+                      <%}%>
                     </ul>
-                    
-                    
-                    <%      }
-                       }else{ %>
-                    <ul class="nav nav-pills" id="sidebarTabs" role="tablist">
-                      <li class="nav-item">
-                          <a class="nav-link active" id="main-tab" data-toggle="tab" href="Main.jsp" role="tab" aria-controls="home" aria-selected="true">
-                           <i class="pe-7s-home"></i>
-                           <p>Home</p>   
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="settings-tab" data-toggle="tab" href="Settings.jsp" role="tab" aria-controls="settings" aria-selected="false">
-                        <i class="pe-7s-tools"></i>
-                        <p>Edit User Settings</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" id="menu-tab" data-toggle="tab" href="AddMenu.jsp" role="tab" aria-controls="menu" aria-selected="false">
-                          <i class="pe-7s-cart"></i>
-                          <p>Add item to Menu</p>    
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" id="analytics-tab" data-toggle="tab" href="Analytics.jsp" role="tab" aria-controls="analytics" aria-selected="false">
-                          <i class="pe-7s-graph1"></i>
-                          <p>View Analytics</p>   
-                          </a>
-                      </li>
-                    </ul>
-                    <% } %>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -194,17 +139,11 @@
                             </button>                          
             <%
                             String userType = u.getType();
-                            String printType = "";
-                            if(userType.equals("1")){
-                                printType = "Admin";
-                            }else if(userType.equals("2")){
-                                printType = "Manager";
-                            }else if(userType.equals("3")){
-                                printType = "Cashier";
-                            }else if(userType.equals("0")){
-                                printType = "Super Admin";
+                            int index = Integer.parseInt(userType) - 1;
+                            String printType = "Snapcoin Administrator";
+                            if(index > -1){
+                                printType = u.getTypeList().get(index);
                             }
-                            
                             String userName = u.getUsername();
                                 
             %>
@@ -216,7 +155,7 @@
                             <ul class="nav navbar-nav navbar-left">
                                         <li>
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                <i class="fa fa-dashboard"></i>
+                                                <!--<i class="fa fa-dashboard"></i>-->
                                             </a>
                                         </li>
                             </ul>
@@ -224,7 +163,17 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="#">
-                                        <%=u.getCompanyName()%>
+                                        <%
+                                            String outletName = u.getOutletName();
+                                            if(outletName.length() > 0 && !outletName.equals("0")){
+                                                out.println("Outlet: " + outletName);
+                                            }
+                                        %>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Company: <%=u.getCompanyName()%>
                                     </a>
                                 </li>
                                 <li>

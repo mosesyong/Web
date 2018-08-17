@@ -4,6 +4,7 @@
     Author     : moses
 --%>
 
+<%@page import="Dao.TransactionDao"%>
 <%@page import="Entity.TransactionData"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,9 +24,9 @@
                             <select name="outletName">
                                 <option value=""></option>
                                 <%
-                                    for(String outletName : u.getOutletNames()){
+                                    for(String oName : u.getOutletNames()){
                                         %>
-                                <option value="<%=outletName%>"><%=outletName%></option>"
+                                <option value="<%=oName%>"><%=oName%></option>"
                                         <%
                                             }
                                         %>

@@ -73,11 +73,6 @@
             <div class="main-panel">
                 <div class="content">
                     <div class="container-fluid">
-<<<<<<< HEAD
-                        <%=TransactionDao.print()%>
-=======
-                        
->>>>>>> 67d53be8cf28ce3683b9ec61031d50a4e2415ac3
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">

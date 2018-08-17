@@ -29,6 +29,7 @@ public class Transaction {
     }
     
     public ArrayList<TransactionData> getTransactionDataList(){
+        
         return transactionDataList;
     }
     
@@ -38,6 +39,10 @@ public class Transaction {
     
     public String getAnalyticsType(){
         return analyticsType;
+    }
+    
+    public String getOutletName(){
+        return outletName;
     }
     
     @Override

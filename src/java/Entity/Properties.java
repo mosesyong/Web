@@ -16,7 +16,7 @@ public class Properties {
     public Properties(){
         String osName = System.getProperty("os.name");
         if (osName.equals("Linux")) {
-            url = "54.169.201.220";
+            url = "54.255.212.186";
             port = 80;
         } else {
             url = "localhost";
