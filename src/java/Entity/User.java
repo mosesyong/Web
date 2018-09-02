@@ -21,8 +21,10 @@ public class User {
     private String companyName;
     private ArrayList<String> outletNameList; 
     private ArrayList<String> typeList; // same as roleList
+    private ArrayList<String> categoryList;
+    private ArrayList<Menu> menuList;
     
-    public User(String username, String type, String companyName, HashSet<String> access, ArrayList<String> roleList, ArrayList<String> outletNameList){
+    public User(String username, String type, String companyName, HashSet<String> access, ArrayList<String> roleList, ArrayList<String> outletNameList, ArrayList<String> categoryList){
         this.username = username;
         this.type = type;
         this.companyName = companyName;
@@ -43,6 +45,9 @@ public class User {
         }
         
         typeList = roleList;
+        this.categoryList  = categoryList;
+        
+        menuList = new ArrayList<>();
     }
     
     public void addEmployee(ArrayList<String> employees){
@@ -120,8 +125,28 @@ public class User {
         return temp;
     }
     
+    public ArrayList<String> getCategoryList(){
+        return categoryList;
+    }
+    
+    public boolean addCategory(String category){
+        if(category == null || category.isEmpty()){
+            return false;
+        }
+        categoryList.add(category);
+        return true;
+    }
+    
+    public void addMenuItem(Menu menuItem){
+        menuList.add(menuItem);
+    }
+    
+    public ArrayList<Menu> getMenuList(){
+        return menuList;
+    }
+    
     @Override
     public String toString(){
-        return("Username: " + username + "\nCompany Name: " + companyName + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList + "\nRoles: " + typeList + "\nOutlets: " + outletNameList);
+        return("Username: " + username + "\nCompany Name: " + companyName + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList + "\nRoles: " + typeList + "\nOutlets: " + outletNameList + "\nCategory: " + categoryList + "\nMenu Items: " + menuList);
     }
 }

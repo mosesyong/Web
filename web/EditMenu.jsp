@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="Entity.Menu"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.HashSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -60,6 +61,13 @@
             %>
            
                                     <div class="content table-responsive table-full-width">
+                                        <%
+                                            ArrayList<Menu> menuList = u.getMenuList();
+                                            for(Menu m : menuList){
+                                                out.println(m.name + "<br>");
+                                                out.println(m.categoryList + "<br>");
+                                            }
+                                            %>
                                         <table class="table table-hover table-striped">
                                             <thead>
                                                 <th>Username</th>

@@ -74,7 +74,33 @@
                                                 </div>
                                                     
                                             </div>
-
+                                            
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Description</label>
+                                                        <input type="text" class="form-control" placeholder="Description" name="description" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Category</label><br>
+                                                        <%
+                                                            ArrayList<String> categoryList = u.getCategoryList();
+                                                            for(String category : categoryList){
+                                                                out.println("<input type ='checkbox' name = '" + category + "' value = '" + category + "'>" + category +"<br>");
+                                                            }
+//                                                        <input type="text" class"form-control" placeholder="Description" name="description" >
+                                                                %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">

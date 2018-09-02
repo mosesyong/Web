@@ -54,6 +54,7 @@ public class AddItemWebServlet extends HttpServlet {
             String name = request.getParameter("name");
             String price = request.getParameter("price");
             String cost = request.getParameter("cost");
+            String desc = request.getParameter("description");
             
             
             Part filePart = request.getPart("image"); // Retrieves <input type="file" name="file">
@@ -82,14 +83,18 @@ public class AddItemWebServlet extends HttpServlet {
                                          .addTextBody("name", name)
                                          .addTextBody("cost", cost)
                                          .addTextBody("price", price)
-                                         .addTextBody("outletId", ((User)session.getAttribute("user")).getOutletName());
+                                         .addTextBody("desc", desc)
+                                         .addTextBody("outletId", ((User)session.getAttribute("user")).getOutletName())
+                                         .addTextBody("companyName", ((User)session.getAttribute("user")).getCompanyName());
             }else{
                 builder = MultipartEntityBuilder.create()
                                          .setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
                                          .addTextBody("name", name)
                                          .addTextBody("cost", cost)
                                          .addTextBody("price", price)
-                                         .addTextBody("outletId", ((User)session.getAttribute("user")).getOutletName());
+                                         .addTextBody("desc", desc)
+                                         .addTextBody("outletId", ((User)session.getAttribute("user")).getOutletName())
+                                         .addTextBody("companyName", ((User)session.getAttribute("user")).getCompanyName());
             }
             HttpEntity multiPartEntity = builder.build();
 
