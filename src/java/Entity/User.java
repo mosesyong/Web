@@ -130,7 +130,7 @@ public class User {
     }
     
     public boolean addCategory(String category){
-        if(category == null || category.isEmpty()){
+        if(category == null || category.isEmpty() || categoryList.contains(category)){
             return false;
         }
         categoryList.add(category);

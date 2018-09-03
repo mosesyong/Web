@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -55,6 +56,7 @@ public class AddItemWebServlet extends HttpServlet {
             String price = request.getParameter("price");
             String cost = request.getParameter("cost");
             String desc = request.getParameter("description");
+            String categoryStr = Arrays.toString(request.getParameterValues("category"));
             
             
             Part filePart = request.getPart("image"); // Retrieves <input type="file" name="file">
@@ -84,6 +86,7 @@ public class AddItemWebServlet extends HttpServlet {
                                          .addTextBody("cost", cost)
                                          .addTextBody("price", price)
                                          .addTextBody("desc", desc)
+                                         .addTextBody("category", categoryStr)                        
                                          .addTextBody("outletId", ((User)session.getAttribute("user")).getOutletName())
                                          .addTextBody("companyName", ((User)session.getAttribute("user")).getCompanyName());
             }else{
