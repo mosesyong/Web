@@ -51,7 +51,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="header">
-                                        <h4 class="title">User Management</h4>
+                                        <h4 class="title">Edit Menu Items</h4>
                                     </div>
             <%
             String msg = (String)request.getAttribute("msg");

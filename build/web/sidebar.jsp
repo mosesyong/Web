@@ -92,6 +92,12 @@
                       </li>
                       <%}if(!u.getType().equals("0") && u.hasMenuAccess()){%>
                       <li class="nav-item">
+                          <a class="nav-link" id="menu-tab" data-toggle="tab" href="CreateCategory.jsp" role="tab" aria-controls="menu" aria-selected="false">
+                          <i class="pe-7s-network"></i>
+                          <p>Create Category</p>    
+                          </a>
+                      </li>
+                      <li class="nav-item">
                           <a class="nav-link" id="menu-tab" data-toggle="tab" href="AddMenu.jsp" role="tab" aria-controls="menu" aria-selected="false">
                           <i class="pe-7s-cart"></i>
                           <p>Add item to Menu</p>    

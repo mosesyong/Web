@@ -45,6 +45,7 @@ public class CreateCategoryWebServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String category = request.getParameter("category");
             try {
+                
                 DefaultHttpClient httpclient = new DefaultHttpClient();
                 Properties prop = new Properties();
                 String url = prop.url;
@@ -66,7 +67,7 @@ public class CreateCategoryWebServlet extends HttpServlet {
                 int statusCode = httpResponse.getStatusLine().getStatusCode();
                 if(statusCode == 202){
                     u.addCategory(category);
-                    System.out.println("Successfully added category");
+                    System.out.println("Successfully added category" + category);
                     request.setAttribute("msg", category + " successfully created");
                     request.getRequestDispatcher("CreateCategory.jsp").forward(request, response);
                 }else{

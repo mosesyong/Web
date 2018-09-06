@@ -80,25 +80,38 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Description</label>
-                                                        <input type="text" class="form-control" placeholder="Description" name="description" required>
+                                                        <textarea class="form-control" rows="6" placeholder="Description" name="description" required></textarea>
                                                     </div>
                                                 </div>
-                                            </div>
+<!--                                            </div>-->
                                             
-                                            <div class="row">
+                                            <!--<div class="row">-->
                                                 <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Category</label><br>
-                                                        <%
-                                                            ArrayList<String> categoryList = u.getCategoryList();
-                                                            for(String category : categoryList){
-                                                                out.println("<input type ='checkbox' name = 'category' value = '" + category + "'>" + category +"<br>");
-                                                            }
-//                                                        <input type="text" class"form-control" placeholder="Description" name="description" >
-                                                                %>
+                                                    
+                                                        <div class="form-group">
+                                                            <label>Category</label><br>
+                                                            <div class="card">
+                                                                <table class ="category-table">
+                                                                    <tbody>
+                                                                       
+                                                                         <%
+                                                                ArrayList<String> categoryList = u.getCategoryList();
+                                                                for(String category : categoryList){
+                                                                    out.println("<tr><td><input type ='checkbox' name = 'category' value = '" + category + "'>" + " " + category +"</td></tr>");
+                                                                   
+                                                                }
+    //                                                        <input type="text" class"form-control" placeholder="Description" name="description" >
+                                                                    %>
+                                                                     
+                                                                    </tbody>             
+                                                                    
+                                                                </table>
+                                                            
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
                                             </div>
+                                                
                                             
                                             
                                             <div class="row">
@@ -117,10 +130,12 @@
                                     //out.println();
                                     //out.println();
                                 %>
-                                            <button type="submit" class="btn btn-info btn-fill pull-right">Add to Menu</button>
+                                            <input type="submit" name="menu" class="btn btn-info btn-fill pull-right" value="Add to Menu">
+                                <!--<button type="submit" class="btn btn-info btn-fill pull-right">Add to Menu</button>-->
                                             <div class="clearfix"></div>
                                         </form>
                                     </div>
+
                                 </div>
                             </div>
                         </div>

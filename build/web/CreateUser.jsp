@@ -204,8 +204,9 @@
                                                     </div>
                                                 </div> 
                                                 <div class="col-md-6">
-                                                    <div class="card">
-                                                        <label>Permissions</label>
+                                                    
+                                                    <label>Permissions</label>
+                                                        <div class="card">
                                                             <div class="card-body">
                                                               <table class="table">
                                                                    <tbody>
