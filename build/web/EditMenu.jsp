@@ -61,24 +61,27 @@
             %>
            
                                     <div class="content table-responsive table-full-width">
+                                        <%
+                                            ArrayList<Menu> menuList = u.getMenuList();
+                                            for(Menu m : menuList){
+                                                out.println(m.name + "<br>");
+                                                out.println(m.categoryList + "<br>");
+                                            }
+                                            %>
                                         <table class="table table-hover table-striped">
                                             <thead>
-                                                <th>Food Name</th>
-                                                <th>Price</th>
-                                                <th>Cost</th>
-                                                <th>Description</th>
-                                                <th>Category</th>
-                                                <th>Click to Edit</th>
+                                                <th>Username</th>
+                                                <th>Click to Edit Access</th>
+                                                <th>Click to Delete</th>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                <%
-                                                 ArrayList<Menu> menuList = u.getMenuList();
-                                                 for(Menu m : menuList){
-                                                    out.println("<tr><td align='center'>" + m.name + "</td><td align='center'>" + m.price + "</td><td align='center'>" + m.cost + "</td><td align='center'>" + m.desc + "</td><td align='center'>" + m.categoryList + "</td>");
-                                                    out.println("<td align='center'><a href='#'>Edit</a></td></tr>");
-                                                 }
-                                                %>  
+            <%
+            for(String employeeName : u.getUniqueEmployees()){
+                out.println("<tr><td align='center'>" + employeeName + "</td><td align='center'><a href='EmployeeAccessWebServlet?EmployeeName=" + employeeName + "'>Edit Access</a></td><td align='center'>Delete (not done yet)</td></tr>");
+
+            }
+            %>    
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -90,7 +93,6 @@
                 </div>    
             </div>
         </div>
-                                               
     </body>
 </html>
 
