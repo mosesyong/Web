@@ -145,6 +145,15 @@ public class User {
         return menuList;
     }
     
+    public Menu getMenuItem(String foodName){
+        for(Menu m : menuList){
+            if(m.name.equals(foodName)){
+                return m;
+            }
+        }
+        return null;
+    }
+    
     @Override
     public String toString(){
         return("Username: " + username + "\nCompany Name: " + companyName + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList + "\nRoles: " + typeList + "\nOutlets: " + outletNameList + "\nCategory: " + categoryList + "\nMenu Items: " + menuList);
