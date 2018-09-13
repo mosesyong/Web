@@ -56,7 +56,7 @@
                                         <h4 class="title">Create Category</h4>
                                     </div>
                                     <div class="content">
-                                        <form action="CreateCategoryWebServlet" method='post' enctype=multipart/form-data>
+                                        <form action="CreateCategoryWebServlet" method='post'>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">

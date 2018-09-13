@@ -322,6 +322,24 @@ input:focus {
 }
 */
 /* Dropdown Button */
+
+textarea{
+    resize: none;
+}
+
+#table-wrapper {
+  position:relative;
+}
+#table-scroll {
+  height:135px;
+  overflow:auto;
+}
+#table-wrapper table {
+  width:100%;
+    
+}
+
+
 .dropbtn {
     background-color: #3498DB;
     color: white;

@@ -91,9 +91,11 @@
                                                         <div class="form-group">
                                                             <label>Category</label><br>
                                                             <div class="card">
-                                                                <table class ="category-table">
-                                                                    <tbody>
-                                                                       
+                                                                <div id="table-wrapper">
+                                                                    <div id="table-scroll">
+                                                                        <table class ="category-table">
+                                                                            <tbody>
+
                                                                          <%
                                                                 ArrayList<String> categoryList = u.getCategoryList();
                                                                 for(String category : categoryList){
@@ -102,10 +104,12 @@
                                                                 }
     //                                                        <input type="text" class"form-control" placeholder="Description" name="description" >
                                                                     %>
-                                                                     
-                                                                    </tbody>             
-                                                                    
-                                                                </table>
+
+                                                                            </tbody>             
+
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
                                                             
                                                             </div>
                                                         </div>
