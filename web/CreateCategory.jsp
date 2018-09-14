@@ -67,7 +67,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Add Category Image</label>
-                                                        <input type="file" class="form-control" name="categoryImage">
+                                                        <input type="file" class="form-control" name="image">
                                                     </div>
                                                 </div>
                                             </div>

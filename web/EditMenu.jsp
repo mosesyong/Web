@@ -19,7 +19,7 @@
         <%=m.desc%></br>
         <%=m.price%></br>
         <%=m.cost%></br>
-        <%=m.url%></br>
+        <img src=<%=m.url%>></br>
         <%=m.categoryList%>
         
     </body>
