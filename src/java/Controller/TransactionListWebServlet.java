@@ -60,7 +60,6 @@ public class TransactionListWebServlet extends HttpServlet {
             String companyName = u.getCompanyName();
             String outletName = request.getParameter("outletName");
             
-            ArrayList<TransactionData> transactionDataList = new ArrayList<>();
             Calendar cal = Calendar.getInstance();
             if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
                 cal.add(Calendar.HOUR, 8);
