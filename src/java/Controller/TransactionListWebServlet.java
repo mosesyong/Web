@@ -6,14 +6,21 @@
 package Controller;
 
 import Dao.AnalyticsDao;
-import Entity.TransactionData;
+import Dao.TransactionDao;
+import Entity.Transaction;
 import Entity.User;
+import java.util.Date;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -49,45 +56,25 @@ public class TransactionListWebServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
-            User u = (User)session.getAttribute("user");
-            
-            String url = (String)session.getAttribute("url");
-            int port = (Integer)session.getAttribute("port");
-            AnalyticsDao.getAnalytics(u, "1", url, port);
-            
+            User u = (User) session.getAttribute("user");
+            String companyName = u.getCompanyName();
             String outletName = request.getParameter("outletName");
             
-            HttpHost target = new HttpHost(url, port , "http");
-
-            HttpPost postRequest = new HttpPost("/API/TransactionListServlet");
-            ArrayList<NameValuePair> postParams = new ArrayList<>();
-            postParams.add(new BasicNameValuePair("outletName", outletName));
-            postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
-            DefaultHttpClient httpclient = new DefaultHttpClient();
-            HttpResponse httpResponse = httpclient.execute(target, postRequest);
-            HttpEntity entity = httpResponse.getEntity();
-            
-            JsonParser parser = new JsonParser();
-            JsonObject jo = (JsonObject) parser.parse(EntityUtils.toString(entity));
-            
-            JsonArray resultArray = jo.get("result").getAsJsonArray();
-            
             ArrayList<TransactionData> transactionDataList = new ArrayList<>();
-            
-            for(Object obj : resultArray){
-                JsonObject transactionDataObj = (JsonObject)obj;
-                String name = transactionDataObj.get("name").getAsString();
-                double totalPrice = transactionDataObj.get("totalPrice").getAsDouble();
-                String date = transactionDataObj.get("date").getAsString();
-                TransactionData data = new TransactionData(name, totalPrice, date);
-                transactionDataList.add(data);
+            Calendar cal = Calendar.getInstance();
+            if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
+                cal.add(Calendar.HOUR, 8);
             }
+
+            cal.add(Calendar.HOUR, -3);
+            Date prevDateTime = cal.getTime();
             
+            ArrayList<Transaction> transactionList = TransactionDao.getDisplayTransactionList(outletName, prevDateTime);
             
-            request.setAttribute("transactionResults", transactionDataList);
+            request.setAttribute("transactionResults", transactionList);
             request.getRequestDispatcher("DisplayTransactions.jsp").forward(request, response);
-            return;
         }
+//            
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -15,7 +15,6 @@
 <%@page import="java.util.TimeZone"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.time.LocalDateTime"%>
-<%@page import="Entity.TransactionData"%>
 <%@page import="Dao.TransactionDao"%>
 <%@page import="Entity.Transaction"%>
 <%@page import="java.util.HashSet"%>
@@ -72,9 +71,9 @@
                                         double yearlySales = 0.0;
                                         double sales = 0.0;
                                         
-                                        ArrayList<Transaction> transactionList = TransactionDao.getTransactions("sales");  
-                                        for (Transaction t : transactionList){
-                                            ArrayList<TransactionData> tDataList = t.getTransactionDataList();
+                                        ArrayList<Transaction> transactionList = TransactionDao.getTransactionList();  
+                                         /*for (Transaction t : transactionList){
+                                           
                                             String period = t.getPeriod();
                                             for (TransactionData tData : tDataList){
                                                 sales = tData.getTotalPrice();
@@ -89,6 +88,7 @@
                                                 }
                                             }
                                         }
+
                                        
 
                                         %>
@@ -178,7 +178,7 @@
                 ArrayList<String> monthlyItemsQty = new ArrayList<>();
                 ArrayList<String> yearlyItems = new ArrayList<>();
                 ArrayList<String> yearlyItemsQty = new ArrayList<>();
-                
+                /*
                 transactionList = TransactionDao.getTransactions("items");
                 for(Transaction i : transactionList){
                     String period = i.getPeriod();
@@ -207,7 +207,7 @@
                                 yearlyItemsQty.add(itemQty);
                             }  
                     }  
-                }
+                }*/
                 
             %>                        
                 
@@ -227,10 +227,10 @@
                                     var weeklyItemsChart = new Chart(weeklyItems,{
                                         type:'bar',
                                         data: {
-                                            labels:<%=weeklyItems%>,
+                                            labels:'day',
                                             datasets:[{
                                                     label:'Orders',
-                                                    data:<%=weeklyItemsQty%>,
+                                                    data:'0',
                                                     backgroundColor:'#FFC925'  
                                                 }]
                                             },
@@ -276,10 +276,10 @@
                                     var monthlyItemsChart = new Chart(monthlyItems,{
                                         type:'bar',
                                         data: {
-                                            labels:<%=monthlyItems%>,
+                                            labels:'month',
                                             datasets:[{
                                                     label:'Orders',
-                                                    data:<%=monthlyItemsQty%>,
+                                                    data:'0',
                                                     backgroundColor:'#FFC925'  
                                                 }]
                                             },
@@ -326,10 +326,10 @@
                                     var yearlyItemsChart = new Chart(yearlyItems,{
                                         type:'bar',
                                         data: {
-                                            labels:<%=yearlyItems%>,
+                                            labels:year,
                                             datasets:[{
                                                     label:'Orders',
-                                                    data:<%=yearlyItemsQty%>,
+                                                    data:'0',
                                                     backgroundColor:'#FFC925'  
                                                 }]
                                             },

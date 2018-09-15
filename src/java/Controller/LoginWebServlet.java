@@ -126,7 +126,7 @@ public class LoginWebServlet extends HttpServlet {
                   session.setAttribute("user",u);
                   session.setAttribute("url", url);
                   session.setAttribute("port", port);
-                  AnalyticsDao.getAnalytics(u, "1", url, port);
+                  AnalyticsDao.getAnalytics(u);
                   MenuDao.getMenu(u, url, port);
                   response.sendRedirect("Main.jsp");
               }else if(statusCode == 200){

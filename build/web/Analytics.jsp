@@ -77,12 +77,44 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="header">
-                                        <h4 class="title">Company Analytics</h4>
+                                        <h3 class="title">Company Analytics</h3>
                                     </div>
-
                                     <div class="content">
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <div class='col-md-12'>
+                                                <div class='form-group'>
+                                                <form action='AnalyticsWebServlet' method='get'>
+                                                    <select name='analyticsType' style='width: 25%'>
+                                                        <option selected="true" disabled="disabled">Select Category</option>
+                                                        <option value='Sales'>Sales</option>
+                                                        <option value='Items'>Items</option>
+                                                    </select>
+                                                    <select name='paymentType' style='width: 25%'>
+                                                        <option selected="true" disabled="disabled">Select Payment Type</option>
+                                                        <option value='All'>All</option>
+                                                        <option value='cash'>Cash</option>
+                                                        <option value='card'>Card</option>
+                                                        <option value='snapcash'>SnapCash</option>
+                                                    </select>
+                                                    <select name="outletName" style='width: 25%'>
+                                                        <option selected="true" disabled="disabled">Select Outlet</option>
+                                                        <option value='All'>All</option>
+                                                        <%
+                                                            for(String oName : u.getOutletNames()){
+                                                                %>
+                                                        <option value="<%=oName%>"><%=oName%></option>"
+                                                                <%
+                                                                    }
+                                                                %>
+                                                     </select>
+                                                     <button type="submit" class="btn btn-info btn-fill">Submit</button>
+                                                </form>
+                                                
+                                            </div>
+                                        </div>
+                                            
+                                            
+<!--                                            <div class="col-md-5">
                                                 <div class="dropdown">
                                                     <button onclick="myFunction()" class="dropbtn">Select Report</button>
                                                     <div id="myDropdown" class="dropdown-content">
@@ -90,7 +122,7 @@
                                                       <a href="ItemsAnalytics.jsp">Items Report</a>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                         </div>
                                        
                                     </div>

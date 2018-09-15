@@ -4,8 +4,8 @@
     Author     : moses, sharon
 --%>
 
+<%@page import="Entity.Transaction"%>
 <%@page import="Dao.TransactionDao"%>
-<%@page import="Entity.TransactionData"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,7 +19,9 @@
             <div class='main-panel'>
                 <div class="content">
                     <div class="container-fluid">
-                        <h1>List all transactions</h1>
+                        <%=TransactionDao.getTransactionList()%>
+                        <%=u%>
+                        <h1>List past 3 hour's transactions</h1>
                         <form action='TransactionListWebServlet' method='get'>
                             <select name="outletName">
                                 <option value="">Select Outlet</option>
@@ -44,15 +46,15 @@
                                 <thead>
                                 <%
                                     
-                                    out.println("<th>Name</th><th>Total Amount</th><th>Date</th>");
+                                    out.println("<th>Cashier Name</th><th>Total Amount</th><th>Payment Type</th><th>Date</th>");
                                     
                                     %>
                                 </thead>
                                 <tbody>
                                     <%
-                                    ArrayList<TransactionData> transactionDataList = (ArrayList<TransactionData>)obj;
-                                    for(TransactionData t : transactionDataList){
-                                        out.println("<tr><td align='center'>" + t.getName() + "</td><td align='center'>" + t.getTotalPrice() + "</td><td>" + t.getDate() + "</td></tr>");
+                                    ArrayList<Transaction> transactionDataList = (ArrayList<Transaction>)obj;
+                                    for(Transaction t : transactionDataList){
+                                        out.println("<tr><td align='center'>" + t.cashierName + "</td><td align='center'>" + t.totalPrice + "</td><td>" + t.paymentType + "</td><td>" + t.dateTime + "</td></tr>");
                                     }
                                     out.println("</table>");
                                 }

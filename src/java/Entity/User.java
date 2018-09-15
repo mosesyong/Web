@@ -122,6 +122,7 @@ public class User {
     public ArrayList<String> getOutletNames(){
         ArrayList<String> temp = (ArrayList<String>)outletNameList.clone();
         temp.remove("null");
+        temp.remove("");
         return temp;
     }
     

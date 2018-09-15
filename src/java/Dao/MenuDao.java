@@ -6,8 +6,6 @@
 package Dao;
 
 import Entity.Menu;
-import Entity.Transaction;
-import Entity.TransactionData;
 import Entity.User;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

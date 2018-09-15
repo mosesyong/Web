@@ -146,7 +146,7 @@
                                                 <div class="col-md-6">
                                                     <label>Image</label>
                                                     <div class="card">
-                                                        enter image here
+                                                      <img src="<%=m.url%>" width="100%" height="100%">
                                                     </div>
                                                 </div>    
                                             </div>

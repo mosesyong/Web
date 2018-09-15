@@ -5,8 +5,12 @@
  */
 package Dao;
 
+import Entity.AnalyticsEntity;
 import Entity.Transaction;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 
 /**
  *
@@ -16,7 +20,7 @@ public class TransactionDao {
     static ArrayList<Transaction> transactionList;
     
     public TransactionDao(){
-        this.transactionList = new ArrayList<>();
+        TransactionDao.transactionList = new ArrayList<>();
     }
     
     public static void addTransaction(Transaction t){
@@ -27,40 +31,102 @@ public class TransactionDao {
         return transactionList;
     }
     
-    public static Transaction getTransaction(String period, String analyticsType){
-        for(Transaction t : transactionList){
-            if(t.getPeriod().equals(period) && t.getAnalyticsType().equals(analyticsType)){
-                return t;
+    public static ArrayList<Transaction> getDisplayTransactionList(String outletName, Date previousDate){
+        ArrayList<Transaction> tempResult = new ArrayList<>();
+        
+        for (Transaction t : transactionList){
+            if(t.dateTime.after(previousDate) && t.outletName.equals(outletName)){
+                tempResult.add(t);
             }
         }
-        return null;
-    }
-    
-    public static ArrayList<Transaction> getTransactions(String filter){
+        
         ArrayList<Transaction> result = new ArrayList<>();
-        for(Transaction t : transactionList){
-            if(t.getPeriod().equals(filter) || t.getAnalyticsType().equals(filter)){
-                result.add(t);
+        
+        for(Transaction newT : tempResult){
+            boolean added = false;
+            for(Transaction oldT : result){
+                if(oldT.tid.equals(newT.tid)){
+                    oldT.totalPrice += newT.totalPrice;
+                    added = true;
+                    break;
+                }
+            }
+            if(!added){
+                result.add(newT);
             }
         }
+        
+        
         return result;
     }
+   
     
-    public static ArrayList<Transaction> getTransactions(String outletName, String filter){
-        ArrayList<Transaction> result = new ArrayList<>();
-        if(outletName.equals("all")){
-            for(Transaction t : transactionList){
-                if(t.getAnalyticsType().equals(filter)){
-                    result.add(t);
+    public static HashMap<String,ArrayList<AnalyticsEntity>> getAnalyticsMap(String analyticsType, String paymentType, String outletName){
+        HashMap<String, ArrayList<AnalyticsEntity>> result = new HashMap<>();
+        
+        ArrayList<String> timeList = new ArrayList<>();
+        timeList.add("All");
+        timeList.add("Year");
+        timeList.add("Month");
+        timeList.add("Week");
+        timeList.add("Day");
+        
+        for(String time : timeList){
+            ArrayList<AnalyticsEntity> analyticsEntityList = new ArrayList<>();
+            
+            Calendar cal = Calendar.getInstance();
+            if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
+                cal.add(Calendar.HOUR, 8);
+            }
+            
+            if(time.equals("All")){
+                cal.add(Calendar.YEAR, -100);
+            }else if(time.equals("Year")){
+                cal.add(Calendar.YEAR, -1);
+            }else if(time.equals("Month")){
+                cal.add(Calendar.MONTH, -1);
+            }else if(time.equals("Week")){
+                cal.add(Calendar.WEEK_OF_YEAR, -1);
+            }else if(time.equals("Day")){
+                cal.add(Calendar.DAY_OF_YEAR, -1);
+            }
+            Date prevDateTime = cal.getTime();
+            
+            
+            if(analyticsType.equals("Sales")){
+                for(Transaction t : transactionList){
+                    System.out.println(t);
+                    if((t.paymentType.equals(paymentType) || paymentType.equals("All")) && (t.outletName.equals(outletName) || outletName.equals("All")) && t.dateTime.after(prevDateTime)){
+                        System.out.println(analyticsEntityList);
+                        if(analyticsEntityList.size() == 1){
+                            AnalyticsEntity e = analyticsEntityList.get(0);
+                            e.amount += t.totalPrice;
+                        }else{
+                            analyticsEntityList.add(new AnalyticsEntity(time + " sales", t.totalPrice));
+                        }
+                    }
+                }
+            }else if(analyticsType.equals("Items")){
+                for(Transaction t : transactionList){
+                    if((t.paymentType.equals(paymentType) || paymentType.equals("All")) && (t.outletName.equals(outletName) || outletName.equals("All")) && t.dateTime.after(prevDateTime)){
+                        boolean added = false;
+                        for(AnalyticsEntity e : analyticsEntityList){
+                            if(e.label.equals(t.foodName)){
+                                e.amount += t.totalPrice;
+                                e.quantity += t.quantity;
+                                added = true;
+                                break;
+                            }
+                        }
+                        if(!added){
+                            analyticsEntityList.add(new AnalyticsEntity(t.foodName, t.totalPrice, t.quantity));
+                        }
+                    }
                 }
             }
-        }else{
-            for(Transaction t : transactionList){
-                if(t.getOutletName().equals(outletName) && t.getAnalyticsType().equals(filter)){
-                    result.add(t);
-                }
-            }
+            result.put(time, analyticsEntityList);
         }
+        
         return result;
     }
     
