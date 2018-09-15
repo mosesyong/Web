@@ -43,16 +43,9 @@
 
     <body>
         <%Menu m = (Menu)session.getAttribute("menuItem");%>
-<<<<<<< HEAD
+        <%--<%=m%>--%>
+
         
-        <%=m.name%></br>
-        <%=m.desc%></br>
-        <%=m.price%></br>
-        <%=m.cost%></br>
-        <img src=<%=m.url%>></br>
-        <%=m.categoryList%>
-        
-=======
         <div class ="wrapper">
             <div class="main-panel">
                 <div class="content">
@@ -92,10 +85,10 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Description</label>
-                                                        <textarea class="form-control" rows="6" value="<%=m.desc%>" name="description" required></textarea>
+                                                        <textarea class="form-control" rows="6"  name="description" required><%=m.desc%></textarea>
                                                     </div>
                                                 </div>
-<!--                                            </div>-->
+                                            <!--</div>-->
                                             
                                             <!--<div class="row">-->
                                                 <div class="col-md-6">
@@ -115,12 +108,17 @@
                                                                 System.out.println(categoryList);
 
                                                                 for(String category : categoryList){
+                                                                    boolean isPresent = false;
                                                                     for(String iCategory : itemCategory){
                                                                         if (iCategory.equals(category)){
-                                                                            out.println("<tr height='25px'><td><input type ='checkbox' name = 'category' value = '" + category + "' checked>" + " " + category +"</td></tr>");
-                                                                        }else{
-                                                                            out.println("<tr height='25px'><td><input type ='checkbox' name = 'category' value = '" + category + "'>" + " " + category +"</td></tr>");
+                                                                            isPresent = true;
+                                                                            break;
                                                                         }
+                                                                    }
+                                                                    if(isPresent){
+                                                                        out.println("<tr height='25px'><td><input type ='checkbox' name = 'category' value = '" + category + "' checked>" + " " + category +"</td></tr>");
+                                                                    }else{
+                                                                        out.println("<tr height='25px'><td><input type ='checkbox' name = 'category' value = '" + category + "'>" + " " + category +"</td></tr>");
                                                                     }
                                                                 }   
                                                                     %>

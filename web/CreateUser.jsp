@@ -251,10 +251,8 @@
                             out.println("<font color='red'> Your Temporary Password is:"  + tempPassword + "</font>");
                         }   
                         String msg = (String)request.getAttribute("msg");
-                        if(tempPassword != null){
+                        if(msg != null){
                             out.println("<font color='red'>" + msg + "</font>");
-                        }else{
-                            out.println("<font color='red'>Unable to create user</font>");
                         }
                 //out.println();
                 //out.println();
