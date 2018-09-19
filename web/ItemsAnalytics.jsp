@@ -298,7 +298,15 @@
 </div>
 </div>
 </div>
-       
+       <!--                                            <div class="col-md-5">
+                                                <div class="dropdown">
+                                                    <button onclick="myFunction()" class="dropbtn">Select Report</button>
+                                                    <div id="myDropdown" class="dropdown-content">
+                                                      <a href="SalesAnalytics.jsp">Sales Report</a>
+                                                      <a href="ItemsAnalytics.jsp">Items Report</a>
+                                                    </div>
+                                                </div>
+                                            </div>-->
     </body>
     
 

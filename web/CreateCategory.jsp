@@ -46,9 +46,7 @@
             <div class="main-panel">
                 <div class="content">
                     <div class="container-fluid">
-                        <h3 class="title">Create New Category</h3>
                 
-                        
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
@@ -91,7 +89,11 @@
                                 </div>
                             </div>
                         </div>
-                        
+                    </div>
+                </div>
+            </div>
+         </div>
+    
       
         
     </body>

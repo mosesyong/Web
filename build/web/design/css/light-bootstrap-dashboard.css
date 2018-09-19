@@ -1473,8 +1473,8 @@ fieldset[disabled] .btn-neutral.active {
 }
 
 .checkbox-info input[type="checkbox"]:checked + label::before {
-    background-color: #5bc0de;
-    border-color: #5bc0de;
+    background-color: #SFFE37C;
+    border-color: #FFE37C;
 }
 
 .checkbox-info input[type="checkbox"]:checked + label::after {
@@ -1605,7 +1605,7 @@ fieldset[disabled] .btn-neutral.active {
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-info,
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-info {
     color: #fff;
-    background: #5bc0de;
+    background: #5bc0ds;
 }
 
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success,
@@ -2284,6 +2284,15 @@ fieldset[disabled] .btn-neutral.active {
     overflow: visible;
 }
 
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+div.chart-container {
+  padding: 1px;
+}
 .card {
     border-radius: 4px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);
