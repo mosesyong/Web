@@ -56,6 +56,10 @@
         <servlet-name>MenuEditWebServlet</servlet-name>
         <servlet-class>Controller.MenuEditWebServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>checkAlive</servlet-name>
+        <servlet-class>Controller.checkAlive</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>MenuEditWebServlet</servlet-name>
         <url-pattern>/MenuEditWebServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>checkAlive</servlet-name>
+        <url-pattern>/checkAlive</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
