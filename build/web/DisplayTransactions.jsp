@@ -19,8 +19,7 @@
             <div class='main-panel'>
                 <div class="content">
                     <div class="container-fluid">
-                        <%=TransactionDao.getTransactionList()%>
-                        <%=u%>
+                        
                         <h1>List past 3 hour's transactions</h1>
                         <form action='TransactionListWebServlet' method='get'>
                             <select name="outletName">
