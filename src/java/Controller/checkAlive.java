@@ -49,7 +49,7 @@ public class checkAlive extends HttpServlet {
 
                 int statusCode = httpResponse.getStatusLine().getStatusCode();
                 out.println("API Server is up");
-            }catch(Exception e){
+            }catch(Exception e){ 
                 out.println("API Server is down");
             }
         }

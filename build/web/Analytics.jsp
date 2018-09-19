@@ -157,7 +157,7 @@
                                                     <div class="col-md-6">
                                                         <div class="card">
                                                             <div class="header">
-                                                                <h4 class="title"><% out.println("Item Orders " + timePeriod); %></h4>
+                                                                <h4 class="title"><% out.println("Item Sales " + timePeriod); %></h4>
                                                                 <p class="category"></p>
                                                             </div>
                                                             <div class="content">

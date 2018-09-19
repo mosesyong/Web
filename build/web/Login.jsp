@@ -4,6 +4,7 @@
     Author     : Moses
 --%>
 
+<%@page import="Entity.Properties"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -47,9 +48,9 @@
                 String msg = (String)request.getAttribute("msg");
                 if(msg != null){
                     out.println("<font color='red'>"  + msg + "</font>");
-                }   
-                //out.println();
-                //out.println();
+                }
+                out.println("<br><font color='white'>"  + Properties.checkAlive() + "</font><br>");
+                    
             %>
             <br><br>
                     </div>
