@@ -57,12 +57,13 @@
                                         <h4 class="title">Edit Menu Item</h4>
                                     </div>
                                     <div class="content">
-                                        <form action="MenuEditWebServlet" method='post'>
+                                        <form action="MenuEditWebServlet" method='post' enctype=multipart/form-data>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Name</label>
-                                                        <input type="text" class="form-control" value="<%=m.name%>" name="name" disabled>
+                                                        <input type="text" class="form-control" value="<%=m.name%>" name="displayName" disabled>
+                                                        <input type="hidden" class="form-control" value="<%=m.name%>" name="name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">

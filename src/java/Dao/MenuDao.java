@@ -8,6 +8,7 @@ package Dao;
 import Entity.Menu;
 import Entity.User;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class MenuDao {
     public static void getMenu(User u, String url, int port){
         DefaultHttpClient httpclient = new DefaultHttpClient();
         try {
+          u.clearMenu();
           // specify the host, protocol, and port 
           HttpHost target = new HttpHost(url, port, "http");
 
@@ -58,14 +60,19 @@ public class MenuDao {
                   
                   ArrayList<String> categoryList  = new ArrayList<>();
                   try{
-                    String categoryStr = menuObj.get("categories").getAsString();
+                    JsonElement categoryJson = menuObj.get("categories");
+                    if(categoryJson == null){
+                        continue;
+                    }
+                    System.out.println("Category: " + categoryJson);
+                    String categoryStr = categoryJson.toString();
 
                     categoryStr = categoryStr.replace("[","");
                     categoryStr = categoryStr.replace("]","");
                     categoryStr = categoryStr.replace("\"","");
                     categoryList = new ArrayList<>(Arrays.asList(categoryStr.split(",")));
                   }catch(Exception e){
-                      System.out.println(name + " has no category");
+                      e.printStackTrace();
                   }
                   u.addMenuItem(new Menu(name, desc, price, cost, urlImage, categoryList));
               }

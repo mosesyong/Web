@@ -90,14 +90,10 @@ public class AddItemWebServlet extends HttpServlet {
                                          .addTextBody("outletId", ((User)session.getAttribute("user")).getOutletName())
                                          .addTextBody("companyName", ((User)session.getAttribute("user")).getCompanyName());
             }else{
-                builder = MultipartEntityBuilder.create()
-                                         .setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
-                                         .addTextBody("name", name)
-                                         .addTextBody("cost", cost)
-                                         .addTextBody("price", price)
-                                         .addTextBody("desc", desc)
-                                         .addTextBody("outletId", ((User)session.getAttribute("user")).getOutletName())
-                                         .addTextBody("companyName", ((User)session.getAttribute("user")).getCompanyName());
+                System.out.println("No image found");
+                request.setAttribute("msg", "Failed to add item to menu");
+                request.getRequestDispatcher("AddMenu.jsp").forward(request, response);
+                return;
             }
             HttpEntity multiPartEntity = builder.build();
 

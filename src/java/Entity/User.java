@@ -155,6 +155,10 @@ public class User {
         return null;
     }
     
+    public void clearMenu(){
+        menuList = new ArrayList<>();
+    }
+    
     @Override
     public String toString(){
         return("Username: " + username + "\nCompany Name: " + companyName + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList + "\nRoles: " + typeList + "\nOutlets: " + outletNameList + "\nCategory: " + categoryList + "\nMenu Items: " + menuList);
