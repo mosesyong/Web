@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="Dao.MenuDao"%>
+<%@page import="Entity.Properties"%>
 <%@page import="Entity.Menu"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.HashSet"%>
@@ -41,6 +43,13 @@
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
         <link href="design/css/pe-icon-7-stroke.css" rel="stylesheet" />
+        
+        <%
+            Properties prop = new Properties();
+            String url = prop.url;
+            int port = prop.port;
+            MenuDao.getMenu(u, url, port);
+        %>
    </head>
     <body>
         <div class="wrapper">

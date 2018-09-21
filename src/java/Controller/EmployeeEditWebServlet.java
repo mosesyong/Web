@@ -47,7 +47,12 @@ public class EmployeeEditWebServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String employeeUsername = request.getParameter("employeeUsername");
-            ArrayList<String> accessList = new ArrayList<>(Arrays.asList(request.getParameterValues("access")));
+            ArrayList<String> accessList = new ArrayList<>();
+            try{
+                accessList = new ArrayList<>(Arrays.asList(request.getParameterValues("access")));
+            }catch(NullPointerException e){
+                
+            }
             String newPassword = request.getParameter("password");
             System.out.println("Access in employee web servlet: " + employeeUsername);
             
@@ -55,7 +60,9 @@ public class EmployeeEditWebServlet extends HttpServlet {
             for(String access : accessList){
                 accessString += access + ",";
             }
-            accessString = accessString.substring(0,accessString.length()-1);
+            if(accessString.length() > 0){
+                accessString = accessString.substring(0,accessString.length()-1);
+            }
             System.out.println("Access in employee web servlet: " + accessString);
             DefaultHttpClient httpclient = new DefaultHttpClient();
             try{

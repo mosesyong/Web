@@ -120,12 +120,6 @@ public class MenuEditWebServlet extends HttpServlet {
 
             int statusCode = httpResponse.getStatusLine().getStatusCode();
             
-            
-            User u = (User) session.getAttribute("user");
-            Properties prop = new Properties();
-            String url = prop.url;
-            int port = prop.port;
-            MenuDao.getMenu(u, url, port);
             if(statusCode == 202){
                 request.setAttribute("msg", "Successfully edited " + name );
                 request.getRequestDispatcher("MenuManagement.jsp").forward(request, response);
