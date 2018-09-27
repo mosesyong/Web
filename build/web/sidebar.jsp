@@ -59,7 +59,7 @@
         <div class="sidebar" data-color="yellow" data-image="design/img/sidebar-5.jpg">
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <img src="design/img/sidebar-logo.png">
+                    <img src="design/img/portalsidebar.png">
                 </div>  
                     <!-- Nav tabs -->
                     <ul class="nav nav-pills" id="sidebarTabs" role="tablist">

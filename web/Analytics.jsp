@@ -85,7 +85,7 @@
                                              analyticsMap = (HashMap<String, ArrayList<AnalyticsEntity>>) request.getAttribute("analyticsResults");
                                              
                                              DecimalFormat df = new DecimalFormat(".##");
-                                             
+//                                             System.out.println(analyticsMap);
                                              if(analyticsType == null && analyticsMap == null){    
                                                 
                                              } else if(analyticsType.equals("Sales")){

@@ -390,9 +390,10 @@ textarea{
 }
 
 .logo img {
-    height:60px;
+    height:100px;
     width: 250px;
     border-radius: 0px;
+    margin-left:2px;
 }
 
 .sidebar .nav {
