@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/Users/moses/Documents/FYP/Web/src/java/Controller/EmployeeAccessWebServlet.java</file>
             <file>file:/Users/moses/Documents/FYP/Web/src/java/Controller/LoginWebServlet.java</file>
@@ -12,5 +13,8 @@
             <file>file:/Users/moses/Documents/FYP/Web/src/java/Controller/TransactionListWebServlet.java</file>
             <file>file:/Users/moses/Documents/FYP/Web/src/java/Controller/AnalyticsWebServlet.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> ff37d631b2c8739a25804ae30b1479015454299f
     </open-files>
 </project-private>

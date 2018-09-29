@@ -30,7 +30,7 @@
                 <div class='modal-content'>
                   
                     <div class='col-12 user-image'>
-                        <img src='design/img/snapcoin-logo.png'>
+                        <img src='design/img/webportal.png'>
                     </div>
                     <form action="LoginWebServlet" class='col-12' method='post'>
             
