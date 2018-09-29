@@ -20,7 +20,7 @@
                 <div class="content">
                     <div class="container-fluid">
                         
-                        <h1>List past 3 hour's transactions</h1>
+                        <h1>List past transactions</h1>
                         <form action='TransactionListWebServlet' method='get'>
                             <select name="outletName">
                                 <option value="">Select Outlet</option>
@@ -31,7 +31,12 @@
                                         <%
                                             }
                                         %>
-                             </select>
+                            </select><br>
+                             <select name="time">
+                                <option value="">Select Time</option>
+                                <option value="3">3 Hours</option>
+                                <option value="all">All</option>
+                             </select><br>
                             <input type ='submit' name='submit' value='submit'>
                         </form>
                          <%

@@ -71,9 +71,9 @@ public class LoginWebServlet extends HttpServlet {
               postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
               HttpResponse httpResponse = httpclient.execute(target, postRequest);
               HttpEntity entity = httpResponse.getEntity();
-              
 
               int statusCode = httpResponse.getStatusLine().getStatusCode();
+              System.out.println(statusCode);
               if(statusCode == 200 && !enteredUsername.equals("admin")){
                   JsonParser parser = new JsonParser();
                   JsonObject jo = (JsonObject) parser.parse(EntityUtils.toString(entity));

@@ -80,7 +80,7 @@ public class CreateUserWebServlet extends HttpServlet {
           int statusCode = httpResponse.getStatusLine().getStatusCode();
           if(statusCode == 202){
               System.out.println("Successfully created user");
-              request.setAttribute("msg", username + " successfully created");
+              request.setAttribute("msg", username + " successfully created. Check " + username + "'s email for password");
               request.setAttribute("tempPassword", tempPassword);
               request.getRequestDispatcher("CreateUser.jsp").forward(request, response);
           }else{

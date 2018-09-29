@@ -22,7 +22,7 @@ public class Properties {
     public Properties(){
         String osName = System.getProperty("os.name");
         if (osName.equals("Linux")) {
-            url = "13.59.252.147";
+            url = "18.217.167.135";
             port = 80;
         }
     }

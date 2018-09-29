@@ -11,6 +11,7 @@ import Entity.Transaction;
 import Entity.User;
 import java.util.Date;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.IOException;
@@ -59,16 +60,53 @@ public class TransactionListWebServlet extends HttpServlet {
             User u = (User) session.getAttribute("user");
             String companyName = u.getCompanyName();
             String outletName = request.getParameter("outletName");
+            String time = request.getParameter("time");
             
-            Calendar cal = Calendar.getInstance();
-            if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
-                cal.add(Calendar.HOUR, 8);
-            }
 
-            cal.add(Calendar.HOUR, -3);
-            Date prevDateTime = cal.getTime();
+//            cal.add(Calendar.HOUR, -3);
+//            Date prevDateTime = cal.getTime();
+//            
+//            ArrayList<Transaction> transactionList = TransactionDao.getDisplayTransactionList(outletName, prevDateTime);
+
+            ArrayList<Transaction> transactionList = new ArrayList<>();
             
-            ArrayList<Transaction> transactionList = TransactionDao.getDisplayTransactionList(outletName, prevDateTime);
+            DefaultHttpClient httpclient = new DefaultHttpClient();
+            HttpHost target = new HttpHost((String)session.getAttribute("url"), (Integer)session.getAttribute("port"), "http");
+            HttpPost postRequest = new HttpPost("/API/TransactionListServlet");
+            
+            ArrayList<NameValuePair> postParams = new ArrayList<>();
+            postParams.add(new BasicNameValuePair("companyName", companyName));
+            postParams.add(new BasicNameValuePair("outletName", outletName));
+            if(time.equals("all")){
+                postParams.add(new BasicNameValuePair("time", "all"));
+            }
+            postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
+            HttpResponse httpResponse = httpclient.execute(target, postRequest);
+            HttpEntity entity = httpResponse.getEntity();
+
+            int statusCode = httpResponse.getStatusLine().getStatusCode();
+            JsonParser parser = new JsonParser();
+            JsonObject jo = (JsonObject) parser.parse(EntityUtils.toString(entity));
+            JsonArray resultArray = jo.get("result").getAsJsonArray();
+            
+            String pattern = "yyyy-MM-dd HH:mm:ss.S";
+            SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+            
+            for(JsonElement resultEle : resultArray){
+                JsonObject resultObj = (JsonObject) resultEle;
+                String cashierName = resultObj.get("name").getAsString();
+                String dateString = resultObj.get("date").getAsString(); //2018-09-27 13:07:47.0
+                Date dateTime = null;
+                try {
+                    dateTime = sdf.parse(dateString);
+                } catch (ParseException ex) {
+                    Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                double totalPrice = resultObj.get("totalPrice").getAsDouble(); //2018-09-27 13:07:47.0
+                String paymentType = resultObj.get("type").getAsString();
+                Transaction t = new Transaction(cashierName, dateTime, paymentType, totalPrice);
+                transactionList.add(t);
+            }
             
             request.setAttribute("transactionResults", transactionList);
             request.getRequestDispatcher("DisplayTransactions.jsp").forward(request, response);

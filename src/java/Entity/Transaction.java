@@ -36,6 +36,13 @@ public class Transaction {
         this.cashierName = cashierName;
     }
     
+    public Transaction(String cashierName, Date dateTime, String paymentType, double totalPrice){
+        this.dateTime = dateTime;
+        this.paymentType = paymentType;
+        this.totalPrice = totalPrice;
+        this.cashierName = cashierName;
+    }
+    
     
     @Override
     public String toString(){

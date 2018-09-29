@@ -161,7 +161,7 @@
                                                                 <p class="category"></p>
                                                             </div>
                                                             <div class="content">
-                                                                <div id="chartPreferences" class="ct-chart">
+                                                                <div id="chartPreferences" class="ct-chart" style="height:100%">
                                                                     <% System.out.println(chartID); %>
                                                                     <canvas id="<%=chartID%>"></canvas>
                                                                 </div>

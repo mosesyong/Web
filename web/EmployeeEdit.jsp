@@ -101,8 +101,9 @@
                                                     <div class="card">                                         
                                                         <div class="content">    
                                                             <div class="form-group">
-                                                                <label>Change Password</label>
-                                                                <input type="password" class="form-control" placeholder="New Password" name="password">
+                                                                <label>Reset Password</label>
+                                                                <input type = "checkbox" class="form-control" name = "password" value="reset"> Reset Password</br>
+                                                                <!--<input type="password" class="form-control" placeholder="New Password" name="password">-->
                                                             </div>
                                                         </div>
                                                     </div>
