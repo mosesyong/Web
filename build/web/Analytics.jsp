@@ -192,6 +192,13 @@
                                                                               'rgba(153, 177, 255, 0.6)'
                                                                             ]
                                                                           }]
+                                                                        },
+                                                                        options: {
+                                                                            legend: {
+                                                                                display: true,
+                                                                                position: 'right'
+                                                                                       
+                                                                            }
                                                                         }
                                                                       });
                                                                 </script>
