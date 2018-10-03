@@ -179,30 +179,53 @@
                     <%  }else if(u.getType().equals("2")){ %>
                     <!--Creating Cashier Role by Manager-->
                                             <div class="row">
-                                                <div class="col-md-5">
+                                                <div class="col-md-4">
                                                     <input type="hidden" name="companyName" value="<%=u.getCompanyName()%>">
                                                     <div class="form-group">
                                                         <label>Merchant Name</label>
                                                         <input type="text" class="form-control" disabled placeholder="Merchant" value="<%out.println(u.getCompanyName());%>">
                                                     </div> 
                                                 </div>
-                                                    <div class="col-md-7">
-                                                        <input type="hidden" name="outletName" value="<%=u.getOutletName()%>">
-                                                        <div class="form-group">
-                                                            <label>Outlet Name</label>
-                                                            <input type="text" class="form-control" disabled placeholder="Outlet" value="<%out.println(u.getOutletName());%>">
-                                                        </div>
-                                                    </div>    
+                                                <div class="col-md-4">
+                                                    <input type="hidden" name="outletName" value="<%=u.getOutletName()%>">
+                                                    <div class="form-group">
+                                                        <label>Outlet Name</label>
+                                                        <input type="text" class="form-control" disabled placeholder="Outlet" value="<%out.println(u.getOutletName());%>">
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Username</label>
+                                                        <input type="text" class="form-control" placeholder="Username" name="username">
+                                                    </div>
+                                                </div> 
                                             </div>
                                                     
                                                     
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Username</label>
-                                                        <input type="text" class="form-control" placeholder="Username" name="username">
+                                                        <label>Email</label>
+                                                        <input type="text" class="form-control" placeholder="Email" name="email">
                                                     </div>
-                                                </div> 
+                                                </div>
+                                                <div class="col-md-3">
+                                                   <div class="form-group">
+                                                       <label>GST</label>
+                                                       <input type="number" step="0.01" min = "0" class="form-control" placeholder="GST" name="gst">
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                   <div class="form-group">
+                                                       <label>Service Charge</label>
+                                                       <input type="number" step="0.01" min = "0" class="form-control" placeholder="Service Charge" name="svc">
+                                                   </div>
+                                                </div>
+                                                
+                                            </div>
+                                                    
+                                                    
+                                            <div class="row">
                                                 <div class="col-md-6">
                                                     
                                                     <label>Permissions</label>
@@ -258,8 +281,9 @@
                 //out.println();
             %>                            
                                     
-                                            <button type="submit" class="btn btn-info btn-fill pull-right">Create Profile</button>
-                                            <div class="clearfix"></div>
+                                                <button type="submit" class="btn btn-info btn-fill pull-right">Create Profile</button>
+                                                <div class="clearfix"></div>
+                                            
                                         </div>
                                     </form>
                                 </div>

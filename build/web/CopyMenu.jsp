@@ -13,7 +13,20 @@
         <title>Copy Menu</title>
     </head>
     <body>
-        <h1>Copy Menu</h1>
+        <div class ="wrapper">
+            <div class="main-panel">
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="header">
+                                        <h3 class="title">Edit Menu Item</h3>
+                                    </div>                                
+                                    <div class="content">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
         <%
                 String msg = (String)request.getAttribute("msg");
                 if(msg != null){
@@ -22,8 +35,11 @@
                 //out.println();
                 //out.println();
             %>
-        <form action="CopyMenuWebServlet">
-            <select name="sourceOutletName">
+                                                    <form action="CopyMenuWebServlet">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                            Sister Outlet: 
+                                                                <select name="sourceOutletName">
                 <%
                     for(String sister : u.getSisterOutlets()){
                 %> 
@@ -31,9 +47,28 @@
                 <%
                     }
                 %>
-            </select><br>
-            <input type="checkbox" name="append" value="true">Append<br>
-            <input type="submit" name="submit" value="Submit">
-        </form>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                Append Menu: <input type="checkbox" name="append" value="true"> Append<br><br>
+            
+                                                            </div>
+                                                        </div>
+            
+                                                        <input type="submit" name="menu" class="btn btn-info btn-fill pull-right" style="border-color: #FFE37C" value="Submit">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

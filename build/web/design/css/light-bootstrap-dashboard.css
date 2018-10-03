@@ -783,7 +783,7 @@ fieldset[disabled] .btn-success.active {
 }
 
 .btn-info {
-    border-color: #FFE37C;
+    /*border-color: #FFE37C;*/
     color: #FFE37C;
 }
 

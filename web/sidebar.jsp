@@ -109,6 +109,12 @@
                           <p>Edit Menu Item</p>    
                           </a>
                       </li>
+                      <li class="nav-item">
+                          <a class="nav-link" id="menu-tab" data-toggle="tab" href="CopyMenu.jsp" role="tab" aria-controls="menu" aria-selected="false">
+                          <i class="pe-7s-copy-file"></i>
+                          <p>Copy Menu</p>    
+                          </a>
+                      </li>
                       <%}if(!u.isLastChild()){%>
                       <li class="nav-item">
                           <a class="nav-link" id="analytics-tab" data-toggle="tab" href="Analytics.jsp" role="tab" aria-controls="analytics" aria-selected="false">

@@ -33,6 +33,7 @@
                 <div class="content">
                     <div class="container-fluid">
                         <%=TransactionDao.getTopSellerByAmount("Year")%>
+                        <br>
                         <%=TransactionDao.getTopSellerByQuantity("Year")%>
                         <div class="row">
                             <div class="col-md-12">
@@ -184,11 +185,11 @@
                                                                               'rgba(75, 192, 192, 0.6)',
                                                                               'rgba(153, 102, 255, 0.6)',
                                                                               'rgba(255, 159, 64, 0.6)',
-                                                                              'rgba(255, 99, 132, 0.6)',
-                                                                              'rgba(54, 162, 235, 0.6)',
-                                                                              'rgba(255, 206, 86, 0.6)',
-                                                                              'rgba(75, 192, 192, 0.6)',
-                                                                              'rgba(153, 102, 255, 0.6)'
+                                                                              'rgba(255, 254, 154, 0.6)',
+                                                                              'rgba(173, 154, 255, 0.6)',
+                                                                              'rgba(255, 199, 153, 0.6)',
+                                                                              'rgba(255, 165, 153, 0.6)',
+                                                                              'rgba(153, 177, 255, 0.6)'
                                                                             ]
                                                                           }]
                                                                         }
