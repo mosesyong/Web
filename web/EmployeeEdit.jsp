@@ -96,18 +96,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                                            
-                                                <div class="col-md-7">
-                                                    <div class="card">                                         
-                                                        <div class="content">    
-                                                            <div class="form-group">
-                                                                <label>Reset Password</label>
-                                                                <input type = "checkbox" class="form-control" name = "password" value="reset"> Reset Password</br>
-                                                                <!--<input type="password" class="form-control" placeholder="New Password" name="password">-->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                             <button type="submit" class="btn btn-info btn-fill pull-right">Submit Changes</button>
                                             <div class="clearfix"></div>

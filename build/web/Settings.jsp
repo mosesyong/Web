@@ -58,6 +58,14 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
+                                                <label>Old Password</label>
+                                                <input type="password" class="form-control" placeholder="Old Password" name="oldPassword">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
                                                 <label>New Password</label>
                                                 <input type="password" class="form-control" placeholder="New Password" name="newPassword">
                                             </div>

@@ -95,7 +95,7 @@ public class TransactionDao {
             
             if(analyticsType.equals("Sales")){
                 for(Transaction t : transactionList){
-                    System.out.println(t);
+//                    System.out.println(t);
                     if((t.paymentType.equals(paymentType) || paymentType.equals("All")) && (t.outletName.equals(outletName) || outletName.equals("All")) && t.dateTime.after(prevDateTime)){
                         System.out.println(analyticsEntityList);
                         if(analyticsEntityList.size() == 1){

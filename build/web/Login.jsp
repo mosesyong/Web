@@ -44,6 +44,7 @@
                         
                     </form>
                     <div class='status'>
+                        <a href="PasswordReset.jsp">I forgot my password</a><br>
                         <%
                 String msg = (String)request.getAttribute("msg");
                 if(msg != null){

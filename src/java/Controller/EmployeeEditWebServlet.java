@@ -53,14 +53,6 @@ public class EmployeeEditWebServlet extends HttpServlet {
             }catch(NullPointerException e){
                 
             }
-            String[] resetPasswordStrArr = request.getParameterValues("password");
-            boolean resetPassword = false;
-            try{
-                resetPassword = resetPasswordStrArr.length > 0;
-            }catch(Exception e){
-                System.out.println("No password reset requested");
-            }
-            System.out.println("Access in employee web servlet: " + employeeUsername);
             
             String accessString = "";
             for(String access : accessList){
@@ -79,7 +71,6 @@ public class EmployeeEditWebServlet extends HttpServlet {
                 ArrayList<NameValuePair> postParams = new ArrayList<>();
                 postParams.add(new BasicNameValuePair("EmployeeUsername", employeeUsername));
                 postParams.add(new BasicNameValuePair("EmployeeAccess", accessString));
-                postParams.add(new BasicNameValuePair("ResetPassword", "" + resetPassword));
                                 
                 postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
                 HttpResponse httpResponse = httpclient.execute(target, postRequest);
@@ -87,11 +78,8 @@ public class EmployeeEditWebServlet extends HttpServlet {
 
                 int statusCode = httpResponse.getStatusLine().getStatusCode();
                 if(statusCode == 202){
-                    if(resetPassword){
-                        request.setAttribute("msg", "Successfully changed data for " + employeeUsername + ", check " + employeeUsername + "'s email for password change");
-                    }else{
-                        request.setAttribute("msg", "Successfully changed data for " + employeeUsername);
-                    }
+                    
+                    request.setAttribute("msg", "Successfully changed data for " + employeeUsername);
                     request.getRequestDispatcher("UserManagement.jsp").forward(request, response);
                     return;
                 }else{

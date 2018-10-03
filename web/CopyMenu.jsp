@@ -52,7 +52,7 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                Append Menu: <input type="checkbox" name="append" value="true"> Append<br><br>
+                                                                Append Menu: <input type="checkbox" name="append" value="true"> Yes<br><br>
             
                                                             </div>
                                                         </div>

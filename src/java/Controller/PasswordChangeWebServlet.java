@@ -44,6 +44,7 @@ public class PasswordChangeWebServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
             String username = request.getParameter("username");
+            String oldPassword = request.getParameter("oldPassword");
             String newPassword = request.getParameter("newPassword");
             DefaultHttpClient httpclient = new DefaultHttpClient();
             
@@ -54,6 +55,7 @@ public class PasswordChangeWebServlet extends HttpServlet {
               HttpPost postRequest = new HttpPost("/API/PasswordChangeServlet");
               ArrayList<NameValuePair> postParams = new ArrayList<>();
               postParams.add(new BasicNameValuePair("username", username));
+              postParams.add(new BasicNameValuePair("oldPassword", oldPassword));
               postParams.add(new BasicNameValuePair("newPassword", newPassword));
               postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
               HttpResponse httpResponse = httpclient.execute(target, postRequest);
@@ -67,10 +69,11 @@ public class PasswordChangeWebServlet extends HttpServlet {
                   System.out.println("Successfully changed password");
                   request.setAttribute("msg", "Password successfully changed");
                   request.getRequestDispatcher("Settings.jsp").forward(request, response);
-                  
+                  return;
               }else{
                   request.setAttribute("msg", "Error with password change");
                   request.getRequestDispatcher("Settings.jsp").forward(request, response);
+                  return;
               }
               
 
