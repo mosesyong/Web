@@ -99,8 +99,9 @@
                                                                          <%
                                                                 ArrayList<String> categoryList = u.getCategoryList();
                                                                 for(String category : categoryList){
-                                                                    out.println("<tr><td><input type ='checkbox' name = 'category' value = '" + category + "'>" + " " + category +"</td></tr>");
-                                                                   
+                                                                    if(category.length() > 0){
+                                                                        out.println("<tr><td><input type ='checkbox' name = 'category' value = '" + category + "'>" + " " + category +"</td></tr>");
+                                                                    }
                                                                 }
     //                                                        <input type="text" class"form-control" placeholder="Description" name="description" >
                                                                     %>

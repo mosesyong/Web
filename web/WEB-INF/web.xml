@@ -64,6 +64,10 @@
         <servlet-name>MenuAccessWebServlet</servlet-name>
         <servlet-class>Controller.MenuAccessWebServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CopyMenuWebServlet</servlet-name>
+        <servlet-class>Controller.CopyMenuWebServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>MenuAccessWebServlet</servlet-name>
         <url-pattern>/MenuAccessWebServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CopyMenuWebServlet</servlet-name>
+        <url-pattern>/CopyMenuWebServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

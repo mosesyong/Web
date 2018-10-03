@@ -11,7 +11,7 @@ package Entity;
  */
 public class AnalyticsEntity {
     public String label;
-    public double amount;
+    public double amount = 0.0;
     public int quantity = 1;
     
     public AnalyticsEntity(String label, double amount){
@@ -22,6 +22,11 @@ public class AnalyticsEntity {
     public AnalyticsEntity(String label, double amount, int quantity){
         this.label = label;
         this.amount = amount;
+        this.quantity = quantity;
+    }
+    
+    public AnalyticsEntity(String label, int quantity){
+        this.label = label;
         this.quantity = quantity;
     }
     

@@ -91,7 +91,7 @@ public class MenuEditWebServlet extends HttpServlet {
                                          .addTextBody("price", price)
                                          .addTextBody("desc", desc)
                                          .addTextBody("category", categoryStr)                        
-                                         .addTextBody("outletId", ((User)session.getAttribute("user")).getOutletName())
+                                         .addTextBody("outletName", ((User)session.getAttribute("user")).getOutletName())
                                          .addTextBody("companyName", ((User)session.getAttribute("user")).getCompanyName());
             }else{
                 builder = MultipartEntityBuilder.create()
@@ -101,7 +101,7 @@ public class MenuEditWebServlet extends HttpServlet {
                                          .addTextBody("price", price)
                                          .addTextBody("desc", desc)
                                          .addTextBody("category", categoryStr)     
-                                         .addTextBody("outletId", ((User)session.getAttribute("user")).getOutletName())
+                                         .addTextBody("outletName", ((User)session.getAttribute("user")).getOutletName())
                                          .addTextBody("companyName", ((User)session.getAttribute("user")).getCompanyName());
             }
             

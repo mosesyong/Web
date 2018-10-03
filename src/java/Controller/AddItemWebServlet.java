@@ -87,7 +87,7 @@ public class AddItemWebServlet extends HttpServlet {
                                          .addTextBody("price", price)
                                          .addTextBody("desc", desc)
                                          .addTextBody("category", categoryStr)                        
-                                         .addTextBody("outletId", ((User)session.getAttribute("user")).getOutletName())
+                                         .addTextBody("outletName", ((User)session.getAttribute("user")).getOutletName())
                                          .addTextBody("companyName", ((User)session.getAttribute("user")).getCompanyName());
             }else{
                 System.out.println("No image found");

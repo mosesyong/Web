@@ -107,8 +107,15 @@ public class LoginWebServlet extends HttpServlet {
                   String[] categoryArr = categoryString.split(",");
                   ArrayList<String> categoryList = new ArrayList<>(Arrays.asList(categoryArr));
                   
+                  String sisterStr = jo.get("sisterOutlets").toString();
+                  sisterStr = sisterStr.replace("[", "");
+                  sisterStr = sisterStr.replace("]","");
+                  sisterStr = sisterStr.replace("\"","");
+                  String[] sisterArr = sisterStr.split(",");
+                  ArrayList<String> sisterOutlets = new ArrayList<>(Arrays.asList(sisterArr));
                   
-                  User u = new User(username, type, companyName, access, roleList, outletNameList, categoryList);
+                  
+                  User u = new User(username, type, companyName, access, roleList, outletNameList, categoryList, sisterOutlets);
                   
                   String employeeData = jo.get("employees").toString().replace("\"","").replace(username + ",","").replace(username,"");
                   String[] employeeOverall = employeeData.split("  ");
@@ -120,14 +127,13 @@ public class LoginWebServlet extends HttpServlet {
                   }
                   
                   
-                  System.out.println(u);
-                  
                   
                   session.setAttribute("user",u);
                   session.setAttribute("url", url);
                   session.setAttribute("port", port);
                   AnalyticsDao.getAnalytics(u);
                   MenuDao.getMenu(u, url, port);
+                  System.out.println(u);
                   response.sendRedirect("Main.jsp");
               }else if(statusCode == 200){
                   HashSet<String> access = new HashSet<>();
@@ -136,7 +142,7 @@ public class LoginWebServlet extends HttpServlet {
                   roleList.add("su");
                   ArrayList<String> outletNameList = new ArrayList<>(Arrays.asList("0"));
                   ArrayList<String> categoryList = new ArrayList<>(Arrays.asList("0"));
-                  User u = new User(enteredUsername, "0", "Snapcoin", access, roleList, outletNameList, categoryList);
+                  User u = new User(enteredUsername, "0", "Snapcoin", access, roleList, outletNameList, categoryList, null);
                   System.out.println(u);
                   session.setAttribute("user",u);
                   session.setAttribute("url", url);

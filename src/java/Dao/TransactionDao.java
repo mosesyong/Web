@@ -17,7 +17,7 @@ import java.util.HashMap;
  * @author moses
  */
 public class TransactionDao {
-    static ArrayList<Transaction> transactionList;
+    public static ArrayList<Transaction> transactionList;
     
     public TransactionDao(){
         TransactionDao.transactionList = new ArrayList<>();
@@ -128,6 +128,51 @@ public class TransactionDao {
         }
         
         return result;
+    }
+    
+    public static AnalyticsEntity getTopSellerByAmount(String time){
+        Calendar cal = Calendar.getInstance();
+        if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
+            cal.add(Calendar.HOUR, 8);
+        }
+
+        if(time.equals("All")){
+            cal.add(Calendar.YEAR, -100);
+        }else if(time.equals("Year")){
+            cal.add(Calendar.YEAR, -1);
+        }else if(time.equals("Month")){
+            cal.add(Calendar.MONTH, -1);
+        }else if(time.equals("Week")){
+            cal.add(Calendar.WEEK_OF_YEAR, -1);
+        }else if(time.equals("Day")){
+            cal.add(Calendar.DAY_OF_YEAR, -1);
+        }
+        Date prevDateTime = cal.getTime();
+        
+        HashMap<String,Double> analyticsEntityMap = new HashMap<>();
+        
+        for(Transaction t : transactionList){
+            if(t.dateTime.after(prevDateTime)){
+                String name = t.foodName;
+                Double amount = analyticsEntityMap.get(name);
+                if(amount == null){
+                    analyticsEntityMap.put(name,t.totalPrice);
+                }else{
+                    analyticsEntityMap.put(name,t.totalPrice + amount);
+                }
+            }
+        }
+        
+        String topSellerName = "";
+        double topSellerAmount = -1;
+        for(String name : analyticsEntityMap.keySet()){
+            double amount = analyticsEntityMap.get(name);
+            if(amount > topSellerAmount){
+                topSellerAmount = amount;
+                topSellerName = name;
+            }
+        }
+        return new AnalyticsEntity(topSellerName, topSellerAmount);
     }
     
     public static String print(){

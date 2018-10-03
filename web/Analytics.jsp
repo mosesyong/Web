@@ -32,6 +32,7 @@
             <div class="main-panel">
                 <div class="content">
                     <div class="container-fluid">
+                        <%=TransactionDao.getTopSellerByAmount("Year")%>
                         <div class="row">
                             <div class="col-md-12">
                                 

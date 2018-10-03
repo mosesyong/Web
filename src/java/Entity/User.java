@@ -23,8 +23,9 @@ public class User {
     private ArrayList<String> typeList; // same as roleList
     private ArrayList<String> categoryList;
     private ArrayList<Menu> menuList;
+    private ArrayList<String> sisterOutlets;
     
-    public User(String username, String type, String companyName, HashSet<String> access, ArrayList<String> roleList, ArrayList<String> outletNameList, ArrayList<String> categoryList){
+    public User(String username, String type, String companyName, HashSet<String> access, ArrayList<String> roleList, ArrayList<String> outletNameList, ArrayList<String> categoryList, ArrayList<String> sisterOutlets){
         this.username = username;
         this.type = type;
         this.companyName = companyName;
@@ -46,6 +47,7 @@ public class User {
         
         typeList = roleList;
         this.categoryList  = categoryList;
+        this.sisterOutlets = sisterOutlets;
         
         menuList = new ArrayList<>();
     }
@@ -130,6 +132,10 @@ public class User {
         return categoryList;
     }
     
+    public ArrayList<String> getSisterOutlets(){
+        return sisterOutlets;
+    }
+    
     public boolean addCategory(String category){
         if(category == null || category.isEmpty() || categoryList.contains(category)){
             return false;
@@ -161,6 +167,6 @@ public class User {
     
     @Override
     public String toString(){
-        return("Username: " + username + "\nCompany Name: " + companyName + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList + "\nRoles: " + typeList + "\nOutlets: " + outletNameList + "\nCategory: " + categoryList + "\nMenu Items: " + menuList);
+        return("Username: " + username + "\nCompany Name: " + companyName + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList + "\nRoles: " + typeList + "\nOutlets: " + outletNameList + "\nCategory: " + categoryList + "\nMenu Items: " + menuList + "\nSister Outlets: " + sisterOutlets);
     }
 }
