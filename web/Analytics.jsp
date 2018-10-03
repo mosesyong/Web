@@ -33,6 +33,7 @@
                 <div class="content">
                     <div class="container-fluid">
                         <%=TransactionDao.getTopSellerByAmount("Year")%>
+                        <%=TransactionDao.getTopSellerByQuantity("Year")%>
                         <div class="row">
                             <div class="col-md-12">
                                 

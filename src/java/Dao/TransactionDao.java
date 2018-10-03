@@ -175,6 +175,51 @@ public class TransactionDao {
         return new AnalyticsEntity(topSellerName, topSellerAmount);
     }
     
+    public static AnalyticsEntity getTopSellerByQuantity(String time){
+        Calendar cal = Calendar.getInstance();
+        if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
+            cal.add(Calendar.HOUR, 8);
+        }
+
+        if(time.equals("All")){
+            cal.add(Calendar.YEAR, -100);
+        }else if(time.equals("Year")){
+            cal.add(Calendar.YEAR, -1);
+        }else if(time.equals("Month")){
+            cal.add(Calendar.MONTH, -1);
+        }else if(time.equals("Week")){
+            cal.add(Calendar.WEEK_OF_YEAR, -1);
+        }else if(time.equals("Day")){
+            cal.add(Calendar.DAY_OF_YEAR, -1);
+        }
+        Date prevDateTime = cal.getTime();
+        
+        HashMap<String,Integer> analyticsEntityMap = new HashMap<>();
+        
+        for(Transaction t : transactionList){
+            if(t.dateTime.after(prevDateTime)){
+                String name = t.foodName;
+                Integer quantity = analyticsEntityMap.get(name);
+                if(quantity == null){
+                    analyticsEntityMap.put(name,t.quantity);
+                }else{
+                    analyticsEntityMap.put(name,t.quantity + quantity);
+                }
+            }
+        }
+        
+        String topSellerName = "";
+        int topSellerQuantity = -1;
+        for(String name : analyticsEntityMap.keySet()){
+            int quantity = analyticsEntityMap.get(name);
+            if(quantity > topSellerQuantity){
+                topSellerQuantity = quantity;
+                topSellerName = name;
+            }
+        }
+        return new AnalyticsEntity(topSellerName, topSellerQuantity);
+    }
+    
     public static String print(){
         return transactionList.toString();
     }
