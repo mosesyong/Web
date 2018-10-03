@@ -62,7 +62,7 @@
                                         <form action="EmployeeEditWebServlet" method='post' class="editAccess">
                                             <div class="row">
                                                  <input type="hidden" name="employeeUsername" value ="<%=employeeUsername%>">
-                                                <div class="col-md-5">
+                                                <div class="col-md-12">
                                                     <div class="card">                                         
                                                         <div class="content">
                                                             <div class="form-group">
