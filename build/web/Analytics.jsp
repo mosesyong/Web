@@ -35,6 +35,14 @@
                         <%=TransactionDao.getTopSellerByAmount("Year")%>
                         <br>
                         <%=TransactionDao.getTopSellerByQuantity("Year")%>
+                        <br>
+                        Top 3 sellers by qty: <%=TransactionDao.getTopSellersByQuantity("Year",5)%>
+                        <br>
+                        Bottom 3 sellers by qty: <%=TransactionDao.getBottomSellersByQuantity("Year",5)%>
+                        <br>
+                        Top 3 sellers by amt <%=TransactionDao.getTopSellersByAmount("Year",5)%>
+                        <br>
+                        Bottom 3 sellers by amt <%=TransactionDao.getBottomSellersByAmount("Year",5)%>
                         <div class="row">
                             <div class="col-md-12">
                                 

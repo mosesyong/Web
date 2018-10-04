@@ -6,11 +6,21 @@
 package Dao;
 
 import Entity.AnalyticsEntity;
+import static Entity.AnalyticsEntity.AmountComparatorAsc;
+import static Entity.AnalyticsEntity.AmountComparatorDesc;
+import static Entity.AnalyticsEntity.QuantityComparatorAsc;
+import static Entity.AnalyticsEntity.QuantityComparatorDesc;
 import Entity.Transaction;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -219,6 +229,228 @@ public class TransactionDao {
         }
         return new AnalyticsEntity(topSellerName, topSellerQuantity);
     }
+    
+    public static ArrayList<AnalyticsEntity> getTopSellersByAmount(String time, int count){
+        Calendar cal = Calendar.getInstance();
+        if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
+            cal.add(Calendar.HOUR, 8);
+        }
+
+        if(time.equals("All")){
+            cal.add(Calendar.YEAR, -100);
+        }else if(time.equals("Year")){
+            cal.add(Calendar.YEAR, -1);
+        }else if(time.equals("Month")){
+            cal.add(Calendar.MONTH, -1);
+        }else if(time.equals("Week")){
+            cal.add(Calendar.WEEK_OF_YEAR, -1);
+        }else if(time.equals("Day")){
+            cal.add(Calendar.DAY_OF_YEAR, -1);
+        }
+        Date prevDateTime = cal.getTime();
+        
+        ArrayList<AnalyticsEntity> analyticsEntityList = new ArrayList<>();
+        
+        for(Transaction t : transactionList){
+            if(t.dateTime.after(prevDateTime)){
+                String name = t.foodName;
+                boolean added = false;
+                for(AnalyticsEntity entity : analyticsEntityList){
+                    if(entity.label.equals(name)){
+                        added = true;
+                        entity.amount = entity.amount + t.totalPrice;
+                    }
+                    if(added){
+                        break;
+                    }
+                }
+                if(!added){
+                    analyticsEntityList.add(new AnalyticsEntity(name, t.totalPrice));
+                }
+            }
+        }
+        
+        analyticsEntityList.sort(AmountComparatorAsc);
+        
+        
+        ArrayList<AnalyticsEntity> result = new ArrayList<>();
+        if(count > analyticsEntityList.size()){
+            count = analyticsEntityList.size();
+        }
+        
+        for(int i = 0; i < count; i++){
+            result.add(analyticsEntityList.get(i));
+        }
+        
+        return result;
+    }
+    
+    public static ArrayList<AnalyticsEntity> getBottomSellersByAmount(String time, int count){
+        Calendar cal = Calendar.getInstance();
+        if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
+            cal.add(Calendar.HOUR, 8);
+        }
+
+        if(time.equals("All")){
+            cal.add(Calendar.YEAR, -100);
+        }else if(time.equals("Year")){
+            cal.add(Calendar.YEAR, -1);
+        }else if(time.equals("Month")){
+            cal.add(Calendar.MONTH, -1);
+        }else if(time.equals("Week")){
+            cal.add(Calendar.WEEK_OF_YEAR, -1);
+        }else if(time.equals("Day")){
+            cal.add(Calendar.DAY_OF_YEAR, -1);
+        }
+        Date prevDateTime = cal.getTime();
+        
+        ArrayList<AnalyticsEntity> analyticsEntityList = new ArrayList<>();
+        
+        for(Transaction t : transactionList){
+            if(t.dateTime.after(prevDateTime)){
+                String name = t.foodName;
+                boolean added = false;
+                for(AnalyticsEntity entity : analyticsEntityList){
+                    if(entity.label.equals(name)){
+                        added = true;
+                        entity.amount = entity.amount + t.totalPrice;
+                    }
+                    if(added){
+                        break;
+                    }
+                }
+                if(!added){
+                    analyticsEntityList.add(new AnalyticsEntity(name, t.totalPrice));
+                }
+            }
+        }
+        
+        analyticsEntityList.sort(AmountComparatorDesc);
+        
+        
+        ArrayList<AnalyticsEntity> result = new ArrayList<>();
+        if(count > analyticsEntityList.size()){
+            count = analyticsEntityList.size();
+        }
+        
+        for(int i = 0; i < count; i++){
+            result.add(analyticsEntityList.get(i));
+        }
+        
+        return result;
+    }
+    
+    public static ArrayList<AnalyticsEntity> getTopSellersByQuantity(String time, int count){
+        Calendar cal = Calendar.getInstance();
+        if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
+            cal.add(Calendar.HOUR, 8);
+        }
+
+        if(time.equals("All")){
+            cal.add(Calendar.YEAR, -100);
+        }else if(time.equals("Year")){
+            cal.add(Calendar.YEAR, -1);
+        }else if(time.equals("Month")){
+            cal.add(Calendar.MONTH, -1);
+        }else if(time.equals("Week")){
+            cal.add(Calendar.WEEK_OF_YEAR, -1);
+        }else if(time.equals("Day")){
+            cal.add(Calendar.DAY_OF_YEAR, -1);
+        }
+        Date prevDateTime = cal.getTime();
+        
+        ArrayList<AnalyticsEntity> analyticsEntityList = new ArrayList<>();
+        
+        for(Transaction t : transactionList){
+            if(t.dateTime.after(prevDateTime)){
+                String name = t.foodName;
+                boolean added = false;
+                for(AnalyticsEntity entity : analyticsEntityList){
+                    if(entity.label.equals(name)){
+                        added = true;
+                        entity.quantity = entity.quantity + t.quantity;
+                    }
+                    if(added){
+                        break;
+                    }
+                }
+                if(!added){
+                    analyticsEntityList.add(new AnalyticsEntity(name, t.quantity));
+                }
+            }
+        }
+        
+        analyticsEntityList.sort(QuantityComparatorAsc);
+        
+        
+        ArrayList<AnalyticsEntity> result = new ArrayList<>();
+        if(count > analyticsEntityList.size()){
+            count = analyticsEntityList.size();
+        }
+        
+        for(int i = 0; i < count; i++){
+            result.add(analyticsEntityList.get(i));
+        }
+        
+        return result;
+    }
+    
+    public static ArrayList<AnalyticsEntity> getBottomSellersByQuantity(String time, int count){
+        Calendar cal = Calendar.getInstance();
+        if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
+            cal.add(Calendar.HOUR, 8);
+        }
+
+        if(time.equals("All")){
+            cal.add(Calendar.YEAR, -100);
+        }else if(time.equals("Year")){
+            cal.add(Calendar.YEAR, -1);
+        }else if(time.equals("Month")){
+            cal.add(Calendar.MONTH, -1);
+        }else if(time.equals("Week")){
+            cal.add(Calendar.WEEK_OF_YEAR, -1);
+        }else if(time.equals("Day")){
+            cal.add(Calendar.DAY_OF_YEAR, -1);
+        }
+        Date prevDateTime = cal.getTime();
+        
+        ArrayList<AnalyticsEntity> analyticsEntityList = new ArrayList<>();
+        
+        for(Transaction t : transactionList){
+            if(t.dateTime.after(prevDateTime)){
+                String name = t.foodName;
+                boolean added = false;
+                for(AnalyticsEntity entity : analyticsEntityList){
+                    if(entity.label.equals(name)){
+                        added = true;
+                        entity.quantity = entity.quantity + t.quantity;
+                    }
+                    if(added){
+                        break;
+                    }
+                }
+                if(!added){
+                    analyticsEntityList.add(new AnalyticsEntity(name, t.quantity));
+                }
+            }
+        }
+        
+        analyticsEntityList.sort(QuantityComparatorDesc);
+        
+        
+        ArrayList<AnalyticsEntity> result = new ArrayList<>();
+        if(count > analyticsEntityList.size()){
+            count = analyticsEntityList.size();
+        }
+        
+        for(int i = 0; i < count; i++){
+            result.add(analyticsEntityList.get(i));
+        }
+        
+        return result;
+    }
+    
+   
     
     public static String print(){
         return transactionList.toString();
