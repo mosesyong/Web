@@ -116,7 +116,7 @@ public class TransactionDao {
                         }
                     }
                 }
-            }else if(analyticsType.equals("Items")){
+            }else if(analyticsType.equals("ItemsQuantity") || analyticsType.equals("ItemsAmount")){
                 for(Transaction t : transactionList){
                     if((t.paymentType.equals(paymentType) || paymentType.equals("All")) && (t.outletName.equals(outletName) || outletName.equals("All")) && t.dateTime.after(prevDateTime)){
                         boolean added = false;
