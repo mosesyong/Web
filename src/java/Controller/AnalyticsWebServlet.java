@@ -66,8 +66,6 @@ public class AnalyticsWebServlet extends HttpServlet {
             analyticsMap = TransactionDao.getAnalyticsMap(analyticsType, paymentType, outletName);
             
             request.setAttribute("analyticsResults", analyticsMap);
-            
-            
             request.getRequestDispatcher("Analytics.jsp").forward(request, response);
             
         }

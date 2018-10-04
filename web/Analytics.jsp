@@ -61,7 +61,8 @@
                                                         <select name='analyticsType' style='width: 25%'>
                                                             <option selected="true" disabled="disabled">Select Category</option>
                                                             <option value='Sales'>Sales</option>
-                                                            <option value='Items'>Items</option>
+                                                            <option value='ItemsQuantity'>Item's Quantity</option>
+                                                            <option value='ItemsAmount'>Item's Amount</option>
                                                         </select>
                                                         <select name='paymentType' style='width: 25%'>
                                                             <option selected="true" disabled="disabled">Select Payment Type</option>
@@ -142,10 +143,10 @@
                                             <%
                                                      }
                                                  }
-                                             } else if(analyticsType.equals("Items")){
+                                             } else if(analyticsType.equals("ItemsAmount")){
                                                  
                                                 ArrayList<String> itemLabels = new ArrayList<>();
-                                                ArrayList<Double> itemQuantity = new ArrayList<>();
+                                                ArrayList<Double> itemAmount = new ArrayList<>();
                                                 int counter = 1;
                                                 
                                                 for(String period : periodList){
@@ -157,7 +158,89 @@
                                                          String label = "\"" + entity.label + "\"";
                                                          Double amount = entity.amount;
                                                          itemLabels.add(label);
-                                                         itemQuantity.add(amount);
+                                                         itemAmount.add(amount);
+                                                     }
+                                                     
+                                                     if(period.equals("All")){
+                                                        period = "from the Beginning of Time";
+                                                     }else{
+                                                        period = "for the " + period; 
+                                                     }
+
+                                                     System.out.println(itemLabels);
+                                                     System.out.println(itemAmount);
+%>                                                   
+
+                                            
+                                                    <div class="col-md-6">
+                                                        <div class="card">
+                                                            <div class="header">
+                                                                <h4 class="title"><% out.println("Item's Amount " + period); %></h4>
+                                                                <p class="category"></p>
+                                                            </div>
+                                                            <div class="content">
+                                                                <div id="chartPreferences" class="ct-chart" style="height:100%">
+                                                                    <% System.out.println(chartID); %>
+                                                                    <canvas id="<%=chartID%>"></canvas>
+                                                                </div>
+                                                                <script>
+                                                                    var chartName = new String("<%=chartID%>");
+                                                                    var pieChart = document.getElementById(chartName).getContext("2d");
+                                                                    var barChart = new Chart(pieChart, {
+                                                                        type: 'pie',
+                                                                        data: {
+                                                                          labels: <%=itemLabels%>,
+                                                                          datasets: [{
+                                                                            label: 'Amount',
+                                                                            data: <%=itemAmount%>,
+                                                                            backgroundColor: [
+                                                                              'rgba(255, 99, 132, 0.6)',
+                                                                              'rgba(54, 162, 235, 0.6)',
+                                                                              'rgba(255, 206, 86, 0.6)',
+                                                                              'rgba(75, 192, 192, 0.6)',
+                                                                              'rgba(153, 102, 255, 0.6)',
+                                                                              'rgba(255, 159, 64, 0.6)',
+                                                                              'rgba(255, 254, 154, 0.6)',
+                                                                              'rgba(173, 154, 255, 0.6)',
+                                                                              'rgba(255, 199, 153, 0.6)',
+                                                                              'rgba(255, 165, 153, 0.6)',
+                                                                              'rgba(153, 177, 255, 0.6)'
+                                                                            ]
+                                                                          }]
+                                                                        },
+                                                                        options: {
+                                                                            legend: {
+                                                                                display: true,
+                                                                                position: 'right'
+                                                                                       
+                                                                            }
+                                                                        }
+                                                                      });
+                                                                </script>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+<%                                                  itemLabels.clear();
+                                                    itemAmount.clear();
+                                                    counter++;
+                                                    System.out.println(counter);
+                                                    }
+                                                }else if(analyticsType.equals("ItemsQuantity")){
+                                                 
+                                                ArrayList<String> itemLabels = new ArrayList<>();
+                                                ArrayList<Integer> itemQuantity = new ArrayList<>();
+                                                int counter = 1;
+                                                
+                                                for(String period : periodList){
+                                                    String chartID = counter + "chart";
+                                                     
+
+                                                     ArrayList<AnalyticsEntity> entry = analyticsMap.get(period);
+                                                     for (AnalyticsEntity entity : entry){
+                                                         String label = "\"" + entity.label + "\"";
+                                                         int quantity = entity.quantity;
+                                                         itemLabels.add(label);
+                                                         itemQuantity.add(quantity);
                                                      }
                                                      
                                                      if(period.equals("All")){
@@ -174,7 +257,7 @@
                                                     <div class="col-md-6">
                                                         <div class="card">
                                                             <div class="header">
-                                                                <h4 class="title"><% out.println("Item Sales " + period); %></h4>
+                                                                <h4 class="title"><% out.println("Item's Quantity " + period); %></h4>
                                                                 <p class="category"></p>
                                                             </div>
                                                             <div class="content">
