@@ -4,6 +4,7 @@
     Author     : Moses
 --%>
 
+<%@page import="Entity.AnalyticsEntity"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -40,10 +41,6 @@
         <!-- Animation library for notifications   -->
         <link href="design/css/animate.min.css" rel="stylesheet"/>
 
-        <!--  Light Bootstrap Table core CSS    -->
-        <link href="design/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
-
-
         <!--  CSS for Demo Purpose, don't include it in your project     -->
         <link href="design/css/demo.css" rel="stylesheet" />
 
@@ -53,7 +50,10 @@
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
         <link href="design/css/pe-icon-7-stroke.css" rel="stylesheet" />
    </head>
-    
+   
+
+   
+   
     <body>
         <%
             if(!u.isLastChild()){
@@ -63,13 +63,226 @@
             <div class="main-panel">
                 <div class="content">
                     <div class="container-fluid">
-                        <h1><i class="pe-7s-smile pe-spin"></i> Under Construction <i class="pe-7s-smile pe-spin"></i></h1>
+                        <div class='row'>
+                            <div class="col-md-6">
+                                 <%
+                            ArrayList<String> items = new ArrayList<>();
+                            ArrayList<Integer> quantity = new ArrayList<>();
+                            ArrayList<AnalyticsEntity> entry = TransactionDao.getTopSellersByQuantity("Year",5);
+                            for(AnalyticsEntity aEntry : entry){
+                                String itemName = aEntry.label;
+                                int value = aEntry.quantity;
+                                items.add("\"" + itemName + "\"");
+                                quantity.add(value);
+                            }
+                            %>
+                                <div class="card">
+                                    <div class="header">
+                                        <h4 class="title">Best Selling Item</h4>
+                                        <p class="category">Based on Quantity</p>
+                                    </div>
+                                    <div class="content">
+                                        <div id="chartPreferences" class="ct-chart" style="height:100%">
+                                        <canvas id="bestSellingItems"></canvas>
+                                    </div>
+                                    <script>
+                                        var chartName = new String("bestSellingItems");
+                                        var pieChart = document.getElementById(chartName).getContext("2d");
+                                        var barChart = new Chart(pieChart, {
+                                            type: 'horizontalBar',
+                                            data: {
+                                              labels: <%=items%>,
+                                              datasets: [{
+                                                label: 'Quantity',
+                                                data: <%=quantity%>,
+                                                backgroundColor: [
+                                                  'rgba(255, 99, 132, 0.6)',
+                                                  'rgba(54, 162, 235, 0.6)',
+                                                  'rgba(255, 206, 86, 0.6)',
+                                                  'rgba(75, 192, 192, 0.6)',
+                                                  'rgba(153, 102, 255, 0.6)',
+                                                  'rgba(255, 159, 64, 0.6)',
+                                                  'rgba(255, 254, 154, 0.6)',
+                                                  'rgba(173, 154, 255, 0.6)',
+                                                  'rgba(255, 199, 153, 0.6)',
+                                                  'rgba(255, 165, 153, 0.6)',
+                                                  'rgba(153, 177, 255, 0.6)'
+                                                ]
+                                              }]
+                                            },
+                                            options: {
+                                                legend: {
+                                                    display: false,
+                                                    position: 'right'
+
+                                                },
+                                                scales: {
+                                                    xAxes:[{
+                                                        display: true,
+                                                        ticks:{
+                                                            beginAtZero: true
+                                                        }
+                                                    }]
+                                                }
+                                            }
+                                          });
+                                    </script>
+                                    </div>
+                                </div>
+                            </div>
+                                                
+                           <div class="col-md-6">
+                            <%
+                            items = new ArrayList<>();  
+                            ArrayList<Double> totalAmount = new ArrayList<>();
+                            entry = TransactionDao.getTopSellersByAmount("Year",5);
+                            for(AnalyticsEntity aEntry : entry){
+                                String itemName = aEntry.label;
+                                double value = aEntry.amount;
+                                items.add("\"" + itemName + "\"");
+                                totalAmount.add(value);
+                            }
+                            %>
+                                <div class="card">
+                                    <div class="header">
+                                        <h4 class="title">Best Selling Item</h4>
+                                        <p class="category">Based on Amount</p>
+                                    </div>
+                                    <div class="content">
+                                        <div id="chartPreferences" class="ct-chart" style="height:100%">
+                                        <canvas id="mostSellingItems"></canvas>
+                                    </div>
+                                    <script>
+                                        var chartName = new String("mostSellingItems");
+                                        var pieChart = document.getElementById(chartName).getContext("2d");
+                                        var barChart = new Chart(pieChart, {
+                                            type: 'horizontalBar',
+                                            data: {
+                                              labels: <%=items%>,
+                                              datasets: [{
+                                                label: 'Quantity',
+                                                data: <%=totalAmount%>,
+                                                backgroundColor: [
+                                                  'rgba(255, 99, 132, 0.6)',
+                                                  'rgba(54, 162, 235, 0.6)',
+                                                  'rgba(255, 206, 86, 0.6)',
+                                                  'rgba(75, 192, 192, 0.6)',
+                                                  'rgba(153, 102, 255, 0.6)',
+                                                  'rgba(255, 159, 64, 0.6)',
+                                                  'rgba(255, 254, 154, 0.6)',
+                                                  'rgba(173, 154, 255, 0.6)',
+                                                  'rgba(255, 199, 153, 0.6)',
+                                                  'rgba(255, 165, 153, 0.6)',
+                                                  'rgba(153, 177, 255, 0.6)'
+                                                ]
+                                              }]
+                                            },
+                                            options: {
+                                                legend: {
+                                                    display: false,
+                                                    position: 'right'
+
+                                                },
+                                                scales: {
+                                                    xAxes:[{
+                                                        display: true,
+                                                        ticks:{
+                                                            beginAtZero: true
+                                                        }
+                                                    }]
+                                                }
+                                            }
+                                          });
+                                    </script>
+                                    </div>
+                                </div>
+                            </div>              
+                        </div>
+                        
+                                                
+                        <div class="row">
+                            <div class="col-md-6">
+                            <%
+                                ArrayList<AnalyticsEntity> worstSellers = TransactionDao.getBottomSellersByQuantity("Year",5);
+                                
+                            %>
+                                <div class="card">
+                                    <div class="header">
+                                        <h4 class="title">Least Selling Item</h4>
+                                        <p class="category">Based on Quantity</p>
+                                    </div>
+                                    <div class="content table-responsive table-full-width">
+                                        <table class="table table-hover table-striped">
+                                            <thead>
+                                            <th>Item Name</th>
+                                            <th>Quantity</th>
+                                            </thead>
+                                            
+                                            <%
+                                            for(AnalyticsEntity e : worstSellers){
+                                            String label = e.label;
+                                            int qty = e.quantity;
+                                            %>
+                                            <tbody>
+                                                <tr>
+                                                    <td><%=label%></td>
+                                                    <td><%=qty%></td>
+                                                </tr>
+                                            </tbody>
+                                            <%
+                                                }
+                                            %>
+                                        </table>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                            <%
+                                ArrayList<AnalyticsEntity> worstSellersAmount = TransactionDao.getBottomSellersByAmount("Year",5);
+                            %>
+                                       
+                                <div class="card">
+                                    <div class="header">
+                                        <h4 class="title">Least Selling Item</h4>
+                                        <p class="category">Based on Amount</p>
+                                    </div>
+                                    <div class="content table-responsive table-full-width">
+                                        <table class="table table-hover table-striped">
+                                            <thead>
+                                            <th>Item Name</th>
+                                            <th>Quantity</th>
+                                            </thead>
+
+                                        <%
+                                        for(AnalyticsEntity e : worstSellersAmount){
+                                        String label = e.label;
+                                        double amount = e.amount;
+                                        %>
+                                            <tbody>
+                                                <tr>
+                                                    <td><%=label%></td>
+                                                    <td><% out.println("$" + amount); %></td>
+                                                </tr>
+                                            </tbody>
+                                            <%
+                                                }
+                                            %>
+                                        </table>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-            </div>
+            </div>           
         </div>
-
 </body>
-     <% }%>       
+<% }%>       
               
 </html>
