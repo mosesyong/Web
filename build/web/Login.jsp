@@ -22,30 +22,36 @@
         <link rel="stylesheet" type="text/css" href="design/css/loginpage.css">
   
     </head>
+    <style>
+        body{
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+    </style>
     <body>
-        <div class='modal-dialog text-center'>
-                 
-            <div class='col-sm-8 main-section'>
-             
+        <div class='modal-dialog text-center'>      
+            <div class='col-sm-8 col-md-8 col-lg-8 col-xs-8 main-section'>
                 <div class='modal-content'>
-                  
                     <div class='col-12 user-image'>
                         <img src='design/img/webportal.png'>
                     </div>
-                    <form action="LoginWebServlet" class='col-12' method='post'>
-            
-                        <div class='form-group'>
-                            <input type='text' class='form-control' placeholder='Enter Username' name='username'>    
-                        </div>
-                        <div class='form-group'>
-                            <input type='password' class='form-control' placeholder='Enter Password' name='password'>    
-                        </div>
-                        <button type='submit' class='btn'><i class='fas fa-sign-in-alt'></i>Login</button>
-                        
-                    </form>
-                    <div class='status'>
-                        <a href="PasswordReset.jsp">I forgot my password</a><br>
-                        <%
+                    <div class='form'>
+                        <form action="LoginWebServlet" class='col-12' method='post'>
+
+                            <div class='form-group'>
+                                <input type='text' class='form-control' placeholder='Enter Username' name='username'>    
+                            </div>
+                            <div class='form-group'>
+                                <input type='password' class='form-control' placeholder='Enter Password' name='password'>    
+                            </div>
+                            <button type='submit' class='btn'><i class='fas fa-sign-in-alt'></i>Login</button>
+
+                        </form>
+                        <div class='col-12 forgot' style='margin:0'>
+                                <a href="PasswordReset.jsp">Forgot Password?</a><br>
+                                <%
                 String msg = (String)request.getAttribute("msg");
                 if(msg != null){
                     out.println("<font color='red'>"  + msg + "</font>");
@@ -53,14 +59,10 @@
                 out.println("<br><font color='white'>"  + Properties.checkAlive() + "</font><br>");
                     
             %>
-            <br><br>
+                        </div>
+                        
                     </div>
-                    <!--
-                    <div class='col-12 forgot'>
-                        <a href='#'>Forgot Password?</a>
-                    </div>
-                    -->
-                </div><!--end of modal content-->
+                </div>
             </div>
         </div>
     </body>
