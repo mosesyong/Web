@@ -4,6 +4,8 @@
     Author     : Moses
 --%>
 
+<%@page import="java.util.Map"%>
+<%@page import="java.util.Iterator"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="Entity.AnalyticsEntity"%>
@@ -87,20 +89,28 @@
                                              HashMap<String, ArrayList<AnalyticsEntity>> analyticsMap = new HashMap<>();
                                              analyticsMap = (HashMap<String, ArrayList<AnalyticsEntity>>) request.getAttribute("analyticsResults");
                                              
+                                             ArrayList<String> periodList = new ArrayList<>();
+                                             periodList.add("All");
+                                             periodList.add("Year");
+                                             periodList.add("Month");
+                                             periodList.add("Week");
+                                             periodList.add("Day");
+                                             
                                              DecimalFormat df = new DecimalFormat(".##");
 //                                             System.out.println(analyticsMap);
                                              if(analyticsType == null && analyticsMap == null){    
                                                 
                                              } else if(analyticsType.equals("Sales")){
+                                                 System.out.println(analyticsMap);
                                                  
-                                                 for(HashMap.Entry<String, ArrayList<AnalyticsEntity>> entry : analyticsMap.entrySet()){
-                                                     String timePeriod = entry.getKey();
-                                                     ArrayList<AnalyticsEntity> record = entry.getValue();
-                                                     for (AnalyticsEntity entity : record){
-                                                         
-                                                         String label = entity.label;
-                                                         Double amount = (double) entity.amount;
-                                                         String properAmount = df.format(amount);
+                                                 for(String period : periodList){
+                                                    ArrayList<AnalyticsEntity> entry =  analyticsMap.get(period);
+                                                    System.out.println(period);
+                                                    System.out.println(entry);
+                                                    for(AnalyticsEntity entity : entry){
+                                                        String label = entity.label;
+                                                        Double amount = (double) entity.amount;
+                                                        String properAmount = df.format(amount);
                                                          %>
                                                 <div class="col-lg-3 col-md-6 col-sm-6">
                                                     <div class="card card-stats">
@@ -130,26 +140,22 @@
                                                 ArrayList<Double> itemQuantity = new ArrayList<>();
                                                 int counter = 1;
                                                 
-                                                
-
-                                                for(HashMap.Entry<String, ArrayList<AnalyticsEntity>> entry : analyticsMap.entrySet()){
+                                                for(String period : periodList){
+                                                    String chartID = counter + "chart";
                                                      
-                                                     String chartID = counter + "chart";
-                                                     System.out.println(chartID);
-                                                     String period = entry.getKey();
 
-                                                     String timePeriod = "";
-                                                     if(period.equals("All")){
-                                                        timePeriod = "from the Beginning of Time";
-                                                     }else{
-                                                        timePeriod = "for the " + period; 
-                                                     }
-                                                     ArrayList<AnalyticsEntity> record = entry.getValue();
-                                                     for (AnalyticsEntity entity : record){
+                                                     ArrayList<AnalyticsEntity> entry = analyticsMap.get(period);
+                                                     for (AnalyticsEntity entity : entry){
                                                          String label = "\"" + entity.label + "\"";
                                                          Double amount = entity.amount;
                                                          itemLabels.add(label);
                                                          itemQuantity.add(amount);
+                                                     }
+                                                     
+                                                     if(period.equals("All")){
+                                                        period = "from the Beginning of Time";
+                                                     }else{
+                                                        period = "for the " + period; 
                                                      }
 
                                                      System.out.println(itemLabels);
@@ -160,7 +166,7 @@
                                                     <div class="col-md-6">
                                                         <div class="card">
                                                             <div class="header">
-                                                                <h4 class="title"><% out.println("Item Sales " + timePeriod); %></h4>
+                                                                <h4 class="title"><% out.println("Item Sales " + period); %></h4>
                                                                 <p class="category"></p>
                                                             </div>
                                                             <div class="content">
@@ -169,7 +175,7 @@
                                                                     <canvas id="<%=chartID%>"></canvas>
                                                                 </div>
                                                                 <script>
-                                                                    var chartName = new String("<%=chartID%>")
+                                                                    var chartName = new String("<%=chartID%>");
                                                                     var pieChart = document.getElementById(chartName).getContext("2d");
                                                                     var barChart = new Chart(pieChart, {
                                                                         type: 'pie',
