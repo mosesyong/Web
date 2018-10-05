@@ -114,6 +114,8 @@ public class LoginWebServlet extends HttpServlet {
                   String[] sisterArr = sisterStr.split(",");
                   ArrayList<String> sisterOutlets = new ArrayList<>(Arrays.asList(sisterArr));
                   
+                  Double gst = jo.get("gst").getAsDouble();
+                  Double svc = jo.get("svc").getAsDouble();
                   
                   User u = new User(username, type, companyName, access, roleList, outletNameList, categoryList, sisterOutlets);
                   

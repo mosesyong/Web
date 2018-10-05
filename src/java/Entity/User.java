@@ -24,6 +24,8 @@ public class User {
     private ArrayList<String> categoryList;
     private ArrayList<Menu> menuList;
     private ArrayList<String> sisterOutlets;
+    private double gst;
+    private double svc;
     
     public User(String username, String type, String companyName, HashSet<String> access, ArrayList<String> roleList, ArrayList<String> outletNameList, ArrayList<String> categoryList, ArrayList<String> sisterOutlets){
         this.username = username;
@@ -50,6 +52,10 @@ public class User {
         this.sisterOutlets = sisterOutlets;
         
         menuList = new ArrayList<>();
+        
+        //hardcoded for now
+        this.gst = 0.7;
+        this.svc = 0.5;
     }
     
     public void addEmployee(ArrayList<String> employees){
@@ -167,6 +173,6 @@ public class User {
     
     @Override
     public String toString(){
-        return("Username: " + username + "\nCompany Name: " + companyName + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList + "\nRoles: " + typeList + "\nOutlets: " + outletNameList + "\nCategory: " + categoryList + "\nMenu Items: " + menuList + "\nSister Outlets: " + sisterOutlets);
+        return("Username: " + username + "\nCompany Name: " + companyName + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList + "\nRoles: " + typeList + "\nsvc: " + svc + "\ngst: " + gst + "\nOutlets: " + outletNameList + "\nCategory: " + categoryList + "\nMenu Items: " + menuList + "\nSister Outlets: " + sisterOutlets);
     }
 }
