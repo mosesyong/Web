@@ -136,13 +136,13 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                    <div class="form-group">
-                                                       <label>GST (not %)</label>
+                                                       <label>GST (%)</label>
                                                        <input type="number" step="0.01" min = "0" class="form-control" placeholder="GST" name="gst">
                                                    </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                    <div class="form-group">
-                                                       <label>Service Charge (not %)</label>
+                                                       <label>Service Charge (%)</label>
                                                        <input type="number" step="0.01" min = "0" class="form-control" placeholder="Service Charge" name="svc">
                                                    </div>
                                                 </div>
@@ -242,15 +242,15 @@
                                                 <div class="col-md-3">
                                                     <!--<input type="hidden" name="companyName" value="">--> 
                                                    <div class="form-group">
-                                                       <label>GST (not %)</label>
-                                                       <input type="number" step="0.01" min = "0" class="form-control" disabled placeholder="GST" name="gst" value="0.07">
+                                                       <label>GST (%)</label>
+                                                       <input type="number" step="0.01" min = "0" class="form-control" disabled placeholder="GST" name="gst" value="7"> <!--change to db value-->
                                                    </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <!--<input type="hidden" name="companyName" value="10">--> 
                                                    <div class="form-group">
                                                        <label>Service Charge (not %)</label>
-                                                       <input type="number" step="0.01" min = "0" class="form-control" disabled placeholder="Service Charge" name="svc" value ="0.10">
+                                                       <input type="number" step="0.01" min = "0" class="form-control" disabled placeholder="Service Charge" name="svc" value ="10"> <!-- change to db value-->
                                                    </div>
                                                 </div>
                                                 

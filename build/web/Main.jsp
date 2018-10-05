@@ -146,7 +146,7 @@
                                 <div class="card">
                                     <div class="header">
                                         <h4 class="title">Best Selling Item</h4>
-                                        <p class="category">Based on Amount</p>
+                                        <p class="category">Based on Cash Value</p>
                                     </div>
                                     <div class="content">
                                         <div id="chartPreferences" class="ct-chart" style="height:100%">
@@ -259,7 +259,7 @@
                                 <div class="card">
                                     <div class="header">
                                         <h4 class="title">Least Selling Item</h4>
-                                        <p class="category">Based on Amount</p>
+                                        <p class="category">Based on Cash Value</p>
                                     </div>
                                     <div class="content table-responsive table-full-width">
                                         <table class="table table-hover table-striped">

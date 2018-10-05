@@ -52,7 +52,7 @@
                                                             <option selected="true" disabled="disabled">Select Category</option>
                                                             <option value='Sales'>Sales</option>
                                                             <option value='ItemsQuantity'>Item's Quantity</option>
-                                                            <option value='ItemsAmount'>Item's Amount</option>
+                                                            <option value='ItemsAmount'>Item's Cash Value</option>
                                                         </select>
                                                         <select name='paymentType' style='width: 25%'>
                                                             <option selected="true" disabled="disabled">Select Payment Type</option>
@@ -165,7 +165,7 @@
                                                     <div class="col-md-6">
                                                         <div class="card">
                                                             <div class="header">
-                                                                <h4 class="title"><% out.println("Item's Amount " + period); %></h4>
+                                                                <h4 class="title"><% out.println("Item's Cash Value " + period); %></h4>
                                                                 <p class="category"></p>
                                                             </div>
                                                             <div class="content">
