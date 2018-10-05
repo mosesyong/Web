@@ -146,7 +146,7 @@
                                 <div class="card">
                                     <div class="header">
                                         <h4 class="title">Best Selling Item</h4>
-                                        <p class="category">Based on Amount</p>
+                                        <p class="category">Based on Cash Value</p>
                                     </div>
                                     <div class="content">
                                         <div id="chartPreferences" class="ct-chart" style="height:100%">
@@ -160,7 +160,7 @@
                                             data: {
                                               labels: <%=items%>,
                                               datasets: [{
-                                                label: 'Quantity',
+                                                label: 'Cash Value',
                                                 data: <%=totalAmount%>,
                                                 backgroundColor: [
                                                   'rgba(255, 99, 132, 0.6)',
@@ -190,7 +190,19 @@
                                                             beginAtZero: true
                                                         }
                                                     }]
-                                                }
+                                                },
+//                                                tooltips: {
+//                                                 callbacks: {
+//                                                    label: function(tooltipItem, data) {
+//                                                        var label = data.datasets[tooltipItem.datasetIndex].label || '';
+//
+//                                                            if (label) {
+//                                                                label += ' = $' + data ;
+//                                                            }
+//                                                            return label;
+//                                                        }
+//                                                    }
+//                                                }
                                             }
                                           });
                                     </script>
@@ -247,13 +259,13 @@
                                 <div class="card">
                                     <div class="header">
                                         <h4 class="title">Least Selling Item</h4>
-                                        <p class="category">Based on Amount</p>
+                                        <p class="category">Based on Cash Value</p>
                                     </div>
                                     <div class="content table-responsive table-full-width">
                                         <table class="table table-hover table-striped">
                                             <thead>
                                             <th>Item Name</th>
-                                            <th>Quantity</th>
+                                            <th>Cash Value</th>
                                             </thead>
 
                                         <%

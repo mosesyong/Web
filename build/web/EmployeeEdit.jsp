@@ -62,11 +62,11 @@
                                         <form action="EmployeeEditWebServlet" method='post' class="editAccess">
                                             <div class="row">
                                                  <input type="hidden" name="employeeUsername" value ="<%=employeeUsername%>">
-                                                <div class="col-md-12">
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                    <label>Permissions</label>
                                                     <div class="card">                                         
-                                                        <div class="content">
-                                                            <div class="form-group">
-                                                                <label>Permissions</label>
+                                                        <div class="table-wrapper">
                                                                 <div class="content table-responsive table-full-width">
                                                                     <table class="table table-hover table-striped">
                                                                         <tbody>
@@ -75,6 +75,19 @@
                                                                                 <%
             ArrayList<String> employeeAccessList = (ArrayList<String>)request.getAttribute("access");
             for(String access : u.getAccessList()){
+                System.out.println(access);
+                if(access.equals("menu_right")){
+                    access = "Menu Propagation";
+                }else if(access.equals("payment_right")){
+                    access="Payment Propagation";
+                }else if(access.equals("menu")){
+                    access = "Menu";
+                }else if(access.equals("payment")){
+                    access="Payment";
+                }else if(access.equals("refund")){
+                    access="Refund";
+                }
+                
                 boolean hasRight = false;
                 for(String employeeAccess : employeeAccessList){
                     if(access.equals(employeeAccess)){

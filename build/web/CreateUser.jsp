@@ -88,6 +88,15 @@
                                                     </div>
                                                 </div>    
                                             </div>
+                
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input type="text" class="form-control" placeholder="Email" name="email">
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <input type="hidden" class="form-control" name="menu_right" value="1">
                                             <input type="hidden" class="form-control" name="menu" value="1">
                                             <input type="hidden" class="form-control" name="payment_right" value="1">
@@ -97,28 +106,49 @@
                     <%  }else if(u.getType().equals("1")){ %>
                     <!--Creating Manager Role by Company-->                    
                                             <div class="row">
-                                                <div class="col-md-5">
+                                                <div class="col-md-4">
                                                     <input type="hidden" name="companyName" value="<%=u.getCompanyName()%>">
                                                     <div class="form-group">
                                                         <label>Merchant Name</label>
                                                         <input type="text" class="form-control" disabled placeholder="Merchant" value="<%out.println(u.getCompanyName());%>">
                                                     </div> 
                                                 </div>
-                                                <div class="col-md-7">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Outlet Name</label>
                                                         <input type="text" class="form-control" placeholder="Outlet" name="outletName">
                                                     </div>
                                                 </div>
-                                            </div>
-                                                    
-                                            <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Username</label>
                                                         <input type="text" class="form-control" placeholder="Username" name="username">
                                                     </div>
-                                                </div> 
+                                                </div>
+                                            </div>
+                                                    
+                                            <div class="row">
+                                                 <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input type="text" class="form-control" placeholder="Email" name="email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                   <div class="form-group">
+                                                       <label>GST (%)</label>
+                                                       <input type="number" step="0.01" min = "0" class="form-control" placeholder="GST" name="gst">
+                                                   </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                   <div class="form-group">
+                                                       <label>Service Charge (%)</label>
+                                                       <input type="number" step="0.01" min = "0" class="form-control" placeholder="Service Charge" name="svc">
+                                                   </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="card">
                                                         <label>Permissions</label>
@@ -132,7 +162,7 @@
                                                                                     <label for="menuRights"></label>
                                                                                 </div>
                                                                             </td>
-                                                                            <td>Menu Edit Rights</td>
+                                                                            <td>Menu Edit Propagation</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>
@@ -150,7 +180,7 @@
                                                                                     <label for="financeEditRights"></label>
                                                                                 </div>
                                                                             </td>
-                                                                            <td>Finance Edit Rights</td>
+                                                                            <td>Finance Edit Propagation</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>
@@ -210,15 +240,17 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
+                                                    <!--<input type="hidden" name="companyName" value="">--> 
                                                    <div class="form-group">
-                                                       <label>GST</label>
-                                                       <input type="number" step="0.01" min = "0" class="form-control" placeholder="GST" name="gst">
+                                                       <label>GST (%)</label>
+                                                       <input type="number" step="0.01" min = "0" class="form-control" disabled placeholder="GST" name="gst" value="7"> <!--change to db value-->
                                                    </div>
                                                 </div>
                                                 <div class="col-md-3">
+                                                    <!--<input type="hidden" name="companyName" value="10">--> 
                                                    <div class="form-group">
-                                                       <label>Service Charge</label>
-                                                       <input type="number" step="0.01" min = "0" class="form-control" placeholder="Service Charge" name="svc">
+                                                       <label>Service Charge (not %)</label>
+                                                       <input type="number" step="0.01" min = "0" class="form-control" disabled placeholder="Service Charge" name="svc" value ="10"> <!-- change to db value-->
                                                    </div>
                                                 </div>
                                                 
@@ -323,6 +355,6 @@
                                             
                   
                                         
-                        -->                
+                                        
 
    
