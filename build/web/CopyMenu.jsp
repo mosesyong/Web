@@ -56,6 +56,12 @@
             
                                                             </div>
                                                         </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                            <span>Please note that appending the menu will wipe out your current menu and replace it. Process cannot be undone.</span> 
+                                                        
+                                                            </div>
+                                                        </div>
             
                                                         <input type="submit" name="menu" class="btn btn-info btn-fill pull-right" style="border-color: #FFE37C" value="Submit">
                                                     </form>

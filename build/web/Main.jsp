@@ -160,7 +160,7 @@
                                             data: {
                                               labels: <%=items%>,
                                               datasets: [{
-                                                label: 'Quantity',
+                                                label: 'Cash Value',
                                                 data: <%=totalAmount%>,
                                                 backgroundColor: [
                                                   'rgba(255, 99, 132, 0.6)',
@@ -190,7 +190,19 @@
                                                             beginAtZero: true
                                                         }
                                                     }]
-                                                }
+                                                },
+//                                                tooltips: {
+//                                                 callbacks: {
+//                                                    label: function(tooltipItem, data) {
+//                                                        var label = data.datasets[tooltipItem.datasetIndex].label || '';
+//
+//                                                            if (label) {
+//                                                                label += ' = $' + data ;
+//                                                            }
+//                                                            return label;
+//                                                        }
+//                                                    }
+//                                                }
                                             }
                                           });
                                     </script>
@@ -253,7 +265,7 @@
                                         <table class="table table-hover table-striped">
                                             <thead>
                                             <th>Item Name</th>
-                                            <th>Quantity</th>
+                                            <th>Cash Value</th>
                                             </thead>
 
                                         <%
