@@ -45,7 +45,18 @@
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
         <link href="design/css/pe-icon-7-stroke.css" rel="stylesheet" />
-   </head>
+       <link rel="stylesheet" type="text/css" href="design/css/tooltips.css">
+        <style>
+            td{
+                align: left;
+            }
+          
+        </style>
+    
+    </head>
+   
+   
+   
     <body>  
         <div class="wrapper">
             <div class="main-panel">
@@ -62,15 +73,20 @@
                                         <form action="EmployeeEditWebServlet" method='post' class="editAccess">
                                             <div class="row">
                                                  <input type="hidden" name="employeeUsername" value ="<%=employeeUsername%>">
-                                                <div class="col-md-8">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                     <label>Permissions</label>
+                                                    <div class="help-tip">
+                                                        <p>Edit would give the user the permission to edit the respective function.<br>
+                                                            Edit Propagation would allow the user to give other users permission to edit the function.<br>
+                                                            Refund would allow the employee to carry out refund transactions.</p>
+
+                                                    </div>
                                                     <div class="card">                                         
                                                         <div class="table-wrapper">
                                                                 <div class="content table-responsive table-full-width">
-                                                                    <table class="table table-hover table-striped">
+                                                                    <table class="table table-hover table-striped" align="left">
                                                                         <tbody>
-                                                                            <tr>
                                                                                 
                                                                                 <%
             ArrayList<String> employeeAccessList = (ArrayList<String>)request.getAttribute("access");
@@ -95,9 +111,9 @@
                     }
                 }
                 if(hasRight){
-                    out.println("<input type='checkbox' name='access' value= '" + access + "' checked>" + displayAccess + "<br>");
+                    out.println("<tr><td><input type='checkbox' name='access' value= '" + access + "' checked>" + displayAccess + "</td></tr>");
                 }else{
-                    out.println("<input type='checkbox' name='access' value= '" + access + "'>" + displayAccess + "<br>");
+                    out.println("<tr><td><input type='checkbox' name='access' value= '" + access + "'>" + displayAccess + "</td></tr>");
                 }
             }
             System.out.println(employeeAccessList);
@@ -114,9 +130,9 @@
                         }
                     }
                     if(hasRight){
-                        out.println("<input type='checkbox' name='access' value= '" + access + "' checked>" + access + "<br>");
+                        out.println("<tr><td><input type='checkbox' name='access' value= '" + access + "' checked>" + access + "</td></tr>");
                     }else{
-                        out.println("<input type='checkbox' name='access' value= '" + access + "'>" + access + "<br>");
+                        out.println("<tr><td><input type='checkbox' name='access' value= '" + access + "'>" + access + "</td></tr>");
                     }
                     
                     access = "payment_right";
@@ -129,9 +145,9 @@
                         }
                     }
                     if(hasRight){
-                        out.println("<input type='checkbox' name='access' value= '" + access + "' checked>" + access + "<br>");
+                        out.println("<tr><td><input type='checkbox' name='access' value= '" + access + "' checked>" + access + "</td></tr>");
                     }else{
-                        out.println("<input type='checkbox' name='access' value= '" + access + "'>" + access + "<br>");
+                        out.println("<tr><td><input type='checkbox' name='access' value= '" + access + "'>" + access + "</td></tr>");
                     }
                     
                     access = "menu";
@@ -143,9 +159,9 @@
                         }
                     }
                     if(hasRight){
-                        out.println("<input type='checkbox' name='access' value= '" + access + "' checked>" + access + "<br>");
+                        out.println("<tr><td><input type='checkbox' name='access' value= '" + access + "' checked>" + access + "</td></tr>");
                     }else{
-                        out.println("<input type='checkbox' name='access' value= '" + access + "'>" + access + "<br>");
+                        out.println("<tr><td><input type='checkbox' name='access' value= '" + access + "'>" + access + "</td></tr>");
                     }
                     
                     access = "payment";
@@ -157,9 +173,9 @@
                         }
                     }
                     if(hasRight){
-                        out.println("<input type='checkbox' name='access' value= '" + access + "' checked>" + access + "<br>");
+                        out.println("<tr><td><input type='checkbox' name='access' value= '" + access + "' checked>" + access + "</td></tr>");
                     }else{
-                        out.println("<input type='checkbox' name='access' value= '" + access + "'>" + access + "<br>");
+                        out.println("<tr><td><input type='checkbox' name='access' value= '" + access + "'>" + access + "</td></tr>");
                     }
                     
                     access = "refund";
@@ -171,9 +187,9 @@
                         }
                     }
                     if(hasRight){
-                        out.println("<input type='checkbox' name='access' value= '" + access + "' checked>" + access + "<br>");
+                        out.println("<tr><td><input type='checkbox' name='access' value= '" + access + "' checked>" + access + "</td></tr>");
                     }else{
-                        out.println("<input type='checkbox' name='access' value= '" + access + "'>" + access + "<br>");
+                        out.println("<tr><td><input type='checkbox' name='access' value= '" + access + "'>" + access + "</td></tr>");
                     }
                 }
             %>
@@ -197,13 +213,5 @@
                 </div>
             </div>
         </div>
-    </body>
-</html>
-
-
-          
-        
-                        <button type='submit' class='btn'>Submit</button>
-                        </form>
     </body>
 </html>

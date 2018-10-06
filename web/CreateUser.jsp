@@ -10,6 +10,7 @@
 <html>
    <head>
        <%@include file="sidebar.jsp"%>
+       <link rel="stylesheet" type="text/css" href="design/css/tooltips.css">
 	<meta charset="utf-8" />
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -20,24 +21,7 @@
         <meta name="viewport" content="width=device-width" />
 
 
-        <!-- Bootstrap core CSS     -->
-        <link href="design/css/bootstrap.min.css" rel="stylesheet" />
-
-        <!-- Animation library for notifications   -->
-        <link href="design/css/animate.min.css" rel="stylesheet"/>
-
-        <!--  Light Bootstrap Table core CSS    -->
-        <link href="design/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
-
-
-        <!--  CSS for Demo Purpose, don't include it in your project     -->
-        <link href="design/css/demo.css" rel="stylesheet" />
-
-
-        <!--     Fonts and icons     -->
-        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-        <link href="design/css/pe-icon-7-stroke.css" rel="stylesheet" />
+        
    </head>
       
 
@@ -152,6 +136,12 @@
                                                 <div class="col-md-6">
                                                     <div class="card">
                                                         <label>Permissions</label>
+                                                        <div class="help-tip">
+                                                        <p>Edit would give the user the permission to edit the respective function.<br>
+                                                            Edit Propagation would allow the user to give other users permission to edit the function.<br>
+                                                            Refund would allow the employee to carry out refund transactions.</p>
+                                                        
+                                                        </div>
                                                             <div class="card-body">
                                                               <table class="table">
                                                                    <tbody>
@@ -162,7 +152,7 @@
                                                                                     <label for="menuRights"></label>
                                                                                 </div>
                                                                             </td>
-                                                                            <td>Menu Edit Propagation</td>
+                                                                            <td style="text-align:left">Menu Edit Propagation</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>
@@ -171,7 +161,7 @@
                                                                                     <label for="menuEdits"></label>
                                                                                 </div>
                                                                             </td>
-                                                                            <td>Menu Edit</td>
+                                                                            <td style="text-align:left">Menu Edit</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>
@@ -180,7 +170,7 @@
                                                                                     <label for="financeEditRights"></label>
                                                                                 </div>
                                                                             </td>
-                                                                            <td>Finance Edit Propagation</td>
+                                                                            <td style="text-align:left">Finance Edit Propagation</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>
@@ -189,7 +179,7 @@
                                                                                     <label for="financeEdit"></label>
                                                                                 </div>
                                                                             </td>
-                                                                            <td>Finance Edit</td>
+                                                                            <td style="text-align:left">Finance Edit</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>
@@ -198,7 +188,7 @@
                                                                                     <label for="refund"></label>
                                                                                 </div>
                                                                             </td>
-                                                                            <td>Refund</td>
+                                                                            <td style="text-align:left">Refund</td>
                                                                         </tr>
                                                                    </tbody>
                                                               </table>
@@ -258,9 +248,14 @@
                                                     
                                                     
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-5">
                                                     
                                                     <label>Permissions</label>
+                                                    <div class="help-tip">
+                                                        <p>Edit would give the user the permission to edit the respective function.<br>
+                                                            Refund would allow the employee to carry out refund transactions.</p>
+                                                    </div>
+                                                                            
                                                         <div class="card">
                                                             <div class="card-body">
                                                               <table class="table">
@@ -279,7 +274,7 @@
                                                                                     <label for="menuEdits"></label>
                                                                                 </div>
                                                                             </td>
-                                                                            <td>Menu Edit</td>
+                                                                            <td style="text-align:left">Menu Edit</td>
                                                                         </tr>
                                                                         <%}
                                                                         if(accessList.contains("payment_right")){%>
@@ -289,8 +284,9 @@
                                                                                     <input id="financeEdit" type="checkbox" name="finance" value="1">
                                                                                     <label for="financeEdit"></label>
                                                                                 </div>
+                                                                                
                                                                             </td>
-                                                                            <td>Finance Edit</td>
+                                                                            <td style="text-align:left">Finance Edit</td>
                                                                         </tr>
                                                                         <%}
                                                                         if(accessList.contains("refund")){%>
@@ -301,7 +297,7 @@
                                                                                     <label for="refund"></label>
                                                                                 </div>
                                                                             </td>
-                                                                            <td>Refund</td>
+                                                                            <td style="text-align:left">Refund</td>
                                                                         </tr>
                                                                         <%}%>
                                                                    </tbody>
