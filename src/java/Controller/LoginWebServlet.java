@@ -117,7 +117,7 @@ public class LoginWebServlet extends HttpServlet {
                   Double gst = jo.get("gst").getAsDouble();
                   Double svc = jo.get("svc").getAsDouble();
                   
-                  User u = new User(username, type, companyName, access, roleList, outletNameList, categoryList, sisterOutlets);
+                  User u = new User(username, type, companyName, access, roleList, outletNameList, categoryList, sisterOutlets, gst, svc);
                   
                   String employeeData = jo.get("employees").toString().replace("\"","").replace(username + ",","").replace(username,"");
                   String[] employeeOverall = employeeData.split("  ");
@@ -144,7 +144,7 @@ public class LoginWebServlet extends HttpServlet {
                   roleList.add("su");
                   ArrayList<String> outletNameList = new ArrayList<>(Arrays.asList("0"));
                   ArrayList<String> categoryList = new ArrayList<>(Arrays.asList("0"));
-                  User u = new User(enteredUsername, "0", "Snapcoin", access, roleList, outletNameList, categoryList, null);
+                  User u = new User(enteredUsername, "0", "Snapcoin", access, roleList, outletNameList, categoryList, null, 7.0, 10.0);
                   System.out.println(u);
                   session.setAttribute("user",u);
                   session.setAttribute("url", url);

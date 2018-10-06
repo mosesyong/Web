@@ -243,14 +243,14 @@
                                                     <!--<input type="hidden" name="companyName" value="">--> 
                                                    <div class="form-group">
                                                        <label>GST (%)</label>
-                                                       <input type="number" step="0.01" min = "0" class="form-control" disabled placeholder="GST" name="gst" value="7"> <!--change to db value-->
+                                                       <input type="number" step="0.01" min = "0" class="form-control" disabled placeholder="GST" name="gst" value="<%=u.getGst()%>">
                                                    </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <!--<input type="hidden" name="companyName" value="10">--> 
                                                    <div class="form-group">
-                                                       <label>Service Charge (not %)</label>
-                                                       <input type="number" step="0.01" min = "0" class="form-control" disabled placeholder="Service Charge" name="svc" value ="10"> <!-- change to db value-->
+                                                       <label>Service Charge (%)</label>
+                                                       <input type="number" step="0.01" min = "0" class="form-control" disabled placeholder="Service Charge" name="svc" value ="<%=u.getSvc()%>">
                                                    </div>
                                                 </div>
                                                 
@@ -267,6 +267,11 @@
                                                                    <tbody>
                                                                         <input type="hidden" class="form-control" name="menu_right" value="0">
                                                                         <input type="hidden" class="form-control" name="payment_right" value="0">
+                                                                        <%
+                                                                        ArrayList<String> accessList = u.getAccessList();
+                                                                        
+                                                                        if(accessList.contains("menu_right")){
+                                                                        %>
                                                                         <tr>
                                                                             <td>
                                                                                 <div class="checkbox">
@@ -276,6 +281,8 @@
                                                                             </td>
                                                                             <td>Menu Edit</td>
                                                                         </tr>
+                                                                        <%}
+                                                                        if(accessList.contains("payment_right")){%>
                                                                         <tr>
                                                                             <td>
                                                                                 <div class="checkbox">
@@ -285,6 +292,8 @@
                                                                             </td>
                                                                             <td>Finance Edit</td>
                                                                         </tr>
+                                                                        <%}
+                                                                        if(accessList.contains("refund")){%>
                                                                         <tr>
                                                                             <td>
                                                                                 <div class="checkbox">
@@ -294,6 +303,7 @@
                                                                             </td>
                                                                             <td>Refund</td>
                                                                         </tr>
+                                                                        <%}%>
                                                                    </tbody>
                                                               </table>
                                                             </div>

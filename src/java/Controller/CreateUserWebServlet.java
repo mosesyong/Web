@@ -41,6 +41,7 @@ public class CreateUserWebServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String username = request.getParameter("username");
+        String email = request.getParameter("email");
         String tempPassword = "" + (int)(Math.random()*1000);
         String companyName = request.getParameter("companyName");
         String outletName = request.getParameter("outletName");
@@ -51,7 +52,9 @@ public class CreateUserWebServlet extends HttpServlet {
         String financeRights = request.getParameter("finance_rights");
         String finance = request.getParameter("finance");
         String refund = request.getParameter("refund");
-        
+        String gst = request.getParameter("gst");
+        String svc = request.getParameter("svc");
+
         try {
           // specify the host, protocol, and port 
           HttpHost target = new HttpHost((String)session.getAttribute("url"), (Integer)session.getAttribute("port"), "http");
@@ -62,16 +65,19 @@ public class CreateUserWebServlet extends HttpServlet {
           ArrayList<NameValuePair> postParams = new ArrayList<>();
           postParams.add(new BasicNameValuePair("username", username));
           postParams.add(new BasicNameValuePair("password", tempPassword));
+          postParams.add(new BasicNameValuePair("email", email));
           postParams.add(new BasicNameValuePair("companyName", companyName));
           postParams.add(new BasicNameValuePair("outletName", outletName));
           postParams.add(new BasicNameValuePair("creator", ((User)session.getAttribute("user")).getUsername()));
           postParams.add(new BasicNameValuePair("type", "" + (Integer.parseInt(((User)session.getAttribute("user")).getType())+ 1)));
-          System.out.println("Type (web)" + session.getAttribute("type"));
+          System.out.println("Type (web)" + (Integer.parseInt(((User)session.getAttribute("user")).getType())));
           postParams.add(new BasicNameValuePair("menuRights",menuRights));
           postParams.add(new BasicNameValuePair("menu",menu));
           postParams.add(new BasicNameValuePair("financeRights",financeRights));
           postParams.add(new BasicNameValuePair("finance",finance));
           postParams.add(new BasicNameValuePair("refund",refund));
+          postParams.add(new BasicNameValuePair("gst", gst));
+          postParams.add(new BasicNameValuePair("svc", svc));
           postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
           HttpResponse httpResponse = httpclient.execute(target, postRequest);
           HttpEntity entity = httpResponse.getEntity();

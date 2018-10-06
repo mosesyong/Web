@@ -27,7 +27,7 @@ public class User {
     private double gst;
     private double svc;
     
-    public User(String username, String type, String companyName, HashSet<String> access, ArrayList<String> roleList, ArrayList<String> outletNameList, ArrayList<String> categoryList, ArrayList<String> sisterOutlets){
+    public User(String username, String type, String companyName, HashSet<String> access, ArrayList<String> roleList, ArrayList<String> outletNameList, ArrayList<String> categoryList, ArrayList<String> sisterOutlets, Double gst, Double svc){
         this.username = username;
         this.type = type;
         this.companyName = companyName;
@@ -53,9 +53,9 @@ public class User {
         
         menuList = new ArrayList<>();
         
-        //hardcoded for now
-        this.gst = 0.7;
-        this.svc = 0.5;
+        // in decimal, % only for display
+        this.gst = gst; 
+        this.svc = svc;
     }
     
     public void addEmployee(ArrayList<String> employees){
@@ -75,6 +75,14 @@ public class User {
     
     public String getType(){
         return type;
+    }
+    
+    public Double getGst(){
+        return (gst * 100);
+    }
+    
+    public Double getSvc(){
+        return (svc * 100);
     }
     
     public HashSet<String> getAccess(){

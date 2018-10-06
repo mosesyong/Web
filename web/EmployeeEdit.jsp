@@ -75,17 +75,17 @@
                                                                                 <%
             ArrayList<String> employeeAccessList = (ArrayList<String>)request.getAttribute("access");
             for(String access : u.getAccessList()){
-                System.out.println(access);
+                String displayAccess = "";
                 if(access.equals("menu_right")){
-                    access = "Menu Propagation";
+                    displayAccess = "Menu Propagation";
                 }else if(access.equals("payment_right")){
-                    access="Payment Propagation";
+                    displayAccess="Payment Propagation";
                 }else if(access.equals("menu")){
-                    access = "Menu";
+                    displayAccess = "Menu";
                 }else if(access.equals("payment")){
-                    access="Payment";
+                    displayAccess="Payment";
                 }else if(access.equals("refund")){
-                    access="Refund";
+                    displayAccess="Refund";
                 }
                 
                 boolean hasRight = false;
@@ -95,11 +95,87 @@
                     }
                 }
                 if(hasRight){
-                    out.println("<input type='checkbox' name='access' value= '" + access + "' checked>" + access + "<br>");
+                    out.println("<input type='checkbox' name='access' value= '" + access + "' checked>" + displayAccess + "<br>");
                 }else{
-                    out.println("<input type='checkbox' name='access' value= '" + access + "'>" + access + "<br>");
+                    out.println("<input type='checkbox' name='access' value= '" + access + "'>" + displayAccess + "<br>");
                 }
             }
+            System.out.println(employeeAccessList);
+            if(u.getType().equals("1")){
+                
+                    String access = "menu_right";
+                    String displayAccess = "Menu Propagation";
+                    
+
+                    boolean hasRight = false;
+                    for(String employeeAccess : employeeAccessList){
+                        if(access.equals(employeeAccess)){
+                            hasRight = true;
+                        }
+                    }
+                    if(hasRight){
+                        out.println("<input type='checkbox' name='access' value= '" + access + "' checked>" + access + "<br>");
+                    }else{
+                        out.println("<input type='checkbox' name='access' value= '" + access + "'>" + access + "<br>");
+                    }
+                    
+                    access = "payment_right";
+                    displayAccess="Payment Propagation";
+                    
+                    hasRight = false;
+                    for(String employeeAccess : employeeAccessList){
+                        if(access.equals(employeeAccess)){
+                            hasRight = true;
+                        }
+                    }
+                    if(hasRight){
+                        out.println("<input type='checkbox' name='access' value= '" + access + "' checked>" + access + "<br>");
+                    }else{
+                        out.println("<input type='checkbox' name='access' value= '" + access + "'>" + access + "<br>");
+                    }
+                    
+                    access = "menu";
+                    displayAccess = "Menu";
+                    hasRight = false;
+                    for(String employeeAccess : employeeAccessList){
+                        if(access.equals(employeeAccess)){
+                            hasRight = true;
+                        }
+                    }
+                    if(hasRight){
+                        out.println("<input type='checkbox' name='access' value= '" + access + "' checked>" + access + "<br>");
+                    }else{
+                        out.println("<input type='checkbox' name='access' value= '" + access + "'>" + access + "<br>");
+                    }
+                    
+                    access = "payment";
+                    displayAccess="Payment";
+                    hasRight = false;
+                    for(String employeeAccess : employeeAccessList){
+                        if(access.equals(employeeAccess)){
+                            hasRight = true;
+                        }
+                    }
+                    if(hasRight){
+                        out.println("<input type='checkbox' name='access' value= '" + access + "' checked>" + access + "<br>");
+                    }else{
+                        out.println("<input type='checkbox' name='access' value= '" + access + "'>" + access + "<br>");
+                    }
+                    
+                    access = "refund";
+                    displayAccess="Refund";
+                    hasRight = false;
+                    for(String employeeAccess : employeeAccessList){
+                        if(access.equals(employeeAccess)){
+                            hasRight = true;
+                        }
+                    }
+                    if(hasRight){
+                        out.println("<input type='checkbox' name='access' value= '" + access + "' checked>" + access + "<br>");
+                    }else{
+                        out.println("<input type='checkbox' name='access' value= '" + access + "'>" + access + "<br>");
+                    }
+                }
             %>
                                                                             </tr>
                                                                         </tbody>
