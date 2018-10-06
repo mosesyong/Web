@@ -35,7 +35,7 @@
                 //out.println();
                 //out.println();
             %>
-                                                    <form action="CopyMenuWebServlet">
+                                                    <form action="CopyMenuWebServlet" onsubmit="return confirm('Warning, you are overriding your current menu. \nYou can tick the append box to preserve your menu.\nAlternatively, press OK to confirm overriding.');">
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                             Sister Outlet: 
@@ -56,14 +56,9 @@
             
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                            <span>Please note that appending the menu will wipe out your current menu and replace it. Process cannot be undone.</span> 
-                                                        
-                                                            </div>
-                                                        </div>
             
                                                         <input type="submit" name="menu" class="btn btn-info btn-fill pull-right" style="border-color: #FFE37C" value="Submit">
+                                                    
                                                     </form>
                                                 </div>
                                             </div>
