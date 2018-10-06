@@ -61,6 +61,14 @@ public class AddItemWebServlet extends HttpServlet {
             
             Part filePart = request.getPart("image"); // Retrieves <input type="file" name="file">
             String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+            String extension = fileName.substring(fileName.lastIndexOf('.')+1);
+            System.out.println(fileName);
+            System.out.println(extension);
+            if(!extension.equals("png")){
+                request.setAttribute("msg", "Invalid image submitted, must be png filetype");
+                request.getRequestDispatcher("AddMenu.jsp").forward(request, response);
+                return;
+            }
             InputStream fileContent = filePart.getInputStream();
             
             

@@ -46,6 +46,11 @@ public class PasswordChangeWebServlet extends HttpServlet {
             String username = request.getParameter("username");
             String oldPassword = request.getParameter("oldPassword");
             String newPassword = request.getParameter("newPassword");
+            if(newPassword.length() == 0 || newPassword.contains(" ")){
+                request.setAttribute("msg", "Invalid password entered");
+                request.getRequestDispatcher("Settings.jsp").forward(request, response);
+                return;
+            }
             DefaultHttpClient httpclient = new DefaultHttpClient();
             
             try {
@@ -85,6 +90,10 @@ public class PasswordChangeWebServlet extends HttpServlet {
               // immediate deallocation of all system resources
               httpclient.getConnectionManager().shutdown();
             }
+            
+            request.setAttribute("msg", "Error with password change");
+            request.getRequestDispatcher("Settings.jsp").forward(request, response);
+            return;
         }
     }
 
