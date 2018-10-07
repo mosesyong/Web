@@ -86,4 +86,40 @@ public class MenuDao {
           httpclient.getConnectionManager().shutdown();
         }
     }
+    
+    public static void updateCategory(User u, String url, int port){
+        DefaultHttpClient httpclient = new DefaultHttpClient();
+        try {
+          HttpHost target = new HttpHost(url, port, "http");
+
+          HttpPost postRequest = new HttpPost("/API/UpdateCategoryServlet");
+          ArrayList<NameValuePair> postParams = new ArrayList<>();
+          postParams.add(new BasicNameValuePair("username", u.getUsername()));
+          postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
+          HttpResponse httpResponse = httpclient.execute(target, postRequest);
+          HttpEntity entity = httpResponse.getEntity();
+
+
+          int statusCode = httpResponse.getStatusLine().getStatusCode();
+          if(statusCode == 200){
+              JsonParser parser = new JsonParser();
+              JsonObject jo = (JsonObject) parser.parse(EntityUtils.toString(entity));
+              JsonArray resultArray = jo.get("categories").getAsJsonArray();
+              ArrayList<String> categoryList = new ArrayList<>();
+              for(Object obj : resultArray){
+                  String category = obj.toString();
+                  category = category.substring(1,category.length()-1);
+                  categoryList.add(category);
+              }
+              u.setCategoryList(categoryList);
+          }
+        } catch (Exception e) {
+          e.printStackTrace();
+        } finally {
+          // When HttpClient instance is no longer needed,
+          // shut down the connection manager to ensure
+          // immediate deallocation of all system resources
+          httpclient.getConnectionManager().shutdown();
+        }
+    }
 }

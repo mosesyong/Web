@@ -40,6 +40,7 @@ public class CreateUserWebServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        User u = (User)session.getAttribute("user");
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String tempPassword = "" + (int)(Math.random()*1000);
@@ -85,6 +86,8 @@ public class CreateUserWebServlet extends HttpServlet {
 
           int statusCode = httpResponse.getStatusLine().getStatusCode();
           if(statusCode == 202){
+              
+              u.updateEmployees((String)session.getAttribute("url"), (Integer)session.getAttribute("port"));
               System.out.println("Successfully created user");
               request.setAttribute("msg", username + " successfully created. Check " + username + "'s email for password");
               request.setAttribute("tempPassword", tempPassword);

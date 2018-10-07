@@ -11,6 +11,16 @@
         <%@include file="sidebar.jsp"%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Copy Menu</title>
+        
+        <script>
+        function myFunc() {
+            var checkBox = document.getElementById("overwrite");
+
+            if (checkBox.checked == true){
+                alert("Warning, you are overwriting your current menu. \nYou can untick the append box to preserve your menu.\nAlternatively, press OK to confirm overwriting.");
+            }
+          }
+      </script>
     </head>
     <body>
         <div class ="wrapper">
@@ -35,7 +45,7 @@
                 //out.println();
                 //out.println();
             %>
-                                                    <form action="CopyMenuWebServlet" onsubmit="return confirm('Warning, you are overriding your current menu. \nYou can tick the append box to preserve your menu.\nAlternatively, press OK to confirm overriding.');">
+                                                    <form action="CopyMenuWebServlet">
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                             Sister Outlet: 
@@ -52,8 +62,7 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                Append Menu: <input type="checkbox" name="append" value="true"> Yes<br><br>
-            
+                                                                Overwrite Menu: <input type="checkbox" id="overwrite" name="overwrite" value="false" onclick="myFunc()"> Yes<br><br>
                                                             </div>
                                                         </div>
             

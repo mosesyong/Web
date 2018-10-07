@@ -78,7 +78,7 @@
                                                     <label>Permissions</label>
                                                     <div class="help-tip">
                                                         <p>Edit would give the user the permission to edit the respective function.<br>
-                                                            Edit Propagation would allow the user to give other users permission to edit the function.<br>
+                                                            Propagation would allow the user to give other users permission to edit the function.<br>
                                                             Refund would allow the employee to carry out refund transactions.</p>
 
                                                     </div>
@@ -97,11 +97,11 @@
                 }else if(access.equals("payment_right")){
                     displayAccess="Payment Propagation";
                 }else if(access.equals("menu")){
-                    displayAccess = "Menu";
+                    displayAccess = "Menu Edit";
                 }else if(access.equals("payment")){
-                    displayAccess="Payment";
+                    displayAccess="Payment Edit";
                 }else if(access.equals("refund")){
-                    displayAccess="Refund";
+                    displayAccess="Refund Edit";
                 }
                 
                 boolean hasRight = false;

@@ -5,8 +5,21 @@
  */
 package Entity;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 /**
  *
@@ -93,6 +106,11 @@ public class User {
         return accessList;
     }
     
+    
+    public void clearEmployees(){
+        employeeList = new ArrayList<ArrayList<String>>();
+    }
+    
     public ArrayList<ArrayList<String>> getEmployees(){
         return employeeList;
     }
@@ -150,6 +168,10 @@ public class User {
         return sisterOutlets;
     }
     
+    public void setCategoryList(ArrayList<String> categoryList){
+        this.categoryList = categoryList;
+    }
+    
     public boolean addCategory(String category){
         if(category == null || category.isEmpty() || categoryList.contains(category)){
             return false;
@@ -179,8 +201,46 @@ public class User {
         menuList = new ArrayList<>();
     }
     
+    public void updateEmployees(String url, int port){
+        DefaultHttpClient httpclient = new DefaultHttpClient();
+        try {
+            HttpHost target = new HttpHost(url, port, "http");
+
+            HttpPost postRequest = new HttpPost("/API/UpdateEmployeeServlet");
+            ArrayList<NameValuePair> postParams = new ArrayList<>();
+            postParams.add(new BasicNameValuePair("username", username));
+            postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
+            HttpResponse httpResponse = httpclient.execute(target, postRequest);
+            HttpEntity entity = httpResponse.getEntity();
+
+
+            int statusCode = httpResponse.getStatusLine().getStatusCode();
+            if(statusCode == 200){
+                clearEmployees();
+                JsonParser parser = new JsonParser();
+                JsonObject jo = (JsonObject) parser.parse(EntityUtils.toString(entity));
+                String employeeData = jo.get("employees").toString().replace("\"","").replace(username + ",","");
+                String[] employeeOverall = employeeData.split("  ");
+                for(String employeeList : employeeOverall){
+                    String[] employees = employeeList.split(" ");
+                    for(String employee : employees){
+                      addEmployee(new ArrayList<>(Arrays.asList(employee.split(","))));
+                    }
+                }
+          }
+        } catch (Exception e) {
+          e.printStackTrace();
+        } finally {
+          // When HttpClient instance is no longer needed,
+          // shut down the connection manager to ensure
+          // immediate deallocation of all system resources
+          httpclient.getConnectionManager().shutdown();
+        }
+    }
+    
     @Override
     public String toString(){
         return("Username: " + username + "\nCompany Name: " + companyName + "\nType: " + type + "\nAccess: " + access.toString() + "\nEmployee Ids: " + employeeList + "\nRoles: " + typeList + "\nsvc: " + svc + "\ngst: " + gst + "\nOutlets: " + outletNameList + "\nCategory: " + categoryList + "\nMenu Items: " + menuList + "\nSister Outlets: " + sisterOutlets);
     }
+    
 }

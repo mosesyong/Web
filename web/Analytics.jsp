@@ -4,6 +4,7 @@
     Author     : Moses
 --%>
 
+<%@page import="Dao.AnalyticsDao"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -28,6 +29,7 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script>   
    </head>
+   <%AnalyticsDao.getAnalytics(u);%>
     
     <body>
         <div class ="wrapper">

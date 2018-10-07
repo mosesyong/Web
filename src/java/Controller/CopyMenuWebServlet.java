@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Dao.MenuDao;
 import Entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -48,8 +49,8 @@ public class CopyMenuWebServlet extends HttpServlet {
             String companyName = u.getCompanyName();
             String sourceOutletName = request.getParameter("sourceOutletName");
             String outletName = u.getOutletName();
-            String[] appendArr = request.getParameterValues("append");
-            boolean append = appendArr != null;
+            String[] overwriteArr = request.getParameterValues("overwrite");
+            boolean overwrite = (overwriteArr != null);
             
             HttpHost target = new HttpHost((String)session.getAttribute("url"), (Integer)session.getAttribute("port"), "http");
 
@@ -59,7 +60,7 @@ public class CopyMenuWebServlet extends HttpServlet {
             postParams.add(new BasicNameValuePair("companyName", companyName));
             postParams.add(new BasicNameValuePair("sourceOutletName", sourceOutletName));
             postParams.add(new BasicNameValuePair("outletName", outletName));
-            if(append){
+            if(!overwrite){
                 postParams.add(new BasicNameValuePair("append", "true"));
             }
             
@@ -71,8 +72,9 @@ public class CopyMenuWebServlet extends HttpServlet {
             int statusCode = httpResponse.getStatusLine().getStatusCode();
             
             if(statusCode == 202){
-              System.out.println("Successfully created user");
-              if(append){
+              MenuDao.updateCategory(u,(String)session.getAttribute("url"), (Integer)session.getAttribute("port"));
+              System.out.println("Successfully copied menu");
+              if(!overwrite){
                 request.setAttribute("msg", "Successfully appended menu from " + sourceOutletName + " to " + outletName);
               }else{
                 request.setAttribute("msg", "Successfully copied menu from " + sourceOutletName + " to " + outletName);

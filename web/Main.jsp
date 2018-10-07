@@ -4,6 +4,7 @@
     Author     : Moses
 --%>
 
+<%@page import="Dao.AnalyticsDao"%>
 <%@page import="Entity.AnalyticsEntity"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
@@ -57,6 +58,7 @@
     <body>
         
         <%
+            AnalyticsDao.getAnalytics(u);
             System.out.println(u);
             if(!u.isLastChild()){
                 %>
