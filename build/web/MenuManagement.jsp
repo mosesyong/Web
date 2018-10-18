@@ -63,11 +63,15 @@
                                         <h4 class="title">Edit Menu Items</h4>
                                     </div>
             <%
-            String msg = (String)request.getAttribute("msg");
-            if(msg != null){
-                out.println("<font color='red'>"  + msg + "</font>");
-            }
-            %>
+            String successMsg = (String)request.getAttribute("successMsg");
+                if(successMsg != null){
+                    out.println("<font color='green'>"  + successMsg + "</font>");
+                }   
+                String errorMsg = (String)request.getAttribute("errorMsg");
+                if(errorMsg != null){
+                    out.println("<font color='red'>"  + errorMsg + "</font>");
+                }
+            %> <!-- idk for what -->
            
                                     <div class="content table-responsive table-full-width">
                                         <table class="table table-hover table-striped">

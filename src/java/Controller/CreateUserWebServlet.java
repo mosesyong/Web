@@ -89,12 +89,11 @@ public class CreateUserWebServlet extends HttpServlet {
               
               u.updateEmployees((String)session.getAttribute("url"), (Integer)session.getAttribute("port"));
               System.out.println("Successfully created user");
-              request.setAttribute("msg", username + " successfully created. Check " + username + "'s email for password");
-              request.setAttribute("tempPassword", tempPassword);
+              request.setAttribute("successMsg", username + " successfully created. Check " + username + "'s email for password. Temporary password is " + tempPassword + ".");
               request.getRequestDispatcher("CreateUser.jsp").forward(request, response);
           }else{
               System.out.println("Error, redirect to create user page");
-              request.setAttribute("msg", "Unable to create " + username);
+              request.setAttribute("errorMsg", "Unable to create " + username);
               request.getRequestDispatcher("CreateUser.jsp").forward(request, response);
           }
 
@@ -102,7 +101,7 @@ public class CreateUserWebServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error, redirect to create user page");
-            request.setAttribute("msg", "Unable to create " + username);
+            request.setAttribute("errorMsg", "Unable to create " + username);
             request.getRequestDispatcher("CreateUser.jsp").forward(request, response);
         } finally {
           // When HttpClient instance is no longer needed,

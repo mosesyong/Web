@@ -151,15 +151,21 @@
                                                     </div>
                                                 </div>    
                                             </div>
-                    <% 
-                                            String msg = (String)request.getAttribute("msg");
-                                            if(msg != null){
-                                                out.println("<font color='green'>" + msg + "</font>");
+                                            
+                                 <% 
+                                            String successMsg = (String)request.getAttribute("successMsg");
+                                            if(successMsg != null){
+                                                out.println("<font color='green'>"  + successMsg + "</font>");
+                                            }   
+                                            String errorMsg = (String)request.getAttribute("errorMsg");
+                                            if(errorMsg != null){
+                                                out.println("<font color='red'>"  + errorMsg + "</font>");
                                             }
                                     //out.println();
                                     //out.println();
                                 %>
-                                            <input type="submit" name="menu" class="btn btn-info btn-fill pull-right" value="Keep Changes">
+                                            
+                                             <input type="submit" name="menu" class="btn btn-info btn-fill pull-right" value="Keep Changes">
                                 
                                             <div class="clearfix"></div>
                                         </form>

@@ -79,17 +79,17 @@ public class EmployeeEditWebServlet extends HttpServlet {
                 int statusCode = httpResponse.getStatusLine().getStatusCode();
                 if(statusCode == 202){
                     
-                    request.setAttribute("msg", "Successfully changed data for " + employeeUsername);
+                    request.setAttribute("successMsg", "Successfully changed data for " + employeeUsername);
                     request.getRequestDispatcher("UserManagement.jsp").forward(request, response);
                     return;
                 }else{
-                    request.setAttribute("msg", "Unable to change access for " + employeeUsername);
+                    request.setAttribute("errorMsg", "Unable to change access for " + employeeUsername);
                     request.getRequestDispatcher("UserManagement.jsp").forward(request, response);
                     return;
                 }
             }catch(Exception e){
                 e.printStackTrace();
-                request.setAttribute("msg", "Unable to change access for " + employeeUsername);
+                request.setAttribute("errorMsg", "Unable to change access for " + employeeUsername);
                 request.getRequestDispatcher("UserManagement.jsp").forward(request, response);
                 return;
             }

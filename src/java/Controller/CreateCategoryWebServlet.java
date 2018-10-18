@@ -106,16 +106,16 @@ public class CreateCategoryWebServlet extends HttpServlet {
                 if(statusCode == 202){
                     u.addCategory(category);
                     System.out.println("Successfully added category" + category);
-                    request.setAttribute("msg", category + " successfully created");
+                    request.setAttribute("successMsg", category + " successfully created");
                     request.getRequestDispatcher("CreateCategory.jsp").forward(request, response);
                 }else{
                     System.out.println("Error, redirect to create create category page");
-                    request.setAttribute("msg", "Unable to create " + category);
+                    request.setAttribute("errorMsg", "Unable to create " + category);
                     request.getRequestDispatcher("CreateCategory.jsp").forward(request, response);
                 }
             }catch(Exception e){
                 e.printStackTrace();
-                request.setAttribute("msg", "Error: " + e.getMessage());
+                request.setAttribute("errorMsg", "Error: " + e.getMessage());
                 request.getRequestDispatcher("CreateCategory.jsp").forward(request, response);
             }
         }

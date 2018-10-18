@@ -307,13 +307,13 @@
                                                 </div>
                                             </div>
                     <%  }}; 
-                        String tempPassword = (String)request.getAttribute("tempPassword");
-                        if(tempPassword != null){
-                            out.println("<font color='green'> Your Temporary Password is:"  + tempPassword + "</font>");
+                        String successMsg = (String)request.getAttribute("successMsg"); //password to append in successMsg
+                        if(successMsg != null){
+                            out.println("<font color='green'>"  + successMsg + "</font>");
                         }   
-                        String msg = (String)request.getAttribute("msg");
-                        if(msg != null){
-                            out.println("<font color='green'>" + msg + "</font>");
+                        String errorMsg = (String)request.getAttribute("errorMsg");
+                        if(errorMsg != null){
+                            out.println("<font color='red'>"  + errorMsg + "</font>");
                         }
                 //out.println();
                 //out.println();

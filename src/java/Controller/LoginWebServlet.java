@@ -153,7 +153,7 @@ public class LoginWebServlet extends HttpServlet {
               }else{
                   System.out.println(httpResponse.getStatusLine() + "<br>");
                   System.out.println("Error, redirect to login page with error");
-                  request.setAttribute("msg", "Invalid Username/Password");
+                  request.setAttribute("errorMsg", "Invalid Username/Password");
                   request.getRequestDispatcher("Login.jsp").forward(request, response);
               }
               

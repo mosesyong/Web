@@ -52,9 +52,13 @@
                         <div class='col-12 forgot' style='margin:0'>
                                 <a href="PasswordReset.jsp">Forgot Password?</a><br>
                                 <%
-                String msg = (String)request.getAttribute("msg");
-                if(msg != null){
-                    out.println("<font color='red'>"  + msg + "</font>");
+                String successMsg = (String)request.getAttribute("successMsg");
+                if(successMsg != null){
+                    out.println("<font color='#73ffa7'>"  + successMsg + "</font>");
+                }   
+                String errorMsg = (String)request.getAttribute("errorMsg");
+                if(errorMsg != null){
+                    out.println("<font color='red'>"  + errorMsg + "</font>");
                 }
                 out.println("<br><font color='white'>"  + Properties.checkAlive() + "</font><br>");
                     

@@ -47,7 +47,7 @@ public class PasswordChangeWebServlet extends HttpServlet {
             String oldPassword = request.getParameter("oldPassword");
             String newPassword = request.getParameter("newPassword");
             if(newPassword.length() == 0 || newPassword.contains(" ")){
-                request.setAttribute("msg", "Invalid password entered");
+                request.setAttribute("errorMsg", "Invalid password entered");
                 request.getRequestDispatcher("Settings.jsp").forward(request, response);
                 return;
             }
@@ -72,11 +72,11 @@ public class PasswordChangeWebServlet extends HttpServlet {
               boolean isSelf = loggedInUsername.equals(username);              
               if(statusCode == 202){
                   System.out.println("Successfully changed password");
-                  request.setAttribute("msg", "Password successfully changed");
+                  request.setAttribute("successMsg", "Password successfully changed");
                   request.getRequestDispatcher("Settings.jsp").forward(request, response);
                   return;
               }else{
-                  request.setAttribute("msg", "Error with password change");
+                  request.setAttribute("errorMsg", "Error with password change");
                   request.getRequestDispatcher("Settings.jsp").forward(request, response);
                   return;
               }
@@ -91,7 +91,7 @@ public class PasswordChangeWebServlet extends HttpServlet {
               httpclient.getConnectionManager().shutdown();
             }
             
-            request.setAttribute("msg", "Error with password change");
+            request.setAttribute("errorMsg", "Error with password change");
             request.getRequestDispatcher("Settings.jsp").forward(request, response);
             return;
         }
