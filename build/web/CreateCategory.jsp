@@ -74,7 +74,7 @@
             <%
                 String msg = (String)request.getAttribute("msg");
                 if(msg != null){
-                    out.println("<font color='red'>"  + msg + "</font>");
+                    out.println("<font color='green'>"  + msg + "</font>");
                 }   
                 //out.println();
                 //out.println();

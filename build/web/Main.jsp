@@ -36,20 +36,6 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script>
 
-        <!-- Bootstrap core CSS     -->
-        <link href="design/css/bootstrap.min.css" rel="stylesheet" />
-
-        <!-- Animation library for notifications   -->
-        <link href="design/css/animate.min.css" rel="stylesheet"/>
-
-        <!--  CSS for Demo Purpose, don't include it in your project     -->
-        <link href="design/css/demo.css" rel="stylesheet" />
-
-
-        <!--     Fonts and icons     -->
-        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-        <link href="design/css/pe-icon-7-stroke.css" rel="stylesheet" />
    </head>
    
 

@@ -2,6 +2,48 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/sidebar.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Entity/AnalyticsEntity.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/EmployeeEdit.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Controller/CreateUserWebServlet.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/DisplayTransactions.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/sass/light-bootstrap-dashboard.scss</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/css/mainbody.css</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Controller/CopyMenuWebServlet.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Controller/LoginWebServlet.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/CopyMenu.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/Analytics.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/css/light-bootstrap-dashboard.css</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/css/sidebar.css</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/Login.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/PasswordReset.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/css/loginpage.css</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Controller/AnalyticsWebServlet.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/js/core/jquery.3.2.1.min.js</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/trialMain.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/css/tooltips.css</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/MenuManagement.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/CreateUser.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Dao/TransactionDao.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/js/core/bootstrap.min.js</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/css/pe-icon-7-stroke.css</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/AddMenu.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/UserManagement.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/SalesAnalytics.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Entity/User.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Controller/EmployeeAccessWebServlet.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/testSidebar.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/Settings.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/EditMenu.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/js/core/popper.min.js</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/CreateCategory.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/Main.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/js/light-bootstrap-dashboard.js</file>
+        </group>
+>>>>>>> ebd1b2ce145c2c5398ef762644b250793ba172b8
     </open-files>
 </project-private>

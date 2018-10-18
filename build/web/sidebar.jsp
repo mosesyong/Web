@@ -173,7 +173,6 @@
                             <ul class="nav navbar-nav navbar-left">
                                         <li>
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                <!--<i class="fa fa-dashboard"></i>-->
                                             </a>
                                         </li>
                             </ul>
@@ -209,5 +208,12 @@
 
 
 </body>
+ <!--   Core JS Files   -->
+        <!--<script src="design/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>this is causing my js to not work-->
+	<script src="design/js/core/bootstrap.min.js" type="text/javascript"></script>
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+	<script src="design/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+
 
 </html>
