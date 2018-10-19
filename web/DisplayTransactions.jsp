@@ -10,18 +10,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@ include file ="sidebar.jsp"%>
+        <%@ include file ="testSidebar.jsp"%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Display Transactions</title>
     </head>
     <body>
         <div class='wrapper'>
-            <div class='main-panel'>
+            <div class='main-panel' style="margin-top:-530px">
                 <div class="content">
                     <div class="container-fluid">
                         <div class="card">
                             <div class="header">
-                                <h1>List past transactions</h1>
+                                <h3>List past transactions</h3>
                             </div>
                             
                             <div class="content">

@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="sidebar.jsp"%>
+        <%@include file="testSidebar.jsp"%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Copy Menu</title>
         
@@ -24,7 +24,7 @@
     </head>
     <body>
         <div class ="wrapper">
-            <div class="main-panel">
+            <div class="main-panel" style="margin-top:-530px">
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">

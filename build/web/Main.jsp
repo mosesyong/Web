@@ -4,6 +4,7 @@
     Author     : Moses
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="Dao.AnalyticsDao"%>
 <%@page import="Entity.AnalyticsEntity"%>
 <%@page import="java.time.LocalDate"%>
@@ -24,7 +25,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="sidebar.jsp"%>
+     
+       <%@include file="testSidebar.jsp"%>
 	<meta charset="utf-8" />
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -37,20 +39,17 @@
         <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script>
 
    </head>
-   
-
-   
-   
-    <body>
-        
+    <body> 
+         
         <%
             AnalyticsDao.getAnalytics(u);
             System.out.println(u);
             if(!u.isLastChild()){
                 %>
             
+        
         <div class ="wrapper">
-            <div class="main-panel">
+            <div class="main-panel" style="margin-top: -530px">
                 <div class="content">
                     <div class="container-fluid">
                         <div class='row'>

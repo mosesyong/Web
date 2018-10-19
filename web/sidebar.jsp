@@ -173,6 +173,7 @@
                             <ul class="nav navbar-nav navbar-left">
                                         <li>
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <!--<i class="fa fa-dashboard"></i>-->
                                             </a>
                                         </li>
                             </ul>

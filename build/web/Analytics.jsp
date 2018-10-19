@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="sidebar.jsp"%>
+        <%@include file="testSidebar.jsp"%>
 	<meta charset="utf-8" />
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -33,7 +33,7 @@
     
     <body>
         <div class ="wrapper">
-            <div class="main-panel">
+            <div class="main-panel" style="margin-top:-530px">
                 <div class="content">
                     <div class="container-fluid">
                         

@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-       <%@include file="sidebar.jsp"%>
+       <%@include file="testSidebar.jsp"%>
        <link rel="stylesheet" type="text/css" href="design/css/tooltips.css">
 	<meta charset="utf-8" />
 	
@@ -27,7 +27,7 @@
 
     <body>
         <div class ="wrapper">         
-            <div class="main-panel"> 
+            <div class="main-panel" style="margin-top: -550px"> 
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">
