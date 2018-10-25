@@ -104,7 +104,7 @@
                 </li>
                 <%}if(!u.isLastChild()){%>
                 <li>
-                    <a href="Analytics.jsp">
+                    <a href="tempAnalytics.jsp">
                         <i class="pe-7s-graph1"></i>
                         <p>View Analytics</p>
                     </a>
