@@ -71,6 +71,7 @@ public class AnalyticsDao {
                         String dateString = transactionDataObj.get("dateTime").getAsString();
                         String tid = transactionDataObj.get("TID").getAsString();
                         String cashierName = transactionDataObj.get("cashierName").getAsString();
+                        boolean refunded = transactionDataObj.get("refunded").getAsBoolean();
 
                         String pattern = "yyyy-MM-dd HH:mm:ss";
                         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
@@ -82,7 +83,7 @@ public class AnalyticsDao {
                             Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
                         }
 
-                        TransactionDao.addTransaction(new Transaction(companyName, outletName, dateTime, paymentType, foodName, quantity, totalPrice, tid, cashierName));
+                        TransactionDao.addTransaction(new Transaction(companyName, outletName, dateTime, paymentType, foodName, quantity, totalPrice, tid, cashierName, refunded));
                       
                     }
                 }

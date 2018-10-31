@@ -43,11 +43,7 @@
                                         </div>
                                         <div class="col-md-2">   
                                             <div class="form-group">
-                                        <select name="time">
-                                           <option value="">Select Time</option>
-                                           <option value="3">3 Hours</option>
-                                           <option value="all">All</option>
-                                        </select>
+                                        Select Time: <input type="number" step="1" name="time"/>
                                             </div>
                                         </div>
                                     <input type="submit" name="menu" class="btn btn-info btn-fill" style="border-color: #FFE37C" value="Submit">
@@ -67,7 +63,7 @@
                                               <thead>
                                               <%
 
-                                                  out.println("<th>Cashier Name</th><th>Total Amount</th><th>Payment Type</th><th>Date</th>");
+                                                  out.println("<th>Cashier Name</th><th>Total Amount</th><th>Payment Type</th><th>Date</th><th>Refunded</th><th>Refunded By<th><th>Refunded Date</th>");
 
                                                   %>
                                               </thead>
@@ -75,7 +71,7 @@
                                         <%
                                             ArrayList<Transaction> transactionDataList = (ArrayList<Transaction>)obj;
                                             for(Transaction t : transactionDataList){
-                                                out.println("<tr><td align='center'>" + t.cashierName + "</td><td align='center'>" + t.totalPrice + "</td><td>" + t.paymentType + "</td><td>" + t.dateTime + "</td></tr>");
+                                                out.println("<tr><td align='center'>" + t.cashierName + "</td><td align='center'>" + t.totalPrice + "</td><td>" + t.paymentType + "</td><td>" + t.dateTime + "</td><td>" + t.refunded + "</td><<td>" + t.refundedBy + "</td><<td>" + t.refundDate + "</td><</tr>");
                                             }
                                             out.println("</table>");
                                         }

@@ -41,6 +41,30 @@ public class TransactionDao {
         return transactionList;
     }
     
+    public static ArrayList<Transaction> getNonRefundedTransactionList(){
+        ArrayList<Transaction> result = new ArrayList<>();
+        
+        for(Transaction t : transactionList){
+            if(!t.refunded){
+                result.add(t);
+            }
+        }
+        
+        return result;
+    }
+    
+    public static ArrayList<Transaction> getRefundedTransactionList(){
+        ArrayList<Transaction> result = new ArrayList<>();
+        
+        for(Transaction t : transactionList){
+            if(t.refunded){
+                result.add(t);
+            }
+        }
+        
+        return result;
+    }
+    
     public static ArrayList<Transaction> getDisplayTransactionList(String outletName, Date previousDate){
         ArrayList<Transaction> tempResult = new ArrayList<>();
         
@@ -105,6 +129,9 @@ public class TransactionDao {
             
             if(analyticsType.equals("Sales")){
                 for(Transaction t : transactionList){
+                    if(t.refunded){
+                        continue;
+                    }
 //                    System.out.println(t);
                     if((t.paymentType.equals(paymentType) || paymentType.equals("All")) && (t.outletName.equals(outletName) || outletName.equals("All")) && t.dateTime.after(prevDateTime)){
                         System.out.println(analyticsEntityList);
@@ -118,6 +145,9 @@ public class TransactionDao {
                 }
             }else if(analyticsType.equals("ItemsQuantity") || analyticsType.equals("ItemsAmount")){
                 for(Transaction t : transactionList){
+                    if(t.refunded){
+                        continue;
+                    }
                     if((t.paymentType.equals(paymentType) || paymentType.equals("All")) && (t.outletName.equals(outletName) || outletName.equals("All")) && t.dateTime.after(prevDateTime)){
                         boolean added = false;
                         for(AnalyticsEntity e : analyticsEntityList){
@@ -162,6 +192,9 @@ public class TransactionDao {
         HashMap<String,Double> analyticsEntityMap = new HashMap<>();
         
         for(Transaction t : transactionList){
+            if(t.refunded){
+                continue;
+            }
             if(t.dateTime.after(prevDateTime)){
                 String name = t.foodName;
                 Double amount = analyticsEntityMap.get(name);
@@ -207,6 +240,9 @@ public class TransactionDao {
         HashMap<String,Integer> analyticsEntityMap = new HashMap<>();
         
         for(Transaction t : transactionList){
+            if(t.refunded){
+                continue;
+            }
             if(t.dateTime.after(prevDateTime)){
                 String name = t.foodName;
                 Integer quantity = analyticsEntityMap.get(name);
@@ -252,6 +288,9 @@ public class TransactionDao {
         ArrayList<AnalyticsEntity> analyticsEntityList = new ArrayList<>();
         
         for(Transaction t : transactionList){
+            if(t.refunded){
+                continue;
+            }
             if(t.dateTime.after(prevDateTime)){
                 String name = t.foodName;
                 boolean added = false;
@@ -307,6 +346,9 @@ public class TransactionDao {
         ArrayList<AnalyticsEntity> analyticsEntityList = new ArrayList<>();
         
         for(Transaction t : transactionList){
+            if(t.refunded){
+                continue;
+            }
             if(t.dateTime.after(prevDateTime)){
                 String name = t.foodName;
                 boolean added = false;
@@ -362,6 +404,9 @@ public class TransactionDao {
         ArrayList<AnalyticsEntity> analyticsEntityList = new ArrayList<>();
         
         for(Transaction t : transactionList){
+            if(t.refunded){
+                continue;
+            }
             if(t.dateTime.after(prevDateTime)){
                 String name = t.foodName;
                 boolean added = false;
@@ -417,6 +462,9 @@ public class TransactionDao {
         ArrayList<AnalyticsEntity> analyticsEntityList = new ArrayList<>();
         
         for(Transaction t : transactionList){
+            if(t.refunded){
+                continue;
+            }
             if(t.dateTime.after(prevDateTime)){
                 String name = t.foodName;
                 boolean added = false;

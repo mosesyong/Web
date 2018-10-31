@@ -62,6 +62,13 @@ public class TransactionListWebServlet extends HttpServlet {
             String outletName = request.getParameter("outletName");
             String time = request.getParameter("time");
             
+//            To display refunded values?
+//            String[] refunded = request.getParameterValues("refund");
+//            boolean refund = false;
+//            if(refunded.length > 0){
+//                refund = true;
+//            }
+            
 
 //            cal.add(Calendar.HOUR, -3);
 //            Date prevDateTime = cal.getTime();
@@ -77,9 +84,8 @@ public class TransactionListWebServlet extends HttpServlet {
             ArrayList<NameValuePair> postParams = new ArrayList<>();
             postParams.add(new BasicNameValuePair("companyName", companyName));
             postParams.add(new BasicNameValuePair("outletName", outletName));
-            if(time.equals("all")){
-                postParams.add(new BasicNameValuePair("time", "all"));
-            }
+            postParams.add(new BasicNameValuePair("time", time));
+                
             postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
             HttpResponse httpResponse = httpclient.execute(target, postRequest);
             HttpEntity entity = httpResponse.getEntity();
@@ -105,6 +111,20 @@ public class TransactionListWebServlet extends HttpServlet {
                 double totalPrice = resultObj.get("totalPrice").getAsDouble(); //2018-09-27 13:07:47.0
                 String paymentType = resultObj.get("type").getAsString();
                 Transaction t = new Transaction(cashierName, dateTime, paymentType, totalPrice);
+                
+                boolean refunded = resultObj.get("refunded").getAsBoolean();
+                if(refunded){
+                    t.refunded = true;
+                    t.refundedBy = resultObj.get("refundedBy").getAsString();
+                    String refundDateString = resultObj.get("refundedDate").getAsString(); //2018-09-27 13:07:47.0
+                    Date refundDate = null;
+                    try {
+                        refundDate = sdf.parse(refundDateString);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    t.refundDate = refundDate;
+                }
                 transactionList.add(t);
             }
             

@@ -136,7 +136,7 @@ public class LoginWebServlet extends HttpServlet {
                   AnalyticsDao.getAnalytics(u);
                   MenuDao.getMenu(u, url, port);
                   System.out.println(u);
-                  response.sendRedirect("home.jsp");
+                  response.sendRedirect("Main.jsp");
               }else if(statusCode == 200){
                   HashSet<String> access = new HashSet<>();
                   access.add("su");

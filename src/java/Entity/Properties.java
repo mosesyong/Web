@@ -16,7 +16,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
  * @author moses
  */
 public class Properties {
-    public static String url = "localhost";
+    public static String url = "192.168.1.42";
     public static int port = 8080;     
     
     public Properties(){
