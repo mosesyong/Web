@@ -15,7 +15,8 @@
 %> 
 
     <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    
+    <link rel="icon" type="image/png" href="design/img/topbaricon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 
@@ -41,15 +42,8 @@
 </head>
 <body>
 
-<div class="wrapper">
+<div class="main-wrapper">
     <div class="sidebar" data-color="black" data-image="assets/img/sidebar-5.jpg">
-
-    <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
 
     	<div class="sidebar-wrapper">
             <div class="logo">
@@ -104,7 +98,7 @@
                 </li>
                 <%}if(!u.isLastChild()){%>
                 <li>
-                    <a href="tempAnalytics.jsp">
+                    <a href="Analytics.jsp">
                         <i class="pe-7s-graph1"></i>
                         <p>View Analytics</p>
                     </a>

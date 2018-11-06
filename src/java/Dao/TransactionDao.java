@@ -97,7 +97,7 @@ public class TransactionDao {
     
     public static HashMap<String,ArrayList<AnalyticsEntity>> getAnalyticsMap(String analyticsType, String paymentType, String outletName){
         HashMap<String, ArrayList<AnalyticsEntity>> result = new HashMap<>();
-        
+        System.out.println("controller");
         ArrayList<String> timeList = new ArrayList<>();
         timeList.add("All");
         timeList.add("Year");
