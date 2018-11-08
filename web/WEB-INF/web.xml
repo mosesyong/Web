@@ -72,6 +72,10 @@
         <servlet-name>PasswordResetWebServlet</servlet-name>
         <servlet-class>Controller.PasswordResetWebServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateDiscountWebServlet</servlet-name>
+        <servlet-class>Controller.CreateDiscountWebServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>PasswordResetWebServlet</servlet-name>
         <url-pattern>/PasswordResetWebServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateDiscountWebServlet</servlet-name>
+        <url-pattern>/CreateDiscountWebServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
