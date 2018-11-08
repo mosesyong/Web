@@ -43,21 +43,25 @@
          
         <%
             AnalyticsDao.getAnalytics(u);
+            System.out.println("User info:");
             System.out.println(u);
+            System.out.println();
             if(!u.isLastChild()){
                 %>
             
         
         <div class ="wrapper">
-            <div class="main-panel" style="margin-top: -530px">
+            <div class="main-panel">
                 <div class="content">
                     <div class="container-fluid">
                         <div class='row'>
                             <div class="col-md-6">
                                  <%
+                                     System.out.println(TransactionDao.getTransactionList());
                             ArrayList<String> items = new ArrayList<>();
                             ArrayList<Integer> quantity = new ArrayList<>();
                             ArrayList<AnalyticsEntity> entry = TransactionDao.getTopSellersByQuantity("Year",5);
+                            System.out.println(entry);
                             for(AnalyticsEntity aEntry : entry){
                                 String itemName = aEntry.label;
                                 int value = aEntry.quantity;

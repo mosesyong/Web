@@ -1332,7 +1332,7 @@ fieldset[disabled] .btn-neutral.active {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-    padding: 12px 8px;
+    padding: 12px 10px;
     vertical-align: middle;
     text-align: center;
 }
@@ -1368,6 +1368,7 @@ fieldset[disabled] .btn-neutral.active {
     opacity: 1;
     filter: alpha(opacity=100);
 }
+
 
 /*      Checkbox and radio         */
 .checkbox,

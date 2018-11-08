@@ -42,7 +42,7 @@
    </head>
     <body>
         <div class="wrapper">
-            <div class="main-panel" style="margin-top:-530px">
+            <div class="main-panel">
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">

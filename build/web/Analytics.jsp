@@ -33,7 +33,7 @@
     
     <body>
         <div class ="wrapper">
-            <div class="main-panel" style="margin-top:-530px">
+            <div class="main-panel">
                 <div class="content">
                     <div class="container-fluid">
                         
@@ -89,16 +89,19 @@
                                              String outlet = (String) request.getAttribute("outletName");
                                              HashMap<String, ArrayList<AnalyticsEntity>> analyticsMap = new HashMap<>();
                                              analyticsMap = (HashMap<String, ArrayList<AnalyticsEntity>>) request.getAttribute("analyticsResults");
-                                             
+                                             System.out.println(analyticsType);
+                                             System.out.println(paymentType);
+                                             System.out.println(outlet);
+                                             System.out.println("Start");
                                              ArrayList<String> periodList = new ArrayList<>();
                                              periodList.add("All");
                                              periodList.add("Year");
                                              periodList.add("Month");
                                              periodList.add("Week");
                                              periodList.add("Day");
-                                             
+                                             System.out.println("Here 1");
                                              DecimalFormat df = new DecimalFormat(".##");
-//                                             System.out.println(analyticsMap);
+                                             System.out.println(analyticsMap);
                                              if(analyticsType == null && analyticsMap == null){    
                                                 
                                              } else if(analyticsType.equals("Sales")){
@@ -108,10 +111,15 @@
                                                     ArrayList<AnalyticsEntity> entry =  analyticsMap.get(period);
                                                     System.out.println(period);
                                                     System.out.println(entry);
+                                                    System.out.println("about to loop");
                                                     for(AnalyticsEntity entity : entry){
                                                         String label = entity.label;
                                                         Double amount = (double) entity.amount;
                                                         String properAmount = df.format(amount);
+                                                        System.out.println("inLoop");
+                                                        System.out.println(label);
+                                                        System.out.println(amount); 
+                                                        System.out.println(properAmount);
                                                          %>
                                                 <div class="col-lg-3 col-md-6 col-sm-6">
                                                     <div class="card card-stats">
