@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-       <%@include file="testSidebar.jsp"%>
+       <%@include file="PanelBars.jsp"%>
        <link rel="stylesheet" type="text/css" href="design/css/tooltips.css">
 	<meta charset="utf-8" />
 	
@@ -319,7 +319,7 @@
                 //out.println();
             %>                            
                                     
-                                                <button type="submit" class="btn btn-info btn-fill pull-right">Create Profile</button>
+                                                <button type="submit" class="btn btn-info btn-fill pull-right" style="border-color: #FFE37C">Create Profile</button>
                                                 <div class="clearfix"></div>
                                             
                                         </div>

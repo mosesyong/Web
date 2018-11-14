@@ -8,27 +8,60 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <%@include file="PanelBars.jsp"%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Create Discount</title>
+        <title>SnapDash</title>
     </head>
     <body>
-        <h1>Create Discount</h1>
+        <div class ="wrapper">
+            <div class="main-panel">
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="header">
+                                        <h4 class="title">Create Discount</h4>
+                                    </div>
+                                    <div class="content">
+                                        <form action="CreateDiscountWebServlet" method='post'>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Discount Name</label>
+                                                            <input type="text" class="form-control" placeholder="Discount Name" name="discountName">
+                                                        </div>
+                                                    </div>
+                                                
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Discount Percentage</label>
+                                                            <input type="number" class="form-control" placeholder="Discount Percentage (%)" name="discountPercentage" min="0" max ="100" step="0.01">
+                                                            </div>
+                                                    </div>
+                                                </div>             
+                                            <button type="submit" class="btn btn-info btn-fill pull-right" style="border-color: #FFE37C">Create Discount</button>
+                                            <div class="clearfix"></div>
+                                        </form>      
+                                    </div>       
+                                </div>
+                            </div>       
+                        </div>
+                    </div>
+                    <%
+                        String successMsg = (String)request.getAttribute("successMsg");
+                        if(successMsg != null){
+                            out.println("<font color='green'>"  + successMsg + "</font>");
+                        }   
+                        String errorMsg = (String)request.getAttribute("errorMsg");
+                        if(errorMsg != null){
+                            out.println("<font color='red'>"  + errorMsg + "</font>");
+                        }   
+                    %>
+                </div>
+            </div>
+        </div>
         
-        <form action="CreateDiscountWebServlet">
-            Discount Name <input type ="text" name ="discountName"><br>
-            Discount Percentage <input type ="number"  name = "discountPercentage" min="0" max ="100" step="0.01"><br>
-            <input type ="submit" name ="submit" value ="submit">
-        </form>
         
-        <%
-            String successMsg = (String)request.getAttribute("successMsg");
-            if(successMsg != null){
-                out.println("<font color='green'>"  + successMsg + "</font>");
-            }   
-            String errorMsg = (String)request.getAttribute("errorMsg");
-            if(errorMsg != null){
-                out.println("<font color='red'>"  + errorMsg + "</font>");
-            }   
-        %>
     </body>
 </html>

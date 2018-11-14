@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="testSidebar.jsp"%>
+        <%@include file="PanelBars.jsp"%>
 	<meta charset="utf-8" />
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -74,7 +74,7 @@
                                                                     }
                                                                     %>
                                                          </select>
-                                                         <button type="submit" class="btn btn-info btn-fill" style="border-color: #FFE37C">Submit</button>
+                                                         <button type="submit" class="btn btn-info btn-fill" style="border-color: #FFE37C;">Submit</button>
                                                     </form> 
                                                 </div>
                                             </div>

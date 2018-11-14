@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-    <%@include file="sidebar.jsp"%>
+        <%@include file="PanelBars.jsp"%>
 	<meta charset="utf-8" />
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -165,7 +165,7 @@
                                     //out.println();
                                 %>
                                             
-                                             <input type="submit" name="menu" class="btn btn-info btn-fill pull-right" value="Keep Changes">
+                                             <input type="submit" name="menu" class="btn btn-info btn-fill pull-right" style="border-color: #FFE37C" value="Keep Changes">
                                 
                                             <div class="clearfix"></div>
                                         </form>

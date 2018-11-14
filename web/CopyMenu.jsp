@@ -8,9 +8,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="testSidebar.jsp"%>
+        <%@include file="PanelBars.jsp"%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Copy Menu</title>
+        <title>SnapDash</title>
         
         <script>
         function myFunc() {
