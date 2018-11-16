@@ -43,7 +43,7 @@
 <body>
 
 <div class="main-wrapper">
-    <div class="sidebar" data-color="black" data-image="assets/img/sidebar-5.jpg">
+    <div class="sidebar" data-color="black" data-image="design/img/sidebar-5.jpg">
 
     	<div class="sidebar-wrapper">
             <div class="logo">
@@ -78,6 +78,13 @@
                         <p>Manage Employees</p>
                     </a>
                 </li>
+                <%}if(!u.getType().equals("0") && u.hasMenuAccess()){%>
+                <li class="nav-item">
+                    <a class="nav-link" id="menu-tab" data-toggle="tab" href="CreateCategory.jsp" role="tab" aria-controls="menu" aria-selected="false">
+                    <i class="pe-7s-network"></i>
+                    <p>Create Category</p>    
+                    </a>
+                </li>
                 <li>
                     <a href="AddMenu.jsp">
                         <i class="pe-7s-cart"></i>
@@ -96,6 +103,13 @@
                         <p>Copy Menu</p>
                     </a>
                 </li>
+                <li>
+                    <a href="CreateDiscount.jsp">
+                        <i class="pe-7s-ticket"></i>
+                        <p>Create Discount</p>
+                    </a>
+                </li>
+                
                 <%}if(!u.isLastChild()){%>
                 <li>
                     <a href="Analytics.jsp">
@@ -108,6 +122,12 @@
                     <a href="DisplayTransactions.jsp">
                         <i class="pe-7s-news-paper"></i>
                         <p>View Transactions</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="DisplayDiscount.jsp">
+                        <i class="pe-7s-note2"></i>
+                        <p>View Discounts</p>
                     </a>
                 </li>
                 <%}%>

@@ -26,7 +26,7 @@
 <html>
     <head>
      
-       <%@include file="testSidebar.jsp"%>
+        <%@include file="PanelBars.jsp"%>
 	<meta charset="utf-8" />
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -38,7 +38,7 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script>
 
-   </head>
+    </head>
     <body> 
          
         <%
@@ -55,19 +55,23 @@
                 <div class="content">
                     <div class="container-fluid">
                         <div class='row'>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                  <%
                                      System.out.println(TransactionDao.getTransactionList());
                             ArrayList<String> items = new ArrayList<>();
                             ArrayList<Integer> quantity = new ArrayList<>();
+                            ArrayList<Double> cashValue = new ArrayList<>();
                             ArrayList<AnalyticsEntity> entry = TransactionDao.getTopSellersByQuantity("Year",5);
                             System.out.println(entry);
                             for(AnalyticsEntity aEntry : entry){
                                 String itemName = aEntry.label;
                                 int value = aEntry.quantity;
+                                double price = aEntry.amount;
                                 items.add("\"" + itemName + "\"");
                                 quantity.add(value);
+                                cashValue.add(price);
                             }
+                            System.out.println(cashValue);
                             %>
                                 <div class="card">
                                     <div class="header">
@@ -79,29 +83,24 @@
                                         <canvas id="bestSellingItems"></canvas>
                                     </div>
                                     <script>
-                                        var chartName = new String("bestSellingItems");
-                                        var pieChart = document.getElementById(chartName).getContext("2d");
-                                        var barChart = new Chart(pieChart, {
-                                            type: 'horizontalBar',
-                                            data: {
-                                              labels: <%=items%>,
-                                              datasets: [{
-                                                label: 'Quantity',
-                                                data: <%=quantity%>,
-                                                backgroundColor: [
-                                                  'rgba(255, 99, 132, 0.6)',
-                                                  'rgba(54, 162, 235, 0.6)',
-                                                  'rgba(255, 206, 86, 0.6)',
-                                                  'rgba(75, 192, 192, 0.6)',
-                                                  'rgba(153, 102, 255, 0.6)',
-                                                  'rgba(255, 159, 64, 0.6)',
-                                                  'rgba(255, 254, 154, 0.6)',
-                                                  'rgba(173, 154, 255, 0.6)',
-                                                  'rgba(255, 199, 153, 0.6)',
-                                                  'rgba(255, 165, 153, 0.6)',
-                                                  'rgba(153, 177, 255, 0.6)'
-                                                ]
-                                              }]
+                                         var chartName = new String("bestSellingItems");
+                                         var pieChart = document.getElementById(chartName).getContext("2d");
+                                         var barChart = new Chart(pieChart, {
+                                             type: 'bar',
+                                             data: {
+                                                labels: <%=items%>,
+                                                    datasets: [
+                                                         {
+                                                            label: 'Quantity',
+                                                            data: <%=quantity%>,
+                                                            backgroundColor: "rgba(255, 99, 132, 0.6)"
+                                                            
+                                                         },
+                                                         {
+                                                             label: 'Cash Value',
+                                                             data: <%=cashValue%>,
+                                                             backgroundColor:"rgba(54, 162, 235, 0.6)"
+                                                         }]
                                             },
                                             options: {
                                                 legend: {
@@ -111,11 +110,11 @@
                                                 },
                                                 scales: {
                                                     xAxes:[{
-                                                        display: true,
-                                                        ticks:{
-                                                            beginAtZero: true
-                                                        }
-                                                    }]
+                                                        stacked: true,
+                                                    }],
+                                                yAxes:[{
+                                                    stacked: true
+                                                }]
                                                 }
                                             }
                                           });
@@ -123,85 +122,6 @@
                                     </div>
                                 </div>
                             </div>
-                                                
-                           <div class="col-md-6">
-                            <%
-                            items = new ArrayList<>();  
-                            ArrayList<Double> totalAmount = new ArrayList<>();
-                            entry = TransactionDao.getTopSellersByAmount("Year",5);
-                            for(AnalyticsEntity aEntry : entry){
-                                String itemName = aEntry.label;
-                                double value = aEntry.amount;
-                                items.add("\"" + itemName + "\"");
-                                totalAmount.add(value);
-                            }
-                            %>
-                                <div class="card">
-                                    <div class="header">
-                                        <h4 class="title">Best Selling Item</h4>
-                                        <p class="category">Based on Cash Value</p>
-                                    </div>
-                                    <div class="content">
-                                        <div id="chartPreferences" class="ct-chart" style="height:100%">
-                                        <canvas id="mostSellingItems"></canvas>
-                                    </div>
-                                    <script>
-                                        var chartName = new String("mostSellingItems");
-                                        var pieChart = document.getElementById(chartName).getContext("2d");
-                                        var barChart = new Chart(pieChart, {
-                                            type: 'horizontalBar',
-                                            data: {
-                                              labels: <%=items%>,
-                                              datasets: [{
-                                                label: 'Cash Value',
-                                                data: <%=totalAmount%>,
-                                                backgroundColor: [
-                                                  'rgba(255, 99, 132, 0.6)',
-                                                  'rgba(54, 162, 235, 0.6)',
-                                                  'rgba(255, 206, 86, 0.6)',
-                                                  'rgba(75, 192, 192, 0.6)',
-                                                  'rgba(153, 102, 255, 0.6)',
-                                                  'rgba(255, 159, 64, 0.6)',
-                                                  'rgba(255, 254, 154, 0.6)',
-                                                  'rgba(173, 154, 255, 0.6)',
-                                                  'rgba(255, 199, 153, 0.6)',
-                                                  'rgba(255, 165, 153, 0.6)',
-                                                  'rgba(153, 177, 255, 0.6)'
-                                                ]
-                                              }]
-                                            },
-                                            options: {
-                                                legend: {
-                                                    display: false,
-                                                    position: 'right'
-
-                                                },
-                                                scales: {
-                                                    xAxes:[{
-                                                        display: true,
-                                                        ticks:{
-                                                            beginAtZero: true
-                                                        }
-                                                    }]
-                                                },
-//                                                tooltips: {
-//                                                 callbacks: {
-//                                                    label: function(tooltipItem, data) {
-//                                                        var label = data.datasets[tooltipItem.datasetIndex].label || '';
-//
-//                                                            if (label) {
-//                                                                label += ' = $' + data ;
-//                                                            }
-//                                                            return label;
-//                                                        }
-//                                                    }
-//                                                }
-                                            }
-                                          });
-                                    </script>
-                                    </div>
-                                </div>
-                            </div>              
                         </div>
                         
                                                 
@@ -227,6 +147,7 @@
                                             for(AnalyticsEntity e : worstSellers){
                                             String label = e.label;
                                             int qty = e.quantity;
+                                            Double amt = e.amount;
                                             %>
                                             <tbody>
                                                 <tr>
@@ -237,48 +158,49 @@
                                             <%
                                                 }
                                             %>
-                                        </table>
-                                        
-                                    </div>
-                                    
+                                        </table> 
+                                    </div> 
                                 </div>
                             </div>
-                            
                             <div class="col-md-6">
-                            <%
-                                ArrayList<AnalyticsEntity> worstSellersAmount = TransactionDao.getBottomSellersByAmount("Year",5);
-                            %>
-                                       
                                 <div class="card">
                                     <div class="header">
-                                        <h4 class="title">Least Selling Item</h4>
-                                        <p class="category">Based on Cash Value</p>
+                                        <h4 class="title">Transactions Overview</h4>
+                                        <p class="category">Transactions of the Day</p>
                                     </div>
                                     <div class="content table-responsive table-full-width">
                                         <table class="table table-hover table-striped">
                                             <thead>
-                                            <th>Item Name</th>
-                                            <th>Cash Value</th>
+                                            <th>Description</th>
+                                            <th>Quantity</th>
                                             </thead>
-
-                                        <%
-                                        for(AnalyticsEntity e : worstSellersAmount){
-                                        String label = e.label;
-                                        double amount = e.amount;
-                                        %>
+                                            
+                                            <%
+                                            ArrayList<Transaction> tList = TransactionDao.getTransactionList();
+                                            ArrayList<Transaction> nonRList = TransactionDao.getNonRefundedTransactionList();
+                                            ArrayList<Transaction> rList = TransactionDao.getRefundedTransactionList();
+                                            
+                                            int totalTrans = tList.size();
+                                            int totalNonRefunds = nonRList.size();
+                                            int totalRefunds = rList.size();
+                                            
+                                            %>
                                             <tbody>
                                                 <tr>
-                                                    <td><%=label%></td>
-                                                    <td><% out.println("$" + amount); %></td>
+                                                    <td>Total Transactions</td>
+                                                    <td><%=totalTrans%></td>
+                                                </tr>
+                                                 <tr>
+                                                    <td>Total Non-Refunded Transactions</td>
+                                                    <td><%=totalNonRefunds%></td>
+                                                </tr>
+                                                 <tr>
+                                                    <td>Total Refunded Transactions</td>
+                                                    <td><%=totalRefunds%></td>
                                                 </tr>
                                             </tbody>
-                                            <%
-                                                }
-                                            %>
-                                        </table>
-                                        
-                                    </div>
-                                    
+                                        </table> 
+                                    </div> 
                                 </div>
                             </div>
                         </div>

@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-        <%@include file="testSidebar.jsp"%>
+        <%@include file="PanelBars.jsp"%>
 	<meta charset="utf-8" />
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -53,7 +53,7 @@
                                     </div>
                                                        
                                             
-                                    <button type="submit" class="btn btn-info btn-fill pull-right">Change Password</button>
+                                    <button type="submit" class="btn btn-info btn-fill pull-right" style="border-color: #FFE37C">Change Password</button>
                                     <div class="clearfix"></div>
                                     
                                 </form>

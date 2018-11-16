@@ -9,8 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Employee Password Change</title>
-        <%@ include file ="sidebar.jsp"%>
+        <title>SnapDash</title>
+        <%@include file="PanelBars.jsp"%>
         <link rel="stylesheet" href="CSS/mainbody.css">
         <%String username = (String)request.getAttribute("username");%>
         
@@ -39,7 +39,7 @@
                         <div class='form-group'>
                             <input type='password' class='form-control' placeholder='New Password' name='newPassword' required>    
                         </div>
-                        <button type='submit' class='btn'>Submit</button>
+                        <button type='submit' class='btn' style="border-color: #FFE37C">Submit</button>
                     </form>
                     </div>
                 </div>

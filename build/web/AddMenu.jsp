@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-    <%@include file="testSidebar.jsp"%>
+    <%@include file="PanelBars.jsp"%>
 	<meta charset="utf-8" />
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -17,6 +17,12 @@
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
+        <style>
+            .category-table td{
+               padding: 0px 10px ;
+            }
+        </style>
+               
    </head>
       
 
@@ -63,9 +69,6 @@
                                                         <textarea class="form-control" rows="6" placeholder="Description" name="description" required></textarea>
                                                     </div>
                                                 </div>
-<!--                                            </div>-->
-                                            
-                                            <!--<div class="row">-->
                                                 <div class="col-md-6">
                                                     
                                                         <div class="form-group">
@@ -73,7 +76,7 @@
                                                             <div class="card">
                                                                 <div id="table-wrapper">
                                                                     <div id="table-scroll">
-                                                                        <table class ="category-table">
+                                                                        <table class ="category-table table-striped">
                                                                             <tbody>
 
                                                                          <%
@@ -83,7 +86,6 @@
                                                                         out.println("<tr><td><input type ='checkbox' name = 'category' value = '" + category + "'>" + " " + category +"</td></tr>");
                                                                     }
                                                                 }
-    //                                                        <input type="text" class"form-control" placeholder="Description" name="description" >
                                                                     %>
 
                                                                             </tbody>             
@@ -116,11 +118,9 @@
                                             if(errorMsg != null){
                                                 out.println("<font color='red'>"  + errorMsg + "</font>");
                                             }
-                                    //out.println();
-                                    //out.println();
                                 %>
-                                            <input type="submit" name="menu" class="btn btn-info btn-fill pull-right" value="Add to Menu">
-                                <!--<button type="submit" class="btn btn-info btn-fill pull-right">Add to Menu</button>-->
+                                            <input type="submit" name="menu" class="btn btn-info btn-fill pull-right" style="border-color: #FFE37C" value="Add to Menu">
+                                
                                             <div class="clearfix"></div>
                                         </form>
                                     </div>

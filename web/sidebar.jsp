@@ -49,13 +49,15 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
         <link href="design/css/pe-icon-7-stroke.css" rel="stylesheet" />
-          
+         
+        
         
       
    </head>
       
 
-    <body>
+   <body>
+        
         <div class="sidebar" data-color="yellow" data-image="design/img/sidebar-5.jpg">
             <div class="sidebar-wrapper">
                 <div class="logo">

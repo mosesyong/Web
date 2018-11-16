@@ -10,7 +10,7 @@
 
 <html>
     <head>
-        <%@include file="sidebar.jsp"%>
+        <%@include file="PanelBars.jsp"%>
 	<meta charset="utf-8" />
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -82,8 +82,8 @@
                 }   
             %>
                                                 
-                                                <input type="submit" name="menu" class="btn btn-info btn-fill pull-right" value="Create Category">
-                                                <!--<button type="submit" class="btn btn-info btn-fill pull-right">Add to Menu</button>-->
+                                                <input type="submit" name="menu" class="btn btn-info btn-fill pull-right" style="border-color: #FFE37C" value="Create Category">
+                                                
                                                 <div class="clearfix"></div>
                                             
                                         </form>
@@ -94,9 +94,6 @@
                     </div>
                 </div>
             </div>
-         </div>
-    
-      
-        
+         </div> 
     </body>
 </html>
