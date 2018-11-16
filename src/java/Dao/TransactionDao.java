@@ -113,16 +113,24 @@ public class TransactionDao {
                 cal.add(Calendar.HOUR, 8);
             }
             
+            
+            if(time.equals("Day")){
+                cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+                cal.clear(Calendar.MINUTE);
+                cal.clear(Calendar.SECOND);
+                cal.clear(Calendar.MILLISECOND);
+            }
+            if(time.equals("Week")){
+                cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+            }
+            if(time.equals("Month")){
+                cal.set(Calendar.DAY_OF_MONTH, 1);
+            }
+            if(time.equals("Year")){
+                cal.set(Calendar.YEAR, 1);
+            }
             if(time.equals("All")){
                 cal.add(Calendar.YEAR, -100);
-            }else if(time.equals("Year")){
-                cal.add(Calendar.YEAR, -1);
-            }else if(time.equals("Month")){
-                cal.add(Calendar.MONTH, -1);
-            }else if(time.equals("Week")){
-                cal.add(Calendar.WEEK_OF_YEAR, -1);
-            }else if(time.equals("Day")){
-                cal.add(Calendar.DAY_OF_YEAR, -1);
             }
             Date prevDateTime = cal.getTime();
             
