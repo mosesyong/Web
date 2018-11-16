@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SnapDash</title>
         
-        <script>
+      <script>
         function myFunc() {
             var checkBox = document.getElementById("overwrite");
 

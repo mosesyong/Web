@@ -73,7 +73,7 @@
                                                 <tr>
             <%
             for(String employeeName : u.getUniqueEmployees()){
-                out.println("<tr><td align='center'>" + employeeName + "</td><td align='center'><a href='EmployeeAccessWebServlet?EmployeeName=" + employeeName + "'>Edit Access</a></td><td align='center'>Delete (not done yet)</td></tr>");
+                out.println("<tr><td align='center'>" + employeeName + "</td><td align='center'><a href='EmployeeAccessWebServlet?EmployeeName=" + employeeName + "'>Edit Access</a></td><td align='center'><a href='EmployeeDeleteWebServlet?EmployeeName=" + employeeName + "'>Delete Employee (irreversible)</a></td></tr>");
 
             }
             %>    

@@ -64,8 +64,8 @@
                                  <select id="filterText" style="display: inline-block" onchange="filterText()"> 
                                      <option disabled selected>Select Filter</option>
                                      <option value="all" selected>All</option>
-                                     <option value="true">Refunds</option>
-                                     <option value="false">Non Refunds</option>
+                                     <option value="yes">Refunds</option>
+                                     <option value="no">Non Refunds</option>
                                  </select>
                              </div>
                              
@@ -87,9 +87,9 @@
                                             ArrayList<Transaction> transactionDataList = (ArrayList<Transaction>)obj;
                                             for(Transaction t : transactionDataList){
                                                 if(t.refunded == false){
-                                                    out.println("<tr class='content'><td align='center'>" + t.cashierName + "</td><td align='center'>" + t.totalPrice + "</td><td align='center'>" + t.paymentType + "</td><td align='center'>" + t.dateTime + "</td><td align='center'>" + t.refunded + "</td><td align='center'>" + t.refundedBy + "</td><td align='center'>" + t.refundDate + "</td></tr>");
+                                                    out.println("<tr class='content'><td align='center'>" + t.cashierName + "</td><td align='center'>" + t.totalPrice + "</td><td align='center'>" + t.paymentType + "</td><td align='center'>" + t.dateTime + "</td><td align='center'>" + t.isRefunded() + "</td><td align='center'>" + t.isNull(t.refundedBy) + "</td><td align='center'>" + t.isNull(t.refundDate) + "</td></tr>");
                                                 }else if(t.refunded != false){
-                                                    out.println("<tr class='content'><td align='center'>" + t.cashierName + "</td><td align='center'>" + t.totalPrice + "</td><td align='center'>" + t.paymentType + "</td><td align='center'>" + t.dateTime + "</td><td align='center'>" + t.refunded + "</td><td align='center'>" + t.refundedBy + "</td><td align='center'>" + t.refundDate + "</td></tr>");
+                                                    out.println("<tr class='content'><td align='center'>" + t.cashierName + "</td><td align='center'>" + t.totalPrice + "</td><td align='center'>" + t.paymentType + "</td><td align='center'>" + t.dateTime + "</td><td align='center'>" + t.isRefunded() + "</td><td align='center'>" + t.isNull(t.refundedBy) + "</td><td align='center'>" + t.isNull(t.refundDate) + "</td></tr>");
                                                 }
                                             }
                                         }

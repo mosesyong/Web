@@ -47,6 +47,30 @@ public class Transaction {
         this.cashierName = cashierName;
     }
     
+    public String isRefunded(){
+        if(refunded){
+            return "yes";
+        }else{
+            return "no";
+        }
+    }
+    
+    public String isNull(String value){
+        if(value == null || value.equals("null")){
+            return "-";
+        }else{
+            return value;
+        }
+    }
+    
+    public String isNull(Date value){
+        if(value == null){
+            return "-";
+        }else{
+            return value.toString();
+        }
+    }
+    
     
     @Override
     public String toString(){
