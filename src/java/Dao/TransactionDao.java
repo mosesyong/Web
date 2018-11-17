@@ -15,11 +15,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 /**
@@ -184,16 +186,23 @@ public class TransactionDao {
             cal.add(Calendar.HOUR, 8);
         }
 
+        if(time.equals("Day")){
+            cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+            cal.clear(Calendar.MINUTE);
+            cal.clear(Calendar.SECOND);
+            cal.clear(Calendar.MILLISECOND);
+        }
+        if(time.equals("Week")){
+            cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        }
+        if(time.equals("Month")){
+            cal.set(Calendar.DAY_OF_MONTH, 1);
+        }
+        if(time.equals("Year")){
+            cal.set(Calendar.YEAR, 1);
+        }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
-        }else if(time.equals("Year")){
-            cal.add(Calendar.YEAR, -1);
-        }else if(time.equals("Month")){
-            cal.add(Calendar.MONTH, -1);
-        }else if(time.equals("Week")){
-            cal.add(Calendar.WEEK_OF_YEAR, -1);
-        }else if(time.equals("Day")){
-            cal.add(Calendar.DAY_OF_YEAR, -1);
         }
         Date prevDateTime = cal.getTime();
         
@@ -232,16 +241,23 @@ public class TransactionDao {
             cal.add(Calendar.HOUR, 8);
         }
 
+        if(time.equals("Day")){
+            cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+            cal.clear(Calendar.MINUTE);
+            cal.clear(Calendar.SECOND);
+            cal.clear(Calendar.MILLISECOND);
+        }
+        if(time.equals("Week")){
+            cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        }
+        if(time.equals("Month")){
+            cal.set(Calendar.DAY_OF_MONTH, 1);
+        }
+        if(time.equals("Year")){
+            cal.set(Calendar.YEAR, 1);
+        }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
-        }else if(time.equals("Year")){
-            cal.add(Calendar.YEAR, -1);
-        }else if(time.equals("Month")){
-            cal.add(Calendar.MONTH, -1);
-        }else if(time.equals("Week")){
-            cal.add(Calendar.WEEK_OF_YEAR, -1);
-        }else if(time.equals("Day")){
-            cal.add(Calendar.DAY_OF_YEAR, -1);
         }
         Date prevDateTime = cal.getTime();
         
@@ -280,16 +296,23 @@ public class TransactionDao {
             cal.add(Calendar.HOUR, 8);
         }
 
+        if(time.equals("Day")){
+            cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+            cal.clear(Calendar.MINUTE);
+            cal.clear(Calendar.SECOND);
+            cal.clear(Calendar.MILLISECOND);
+        }
+        if(time.equals("Week")){
+            cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        }
+        if(time.equals("Month")){
+            cal.set(Calendar.DAY_OF_MONTH, 1);
+        }
+        if(time.equals("Year")){
+            cal.set(Calendar.YEAR, 1);
+        }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
-        }else if(time.equals("Year")){
-            cal.add(Calendar.YEAR, -1);
-        }else if(time.equals("Month")){
-            cal.add(Calendar.MONTH, -1);
-        }else if(time.equals("Week")){
-            cal.add(Calendar.WEEK_OF_YEAR, -1);
-        }else if(time.equals("Day")){
-            cal.add(Calendar.DAY_OF_YEAR, -1);
         }
         Date prevDateTime = cal.getTime();
         
@@ -306,13 +329,14 @@ public class TransactionDao {
                     if(entity.label.equals(name)){
                         added = true;
                         entity.amount = entity.amount + t.totalPrice;
+                        entity.quantity = entity.quantity + t.quantity;
                     }
                     if(added){
                         break;
                     }
                 }
                 if(!added){
-                    analyticsEntityList.add(new AnalyticsEntity(name, t.totalPrice));
+                    analyticsEntityList.add(new AnalyticsEntity(name, t.totalPrice, t.quantity));
                 }
             }
         }
@@ -338,16 +362,23 @@ public class TransactionDao {
             cal.add(Calendar.HOUR, 8);
         }
 
+        if(time.equals("Day")){
+            cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+            cal.clear(Calendar.MINUTE);
+            cal.clear(Calendar.SECOND);
+            cal.clear(Calendar.MILLISECOND);
+        }
+        if(time.equals("Week")){
+            cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        }
+        if(time.equals("Month")){
+            cal.set(Calendar.DAY_OF_MONTH, 1);
+        }
+        if(time.equals("Year")){
+            cal.set(Calendar.YEAR, 1);
+        }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
-        }else if(time.equals("Year")){
-            cal.add(Calendar.YEAR, -1);
-        }else if(time.equals("Month")){
-            cal.add(Calendar.MONTH, -1);
-        }else if(time.equals("Week")){
-            cal.add(Calendar.WEEK_OF_YEAR, -1);
-        }else if(time.equals("Day")){
-            cal.add(Calendar.DAY_OF_YEAR, -1);
         }
         Date prevDateTime = cal.getTime();
         
@@ -396,16 +427,23 @@ public class TransactionDao {
             cal.add(Calendar.HOUR, 8);
         }
 
+        if(time.equals("Day")){
+            cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+            cal.clear(Calendar.MINUTE);
+            cal.clear(Calendar.SECOND);
+            cal.clear(Calendar.MILLISECOND);
+        }
+        if(time.equals("Week")){
+            cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        }
+        if(time.equals("Month")){
+            cal.set(Calendar.DAY_OF_MONTH, 1);
+        }
+        if(time.equals("Year")){
+            cal.set(Calendar.YEAR, 1);
+        }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
-        }else if(time.equals("Year")){
-            cal.add(Calendar.YEAR, -1);
-        }else if(time.equals("Month")){
-            cal.add(Calendar.MONTH, -1);
-        }else if(time.equals("Week")){
-            cal.add(Calendar.WEEK_OF_YEAR, -1);
-        }else if(time.equals("Day")){
-            cal.add(Calendar.DAY_OF_YEAR, -1);
         }
         Date prevDateTime = cal.getTime();
         
@@ -421,6 +459,7 @@ public class TransactionDao {
                 for(AnalyticsEntity entity : analyticsEntityList){
                     if(entity.label.equals(name)){
                         added = true;
+                        entity.amount = entity.amount + t.totalPrice;
                         entity.quantity = entity.quantity + t.quantity;
                     }
                     if(added){
@@ -454,16 +493,23 @@ public class TransactionDao {
             cal.add(Calendar.HOUR, 8);
         }
 
+        if(time.equals("Day")){
+            cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+            cal.clear(Calendar.MINUTE);
+            cal.clear(Calendar.SECOND);
+            cal.clear(Calendar.MILLISECOND);
+        }
+        if(time.equals("Week")){
+            cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        }
+        if(time.equals("Month")){
+            cal.set(Calendar.DAY_OF_MONTH, 1);
+        }
+        if(time.equals("Year")){
+            cal.set(Calendar.YEAR, 1);
+        }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
-        }else if(time.equals("Year")){
-            cal.add(Calendar.YEAR, -1);
-        }else if(time.equals("Month")){
-            cal.add(Calendar.MONTH, -1);
-        }else if(time.equals("Week")){
-            cal.add(Calendar.WEEK_OF_YEAR, -1);
-        }else if(time.equals("Day")){
-            cal.add(Calendar.DAY_OF_YEAR, -1);
         }
         Date prevDateTime = cal.getTime();
         
@@ -506,7 +552,24 @@ public class TransactionDao {
         return result;
     }
     
-   
+    public static TreeSet<AnalyticsEntity> getMainPageTransactions(){
+        TreeSet<AnalyticsEntity> result = new TreeSet<>();
+        result.addAll(getTopSellersByAmount("Year", 3));
+        for(AnalyticsEntity ae1 : getTopSellersByQuantity("Year", 3)){
+            boolean exists = false;
+            for(AnalyticsEntity ae2 : result){
+                if(ae1.label.equals(ae2.label)){
+                    exists = true;
+                    break;
+                }
+            }
+            if(!exists){
+                result.add(ae1);
+            }
+        }
+        
+        return result;
+    }
     
     public static String print(){
         return transactionList.toString();

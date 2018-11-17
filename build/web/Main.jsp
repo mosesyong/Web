@@ -127,6 +127,7 @@
                                                 
                         <div class="row">
                             <div class="col-md-6">
+                            <%=TransactionDao.getMainPageTransactions()%>
                             <%
                                 ArrayList<AnalyticsEntity> worstSellers = TransactionDao.getBottomSellersByQuantity("Year",5);
                                 

@@ -22,6 +22,8 @@ public class Transaction {
     public double unitPrice;
     public String tid;
     public String cashierName;
+    public String discountName;
+    public boolean dineIn;
     public boolean refunded = false;
     public String refundedBy = null;
     public Date refundDate = null;
@@ -40,11 +42,13 @@ public class Transaction {
         this.refunded = refunded;
     }
     
-    public Transaction(String cashierName, Date dateTime, String paymentType, double totalPrice){
+    public Transaction(String cashierName, Date dateTime, String paymentType, double totalPrice, String discountName, boolean dineIn){
         this.dateTime = dateTime;
         this.paymentType = paymentType;
         this.totalPrice = totalPrice;
         this.cashierName = cashierName;
+        this.discountName = discountName;
+        this.dineIn = dineIn;
     }
     
     public String isRefunded(){
@@ -71,6 +75,13 @@ public class Transaction {
         }
     }
     
+    public String isDineIn(){
+        if(dineIn){
+            return "yes";
+        }else{
+            return "no";
+        }
+    }
     
     @Override
     public String toString(){
