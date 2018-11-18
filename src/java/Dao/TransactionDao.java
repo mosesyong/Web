@@ -30,9 +30,24 @@ import java.util.stream.Collectors;
  */
 public class TransactionDao {
     public static ArrayList<Transaction> transactionList;
+    public static HashMap<Integer,Date> dateMap;
     
     public TransactionDao(){
         TransactionDao.transactionList = new ArrayList<>();
+        dateMap = new HashMap<>();
+        
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+        cal.clear(Calendar.MINUTE); // minute to 0
+        cal.clear(Calendar.SECOND); // second to 0
+        cal.clear(Calendar.MILLISECOND); // millisecond to 0
+        cal.set(Calendar.DATE, 1); // day to 1
+        
+        for(int i = 0; i <= 12; i++){ // to jan of the next year to compare for december
+            cal.set(Calendar.MONTH, i);
+            dateMap.put(i+1, cal.getTime());
+        }
+        System.out.println("DateMap:" + dateMap);
     }
     
     public static void addTransaction(Transaction t){
@@ -568,6 +583,158 @@ public class TransactionDao {
             }
         }
         
+        return result;
+    }
+    
+    public static double getMonthsTransactionAmount(int month){
+        double amount = 0.0;
+        for(Transaction t : transactionList){
+            Date transactionDateTime = t.dateTime;
+            if(transactionDateTime.after(dateMap.get(month)) && transactionDateTime.before(dateMap.get(month+1))){
+                amount += t.totalPrice;
+            }
+        }
+        return amount;
+    }
+    
+    
+    public static ArrayList<Double> getMonthlyTransactions(){
+        ArrayList<Double> result = new ArrayList<>();
+        for(int i = 1; i <= 12; i++){ //Jan to december of the current year
+            result.add(getMonthsTransactionAmount(i));
+        }
+        return result;
+    }
+    
+    public static HashMap<String, Double> getMonthsTransactionAmountByPaymentType(int month){
+        HashMap<String, Double> result = new HashMap<>();
+        result.put("cash", 0.0);
+        result.put("card", 0.0);
+        result.put("snapcash", 0.0);
+        for(Transaction t : transactionList){
+            Date transactionDateTime = t.dateTime;
+            if(transactionDateTime.after(dateMap.get(month)) && transactionDateTime.before(dateMap.get(month+1))){
+                if(t.paymentType.equals("cash")){
+                    double amount = result.get("cash");
+                    result.put("cash", amount + t.totalPrice);
+                }else if(t.paymentType.equals("card")){
+                    double amount = result.get("card");
+                    result.put("card", amount + t.totalPrice);
+                }else if(t.paymentType.equals("snapcash")){
+                    double amount = result.get("snapcash");
+                    result.put("snapcash", amount + t.totalPrice);
+                }
+            }
+        }
+        return result;
+    }
+    
+    public static ArrayList<HashMap<String, Double>> getMonthlyTransactionsByPaymentType(){
+        ArrayList<HashMap<String, Double>> result = new ArrayList<>();
+        for(int i = 1; i <= 12; i++){ //Jan to december of the current year
+            result.add(getMonthsTransactionAmountByPaymentType(i));
+        }
+        return result;
+    }
+    
+    public static AnalyticsEntity getTransactionAnalytics(Date startDate, Date endDate, String type, String filter){
+        AnalyticsEntity ae = null;
+        if(endDate == null){ // if no endDate, set to current time/ future time to get all transactions
+            endDate = (Date)startDate.clone();
+            endDate.setYear(3000);
+        }
+        if(filter.equals("refunded")){
+            if(type.equals("quantity")){ // quantity #
+                ae = new AnalyticsEntity("Refunded by quantity (#) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.refunded && t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.quantity += t.quantity;
+                    }
+                }
+            }else{ // amount $
+                ae = new AnalyticsEntity("Refunded by amount ($) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.refunded && t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.amount += t.totalPrice;
+                    }
+                }
+            }
+        }else if(filter.equals("cash")){
+            if(type.equals("quantity")){ // quantity #
+                ae = new AnalyticsEntity("Cash payments by quantity (#) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.paymentType.equals("cash") && t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.quantity += t.quantity;
+                    }
+                }
+            }else{ // amount $
+                ae = new AnalyticsEntity("Cash payments by amount ($) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.paymentType.equals("cash") && t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.amount += t.totalPrice;
+                    }
+                }
+            }
+        }else if(filter.equals("card")){
+            if(type.equals("quantity")){ // quantity #
+                ae = new AnalyticsEntity("Card payments by quantity (#) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.paymentType.equals("card") && t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.quantity += t.quantity;
+                    }
+                }
+            }else{ // amount $
+                ae = new AnalyticsEntity("Cash payments by amount ($) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.paymentType.equals("card") && t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.amount += t.totalPrice;
+                    }
+                }
+            }
+        }else if(filter.equals("snapcash")){
+            if(type.equals("quantity")){ // quantity #
+                ae = new AnalyticsEntity("Snapcash payments by quantity (#) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.paymentType.equals("snapcash") && t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.quantity += t.quantity;
+                    }
+                }
+            }else{ // amount $
+                ae = new AnalyticsEntity("Snapcash payments by amount ($) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.paymentType.equals("snapcash") && t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.amount += t.totalPrice;
+                    }
+                }
+            }
+        }else if(filter.equals("all")){
+            if(type.equals("quantity")){ // quantity #
+                ae = new AnalyticsEntity("All payments by quantity (#) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.quantity += t.quantity;
+                    }
+                }
+            }else{ // amount $
+                ae = new AnalyticsEntity("All payments by amount ($) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.amount += t.totalPrice;
+                    }
+                }
+            }
+        }
+        
+        return ae;
+    }
+    
+    public static ArrayList<Transaction> getTransactions(Date startDate, Date endDate){
+        ArrayList<Transaction> result = new ArrayList<>();
+        for(Transaction t : transactionList){
+            if(t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                result.add(t);
+            }
+        }
         return result;
     }
     

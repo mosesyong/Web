@@ -16,6 +16,10 @@ public class AnalyticsEntity implements Comparable<AnalyticsEntity> {
     public double amount = 0.0;
     public int quantity = 1;
     
+    public AnalyticsEntity(String label){
+        this.label = label;
+    }
+    
     public AnalyticsEntity(String label, double amount){
         this.label = label;
         this.amount = amount;
