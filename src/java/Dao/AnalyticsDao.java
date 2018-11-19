@@ -370,7 +370,8 @@ public class AnalyticsDao {
                     }else if(t.paymentType.equals("card")){
                         card += t.totalPrice;
                     }else{
-                        snapcash =+ t.totalPrice;
+//                        System.out.println("Snapcash " + t.totalPrice);
+                        snapcash += t.totalPrice;
                     }
                 }
             }
