@@ -269,9 +269,8 @@ public class AnalyticsDao {
             startCal.clear(Calendar.MINUTE);
             startCal.clear(Calendar.SECOND);
             startCal.clear(Calendar.MILLISECOND);
-            int startHour = startCal.getTime().getHours() + 1;
             while(startCal.getTime().before(endDateTime)){
-                labelList.add("" + startCal.getTime().getHours() + 1);
+                labelList.add("" + startCal.getTime().getHours());
                 dateList.add(startCal.getTime());
                 startCal.add(Calendar.HOUR, 1);
             }

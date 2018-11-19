@@ -20,7 +20,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -134,7 +136,8 @@ public class TransactionListWebServlet extends HttpServlet {
 //                }
 //                transactionList.add(t);
 //            }
-            HashMap<String, Transaction> resultMap = new HashMap<>();
+
+            TreeMap<String, Transaction> resultMap = new TreeMap<>();
             ArrayList<Transaction> result = new ArrayList<>();
             
             String outletName = request.getParameter("outletName");
@@ -159,8 +162,11 @@ public class TransactionListWebServlet extends HttpServlet {
             } catch (ParseException ex) {
                 Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+            int i = 0;
             for(Transaction t : TransactionDao.transactionList){
+                i++;
+                System.out.println(i);
+                System.out.println(t);
                 if(outletName.length() == 0 || t.outletName.equals(outletName)){
                     if(startDateTime == null){  // gets from the start of all time
                         Calendar cal = Calendar.getInstance();
@@ -181,14 +187,12 @@ public class TransactionListWebServlet extends HttpServlet {
                         
                         endDateTime = cal.getTime();
                     }
-                    
+                    System.out.println(i);
+                    System.out.println(t);
                     if(t.dateTime.after(startDateTime) && t.dateTime.before(endDateTime)){
-                        if(resultMap.keySet().contains(t.tid)){
+                        if(resultMap.containsKey(t.tid)){
                             Transaction tempTransaction = resultMap.get(t.tid);
-                            double totalPrice = tempTransaction.totalPrice;
-                            totalPrice += t.totalPrice;
-                            tempTransaction.totalPrice = totalPrice;
-                            System.out.println(tempTransaction);
+                            tempTransaction.totalPrice += t.totalPrice;
                             resultMap.put(t.tid, tempTransaction);
                         }else{
                             try {
@@ -201,10 +205,9 @@ public class TransactionListWebServlet extends HttpServlet {
                 }
             }    
             
-            for(Transaction t: resultMap.values()){
-                result.add(t);
-            }
-            
+            result.addAll(resultMap.values());
+            Collections.sort(result);
+//            System.out.println("ResultMap: " + result);
             request.setAttribute("transactionResults", result);
             request.getRequestDispatcher("DisplayTransactions.jsp").forward(request, response);
         }

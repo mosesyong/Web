@@ -55,30 +55,42 @@ public class TransactionDao {
     }
     
     public static ArrayList<Transaction> getTransactionList(){
-        return transactionList;
+        ArrayList<Transaction> result = new ArrayList<>();
+        HashMap<String, Transaction> tempResult = new HashMap<>();
+        for(Transaction t : transactionList){
+            if(!tempResult.containsKey(t.tid)){
+                tempResult.put(t.tid, t);
+            }
+        }
+        result.addAll(tempResult.values());
+        return result;
     }
     
     public static ArrayList<Transaction> getNonRefundedTransactionList(){
         ArrayList<Transaction> result = new ArrayList<>();
-        
+        HashMap<String, Transaction> tempResult = new HashMap<>();
         for(Transaction t : transactionList){
             if(!t.refunded){
-                result.add(t);
+                if(!tempResult.containsKey(t.tid)){
+                    tempResult.put(t.tid, t);
+                }
             }
         }
-        
+        result.addAll(tempResult.values());
         return result;
     }
     
     public static ArrayList<Transaction> getRefundedTransactionList(){
         ArrayList<Transaction> result = new ArrayList<>();
-        
+        HashMap<String, Transaction> tempResult = new HashMap<>();
         for(Transaction t : transactionList){
             if(t.refunded){
-                result.add(t);
+                if(!tempResult.containsKey(t.tid)){
+                    tempResult.put(t.tid, t);
+                }
             }
         }
-        
+        result.addAll(tempResult.values());
         return result;
     }
     

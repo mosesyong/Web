@@ -5,13 +5,14 @@
  */
 package Entity;
 
+import java.util.Comparator;
 import java.util.Date;
 
 /**
  *
  * @author moses
  */
-public class Transaction implements Cloneable{
+public class Transaction implements Cloneable, Comparable<Transaction> {
     public String companyName;
     public String outletName;
     public Date dateTime;
@@ -93,6 +94,14 @@ public class Transaction implements Cloneable{
     public Object clone()throws CloneNotSupportedException{  
         return super.clone();  
     }  
+
+    @Override
+    public int compareTo(Transaction o) {
+        if(dateTime.before(o.dateTime)){
+            return -1;
+        }
+        return 11;
+    }
     
 }
 
