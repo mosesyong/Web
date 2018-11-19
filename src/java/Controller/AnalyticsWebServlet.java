@@ -15,10 +15,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -53,19 +59,74 @@ public class AnalyticsWebServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HashMap<String, ArrayList<AnalyticsEntity>> analyticsMap = new HashMap<>();
+            String filter = request.getParameter("filter"); // All, cash, card, snapcash, refunds
+            String startDateTimeStr = request.getParameter("startDateTime");
+            String endDateTimeStr = request.getParameter("endDateTime");
+
+            Date startDateTime = null;
+            Date endDateTime = null;
             
-            String analyticsType = request.getParameter("analyticsType");
-            String paymentType = request.getParameter("paymentType");
-            String outletName = request.getParameter("outletName");
+            String pattern = "yyyy-MM-dd'T'HH:mm";
+            SimpleDateFormat sdf = new SimpleDateFormat(pattern);
             
-            request.setAttribute("analyticsType", analyticsType);
-            request.setAttribute("paymentType", paymentType);
-            request.setAttribute("outletName", outletName);
+            try {
+                startDateTime = sdf.parse(startDateTimeStr);
+            } catch (ParseException ex) {
+                Calendar cal = Calendar.getInstance();
+                if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
+                    cal.add(Calendar.HOUR, 8);
+                }
+
+                cal.add(Calendar.YEAR, -100);
+
+                startDateTime = cal.getTime();
+//                Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
-            analyticsMap = TransactionDao.getAnalyticsMap(analyticsType, paymentType, outletName);
+            try {
+                endDateTime = sdf.parse(endDateTimeStr);
+            } catch (ParseException ex) {
+                Calendar cal = Calendar.getInstance();
+                if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
+                    cal.add(Calendar.HOUR, 8);
+                }
+
+                endDateTime = cal.getTime();
+//                Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
-            request.setAttribute("analyticsResults", analyticsMap);
+            double totalAmount = 0.0;
+            
+            for(Transaction t: TransactionDao.transactionList){
+                if(t.dateTime.after(startDateTime) && t.dateTime.before(endDateTime)){
+                    if(filter.equals("cash")){
+                        if(t.paymentType.equals("cash")){
+                            totalAmount += t.totalPrice;
+                        }
+                    }else if(filter.equals("card")){
+                        if(t.paymentType.equals("card")){
+                            totalAmount += t.totalPrice;
+                        }
+                    }else if(filter.equals("snapcash")){
+                        if(t.paymentType.equals("snapcash")){
+                            totalAmount += t.totalPrice;
+                        }
+                    }else if(filter.equals("refunds")){
+                        if(t.refunded){
+                            totalAmount += t.totalPrice;
+                        }
+                    }else if(filter.equals("discounts")){
+                        if(!t.discountName.isEmpty()){
+                            totalAmount += t.totalPrice;
+                        }
+                    }else{ // all or select filter
+                        totalAmount += t.totalPrice;
+                    }
+                }
+            }
+            
+//            System.out.println("Total Amount: " + totalAmount);
+            request.setAttribute("totalAmount", totalAmount);
             request.getRequestDispatcher("Analytics.jsp").forward(request, response);
             
         }
