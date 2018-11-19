@@ -335,30 +335,6 @@
         
 
 </html>
-
-                    
-                    
-                    <!--
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="selectType">Creating User Type</label>
-                                                <select class="form-control" id="selectType">
-                                                    <option name="child">Manager</option>
-                                                    <option name="child">Cashier</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="childType">Select Parent Group</label>
-                                                <select class="form-control" id="childType">
-                                                    <option name="parent">Outlet 1</option>
-                                                    <option name="parent">Outlet 2</option>
-                                                    <option name="parent">Outlet 3</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                            
                   
                                         
                                         

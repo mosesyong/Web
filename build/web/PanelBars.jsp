@@ -156,30 +156,27 @@
                                 
             %>
                             
-                <a class="navbar-brand" href="#">Welcome Back <% out.println(printType + ", " + userName + "!"); %></a>
+                <p style="margin: 20px 20px">Welcome Back <% out.println(printType + ", " + userName + "!"); %></p>
                 </div>
                 
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#">
-                                <p>
+                                <p style="margin: 20px 20px">
+                                    Company: <b><%=u.getCompanyName()%></b>
+                                </p>
+                        </li>
+                        <li>
+                                <p style="margin: 20px 20px">
                                 <%
                                     String outletName = u.getOutletName();
                                     if(outletName.length() > 0 && !outletName.equals("0")){
-                                        out.println("Outlet: " + outletName);
+                                        out.println("Outlet: <b>" + outletName +"</b>");
                                     }
                                 %>
                                 </p>
-                            </a>
                         </li>
-                        <li>
-                            <a href="#">
-                                <p>
-                                Company: <%=u.getCompanyName()%>
-                                </p>
-                            </a>
-                        </li>
+                        
                         <li>
                             <a href="LogoutServlet">
                                 <p>Log Out</p>

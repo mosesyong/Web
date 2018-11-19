@@ -23,7 +23,7 @@
                     <div class="container-fluid">
                         <div class="card">
                             <div class="header">
-                                <h3>List past transactions</h3>
+                                <h3>List Past Transactions</h3>
                             </div>
                             
                             <div class="content">
@@ -32,7 +32,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 Select Outlet:<br>
-                                            <select name="outletName">
+                                            <select name="outletName" style='width:135px; margin-top:2px'>
                                                 <option value="" selected hidden></option>
                                             <%
                                                 for(String oName : u.getOutletNames()){
@@ -44,12 +44,14 @@
                                             </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">   
+                                        <div class="col-md-4">   
                                             <div class="form-group">
-                                                Select Time: <input type="number" step="1" name="time"/>
+                                                Select Time: <br>
+                                                <input type="number" step="1" name="time"/>
                                             </div>
                                         </div>
-                                    <input type="submit" name="menu" class="btn btn-info btn-fill" style="border-color: #FFE37C; margin: 10px 20px" value="Submit">
+                                            
+                                    <input type="submit" name="menu" class="btn btn-info btn-fill pull-right" style="border-color: #FFE37C; margin: 10px 20px" value="Submit">
                                     </div>
                                 </form>
                                 <br>

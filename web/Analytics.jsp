@@ -27,50 +27,31 @@
         <meta name="viewport" content="width=device-width" />
         
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script> 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js"></script>
+        <script type="text/javascript" src="design/js/html2canvas.js"></script>
         <script>
-            //most potential in helping to export to pdf - but still working on it. 
-    
-            function demoFromHTML() {
-            var pdf = new jsPDF('p', 'mm', 'a4');
-            // source can be HTML-formatted string, or a reference
-            // to an actual DOM element from which the text will be scraped.
-            source = $('#charts')[0];
-
-            // we support special element handlers. Register them with jQuery-style 
-            // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
-            // There is no support for any other type of selectors 
-            // (class, of compound) at this time.
-            specialElementHandlers = {
-                // element with id of "bypass" - jQuery style selector
-                '#bypassme': function (element, renderer) {
-                    // true = "handled elsewhere, bypass text extraction"
-                return true
-                }
+            function pdfFunction() {
+                console.log("start");
+                html2canvas(document.querySelector("#charts")).then(canvas => {
+                    var doc = new jsPDF('p', 'mm', 'a4');
+                    var dataURL = canvas.toDataURL();
+                    doc.text(20, 20, "Company Analytics");
+                    doc.addImage(dataURL, 'PNG', 10, 35, 200, 250);
+                    doc.save("Analytics");
+                }); 
+//                var specialElementHandlers = 
+//                            function (element,renderer) {
+//                            return true;
+//                            }
+//                            var doc = new jsPDF();
+//                            doc.fromHTML($('#charts').html(), 15, 15, {
+//                            'width': 170,
+//                            'elementHandlers': specialElementHandlers
+//                            });
+//                            doc.output('dataurlnewwindow');
+                
             };
-            margins = {
-                top: 80,
-                bottom: 60,
-                left: 40,
-                width: 522
-            };
-            // all coords and widths are in jsPDF instance's declared units
-            // 'inches' in this case
-            pdf.fromHTML(
-            source, // HTML string or DOM elem ref.
-            margins.left, // x coord
-            margins.top, { // y coord
-                'width': margins.width, // max width of content on PDF
-                'elementHandlers': specialElementHandlers
-            },
-
-            function (dispose) {
-                // dispose: object with X, Y of the last line add to the PDF 
-                //          this allow the insertion of new lines after html
-                pdf.save('Analytics.pdf');
-            }, margins);
-        }
         </script>
    </head>
    <%AnalyticsDao.getAnalytics(u);%>
@@ -106,6 +87,8 @@
                                                             <option value='cash'>Cash</option>
                                                             <option value='card'>Card</option>
                                                             <option value='snapcash'>SnapCash</option>
+                                                            <option value='discounts'>Discounts</option>
+                                                            <option value='refunds'>Refunds</option>
                                                         </select>
                                                         <select name="outletName" style='width: 25%'>
                                                             <option selected="true" disabled="disabled">Select Outlet</option>
@@ -124,8 +107,9 @@
                                             </div>
                                         
                                         </div>
-                                        <div id="charts">
-                                        <div class="row">
+                                        
+                                            <div class="row">
+                                                <div id="charts">
                                             
                                             <%
                                              String analyticsType = (String) request.getAttribute("analyticsType");
@@ -165,25 +149,25 @@
                                                         System.out.println(amount); 
                                                         System.out.println(properAmount);
                                                          %>
-                                                <div class="col-lg-3 col-md-6 col-sm-6">
-                                                    <div class="card card-stats">
-                                                        <div class="card-body ">
-                                                            <div class="row">
-                                                                <div class="col-5 col-md-4">
-                                                                  <div class="icon-big text-center icon-warning">
-                                                                    <i class="pe-7s-cash text-success"></i>
-                                                                  </div>
-                                                                </div>
-                                                                <div class="col-7 col-md-8">
-                                                                  <div class="numbers">
-                                                                    <p class="card-category"><%=label%></p>
-                                                                    <p class="card-title"><% out.println("$ " + properAmount); %><p>
-                                                                  </div>
+                                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                                            <div class="card card-stats">
+                                                                <div class="card-body ">
+                                                                    <div class="row">
+                                                                        <div class="col-5 col-md-4">
+                                                                          <div class="icon-big text-center icon-warning">
+                                                                            <i class="pe-7s-cash text-success"></i>
+                                                                          </div>
+                                                                        </div>
+                                                                        <div class="col-7 col-md-8">
+                                                                          <div class="numbers">
+                                                                            <p class="card-category"><%=label%></p>
+                                                                            <p class="card-title"><% out.println("$ " + properAmount); %><p>
+                                                                          </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>   
+                                                        </div>   
                                             <%
                                                      }
                                                  }
@@ -355,14 +339,14 @@
                                             
 
                                                 %>
-                                                
-                                        </div>
-                                        </div>
+                                          </div>
+                                        <button id="toPDF" onclick="pdfFunction()" style='margin-left: 15px'>PDF</button>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button onclick="javascript:demoFromHTML();">PDF</button>
+                        
                     </div>
                 </div>
             </div>
