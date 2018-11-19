@@ -11,10 +11,14 @@ import java.util.Comparator;
  *
  * @author moses
  */
-public class AnalyticsEntity {
+public class AnalyticsEntity implements Comparable<AnalyticsEntity> {
     public String label;
     public double amount = 0.0;
     public int quantity = 1;
+    
+    public AnalyticsEntity(String label){
+        this.label = label;
+    }
     
     public AnalyticsEntity(String label, double amount){
         this.label = label;
@@ -30,6 +34,15 @@ public class AnalyticsEntity {
     public AnalyticsEntity(String label, int quantity){
         this.label = label;
         this.quantity = quantity;
+    }
+    
+    @Override
+    public int compareTo(AnalyticsEntity other){
+        if(label.equals(other.label)){
+            return 0;
+        }else{
+            return -1;
+        }
     }
     
     @Override
@@ -55,7 +68,7 @@ public class AnalyticsEntity {
                           = new Comparator<AnalyticsEntity>() {
 
 	    public int compare(AnalyticsEntity ae1, AnalyticsEntity ae2) {
-	    	
+	      
 	      int quantity1 = ae1.quantity;
 	      int quantity2 = ae2.quantity;
 	      

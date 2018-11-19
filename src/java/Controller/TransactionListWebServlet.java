@@ -110,7 +110,13 @@ public class TransactionListWebServlet extends HttpServlet {
                 }
                 double totalPrice = resultObj.get("totalPrice").getAsDouble(); //2018-09-27 13:07:47.0
                 String paymentType = resultObj.get("type").getAsString();
-                Transaction t = new Transaction(cashierName, dateTime, paymentType, totalPrice);
+                JsonElement discountElement = resultObj.get("discountName");
+                String discountName = "none";
+                if(discountElement != null && !discountElement.isJsonNull()){
+                    discountName = discountElement.getAsString();
+                }
+                boolean dineIn = resultObj.get("dineIn").getAsString().equals("true");
+                Transaction t = new Transaction(cashierName, dateTime, paymentType, totalPrice, discountName, dineIn);
                 
                 boolean refunded = resultObj.get("refunded").getAsBoolean();
                 if(refunded){

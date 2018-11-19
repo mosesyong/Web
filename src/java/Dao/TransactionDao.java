@@ -15,11 +15,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 /**
@@ -28,9 +30,24 @@ import java.util.stream.Collectors;
  */
 public class TransactionDao {
     public static ArrayList<Transaction> transactionList;
+    public static HashMap<Integer,Date> dateMap;
     
     public TransactionDao(){
         TransactionDao.transactionList = new ArrayList<>();
+        dateMap = new HashMap<>();
+        
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+        cal.clear(Calendar.MINUTE); // minute to 0
+        cal.clear(Calendar.SECOND); // second to 0
+        cal.clear(Calendar.MILLISECOND); // millisecond to 0
+        cal.set(Calendar.DATE, 1); // day to 1
+        
+        for(int i = 0; i <= 12; i++){ // to jan of the next year to compare for december
+            cal.set(Calendar.MONTH, i);
+            dateMap.put(i+1, cal.getTime());
+        }
+        System.out.println("DateMap:" + dateMap);
     }
     
     public static void addTransaction(Transaction t){
@@ -184,16 +201,23 @@ public class TransactionDao {
             cal.add(Calendar.HOUR, 8);
         }
 
+        if(time.equals("Day")){
+            cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+            cal.clear(Calendar.MINUTE);
+            cal.clear(Calendar.SECOND);
+            cal.clear(Calendar.MILLISECOND);
+        }
+        if(time.equals("Week")){
+            cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        }
+        if(time.equals("Month")){
+            cal.set(Calendar.DAY_OF_MONTH, 1);
+        }
+        if(time.equals("Year")){
+            cal.set(Calendar.YEAR, 1);
+        }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
-        }else if(time.equals("Year")){
-            cal.add(Calendar.YEAR, -1);
-        }else if(time.equals("Month")){
-            cal.add(Calendar.MONTH, -1);
-        }else if(time.equals("Week")){
-            cal.add(Calendar.WEEK_OF_YEAR, -1);
-        }else if(time.equals("Day")){
-            cal.add(Calendar.DAY_OF_YEAR, -1);
         }
         Date prevDateTime = cal.getTime();
         
@@ -232,16 +256,23 @@ public class TransactionDao {
             cal.add(Calendar.HOUR, 8);
         }
 
+        if(time.equals("Day")){
+            cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+            cal.clear(Calendar.MINUTE);
+            cal.clear(Calendar.SECOND);
+            cal.clear(Calendar.MILLISECOND);
+        }
+        if(time.equals("Week")){
+            cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        }
+        if(time.equals("Month")){
+            cal.set(Calendar.DAY_OF_MONTH, 1);
+        }
+        if(time.equals("Year")){
+            cal.set(Calendar.YEAR, 1);
+        }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
-        }else if(time.equals("Year")){
-            cal.add(Calendar.YEAR, -1);
-        }else if(time.equals("Month")){
-            cal.add(Calendar.MONTH, -1);
-        }else if(time.equals("Week")){
-            cal.add(Calendar.WEEK_OF_YEAR, -1);
-        }else if(time.equals("Day")){
-            cal.add(Calendar.DAY_OF_YEAR, -1);
         }
         Date prevDateTime = cal.getTime();
         
@@ -280,16 +311,23 @@ public class TransactionDao {
             cal.add(Calendar.HOUR, 8);
         }
 
+        if(time.equals("Day")){
+            cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+            cal.clear(Calendar.MINUTE);
+            cal.clear(Calendar.SECOND);
+            cal.clear(Calendar.MILLISECOND);
+        }
+        if(time.equals("Week")){
+            cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        }
+        if(time.equals("Month")){
+            cal.set(Calendar.DAY_OF_MONTH, 1);
+        }
+        if(time.equals("Year")){
+            cal.set(Calendar.YEAR, 1);
+        }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
-        }else if(time.equals("Year")){
-            cal.add(Calendar.YEAR, -1);
-        }else if(time.equals("Month")){
-            cal.add(Calendar.MONTH, -1);
-        }else if(time.equals("Week")){
-            cal.add(Calendar.WEEK_OF_YEAR, -1);
-        }else if(time.equals("Day")){
-            cal.add(Calendar.DAY_OF_YEAR, -1);
         }
         Date prevDateTime = cal.getTime();
         
@@ -306,13 +344,14 @@ public class TransactionDao {
                     if(entity.label.equals(name)){
                         added = true;
                         entity.amount = entity.amount + t.totalPrice;
+                        entity.quantity = entity.quantity + t.quantity;
                     }
                     if(added){
                         break;
                     }
                 }
                 if(!added){
-                    analyticsEntityList.add(new AnalyticsEntity(name, t.totalPrice));
+                    analyticsEntityList.add(new AnalyticsEntity(name, t.totalPrice, t.quantity));
                 }
             }
         }
@@ -338,16 +377,23 @@ public class TransactionDao {
             cal.add(Calendar.HOUR, 8);
         }
 
+        if(time.equals("Day")){
+            cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+            cal.clear(Calendar.MINUTE);
+            cal.clear(Calendar.SECOND);
+            cal.clear(Calendar.MILLISECOND);
+        }
+        if(time.equals("Week")){
+            cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        }
+        if(time.equals("Month")){
+            cal.set(Calendar.DAY_OF_MONTH, 1);
+        }
+        if(time.equals("Year")){
+            cal.set(Calendar.YEAR, 1);
+        }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
-        }else if(time.equals("Year")){
-            cal.add(Calendar.YEAR, -1);
-        }else if(time.equals("Month")){
-            cal.add(Calendar.MONTH, -1);
-        }else if(time.equals("Week")){
-            cal.add(Calendar.WEEK_OF_YEAR, -1);
-        }else if(time.equals("Day")){
-            cal.add(Calendar.DAY_OF_YEAR, -1);
         }
         Date prevDateTime = cal.getTime();
         
@@ -396,16 +442,23 @@ public class TransactionDao {
             cal.add(Calendar.HOUR, 8);
         }
 
+        if(time.equals("Day")){
+            cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+            cal.clear(Calendar.MINUTE);
+            cal.clear(Calendar.SECOND);
+            cal.clear(Calendar.MILLISECOND);
+        }
+        if(time.equals("Week")){
+            cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        }
+        if(time.equals("Month")){
+            cal.set(Calendar.DAY_OF_MONTH, 1);
+        }
+        if(time.equals("Year")){
+            cal.set(Calendar.YEAR, 1);
+        }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
-        }else if(time.equals("Year")){
-            cal.add(Calendar.YEAR, -1);
-        }else if(time.equals("Month")){
-            cal.add(Calendar.MONTH, -1);
-        }else if(time.equals("Week")){
-            cal.add(Calendar.WEEK_OF_YEAR, -1);
-        }else if(time.equals("Day")){
-            cal.add(Calendar.DAY_OF_YEAR, -1);
         }
         Date prevDateTime = cal.getTime();
         
@@ -421,6 +474,7 @@ public class TransactionDao {
                 for(AnalyticsEntity entity : analyticsEntityList){
                     if(entity.label.equals(name)){
                         added = true;
+                        entity.amount = entity.amount + t.totalPrice;
                         entity.quantity = entity.quantity + t.quantity;
                     }
                     if(added){
@@ -454,16 +508,23 @@ public class TransactionDao {
             cal.add(Calendar.HOUR, 8);
         }
 
+        if(time.equals("Day")){
+            cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+            cal.clear(Calendar.MINUTE);
+            cal.clear(Calendar.SECOND);
+            cal.clear(Calendar.MILLISECOND);
+        }
+        if(time.equals("Week")){
+            cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        }
+        if(time.equals("Month")){
+            cal.set(Calendar.DAY_OF_MONTH, 1);
+        }
+        if(time.equals("Year")){
+            cal.set(Calendar.YEAR, 1);
+        }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
-        }else if(time.equals("Year")){
-            cal.add(Calendar.YEAR, -1);
-        }else if(time.equals("Month")){
-            cal.add(Calendar.MONTH, -1);
-        }else if(time.equals("Week")){
-            cal.add(Calendar.WEEK_OF_YEAR, -1);
-        }else if(time.equals("Day")){
-            cal.add(Calendar.DAY_OF_YEAR, -1);
         }
         Date prevDateTime = cal.getTime();
         
@@ -506,7 +567,176 @@ public class TransactionDao {
         return result;
     }
     
-   
+    public static TreeSet<AnalyticsEntity> getMainPageTransactions(){
+        TreeSet<AnalyticsEntity> result = new TreeSet<>();
+        result.addAll(getTopSellersByAmount("Year", 3));
+        for(AnalyticsEntity ae1 : getTopSellersByQuantity("Year", 3)){
+            boolean exists = false;
+            for(AnalyticsEntity ae2 : result){
+                if(ae1.label.equals(ae2.label)){
+                    exists = true;
+                    break;
+                }
+            }
+            if(!exists){
+                result.add(ae1);
+            }
+        }
+        
+        return result;
+    }
+    
+    public static double getMonthsTransactionAmount(int month){
+        double amount = 0.0;
+        for(Transaction t : transactionList){
+            Date transactionDateTime = t.dateTime;
+            if(transactionDateTime.after(dateMap.get(month)) && transactionDateTime.before(dateMap.get(month+1))){
+                amount += t.totalPrice;
+            }
+        }
+        return amount;
+    }
+    
+    
+    public static ArrayList<Double> getMonthlyTransactions(){
+        ArrayList<Double> result = new ArrayList<>();
+        for(int i = 1; i <= 12; i++){ //Jan to december of the current year
+            result.add(getMonthsTransactionAmount(i));
+        }
+        return result;
+    }
+    
+    public static HashMap<String, Double> getMonthsTransactionAmountByPaymentType(int month){
+        HashMap<String, Double> result = new HashMap<>();
+        result.put("cash", 0.0);
+        result.put("card", 0.0);
+        result.put("snapcash", 0.0);
+        for(Transaction t : transactionList){
+            Date transactionDateTime = t.dateTime;
+            if(transactionDateTime.after(dateMap.get(month)) && transactionDateTime.before(dateMap.get(month+1))){
+                if(t.paymentType.equals("cash")){
+                    double amount = result.get("cash");
+                    result.put("cash", amount + t.totalPrice);
+                }else if(t.paymentType.equals("card")){
+                    double amount = result.get("card");
+                    result.put("card", amount + t.totalPrice);
+                }else if(t.paymentType.equals("snapcash")){
+                    double amount = result.get("snapcash");
+                    result.put("snapcash", amount + t.totalPrice);
+                }
+            }
+        }
+        return result;
+    }
+    
+    public static ArrayList<HashMap<String, Double>> getMonthlyTransactionsByPaymentType(){
+        ArrayList<HashMap<String, Double>> result = new ArrayList<>();
+        for(int i = 1; i <= 12; i++){ //Jan to december of the current year
+            result.add(getMonthsTransactionAmountByPaymentType(i));
+        }
+        return result;
+    }
+    
+    public static AnalyticsEntity getTransactionAnalytics(Date startDate, Date endDate, String type, String filter){
+        AnalyticsEntity ae = null;
+        if(endDate == null){ // if no endDate, set to current time/ future time to get all transactions
+            endDate = (Date)startDate.clone();
+            endDate.setYear(3000);
+        }
+        if(filter.equals("refunded")){
+            if(type.equals("quantity")){ // quantity #
+                ae = new AnalyticsEntity("Refunded by quantity (#) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.refunded && t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.quantity += t.quantity;
+                    }
+                }
+            }else{ // amount $
+                ae = new AnalyticsEntity("Refunded by amount ($) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.refunded && t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.amount += t.totalPrice;
+                    }
+                }
+            }
+        }else if(filter.equals("cash")){
+            if(type.equals("quantity")){ // quantity #
+                ae = new AnalyticsEntity("Cash payments by quantity (#) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.paymentType.equals("cash") && t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.quantity += t.quantity;
+                    }
+                }
+            }else{ // amount $
+                ae = new AnalyticsEntity("Cash payments by amount ($) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.paymentType.equals("cash") && t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.amount += t.totalPrice;
+                    }
+                }
+            }
+        }else if(filter.equals("card")){
+            if(type.equals("quantity")){ // quantity #
+                ae = new AnalyticsEntity("Card payments by quantity (#) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.paymentType.equals("card") && t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.quantity += t.quantity;
+                    }
+                }
+            }else{ // amount $
+                ae = new AnalyticsEntity("Cash payments by amount ($) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.paymentType.equals("card") && t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.amount += t.totalPrice;
+                    }
+                }
+            }
+        }else if(filter.equals("snapcash")){
+            if(type.equals("quantity")){ // quantity #
+                ae = new AnalyticsEntity("Snapcash payments by quantity (#) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.paymentType.equals("snapcash") && t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.quantity += t.quantity;
+                    }
+                }
+            }else{ // amount $
+                ae = new AnalyticsEntity("Snapcash payments by amount ($) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.paymentType.equals("snapcash") && t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.amount += t.totalPrice;
+                    }
+                }
+            }
+        }else if(filter.equals("all")){
+            if(type.equals("quantity")){ // quantity #
+                ae = new AnalyticsEntity("All payments by quantity (#) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.quantity += t.quantity;
+                    }
+                }
+            }else{ // amount $
+                ae = new AnalyticsEntity("All payments by amount ($) from " + startDate + " to " + endDate);
+                for(Transaction t: transactionList){
+                    if(t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                        ae.amount += t.totalPrice;
+                    }
+                }
+            }
+        }
+        
+        return ae;
+    }
+    
+    public static ArrayList<Transaction> getTransactions(Date startDate, Date endDate){
+        ArrayList<Transaction> result = new ArrayList<>();
+        for(Transaction t : transactionList){
+            if(t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                result.add(t);
+            }
+        }
+        return result;
+    }
     
     public static String print(){
         return transactionList.toString();

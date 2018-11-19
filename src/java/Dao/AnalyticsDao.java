@@ -72,6 +72,8 @@ public class AnalyticsDao {
                         String tid = transactionDataObj.get("TID").getAsString();
                         String cashierName = transactionDataObj.get("cashierName").getAsString();
                         boolean refunded = transactionDataObj.get("refunded").getAsBoolean();
+                        
+                        
 
                         String pattern = "yyyy-MM-dd HH:mm:ss";
                         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
