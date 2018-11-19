@@ -69,7 +69,7 @@
                                 <div class="card">
                                     <div class="header">
                                         <h4 class="title">Transactions Overview</h4>
-                                        <p class="category">Annual Report for the year: <b>2018</b></p>
+                                        <p class="category">Annual Report for: <b>2018</b></p>
                                     </div>
                                     <div class="content">
                                         <div id="chartPreferences" class="ct-chart" style="height:100%">
@@ -144,8 +144,8 @@
                             %>
                                 <div class="card">
                                     <div class="header">
-                                        <h4 class="title">Best Selling Item</h4>
-                                        <p class="category">For the year: <b>2018</b></p>
+                                        <h4 class="title">Top 5 Best Selling Items</h4>
+                                        <p class="category">For: <b>2018</b></p>
                                     </div>
                                     <div class="content">
                                         <div id="chartPreferences" class="ct-chart" style="height:100%">
@@ -202,8 +202,8 @@
                             %>
                                 <div class="card">
                                     <div class="header">
-                                        <h4 class="title">Least Selling Item</h4>
-                                        <p class="category">For the year: <b>2018</b></p>
+                                        <h4 class="title">Top 5 Least Selling Items</h4>
+                                        <p class="category">For: <b>2018</b></p>
                                     </div>
                                     <div class="content table-responsive table-full-width">
                                         <table class="table table-hover table-striped">
@@ -235,7 +235,7 @@
                                 <div class="card">
                                     <div class="header">
                                         <h4 class="title">Transactions Overview</h4>
-                                        <p class="category">Transactions for the year: <b>2018</b></p>
+                                        <p class="category">For: <b>2018</b></p>
                                     </div>
                                     <div class="content table-responsive table-full-width">
                                         <table class="table table-hover table-striped">
