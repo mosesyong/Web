@@ -31,27 +31,35 @@
                                     <div class="row">
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                Select Outlet:<br>
-                                            <select name="outletName" style='width:135px; margin-top:2px'>
-                                                <option value="" selected hidden></option>
-                                            <%
-                                                for(String oName : u.getOutletNames()){
+                                                <label>Select Outlet</label>
+                                                <select name="outletName" class="form-control" placeholder="Select Outlet">
+                                                    <option value="" selected hidden></option>
+                                                    <%
+                                                        for(String oName : u.getOutletNames()){
                                                     %>
-                                                <option value="<%=oName%>"><%=oName%></option>"
+                                                    <option value="<%=oName%>"><%=oName%></option>"
                                                     <%
                                                         }
                                                     %>
                                             </select>
-                                            </div>
+                                                
+                                            </div> 
                                         </div>
-                                        <div class="col-md-4">   
+                                        <div class="col-md-3">
                                             <div class="form-group">
-                                                Select Time: <br>
-                                                <input type="number" step="1" name="time"/>
-                                            </div>
+                                                <label>Enter Start Date Time:</label>
+                                                <input type="datetime-local" class="form-control" placeholder="Start Date Time" name="startDateTime">
+                                            </div> 
                                         </div>
-                                            
-                                    <input type="submit" name="menu" class="btn btn-info btn-fill pull-right" style="border-color: #FFE37C; margin: 10px 20px" value="Submit">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Enter End Date Time:</label>
+                                                <input type="datetime-local" class="form-control" placeholder="End Date Time" name="endDateTime">
+                                            </div> 
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="submit" name="menu" class="btn pull-right" style="border: solid #9F9F9F 1px; margin-top: 28px" value="Submit">
+                                        </div>
                                     </div>
                                 </form>
                                 <br>

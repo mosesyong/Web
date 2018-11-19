@@ -4,6 +4,7 @@
     Author     : Moses
 --%>
 
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Dao.AnalyticsDao"%>
 <%@page import="Entity.AnalyticsEntity"%>
@@ -57,23 +58,66 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <%
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
+                                   HashMap<String, ArrayList<Double>>resultsMap = TransactionDao.getMainPageTransactionsByPaymentType();
+                                   ArrayList<Double> cashTrans = resultsMap.get("cash");
+                                   ArrayList<Double> creditTrans = resultsMap.get("card"); 
+                                   ArrayList<Double> snapcashTrans = resultsMap.get("snapcash");
+                                   System.out.println(cashTrans);
+                                   System.out.println(creditTrans);
+                                   System.out.println(snapcashTrans);
                                 %>
                                 <div class="card">
                                     <div class="header">
                                         <h4 class="title">Transactions Overview</h4>
-                                        <p class="category">Annual Report for 2018</p>
+                                        <p class="category">Annual Report for the year: <b>2018</b></p>
                                     </div>
                                     <div class="content">
-                                    <%=TransactionDao.getMainPageTransactionsByPaymentType()%>
                                         <div id="chartPreferences" class="ct-chart" style="height:100%">
-<!--                                        <canvas id="totalTransactionsbyPaymentType"></canvas>-->
+                                        <canvas id="totalTransactionsbyPaymentType"></canvas>
                                         </div>
+                                        <script>
+                                         var chartName = new String("totalTransactionsbyPaymentType");
+                                         var pieChart = document.getElementById(chartName).getContext("2d");
+                                         var barChart = new Chart(pieChart, {
+                                             type: 'bar',
+                                             data: {
+                                                labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September","October", "November", "December"],
+                                                    datasets: [
+                                                         {
+                                                            label: 'Total Amount Paid By Cash',
+                                                            data: <%=cashTrans%>,
+                                                            backgroundColor: "rgba(255, 99, 132, 0.6)"
+                                                            
+                                                         },
+                                                         {
+                                                             label: 'Total Amount Paid by Card',
+                                                             data: <%=creditTrans%>,
+                                                             backgroundColor:"rgba(54, 162, 235, 0.6)"
+                                                         },
+                                                         {
+                                                             label: 'Total Amount Paid by SnapCash',
+                                                             data: <%=snapcashTrans%>,
+                                                             backgroundColor:"rgba(255, 254, 110, 0.6)"
+                                                                 
+                                                        }]
+                                            },
+                                            options: {
+                                                legend: {
+                                                    display: true,
+                                                    position: 'top'
+
+                                                },
+                                                scales: {
+                                                    xAxes:[{
+                                                        stacked: true,
+                                                    }],
+                                                yAxes:[{
+                                                    stacked: true
+                                                }]
+                                                }
+                                            }
+                                          });
+                                    </script>
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +145,7 @@
                                 <div class="card">
                                     <div class="header">
                                         <h4 class="title">Best Selling Item</h4>
-                                        <p class="category">Based on Quantity</p>
+                                        <p class="category">For the year: <b>2018</b></p>
                                     </div>
                                     <div class="content">
                                         <div id="chartPreferences" class="ct-chart" style="height:100%">
@@ -152,8 +196,6 @@
                                                 
                         <div class="row">
                             <div class="col-md-6">
-                            <%--<%=TransactionDao.getMainPageTransactions()%>--%>
-                           
                             <%
                                 ArrayList<AnalyticsEntity> worstSellers = TransactionDao.getBottomSellersByQuantity("Year",5);
                                 
@@ -161,7 +203,7 @@
                                 <div class="card">
                                     <div class="header">
                                         <h4 class="title">Least Selling Item</h4>
-                                        <p class="category">Based on Quantity</p>
+                                        <p class="category">For the year: <b>2018</b></p>
                                     </div>
                                     <div class="content table-responsive table-full-width">
                                         <table class="table table-hover table-striped">
@@ -193,7 +235,7 @@
                                 <div class="card">
                                     <div class="header">
                                         <h4 class="title">Transactions Overview</h4>
-                                        <p class="category">Transactions of the Day</p>
+                                        <p class="category">Transactions for the year: <b>2018</b></p>
                                     </div>
                                     <div class="content table-responsive table-full-width">
                                         <table class="table table-hover table-striped">
