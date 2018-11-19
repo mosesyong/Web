@@ -249,7 +249,7 @@
                                     <div class="row">
                                         <div class="col-md-6 ">
                                         <%
-                                            ArrayList<AnalyticsEntity> worstSellers = TransactionDao.getBottomSellersByQuantity("Year",5);
+                                            ArrayList<AnalyticsEntity> worstSellers = (ArrayList<AnalyticsEntity>) request.getAttribute("worstSellers");
 
                                         %>
                                             <div class="card aCard">
@@ -297,10 +297,10 @@
                                                         </thead>
 
                                                         <%
-                                                        ArrayList<Transaction> tList = TransactionDao.getTransactionList();
-                                                        ArrayList<Transaction> nonRList = TransactionDao.getNonRefundedTransactionList();
-                                                        ArrayList<Transaction> rList = TransactionDao.getRefundedTransactionList();
-
+                                                        ArrayList<Transaction> tList = (ArrayList<Transaction>) request.getAttribute("tList");
+                                                        ArrayList<Transaction> nonRList = (ArrayList<Transaction>) request.getAttribute("nonRList");
+                                                        ArrayList<Transaction> rList = (ArrayList<Transaction>) request.getAttribute("rList");
+                                                        
                                                         int totalTrans = tList.size();
                                                         int totalNonRefunds = nonRList.size();
                                                         int totalRefunds = rList.size();
