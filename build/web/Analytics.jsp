@@ -71,42 +71,51 @@
                                         <h3 class="title">Company Analytics</h3>
                                     </div>
                                     <div class="content">
-                                        <div class="row">
-                                            <div class='col-md-12'>
-                                                <div class='form-group'>
-                                                    <form action='AnalyticsWebServlet' method='get'>
-                                                        <select name='analyticsType' style='width: 25%'>
+                                        <form action='AnalyticsWebServlet' method='get'>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>Enter Start Date Time:</label>
+                                                        <input type="datetime-local" class="form-control" placeholder="Start Date Time" name="startDateTime">
+                                                    </div> 
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>Enter End Date Time:</label>
+                                                        <input type="datetime-local" class="form-control" placeholder="End Date Time" name="endDateTime">
+                                                    </div> 
+                                                </div>
+                                                <div class='col-md-2'>
+                                                    <div class='form-group'>
+                                                        <label>Select Category</label>
+                                                        <select name="analyticsType" class="form-control" placeholder="Select Category">
                                                             <option selected="true" disabled="disabled">Select Category</option>
                                                             <option value='Sales'>Sales</option>
                                                             <option value='ItemsQuantity'>Item's Quantity</option>
-                                                            <option value='ItemsAmount'>Item's Cash Value</option>
+                                                            <option value='ItemsAmount'>Item's Cash Value</option>  
                                                         </select>
-                                                        <select name='paymentType' style='width: 25%'>
-                                                            <option selected="true" disabled="disabled">Select Payment Type</option>
+                                                    </div>
+                                                </div>
+                                                <div class='col-md-2'>
+                                                    <div class='form-group'>
+                                                        <label>Select Filter</label>
+                                                        <select name="paymentType" class="form-control" placeholder="Select Filter">
+                                                            <option selected="true" disabled="disabled">Select Filter</option>
                                                             <option value='All'>All</option>
                                                             <option value='cash'>Cash</option>
-                                                            <option value='card'>Card</option>
+                                                            <option value='card'>Credit Card</option>
                                                             <option value='snapcash'>SnapCash</option>
                                                             <option value='discounts'>Discounts</option>
                                                             <option value='refunds'>Refunds</option>
                                                         </select>
-                                                        <select name="outletName" style='width: 25%'>
-                                                            <option selected="true" disabled="disabled">Select Outlet</option>
-                                                            <option value='All'>All</option>
-                                                            <%
-                                                                for(String oName : u.getOutletNames()){
-                                                                    %>
-                                                            <option value="<%=oName%>"><%=oName%></option>"
-                                                                    <%
-                                                                    }
-                                                                    %>
-                                                         </select>
-                                                         <button type="submit" class="btn btn-info btn-fill" style="border-color: #FFE37C;">Submit</button>
-                                                    </form> 
+                                                    </div>
                                                 </div>
+                                                <div class="col-md-2">
+                                                <input type="submit" name="menu" class="btn pull-right" style="border: solid #9F9F9F 1px; margin-top: 28px" value="Submit">
+                                                </div>   
                                             </div>
-                                        
-                                        </div>
+                                        </form> 
+                                    </div>
                                         <div id="charts">
                                             <div class="row">
                                                 
