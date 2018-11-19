@@ -112,7 +112,7 @@
                                                 if(amount != null){
                                                 %>
                                                 <div class="col-md-2">
-                                                    <button id="toPDF" class="btn pull-right" onclick="pdfFunction()" style='border: solid #9F9F9F 1px; margin-top: 35px'>Save as PDF</button>
+                                                    <button id="toPDF" class="btn pull-right" onclick="pdfFunction()" style='border: solid #9F9F9F 1px; margin-top: 35px'>Save page as PDF</button>
                                                 </div>
                                             </div>
                                     
@@ -130,7 +130,7 @@
                                                                 <div class="col-7 col-md-8">
                                                                   <div class="numbers">
                                                                     <p class="card-category">Total Value:</p>
-                                                                    <p class="card-title"><%=amount%></p>
+                                                                    <p class="card-title">$<%=amount%></p>
                                                                   </div>
                                                                 </div>
                                                             </div>
@@ -140,7 +140,11 @@
                                             </div>
                                     <%
                                         ArrayList<String> labelList = (ArrayList<String>)request.getAttribute("labelList");
+                                        System.out.println("Label List: " + labelList);
                                         HashMap<String,ArrayList<Double>> resultMap = (HashMap<String, ArrayList<Double>>) request.getAttribute("resultMap");
+                                        ArrayList<Double> cashTransactions = resultMap.get("cash");
+                                        ArrayList<Double> cardTransactions = resultMap.get("card");
+                                        ArrayList<Double> snapcashTransactions = resultMap.get("snapcash");
                                     %>                                                   
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -151,48 +155,69 @@
                                                         </div>
                                                         <div class="content">
                                                             <div id="chartPreferences" class="ct-chart" style="height:100%">
-                                                                <canvas id="<%%>"></canvas>
+                                                                <canvas id="transactionsOverview"></canvas>
                                                             </div>
-<!--                                                            <script>
-                                                                        var chartName = new String("<%%>");
+                                                            <script>
+                                                                        var chartName = new String("transactionsOverview");
                                                                         var pieChart = document.getElementById(chartName).getContext("2d");
                                                                         var barChart = new Chart(pieChart, {
                                                                             type: 'pie',
                                                                             data: {
-                                                                              labels: <%%>,
+                                                                              labels: <%=labelList%>,
                                                                               datasets: [{
-                                                                                label: 'Amount',
-                                                                                data: <%%>,
-                                                                                backgroundColor: [
-                                                                                  'rgba(255, 99, 132, 0.6)',
-                                                                                  'rgba(54, 162, 235, 0.6)',
-                                                                                  'rgba(255, 206, 86, 0.6)',
-                                                                                  'rgba(75, 192, 192, 0.6)',
-                                                                                  'rgba(153, 102, 255, 0.6)',
-                                                                                  'rgba(255, 159, 64, 0.6)',
-                                                                                  'rgba(255, 254, 154, 0.6)',
-                                                                                  'rgba(173, 154, 255, 0.6)',
-                                                                                  'rgba(255, 199, 153, 0.6)',
-                                                                                  'rgba(255, 165, 153, 0.6)',
-                                                                                  'rgba(153, 177, 255, 0.6)'
-                                                                                ]
+                                                                                label: 'Cash Transactions',
+                                                                                data: <%=cashTransactions%>,
+                                                                                backgroundColor:'rgba(255, 99, 132, 0.6)'
+                                                                              },
+                                                                                  {
+                                                                                label: 'Card Transactions',
+                                                                                data: <%=cardTransactions%>,
+                                                                                backgroundColor:'rgba(54, 162, 235, 0.6)' 
+                                                                              },
+                                                                                  {
+                                                                                label: 'SnapCash Transactions',
+                                                                                data: <%=snapcashTransactions%>,
+                                                                                backgroundColor:'rgba(255, 206, 86, 0.6)' 
                                                                               }]
                                                                             },
                                                                             options: {
                                                                                 legend: {
                                                                                     display: true,
-                                                                                    position: 'right'
+                                                                                    position: 'top'
 
+                                                                                },
+                                                                                scales: {
+                                                                                    xAxes:[{
+                                                                                        stacked: true,
+                                                                                    }],
+                                                                                yAxes:[{
+                                                                                    stacked: true
+                                                                                }]
                                                                                 }
                                                                             }
                                                                           });
-                                                            </script>-->
+                                                            </script>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <% 
                                              ArrayList<AnalyticsEntity> entry = (ArrayList<AnalyticsEntity>) request.getAttribute("entry");
+                                             System.out.println(entry);
+                                             ArrayList<String> labels = new ArrayList<>();
+                                             ArrayList<Double> cashValue = new ArrayList<>();
+                                             ArrayList<Integer> quantity = new ArrayList<>();
+                                             
+                                             for(AnalyticsEntity e : entry){
+                                                 String label = e.label;
+                                                 Double cValue = e.amount;
+                                                 int iQuantity = e.quantity;
+                                                 labels.add("\"" + label + "\"");
+                                                 cashValue.add(cValue);
+                                                 quantity.add(iQuantity);
+                                             }
+                                                 
+                                             
                                             %>                                                   
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -201,45 +226,51 @@
                                                             <h4 class="title">Top Selling Items</h4>
                                                             <p class="category"></p>
                                                         </div>
-                                                        <div class="content">
-                                                            <div id="chartPreferences" class="ct-chart" style="height:100%">
-                                                                <% System.out.println(""); %>
-                                                                <canvas id="<%%>"></canvas>
+                                                        <div class="content" >
+                                                            <div id="chartPreferences" class="ct-chart" style="height:100%; width:100%;">
+                                                                <canvas id="bestSellingItems"></canvas>
                                                             </div>
-<!--                                                            <script>
-                                                                        var chartName = new String("<%%>>");
-                                                                        var pieChart = document.getElementById(chartName).getContext("2d");
-                                                                        var barChart = new Chart(pieChart, {
-                                                                            type: 'pie',
-                                                                            data: {
-                                                                              labels: <%%>,
-                                                                              datasets: [{
-                                                                                label: 'Quantity',
-                                                                                data: <%%>,
-                                                                                backgroundColor: [
-                                                                                  'rgba(255, 99, 132, 0.6)',
-                                                                                  'rgba(54, 162, 235, 0.6)',
-                                                                                  'rgba(255, 206, 86, 0.6)',
-                                                                                  'rgba(75, 192, 192, 0.6)',
-                                                                                  'rgba(153, 102, 255, 0.6)',
-                                                                                  'rgba(255, 159, 64, 0.6)',
-                                                                                  'rgba(255, 254, 154, 0.6)',
-                                                                                  'rgba(173, 154, 255, 0.6)',
-                                                                                  'rgba(255, 199, 153, 0.6)',
-                                                                                  'rgba(255, 165, 153, 0.6)',
-                                                                                  'rgba(153, 177, 255, 0.6)'
-                                                                                ]
-                                                                              }]
-                                                                            },
-                                                                            options: {
-                                                                                legend: {
-                                                                                    display: true,
-                                                                                    position: 'right'
+                                                            <script>
+                                                            var chartName = new String("bestSellingItems");
+                                                            var pieChart = document.getElementById(chartName).getContext("2d");
+                                                            var barChart = new Chart(pieChart, {
+                                                                type: 'bar',
+                                                                data: {
+                                                                   labels: <%=labels%>,
+                                                                       datasets: [
+                                                                            {
+                                                                               label: 'Amount',
+                                                                               data: <%=cashValue%>,
+                                                                               backgroundColor: "rgba(255, 99, 132, 0.6)"
 
+                                                                            },
+                                                                            {
+                                                                                label: 'Quantity',
+                                                                                data: <%=quantity%>,
+                                                                                backgroundColor:"rgba(54, 162, 235, 0.6)"
+                                                                            }]
+                                                               },
+                                                               options: {
+                                                                   legend: {
+                                                                       display: true,
+                                                                       position: 'top'
+
+                                                                   },
+                                                                   scales: {
+                                                                       xAxes:[{
+                                                                               ticks: {
+                                                                                    autoSkip: false
                                                                                 }
-                                                                            }
-                                                                          });
-                                                            </script>-->
+                   //                                                        stacked: true,
+                                                                       }],
+                                                                   yAxes:[{
+                   //                                                    stacked: true
+                                                                   }]
+                                                                   ,
+                                                                   }
+                                                               }
+                                                             });
+                                                            </script>
                                                         </div>
                                                     </div>
                                                 </div>

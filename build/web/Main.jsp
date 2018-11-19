@@ -179,6 +179,9 @@
                                                 },
                                                 scales: {
                                                     xAxes:[{
+                                                            ticks: {
+                                                                autoSkip: false
+                                                            }
 //                                                        stacked: true,
                                                     }],
                                                 yAxes:[{
