@@ -629,11 +629,26 @@ public class TransactionDao {
         return result;
     }
     
-    public static ArrayList<HashMap<String, Double>> getMainPageTransactionsByPaymentType(){
-        ArrayList<HashMap<String, Double>> result = new ArrayList<>();
+    public static HashMap<String, ArrayList<Double>> getMainPageTransactionsByPaymentType(){
+        ArrayList<HashMap<String, Double>> tempResult = new ArrayList<>();
         for(int i = 1; i <= 12; i++){ //Jan to december of the current year
-            result.add(getMonthsTransactionAmountByPaymentType(i));
+            tempResult.add(getMonthsTransactionAmountByPaymentType(i));
         }
+        
+        HashMap<String, ArrayList<Double>> result = new HashMap<>();
+        result.put("cash", new ArrayList<Double>());
+        result.put("card", new ArrayList<Double>());
+        result.put("snapcash", new ArrayList<Double>());
+        
+        for(HashMap<String, Double> map : tempResult){
+            for(String name : map.keySet()){
+                double amount = map.get(name);
+                ArrayList<Double> list = result.get(name);
+                list.add(amount);
+                result.put(name, list);
+            }
+        }
+        
         return result;
     }
     
