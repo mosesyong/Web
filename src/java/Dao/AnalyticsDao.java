@@ -9,6 +9,7 @@ import Controller.TransactionListWebServlet;
 import Entity.AnalyticsEntity;
 import static Entity.AnalyticsEntity.AmountComparatorAsc;
 import static Entity.AnalyticsEntity.QuantityComparatorAsc;
+import static Entity.AnalyticsEntity.QuantityComparatorDesc;
 import Entity.Properties;
 import Entity.Transaction;
 import Entity.User;
@@ -164,6 +165,41 @@ public class AnalyticsDao {
         }
         
         analyticsEntityList.sort(QuantityComparatorAsc);
+        
+        
+        ArrayList<AnalyticsEntity> result = new ArrayList<>();
+        if(count > analyticsEntityList.size()){
+            count = analyticsEntityList.size();
+        }
+        
+        for(int i = 0; i < count; i++){
+            result.add(analyticsEntityList.get(i));
+        }
+        
+        return result;
+    }
+    
+    public static ArrayList<AnalyticsEntity> getWorstSellersByQuantity(int count, ArrayList<Transaction> transactionList){
+        ArrayList<AnalyticsEntity> analyticsEntityList = new ArrayList<>();
+        for(Transaction t : transactionList){
+            String name = t.foodName;
+            boolean added = false;
+            for(AnalyticsEntity entity : analyticsEntityList){
+                if(entity.label.equals(name)){
+                    added = true;
+                    entity.amount = entity.amount + t.totalPrice;
+                    entity.quantity = entity.quantity + t.quantity;
+                }
+                if(added){
+                    break;
+                }
+            }
+            if(!added){
+                analyticsEntityList.add(new AnalyticsEntity(name, t.totalPrice, t.quantity));
+            }
+        }
+        
+        analyticsEntityList.sort(QuantityComparatorDesc);
         
         
         ArrayList<AnalyticsEntity> result = new ArrayList<>();
