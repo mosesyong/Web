@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author moses
  */
-public class Transaction {
+public class Transaction implements Cloneable{
     public String companyName;
     public String outletName;
     public Date dateTime;
@@ -28,7 +28,7 @@ public class Transaction {
     public String refundedBy = null;
     public Date refundDate = null;
     
-    public Transaction(String companyName, String outletName, Date dateTime, String paymentType, String foodName, int quantity, double totalPrice, String tid, String cashierName, boolean refunded){
+    public Transaction(String companyName, String outletName, Date dateTime, String paymentType, String foodName, int quantity, double totalPrice, String tid, String cashierName, boolean refunded, String discountName){
         this.companyName = companyName;
         this.outletName = outletName;
         this.dateTime = dateTime;
@@ -40,6 +40,7 @@ public class Transaction {
         this.tid = tid;
         this.cashierName = cashierName;
         this.refunded = refunded;
+        this.discountName = discountName;
     }
     
     public Transaction(String cashierName, Date dateTime, String paymentType, double totalPrice, String discountName, boolean dineIn){
@@ -87,6 +88,11 @@ public class Transaction {
     public String toString(){
         return("Company Name: " + companyName + ", Outlet Name: " + outletName + ", date: " + dateTime + ", Payment Type: " + paymentType + ", Food Name: " + foodName + ", Quantity: " + quantity + ", Unit Price: " + unitPrice + ", Total Price: " + totalPrice + ", tid: " + tid + ", Cashier Name: " + cashierName + ", Refunded: " + refunded);
     }
+    
+    @Override
+    public Object clone()throws CloneNotSupportedException{  
+        return super.clone();  
+    }  
     
 }
 

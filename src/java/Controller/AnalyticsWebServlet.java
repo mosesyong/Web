@@ -61,6 +61,9 @@ public class AnalyticsWebServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String filter = request.getParameter("filter"); // All, cash, card, snapcash, refunds
+            if(filter == null){
+                filter = "All";
+            }
             String startDateTimeStr = request.getParameter("startDateTime");
             String endDateTimeStr = request.getParameter("endDateTime");
 
@@ -103,17 +106,17 @@ public class AnalyticsWebServlet extends HttpServlet {
             for(Transaction t: TransactionDao.transactionList){
                 if(t.dateTime.after(startDateTime) && t.dateTime.before(endDateTime)){
                     if(filter.equals("cash")){
-                        if(t.paymentType.equals("cash")){
+                        if(!t.refunded && t.paymentType.equals("cash")){
                             totalAmount += t.totalPrice;
                             filteredTransactionList.add(t);
                         }
                     }else if(filter.equals("card")){
-                        if(t.paymentType.equals("card")){
+                        if(!t.refunded && t.paymentType.equals("card")){
                             totalAmount += t.totalPrice;
                             filteredTransactionList.add(t);
                         }
                     }else if(filter.equals("snapcash")){
-                        if(t.paymentType.equals("snapcash")){
+                        if(!t.refunded && t.paymentType.equals("snapcash")){
                             totalAmount += t.totalPrice;
                             filteredTransactionList.add(t);
                         }
@@ -123,13 +126,17 @@ public class AnalyticsWebServlet extends HttpServlet {
                             filteredTransactionList.add(t);
                         }
                     }else if(filter.equals("discounts")){
-                        if(!t.discountName.isEmpty()){
+                        try{
+                            if(!t.refunded && !t.discountName.equals("null")){
+                                totalAmount += t.totalPrice;
+                                filteredTransactionList.add(t);
+                            }
+                        }catch(NullPointerException e){}
+                    }else{ // all or select filter
+                        if(!t.refunded){
                             totalAmount += t.totalPrice;
                             filteredTransactionList.add(t);
                         }
-                    }else{ // all or select filter
-                        totalAmount += t.totalPrice;
-                            filteredTransactionList.add(t);
                     }
                 }
             }
@@ -141,6 +148,12 @@ public class AnalyticsWebServlet extends HttpServlet {
             ArrayList<Transaction> tList = filteredTransactionList;
             ArrayList<Transaction> nonRList = AnalyticsDao.getNonRefundedTransactions(filteredTransactionList);
             ArrayList<Transaction> rList = AnalyticsDao.getRefundedTransactions(filteredTransactionList);
+            
+            System.out.println("LabelList");
+            System.out.println(labelList);
+            
+            System.out.println("resultMap");
+            System.out.println(resultMap);
             
             request.setAttribute("totalAmount", "" + totalAmount);
             request.setAttribute("entry", entry);

@@ -144,7 +144,7 @@ public class TransactionDao {
                 cal.set(Calendar.DAY_OF_MONTH, 1);
             }
             if(time.equals("Year")){
-                cal.set(Calendar.YEAR, 1);
+                cal.set(Calendar.DAY_OF_YEAR, 1);
             }
             if(time.equals("All")){
                 cal.add(Calendar.YEAR, -100);
@@ -214,7 +214,7 @@ public class TransactionDao {
             cal.set(Calendar.DAY_OF_MONTH, 1);
         }
         if(time.equals("Year")){
-            cal.set(Calendar.YEAR, 1);
+            cal.set(Calendar.DAY_OF_YEAR, 1);
         }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
@@ -269,7 +269,7 @@ public class TransactionDao {
             cal.set(Calendar.DAY_OF_MONTH, 1);
         }
         if(time.equals("Year")){
-            cal.set(Calendar.YEAR, 1);
+            cal.set(Calendar.DAY_OF_YEAR, 1);
         }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
@@ -324,7 +324,7 @@ public class TransactionDao {
             cal.set(Calendar.DAY_OF_MONTH, 1);
         }
         if(time.equals("Year")){
-            cal.set(Calendar.YEAR, 1);
+            cal.set(Calendar.DAY_OF_YEAR, 1);
         }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
@@ -390,7 +390,7 @@ public class TransactionDao {
             cal.set(Calendar.DAY_OF_MONTH, 1);
         }
         if(time.equals("Year")){
-            cal.set(Calendar.YEAR, 1);
+            cal.set(Calendar.DAY_OF_YEAR, 1);
         }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
@@ -455,7 +455,7 @@ public class TransactionDao {
             cal.set(Calendar.DAY_OF_MONTH, 1);
         }
         if(time.equals("Year")){
-            cal.set(Calendar.YEAR, 1);
+            cal.set(Calendar.DAY_OF_YEAR, 1);
         }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);
@@ -521,7 +521,7 @@ public class TransactionDao {
             cal.set(Calendar.DAY_OF_MONTH, 1);
         }
         if(time.equals("Year")){
-            cal.set(Calendar.YEAR, 1);
+            cal.set(Calendar.DAY_OF_YEAR, 1);
         }
         if(time.equals("All")){
             cal.add(Calendar.YEAR, -100);

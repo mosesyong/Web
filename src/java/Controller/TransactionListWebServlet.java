@@ -20,6 +20,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -133,7 +134,7 @@ public class TransactionListWebServlet extends HttpServlet {
 //                }
 //                transactionList.add(t);
 //            }
-
+            HashMap<String, Transaction> resultMap = new HashMap<>();
             ArrayList<Transaction> result = new ArrayList<>();
             
             String outletName = request.getParameter("outletName");
@@ -182,10 +183,27 @@ public class TransactionListWebServlet extends HttpServlet {
                     }
                     
                     if(t.dateTime.after(startDateTime) && t.dateTime.before(endDateTime)){
-                        result.add(t);
+                        if(resultMap.keySet().contains(t.tid)){
+                            Transaction tempTransaction = resultMap.get(t.tid);
+                            double totalPrice = tempTransaction.totalPrice;
+                            totalPrice += t.totalPrice;
+                            tempTransaction.totalPrice = totalPrice;
+                            System.out.println(tempTransaction);
+                            resultMap.put(t.tid, tempTransaction);
+                        }else{
+                            try {
+                                resultMap.put(t.tid,(Transaction)t.clone());
+                            } catch (CloneNotSupportedException ex) {
+                                Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
                     }
                 }
             }    
+            
+            for(Transaction t: resultMap.values()){
+                result.add(t);
+            }
             
             request.setAttribute("transactionResults", result);
             request.getRequestDispatcher("DisplayTransactions.jsp").forward(request, response);

@@ -140,7 +140,11 @@
                                                 </div> 
                                             </div>
                                     <%
-                                        ArrayList<String> labelList = (ArrayList<String>)request.getAttribute("labelList");
+                                        ArrayList<String> oldLabelList = (ArrayList<String>)request.getAttribute("labelList");
+                                        ArrayList<String> labelList = new ArrayList<>();
+                                        for(String s : oldLabelList){
+                                            labelList.add("\"" + s + "\"");
+                                        }
                                         System.out.println("Label List: " + labelList);
                                         HashMap<String,ArrayList<Double>> resultMap = (HashMap<String, ArrayList<Double>>) request.getAttribute("resultMap");
                                         ArrayList<Double> cashTransactions = resultMap.get("cash");
@@ -162,7 +166,7 @@
                                                                         var chartName = new String("transactionsOverview");
                                                                         var pieChart = document.getElementById(chartName).getContext("2d");
                                                                         var barChart = new Chart(pieChart, {
-                                                                            type: 'pie',
+                                                                            type: 'bar',
                                                                             data: {
                                                                               labels: <%=labelList%>,
                                                                               datasets: [{
@@ -266,7 +270,9 @@
                    //                                                        stacked: true,
                                                                        }],
                                                                    yAxes:[{
+                                                                           ticks:{
                                                                            beginAtZero: true
+                                                                       }
                    //                                                    stacked: true
                                                                    }]
                                                                    ,

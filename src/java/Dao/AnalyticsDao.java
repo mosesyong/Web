@@ -81,7 +81,7 @@ public class AnalyticsDao {
                         String tid = transactionDataObj.get("TID").getAsString();
                         String cashierName = transactionDataObj.get("cashierName").getAsString();
                         boolean refunded = transactionDataObj.get("refunded").getAsBoolean();
-                        
+                        String discountName = transactionDataObj.get("discountName").getAsString();
                         
 
                         String pattern = "yyyy-MM-dd HH:mm:ss";
@@ -93,9 +93,30 @@ public class AnalyticsDao {
                         } catch (ParseException ex) {
                             Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                        
+                        
+                        Transaction t = new Transaction(companyName, outletName, dateTime, paymentType, foodName, quantity, totalPrice, tid, cashierName, refunded, discountName);
+                        
+                        if(refunded){
+                            try{
+                                t.refundedBy = transactionDataObj.get("refundedBy").getAsString();
+                                String refundDateString = transactionDataObj.get("refundedDate").getAsString(); //2018-09-27 13:07:47.0
+                                Date refundDate = null;
 
-                        TransactionDao.addTransaction(new Transaction(companyName, outletName, dateTime, paymentType, foodName, quantity, totalPrice, tid, cashierName, refunded));
-                      
+                                try {
+                                    refundDate = sdf.parse(refundDateString);
+                                } catch (ParseException ex) {
+                                    Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                                t.refundDate = refundDate;
+                            }catch(Exception e){
+                                System.out.println("REFUND ERROR!");
+                                System.out.println(e.getMessage());
+                                e.printStackTrace();
+                            }
+                        }
+                        
+                        TransactionDao.addTransaction(t);
                     }
                 }
             } catch (Exception e) {
@@ -243,56 +264,130 @@ public class AnalyticsDao {
         startCal.setTime(startDateTime);
         startCal.getTime();
         
-//        if(time.equals("Day")){
-//            cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
-//            cal.clear(Calendar.MINUTE);
-//            cal.clear(Calendar.SECOND);
-//            cal.clear(Calendar.MILLISECOND);
-//        }
-//        if(time.equals("Week")){
-//            cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
-//        }
-//        if(time.equals("Month")){
-//            cal.set(Calendar.DAY_OF_MONTH, 1);
-//        }
-//        if(time.equals("Year")){
-//            cal.set(Calendar.YEAR, 1);
-//        }
-//        if(time.equals("All")){
-//            cal.add(Calendar.YEAR, -100);
-//        }
-        
+        System.out.println(duration);
         if(duration < 86_400_000){ // smaller than day = breakdown by hour
             startCal.clear(Calendar.MINUTE);
             startCal.clear(Calendar.SECOND);
             startCal.clear(Calendar.MILLISECOND);
-            int startHour = startCal.getTime().getHours();
-            labelList.add("" + startHour);
-            dateList.add(startCal.getTime());
-            for(int i = startHour + 1; i <= 24; i++){
-                labelList.add("" + i);
-                startCal.add(Calendar.HOUR, i);
+            int startHour = startCal.getTime().getHours() + 1;
+            while(startCal.getTime().before(endDateTime)){
+                labelList.add("" + startCal.getTime().getHours() + 1);
                 dateList.add(startCal.getTime());
+                startCal.add(Calendar.HOUR, 1);
             }
-            labelList.remove(labelList.size()-1);
         }else if(duration < 604_800_000){  // smaller than week = breakdown by day
-            
+            HashMap<Integer, String> dayMap = new HashMap<>();
+            dayMap.put(0, "Sunday");
+            dayMap.put(1, "Monday");
+            dayMap.put(2, "Tuesday");
+            dayMap.put(3, "Wednesday");
+            dayMap.put(4, "Thursday");
+            dayMap.put(5, "Friday");
+            dayMap.put(6, "Saturday");
+            startCal.clear(Calendar.MINUTE);
+            startCal.clear(Calendar.SECOND);
+            startCal.clear(Calendar.MILLISECOND);
+            int startDay = startCal.getTime().getDate();
+            int endDay = endDateTime.getDate();
+            while(startCal.getTime().before(endDateTime)){
+//                System.out.println(startCal.getTime());
+                labelList.add("" + dayMap.get(startCal.getTime().getDay()));
+                dateList.add(startCal.getTime());
+                startCal.add(Calendar.DATE, 1);
+            }
         }else if(duration < 2_629_746_000L){ // smaller than month = breakdown by week
-            
+            startCal.clear(Calendar.MINUTE);
+            startCal.clear(Calendar.SECOND);
+            startCal.clear(Calendar.MILLISECOND);
+            int startWeekDay = startCal.getTime().getDate();
+            int endWeekDay = endDateTime.getDate();
+            while(startCal.getTime().before(endDateTime)){
+                labelList.add("" + startCal.getTime().getDate());
+                dateList.add(startCal.getTime());
+                startCal.add(Calendar.DATE, 7);
+            }
         }else if(duration < 31_556_952_000L){ // smaller than year = breakdown by month
+            HashMap<Integer, String> monthMap = new HashMap<>();
+            monthMap.put(0, "January");
+            monthMap.put(1, "February");
+            monthMap.put(2, "March");
+            monthMap.put(3, "April");
+            monthMap.put(4, "May");
+            monthMap.put(5, "June");
+            monthMap.put(6, "July");
+            monthMap.put(7, "August");
+            monthMap.put(8, "September");
+            monthMap.put(9, "October");
+            monthMap.put(10, "November");
+            monthMap.put(11, "December");
             
+            startCal.clear(Calendar.MINUTE);
+            startCal.clear(Calendar.SECOND);
+            startCal.clear(Calendar.MILLISECOND);
+            startCal.set(Calendar.DAY_OF_MONTH, 1);
+            int startMonth = startCal.getTime().getMonth();
+            while(startCal.getTime().before(endDateTime)){
+                labelList.add(monthMap.get(startCal.getTime().getMonth()));
+                dateList.add(startCal.getTime());
+                startCal.add(Calendar.MONTH, 1);
+            }
         }else{ // larger than year = breakdown by year
-            
+            startCal.clear(Calendar.MINUTE);
+            startCal.clear(Calendar.SECOND);
+            startCal.clear(Calendar.MILLISECOND);
+            startCal.set(Calendar.DAY_OF_MONTH, 1);
+            startCal.set(Calendar.DAY_OF_YEAR, 1);
+            int startYear = startDateTime.getYear() + 1900;
+            int endYear = endDateTime.getYear() + 1 + 1900;
+            while(startCal.getTime().before(endDateTime)){
+                labelList.add( "" + (startCal.getTime().getYear() + 1900));
+                dateList.add(startCal.getTime());
+                startCal.add(Calendar.YEAR, 1);
+            }
         }
         
-        ArrayList<String> result = new ArrayList<>();
+        dateList.add(endDateTime);
         
-        return result;        
+        return labelList;        
     }
 
     public static HashMap<String, ArrayList<Double>> getResultMap(ArrayList<Transaction> transactionList) {
         HashMap<String, ArrayList<Double>> result = new HashMap<>();
-        
+        result.put("cash", new ArrayList<Double>());
+        result.put("card", new ArrayList<Double>());
+        result.put("snapcash", new ArrayList<Double>());
+        System.out.println("dateList: " + dateList);
+        for(int i = 0; i < dateList.size() - 1; i ++){
+            Date startDate = dateList.get(i);
+            Date endDate = dateList.get(i+1);
+            double cash = 0.0;
+            double card = 0.0;
+            double snapcash = 0.0;
+            for(Transaction t : transactionList){
+                if(t.dateTime.after(startDate) && t.dateTime.before(endDate)){
+                    System.out.println(t);
+                    if(t.paymentType.equals("cash")){
+                        cash += t.totalPrice;
+                    }else if(t.paymentType.equals("card")){
+                        card += t.totalPrice;
+                    }else{
+                        snapcash =+ t.totalPrice;
+                    }
+                }
+            }
+            ArrayList<Double> cashList = result.get("cash");
+            cashList.add(cash);
+            result.put("cash", cashList);
+            
+            ArrayList<Double> cardList = result.get("card");
+            cardList.add(card);
+            result.put("card", cardList);
+            
+            ArrayList<Double> snapcashList = result.get("snapcash");
+            snapcashList.add(snapcash);
+            result.put("snapcash", snapcashList);
+        }
+        System.out.println("dateListResult: " + result);
         return result;
     }
 
