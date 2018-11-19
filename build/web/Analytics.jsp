@@ -85,17 +85,7 @@
                                                         <input type="datetime-local" class="form-control" placeholder="End Date Time" name="endDateTime">
                                                     </div> 
                                                 </div>
-                                                <div class='col-md-2'>
-                                                    <div class='form-group'>
-                                                        <label>Select Category</label>
-                                                        <select name="analyticsType" class="form-control" placeholder="Select Category">
-                                                            <option selected="true" disabled="disabled">Select Category</option>
-                                                            <option value='Sales'>Sales</option>
-                                                            <option value='ItemsQuantity'>Item's Quantity</option>
-                                                            <option value='ItemsAmount'>Item's Cash Value</option>  
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class='col-md-2'>
                                                     <div class='form-group'>
                                                         <label>Select Filter</label>
@@ -110,7 +100,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-4">
                                                 <input type="submit" name="menu" class="btn pull-right" style="border: solid #9F9F9F 1px; margin-top: 28px" value="Submit">
                                                 </div>   
                                             </div>
