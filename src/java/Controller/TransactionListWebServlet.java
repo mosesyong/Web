@@ -56,85 +56,138 @@ public class TransactionListWebServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            User u = (User) session.getAttribute("user");
-            String companyName = u.getCompanyName();
-            String outletName = request.getParameter("outletName");
-            String time = request.getParameter("time");
-            
-//            To display refunded values?
-//            String[] refunded = request.getParameterValues("refund");
-//            boolean refund = false;
-//            if(refunded.length > 0){
-//                refund = true;
-//            }
-            
-
-//            cal.add(Calendar.HOUR, -3);
-//            Date prevDateTime = cal.getTime();
+//            HttpSession session = request.getSession();
+//            User u = (User) session.getAttribute("user");
+//            String companyName = u.getCompanyName();
+//            String outletName = request.getParameter("outletName");
+//            String time = request.getParameter("time");
 //            
-//            ArrayList<Transaction> transactionList = TransactionDao.getDisplayTransactionList(outletName, prevDateTime);
+////            To display refunded values?
+////            String[] refunded = request.getParameterValues("refund");
+////            boolean refund = false;
+////            if(refunded.length > 0){
+////                refund = true;
+////            }
+//            
+//
+////            cal.add(Calendar.HOUR, -3);
+////            Date prevDateTime = cal.getTime();
+////            
+////            ArrayList<Transaction> transactionList = TransactionDao.getDisplayTransactionList(outletName, prevDateTime);
+//
+//            ArrayList<Transaction> transactionList = new ArrayList<>();
+//            
+//            DefaultHttpClient httpclient = new DefaultHttpClient();
+//            HttpHost target = new HttpHost((String)session.getAttribute("url"), (Integer)session.getAttribute("port"), "http");
+//            HttpPost postRequest = new HttpPost("/API/TransactionListServlet");
+//            
+//            ArrayList<NameValuePair> postParams = new ArrayList<>();
+//            postParams.add(new BasicNameValuePair("companyName", companyName));
+//            postParams.add(new BasicNameValuePair("outletName", outletName));
+//            postParams.add(new BasicNameValuePair("time", time));
+//                
+//            postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
+//            HttpResponse httpResponse = httpclient.execute(target, postRequest);
+//            HttpEntity entity = httpResponse.getEntity();
+//
+//            int statusCode = httpResponse.getStatusLine().getStatusCode();
+//            JsonParser parser = new JsonParser();
+//            JsonObject jo = (JsonObject) parser.parse(EntityUtils.toString(entity));
+//            JsonArray resultArray = jo.get("result").getAsJsonArray();
+//            
+//            String pattern = "yyyy-MM-dd HH:mm:ss.S";
+//            SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+//            
+//            for(JsonElement resultEle : resultArray){
+//                JsonObject resultObj = (JsonObject) resultEle;
+//                String cashierName = resultObj.get("name").getAsString();
+//                String dateString = resultObj.get("date").getAsString(); //2018-09-27 13:07:47.0
+//                Date dateTime = null;
+//                try {
+//                    dateTime = sdf.parse(dateString);
+//                } catch (ParseException ex) {
+//                    Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//                double totalPrice = resultObj.get("totalPrice").getAsDouble(); //2018-09-27 13:07:47.0
+//                String paymentType = resultObj.get("type").getAsString();
+//                JsonElement discountElement = resultObj.get("discountName");
+//                String discountName = "none";
+//                if(discountElement != null && !discountElement.isJsonNull()){
+//                    discountName = discountElement.getAsString();
+//                }
+//                boolean dineIn = resultObj.get("dineIn").getAsString().equals("true");
+//                Transaction t = new Transaction(cashierName, dateTime, paymentType, totalPrice, discountName, dineIn);
+//                
+//                boolean refunded = resultObj.get("refunded").getAsBoolean();
+//                if(refunded){
+//                    t.refunded = true;
+//                    t.refundedBy = resultObj.get("refundedBy").getAsString();
+//                    String refundDateString = resultObj.get("refundedDate").getAsString(); //2018-09-27 13:07:47.0
+//                    Date refundDate = null;
+//                    try {
+//                        refundDate = sdf.parse(refundDateString);
+//                    } catch (ParseException ex) {
+//                        Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                    t.refundDate = refundDate;
+//                }
+//                transactionList.add(t);
+//            }
 
-            ArrayList<Transaction> transactionList = new ArrayList<>();
+            ArrayList<Transaction> result = new ArrayList<>();
             
-            DefaultHttpClient httpclient = new DefaultHttpClient();
-            HttpHost target = new HttpHost((String)session.getAttribute("url"), (Integer)session.getAttribute("port"), "http");
-            HttpPost postRequest = new HttpPost("/API/TransactionListServlet");
-            
-            ArrayList<NameValuePair> postParams = new ArrayList<>();
-            postParams.add(new BasicNameValuePair("companyName", companyName));
-            postParams.add(new BasicNameValuePair("outletName", outletName));
-            postParams.add(new BasicNameValuePair("time", time));
-                
-            postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
-            HttpResponse httpResponse = httpclient.execute(target, postRequest);
-            HttpEntity entity = httpResponse.getEntity();
+            String outletName = request.getParameter("outletName");
+            String startDateTimeStr = request.getParameter("startDateTime");
+            String endDateTimeStr = request.getParameter("endDateTime");
+//            "2018-11-19T01:01"
 
-            int statusCode = httpResponse.getStatusLine().getStatusCode();
-            JsonParser parser = new JsonParser();
-            JsonObject jo = (JsonObject) parser.parse(EntityUtils.toString(entity));
-            JsonArray resultArray = jo.get("result").getAsJsonArray();
+            Date startDateTime = null;
+            Date endDateTime = null;
             
-            String pattern = "yyyy-MM-dd HH:mm:ss.S";
+            String pattern = "yyyy-MM-dd'T'HH:mm";
             SimpleDateFormat sdf = new SimpleDateFormat(pattern);
             
-            for(JsonElement resultEle : resultArray){
-                JsonObject resultObj = (JsonObject) resultEle;
-                String cashierName = resultObj.get("name").getAsString();
-                String dateString = resultObj.get("date").getAsString(); //2018-09-27 13:07:47.0
-                Date dateTime = null;
-                try {
-                    dateTime = sdf.parse(dateString);
-                } catch (ParseException ex) {
-                    Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                double totalPrice = resultObj.get("totalPrice").getAsDouble(); //2018-09-27 13:07:47.0
-                String paymentType = resultObj.get("type").getAsString();
-                JsonElement discountElement = resultObj.get("discountName");
-                String discountName = "none";
-                if(discountElement != null && !discountElement.isJsonNull()){
-                    discountName = discountElement.getAsString();
-                }
-                boolean dineIn = resultObj.get("dineIn").getAsString().equals("true");
-                Transaction t = new Transaction(cashierName, dateTime, paymentType, totalPrice, discountName, dineIn);
-                
-                boolean refunded = resultObj.get("refunded").getAsBoolean();
-                if(refunded){
-                    t.refunded = true;
-                    t.refundedBy = resultObj.get("refundedBy").getAsString();
-                    String refundDateString = resultObj.get("refundedDate").getAsString(); //2018-09-27 13:07:47.0
-                    Date refundDate = null;
-                    try {
-                        refundDate = sdf.parse(refundDateString);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    t.refundDate = refundDate;
-                }
-                transactionList.add(t);
+            try {
+                startDateTime = sdf.parse(startDateTimeStr);
+            } catch (ParseException ex) {
+                Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            request.setAttribute("transactionResults", transactionList);
+            try {
+                endDateTime = sdf.parse(endDateTimeStr);
+            } catch (ParseException ex) {
+                Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            for(Transaction t : TransactionDao.transactionList){
+                if(outletName.length() == 0 || t.outletName.equals(outletName)){
+                    if(startDateTime == null){  // gets from the start of all time
+                        Calendar cal = Calendar.getInstance();
+                        if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
+                            cal.add(Calendar.HOUR, 8);
+                        }
+                        
+                        cal.add(Calendar.YEAR, -100);
+                        
+                        startDateTime = cal.getTime();
+                    }
+                    
+                    if(endDateTime == null){ // gets till current datetime
+                        Calendar cal = Calendar.getInstance();
+                        if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
+                            cal.add(Calendar.HOUR, 8);
+                        }
+                        
+                        endDateTime = cal.getTime();
+                    }
+                    
+                    if(t.dateTime.after(startDateTime) && t.dateTime.before(endDateTime)){
+                        result.add(t);
+                    }
+                }
+            }    
+            
+            request.setAttribute("transactionResults", result);
             request.getRequestDispatcher("DisplayTransactions.jsp").forward(request, response);
         }
 //            
