@@ -109,6 +109,7 @@
                                                 </form>
                                                 <%
                                                  String amount = (String)request.getAttribute("totalAmount");   
+                                                if(amount != null){
                                                 %>
                                                 <div class="col-md-2">
                                                     <button id="toPDF" class="btn pull-right" onclick="pdfFunction()" style='border: solid #9F9F9F 1px; margin-top: 35px'>Save as PDF</button>
@@ -326,6 +327,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <% } %>
                             </div>
                         </div>
                     </div>

@@ -99,7 +99,7 @@ public class AnalyticsWebServlet extends HttpServlet {
             double totalAmount = 0.0;
             
             ArrayList<Transaction> filteredTransactionList = new ArrayList<>();
-            
+//            TransactionDao doNotUse = new TransactionDao();
             for(Transaction t: TransactionDao.transactionList){
                 if(t.dateTime.after(startDateTime) && t.dateTime.before(endDateTime)){
                     if(filter.equals("cash")){
@@ -137,12 +137,14 @@ public class AnalyticsWebServlet extends HttpServlet {
             ArrayList<String> labelList = AnalyticsDao.getLabelList(startDateTime, endDateTime);
             HashMap<String, ArrayList<Double>> resultMap = AnalyticsDao.getResultMap(filteredTransactionList);
             ArrayList<AnalyticsEntity> entry = AnalyticsDao.getTopSellingItems(filteredTransactionList);
+            ArrayList<AnalyticsEntity> worstSellers = AnalyticsDao.getWorstSellersByQuantity(5, filteredTransactionList);
             ArrayList<Transaction> tList = filteredTransactionList;
             ArrayList<Transaction> nonRList = AnalyticsDao.getNonRefundedTransactions(filteredTransactionList);
             ArrayList<Transaction> rList = AnalyticsDao.getRefundedTransactions(filteredTransactionList);
             
-            request.setAttribute("totalAmount", totalAmount);
+            request.setAttribute("totalAmount", "" + totalAmount);
             request.setAttribute("entry", entry);
+            request.setAttribute("worstSellers", worstSellers);
             request.setAttribute("labelList", labelList);
             request.setAttribute("resultMap", resultMap);
             request.setAttribute("tList", tList);
