@@ -54,24 +54,49 @@
             <div class="main-panel">
                 <div class="content">
                     <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <%
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                %>
+                                <div class="card">
+                                    <div class="header">
+                                        <h4 class="title">Transactions Overview</h4>
+                                        <p class="category">Annual Report for 2018</p>
+                                    </div>
+                                    <div class="content">
+                                    <%=TransactionDao.getMainPageTransactionsByPaymentType()%>
+                                        <div id="chartPreferences" class="ct-chart" style="height:100%">
+<!--                                        <canvas id="totalTransactionsbyPaymentType"></canvas>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                    
                         <div class='row'>
                             <div class="col-md-12">
                                  <%
-                                     System.out.println(TransactionDao.getTransactionList());
-                            ArrayList<String> items = new ArrayList<>();
-                            ArrayList<Integer> quantity = new ArrayList<>();
-                            ArrayList<Double> cashValue = new ArrayList<>();
-                            ArrayList<AnalyticsEntity> entry = TransactionDao.getTopSellersByQuantity("Year",5);
-                            System.out.println(entry);
-                            for(AnalyticsEntity aEntry : entry){
-                                String itemName = aEntry.label;
-                                int value = aEntry.quantity;
-                                double price = aEntry.amount;
-                                items.add("\"" + itemName + "\"");
-                                quantity.add(value);
-                                cashValue.add(price);
-                            }
-                            System.out.println(cashValue);
+                                System.out.println(TransactionDao.getTransactionList());
+                                ArrayList<String> items = new ArrayList<>();
+                                ArrayList<Integer> quantity = new ArrayList<>();
+                                ArrayList<Double> cashValue = new ArrayList<>();
+                                ArrayList<AnalyticsEntity> entry = TransactionDao.getTopSellersByQuantity("Year",5);
+                                System.out.println(entry);
+                                for(AnalyticsEntity aEntry : entry){
+                                    String itemName = aEntry.label;
+                                    int value = aEntry.quantity;
+                                    double price = aEntry.amount;
+                                    items.add("\"" + itemName + "\"");
+                                    quantity.add(value);
+                                    cashValue.add(price);
+                                }
+                                System.out.println(cashValue);
                             %>
                                 <div class="card">
                                     <div class="header">
@@ -104,16 +129,16 @@
                                             },
                                             options: {
                                                 legend: {
-                                                    display: false,
+                                                    display: true,
                                                     position: 'right'
 
                                                 },
                                                 scales: {
                                                     xAxes:[{
-                                                        stacked: true,
+//                                                        stacked: true,
                                                     }],
                                                 yAxes:[{
-                                                    stacked: true
+//                                                    stacked: true
                                                 }]
                                                 }
                                             }
@@ -128,7 +153,7 @@
                         <div class="row">
                             <div class="col-md-6">
                             <%--<%=TransactionDao.getMainPageTransactions()%>--%>
-                            <%=TransactionDao.getMainPageTransactionsByPaymentType()%>
+                           
                             <%
                                 ArrayList<AnalyticsEntity> worstSellers = TransactionDao.getBottomSellersByQuantity("Year",5);
                                 
