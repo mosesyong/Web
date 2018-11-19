@@ -35,10 +35,10 @@
             function pdfFunction() {
                 console.log("start");
                 html2canvas(document.querySelector("#charts")).then(canvas => {
-                    var doc = new jsPDF('p', 'mm', 'a4');
+                    var doc = new jsPDF('p', 'mm', [230,400]);
                     var dataURL = canvas.toDataURL();
-                    doc.text(20, 20, "Company Analytics");
-                    doc.addImage(dataURL, 'PNG', 10, 35, 200, 200);
+                    doc.text(10, 20, "Analytics Report");
+                    doc.addImage(dataURL, 'PNG', 10, 35, 210, 350);
                     doc.save("Analytics");
                 }); 
 //                var specialElementHandlers = 
@@ -54,6 +54,11 @@
                 
             };
         </script>
+        <style>
+            .aCard{
+                border: 1px solid black;
+            }
+        </style>
    </head>
    <%AnalyticsDao.getAnalytics(u);%>
     
@@ -69,8 +74,9 @@
                                         <h3 class="title">Company Analytics</h3>
                                     </div>
                                     <div class="content">
-                                        <form action='AnalyticsWebServlet' method='get'>
+                                        
                                             <div class="row">
+                                                <form action='AnalyticsWebServlet' method='get'>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label>Enter Start Date Time:</label>
@@ -97,21 +103,26 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-2">
                                                 <input type="submit" name="menu" class="btn pull-right" style="border: solid #9F9F9F 1px; margin-top: 28px" value="Submit">
-                                                </div>   
+                                                </div>
+                                                </form>
+                                                <div class="col-md-2">
+                                                    <button id="toPDF" class="btn pull-right" onclick="pdfFunction()" style='border: solid #9F9F9F 1px; margin-top: 35px'>Save as PDF</button>
+                                                </div>
                                             </div>
-                                        </form> 
-                                    </div>
+                                        
                                     <div class="row">
                                     <%
                                      
                                     %>
-                                        <button id="toPDF" onclick="pdfFunction()" style='margin-left: 15px'>PDF</button>
-                                         <div id="charts">
-                                            <div class="row">
+                                    
+                                    </div>
+                                    
+                                    <div id="charts">
+                                        <div class="row">
                                                 <div class="col-lg-3 col-md-6 col-sm-6">
-                                                    <div class="card card-stats">
+                                                    <div class="card card-stats aCard">
                                                         <div class="card-body ">
                                                             <div class="row">
                                                                 <div class="col-5 col-md-4">
@@ -135,7 +146,7 @@
                                     %>                                                   
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <div class="card">
+                                                    <div class="card aCard">
                                                         <div class="header">
                                                             <h4 class="title"><% out.println("Item's Cash Value "); %></h4>
                                                             <p class="category"></p>
@@ -187,7 +198,7 @@
                                             %>                                                   
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <div class="card">
+                                                    <div class="card aCard">
                                                         <div class="header">
                                                             <h4 class="title"><% out.println("Item's Quantity "); %></h4>
                                                             <p class="category"></p>
@@ -237,15 +248,14 @@
                                             </div>
                                             <%                                                  
                                             %>
-                                         </div>
-                                    </div>
+                                   
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-6 ">
                                         <%
                                             ArrayList<AnalyticsEntity> worstSellers = TransactionDao.getBottomSellersByQuantity("Year",5);
 
                                         %>
-                                            <div class="card">
+                                            <div class="card aCard">
                                                 <div class="header">
                                                     <h4 class="title">Top 5 Least Selling Items</h4>
                                                     <p class="category">For: <b>2018</b></p>
@@ -277,7 +287,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="card">
+                                            <div class="card aCard">
                                                 <div class="header">
                                                     <h4 class="title">Transactions Overview</h4>
                                                     <p class="category">For: <b>2018</b></p>
@@ -323,6 +333,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
             </div>
         </div>
     </body>             
