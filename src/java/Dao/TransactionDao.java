@@ -567,8 +567,8 @@ public class TransactionDao {
         return result;
     }
     
-    public static TreeSet<AnalyticsEntity> getMainPageTransactions(){
-        TreeSet<AnalyticsEntity> result = new TreeSet<>();
+    public static ArrayList<AnalyticsEntity> getMainPageTransactions(){
+        ArrayList<AnalyticsEntity> result = new ArrayList<>();
         result.addAll(getTopSellersByAmount("Year", 3));
         for(AnalyticsEntity ae1 : getTopSellersByQuantity("Year", 3)){
             boolean exists = false;

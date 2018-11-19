@@ -130,7 +130,7 @@
                                 ArrayList<String> items = new ArrayList<>();
                                 ArrayList<Integer> quantity = new ArrayList<>();
                                 ArrayList<Double> cashValue = new ArrayList<>();
-                                ArrayList<AnalyticsEntity> entry = TransactionDao.getTopSellersByQuantity("Year",5);
+                                ArrayList<AnalyticsEntity> entry = TransactionDao.getMainPageTransactions();
                                 System.out.println(entry);
                                 for(AnalyticsEntity aEntry : entry){
                                     String itemName = aEntry.label;

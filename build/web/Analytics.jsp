@@ -89,7 +89,7 @@
                                                 <div class='col-md-2'>
                                                     <div class='form-group'>
                                                         <label>Select Filter</label>
-                                                        <select name="paymentType" class="form-control" placeholder="Select Filter">
+                                                        <select name="filter" class="form-control" placeholder="Select Filter">
                                                             <option selected="true" disabled="disabled">Select Filter</option>
                                                             <option value='All'>All</option>
                                                             <option value='cash'>Cash</option>
