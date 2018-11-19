@@ -150,6 +150,7 @@ public class AnalyticsWebServlet extends HttpServlet {
             request.setAttribute("tList", tList);
             request.setAttribute("nonRList", nonRList);
             request.setAttribute("rList", rList);
+            request.setAttribute("period", "" + startDateTime + " to " + endDateTime);
             
             request.getRequestDispatcher("Analytics.jsp").forward(request, response);
             
