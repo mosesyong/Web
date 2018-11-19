@@ -37,7 +37,7 @@
                     var doc = new jsPDF('p', 'mm', 'a4');
                     var dataURL = canvas.toDataURL();
                     doc.text(20, 20, "Company Analytics");
-                    doc.addImage(dataURL, 'PNG', 10, 35, 200, 250);
+                    doc.addImage(dataURL, 'PNG', 10, 35, 200, 200);
                     doc.save("Analytics");
                 }); 
 //                var specialElementHandlers = 
@@ -107,9 +107,9 @@
                                             </div>
                                         
                                         </div>
-                                        
+                                        <div id="charts">
                                             <div class="row">
-                                                <div id="charts">
+                                                
                                             
                                             <%
                                              String analyticsType = (String) request.getAttribute("analyticsType");
@@ -340,8 +340,9 @@
 
                                                 %>
                                           </div>
-                                        <button id="toPDF" onclick="pdfFunction()" style='margin-left: 15px'>PDF</button>
+                                        
                                             </div>
+                                          <button id="toPDF" onclick="pdfFunction()" style='margin-left: 15px'>PDF</button>
                                     </div>
                                 </div>
                             </div>
