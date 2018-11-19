@@ -629,7 +629,7 @@ public class TransactionDao {
         return result;
     }
     
-    public static ArrayList<HashMap<String, Double>> getMonthlyTransactionsByPaymentType(){
+    public static ArrayList<HashMap<String, Double>> getMainPageTransactionsByPaymentType(){
         ArrayList<HashMap<String, Double>> result = new ArrayList<>();
         for(int i = 1; i <= 12; i++){ //Jan to december of the current year
             result.add(getMonthsTransactionAmountByPaymentType(i));
