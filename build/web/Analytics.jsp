@@ -110,6 +110,7 @@
                                                 <%
                                                  String amount = (String)request.getAttribute("totalAmount");   
                                                 if(amount != null){
+                                                    String period = (String) request.getAttribute("period");
                                                 %>
                                                 <div class="col-md-2">
                                                     <button id="toPDF" class="btn pull-right" onclick="pdfFunction()" style='border: solid #9F9F9F 1px; margin-top: 35px'>Save page as PDF</button>
@@ -151,7 +152,7 @@
                                                     <div class="card aCard">
                                                         <div class="header">
                                                             <h4 class="title">Transactions Overview</h4>
-                                                            <p class="category"></p>
+                                                            <p class="category">For: <b><%=period%></b></p>
                                                         </div>
                                                         <div class="content">
                                                             <div id="chartPreferences" class="ct-chart" style="height:100%">
@@ -224,7 +225,7 @@
                                                     <div class="card aCard">
                                                         <div class="header">
                                                             <h4 class="title">Top Selling Items</h4>
-                                                            <p class="category"></p>
+                                                            <p class="category">For: <b><%=period%></p>
                                                         </div>
                                                         <div class="content" >
                                                             <div id="chartPreferences" class="ct-chart" style="height:100%; width:100%;">
@@ -258,12 +259,14 @@
                                                                    },
                                                                    scales: {
                                                                        xAxes:[{
+                                                                               
                                                                                ticks: {
                                                                                     autoSkip: false
                                                                                 }
                    //                                                        stacked: true,
                                                                        }],
                                                                    yAxes:[{
+                                                                           beginAtZero: true
                    //                                                    stacked: true
                                                                    }]
                                                                    ,
@@ -287,7 +290,7 @@
                                             <div class="card aCard">
                                                 <div class="header">
                                                     <h4 class="title">Least Selling Items</h4>
-                                                    <p class="category">For: <b>2018</b></p>
+                                                    <p class="category">For: <b><%=period%></p>
                                                 </div>
                                                 <div class="content table-responsive table-full-width">
                                                     <table class="table table-hover table-striped">
@@ -319,7 +322,7 @@
                                             <div class="card aCard">
                                                 <div class="header">
                                                     <h4 class="title">Refunds Overview</h4>
-                                                    <p class="category">For: <b>2018</b></p>
+                                                    <p class="category">For: <b><%=period%></p>
                                                 </div>
                                                 <div class="content table-responsive table-full-width">
                                                     <table class="table table-hover table-striped">
