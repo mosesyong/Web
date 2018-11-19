@@ -234,7 +234,7 @@
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="header">
-                                        <h4 class="title">Transaction Types</h4>
+                                        <h4 class="title">Refunds Overview</h4>
                                         <p class="category">For: <b>2018</b></p>
                                     </div>
                                     <div class="content table-responsive table-full-width">

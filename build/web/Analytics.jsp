@@ -107,17 +107,13 @@
                                                 <input type="submit" name="menu" class="btn pull-right" style="border: solid #9F9F9F 1px; margin-top: 28px" value="Submit">
                                                 </div>
                                                 </form>
+                                                <%
+                                                 String amount = (String)request.getAttribute("totalAmount");   
+                                                %>
                                                 <div class="col-md-2">
                                                     <button id="toPDF" class="btn pull-right" onclick="pdfFunction()" style='border: solid #9F9F9F 1px; margin-top: 35px'>Save as PDF</button>
                                                 </div>
                                             </div>
-                                        
-                                    <div class="row">
-                                    <%
-                                     
-                                    %>
-                                    
-                                    </div>
                                     
                                     <div id="charts">
                                         <div class="row">
@@ -133,7 +129,7 @@
                                                                 <div class="col-7 col-md-8">
                                                                   <div class="numbers">
                                                                     <p class="card-category">Total Value:</p>
-                                                                    <p class="card-title">Print value here<p>
+                                                                    <p class="card-title"><%=amount%></p>
                                                                   </div>
                                                                 </div>
                                                             </div>
@@ -142,18 +138,18 @@
                                                 </div> 
                                             </div>
                                     <%
-                                            
+                                        ArrayList<String> labelList = (ArrayList<String>)request.getAttribute("labelList");
+                                        HashMap<String,ArrayList<Double>> resultMap = (HashMap<String, ArrayList<Double>>) request.getAttribute("resultMap");
                                     %>                                                   
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="card aCard">
                                                         <div class="header">
-                                                            <h4 class="title"><% out.println("Item's Cash Value "); %></h4>
+                                                            <h4 class="title">Transactions Overview</h4>
                                                             <p class="category"></p>
                                                         </div>
                                                         <div class="content">
                                                             <div id="chartPreferences" class="ct-chart" style="height:100%">
-                                                                <% System.out.println(""); %>
                                                                 <canvas id="<%%>"></canvas>
                                                             </div>
 <!--                                                            <script>
@@ -194,13 +190,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <%                                                  
+                                            <% 
+                                             ArrayList<AnalyticsEntity> entry = (ArrayList<AnalyticsEntity>) request.getAttribute("entry");
                                             %>                                                   
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="card aCard">
                                                         <div class="header">
-                                                            <h4 class="title"><% out.println("Item's Quantity "); %></h4>
+                                                            <h4 class="title">Top Selling Items</h4>
                                                             <p class="category"></p>
                                                         </div>
                                                         <div class="content">
@@ -257,7 +254,7 @@
                                         %>
                                             <div class="card aCard">
                                                 <div class="header">
-                                                    <h4 class="title">Top 5 Least Selling Items</h4>
+                                                    <h4 class="title">Least Selling Items</h4>
                                                     <p class="category">For: <b>2018</b></p>
                                                 </div>
                                                 <div class="content table-responsive table-full-width">
@@ -289,7 +286,7 @@
                                         <div class="col-md-6">
                                             <div class="card aCard">
                                                 <div class="header">
-                                                    <h4 class="title">Transactions Overview</h4>
+                                                    <h4 class="title">Refunds Overview</h4>
                                                     <p class="category">For: <b>2018</b></p>
                                                 </div>
                                                 <div class="content table-responsive table-full-width">
