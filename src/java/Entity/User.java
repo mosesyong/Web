@@ -146,7 +146,7 @@ public class User {
     }
     
     public String getOutletName(){
-        if(Integer.parseInt(type) <= 2){
+        if(Integer.parseInt(type) <= 1){
             return "";
         }else{
             String outletName = outletNameList.get(0);
