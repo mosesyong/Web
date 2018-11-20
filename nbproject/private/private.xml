@@ -3,10 +3,30 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/moses/Documents/FYP/Web/web/Main.jsp</file>
-            <file>file:/Users/moses/Documents/FYP/Web/src/java/Dao/TransactionDao.java</file>
-            <file>file:/Users/moses/Documents/FYP/Web/web/DisplayTransactions.jsp</file>
-            <file>file:/Users/moses/Documents/FYP/Web/src/java/Controller/TransactionListWebServlet.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/PanelBars.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/Login.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/PasswordReset.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Controller/AnalyticsWebServlet.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/DisplayDiscount.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/EmployeeEdit.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/DisplayTransactions.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/ItemsAnalytics.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/MenuManagement.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/CreateUser.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/src/java/Dao/TransactionDao.java</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/CopyMenu.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/AddMenu.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/CreateDiscount.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/SalesAnalytics.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/UserManagement.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/Analytics.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/Settings.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/EditMenu.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/EmployeePasswordChange.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/img/portalsidebar.png</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/CreateCategory.jsp</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/design/css/light-bootstrap-dashboard.css</file>
+            <file>file:/Users/sharonpurbowo/Documents/GitHub/Web/web/Main.jsp</file>
         </group>
     </open-files>
 </project-private>

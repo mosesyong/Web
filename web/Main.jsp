@@ -110,10 +110,30 @@
                                                 scales: {
                                                     xAxes:[{
                                                         stacked: true,
+                                                        scaleLabel: {
+                                                            display: true,
+                                                            fontSize: 14,
+                                                            labelString: "Month",
+                                                        }
                                                     }],
                                                 yAxes:[{
-                                                    stacked: true
+                                                    stacked: true,
+                                                    scaleLabel: {
+                                                        display: true,
+                                                        fontSize: 14,
+                                                        labelString: "Cash Value",
+                                                    }
                                                 }]
+                                                },
+                                                tooltips: {
+                                                    enabled: true,
+                                                    mode: 'single',
+                                                    callbacks: {
+                                                        label: function(tooltipItems, data) { 
+                                                            tooltipItems.yLabel = '$' + tooltipItems.yLabel;
+                                                            return tooltipItems.yLabel; 
+                                                       }
+                                                    }
                                                 }
                                             }
                                           });
@@ -181,10 +201,20 @@
                                                     xAxes:[{
                                                             ticks: {
                                                                 autoSkip: false
+                                                            },
+                                                            scaleLabel: {
+                                                                display: true,
+                                                                fontSize: 14,
+                                                                labelString: "Item Name",
                                                             }
 //                                                        stacked: true,
                                                     }],
                                                 yAxes:[{
+                                                        scaleLabel: {
+                                                            display: true,
+                                                            fontSize: 14,
+                                                            labelString: "Value",
+                                                        }
 //                                                    stacked: true
                                                 }]
                                                 }
