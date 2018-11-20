@@ -33,7 +33,7 @@
                                                 <table class="table table-fixed table-hover table-striped" id="resultsTable">
                                                     <thead id="headRow">
                                                     <th>Discount Type</th>
-                                                    <th>Discount Value</th>
+                                                    <th>Discount Value (%)</th>
                                                     </thead>
                                                     <tbody>
                                                         <%
@@ -43,7 +43,7 @@
                                                          System.out.println(discountList);
                                                           for(Discount d : discountList){
                                                               String discountType = d.discountName;
-                                                              Double value = d.discountPercentage;
+                                                              Double value = d.discountPercentage * 100;
                                                               
                                                               out.println("<tr><td>"+discountType+"</td><td>"+value+"</td></tr>");
                                                           }

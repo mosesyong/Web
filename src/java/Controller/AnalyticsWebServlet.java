@@ -102,7 +102,7 @@ public class AnalyticsWebServlet extends HttpServlet {
             double totalAmount = 0.0;
             
             ArrayList<Transaction> filteredTransactionList = new ArrayList<>();
-            ArrayList<Transaction> filteredTransactionListForAll = new ArrayList<>();
+            ArrayList<Transaction> filteredTransactionListForRefundDisplay = new ArrayList<>();
             
 //            TransactionDao doNotUse = new TransactionDao();
             for(Transaction t: TransactionDao.transactionList){
@@ -143,8 +143,8 @@ public class AnalyticsWebServlet extends HttpServlet {
                             totalAmount += t.totalPrice;
                             filteredTransactionList.add(t);
                         }
-                        filteredTransactionListForAll.add(t);
                     }
+                    filteredTransactionListForRefundDisplay.add(t);
                 }
             }
             
@@ -153,17 +153,10 @@ public class AnalyticsWebServlet extends HttpServlet {
             ArrayList<AnalyticsEntity> entry = AnalyticsDao.getTopSellingItems(filteredTransactionList);
             ArrayList<AnalyticsEntity> worstSellers = AnalyticsDao.getWorstSellersByQuantity(5, filteredTransactionList);
             
-            ArrayList<Transaction> tList = AnalyticsDao.getAllTransactions(filteredTransactionList);
-            ArrayList<Transaction> nonRList = AnalyticsDao.getNonRefundedTransactions(filteredTransactionList);
-            ArrayList<Transaction> rList = AnalyticsDao.getRefundedTransactions(filteredTransactionList);
-            
-            if(filter.equals("All") || filter.length() == 0){
-                tList  = AnalyticsDao.getAllTransactions(filteredTransactionListForAll);
-                nonRList  = AnalyticsDao.getNonRefundedTransactions(filteredTransactionListForAll);
-                rList  = AnalyticsDao.getRefundedTransactions(filteredTransactionListForAll);
-            }
-            
-            
+            ArrayList<Transaction> tList = AnalyticsDao.getAllTransactions(filteredTransactionListForRefundDisplay);
+            ArrayList<Transaction> nonRList = AnalyticsDao.getNonRefundedTransactions(filteredTransactionListForRefundDisplay);
+            ArrayList<Transaction> rList = AnalyticsDao.getRefundedTransactions(filteredTransactionListForRefundDisplay);
+                        
             
             System.out.println("LabelList");
             System.out.println(labelList);
