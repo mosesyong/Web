@@ -628,13 +628,13 @@ public class TransactionDao {
             if(!t.refunded && transactionDateTime.after(dateMap.get(month)) && transactionDateTime.before(dateMap.get(month+1))){
                 if(t.paymentType.equals("cash")){
                     double amount = result.get("cash");
-                    result.put("cash", amount + t.totalPrice);
+                    result.put("cash", ((int)((amount + t.totalPrice)*100))/100.0);
                 }else if(t.paymentType.equals("card")){
                     double amount = result.get("card");
-                    result.put("card", amount + t.totalPrice);
+                    result.put("card",  ((int)((amount + t.totalPrice)*100))/100.0);
                 }else if(t.paymentType.equals("snapcash")){
                     double amount = result.get("snapcash");
-                    result.put("snapcash", amount + t.totalPrice);
+                    result.put("snapcash",  ((int)((amount + t.totalPrice)*100))/100.0);
                 }
             }
         }

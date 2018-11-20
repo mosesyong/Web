@@ -16,6 +16,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,6 +61,9 @@ public class AnalyticsWebServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            
+            DecimalFormat df = new DecimalFormat("#.00"); 
+    
             String filter = request.getParameter("filter"); // All, cash, card, snapcash, refunds
             if(filter == null){
                 filter = "All";
@@ -170,7 +174,7 @@ public class AnalyticsWebServlet extends HttpServlet {
             System.out.println("resultMap");
             System.out.println(resultMap);
             
-            request.setAttribute("totalAmount", "" + totalAmount);
+            request.setAttribute("totalAmount", "" + Double.parseDouble(df.format(totalAmount)));
             request.setAttribute("entry", entry);
             request.setAttribute("worstSellers", worstSellers);
             request.setAttribute("labelList", labelList);

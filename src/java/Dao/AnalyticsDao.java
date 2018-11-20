@@ -16,6 +16,7 @@ import Entity.User;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,6 +42,8 @@ import org.apache.http.util.EntityUtils;
 public class AnalyticsDao {
     
     public static ArrayList<Date> dateList; 
+    private static DecimalFormat df = new DecimalFormat("#.00"); 
+    
             
     public static void getAnalytics(User u){
         TransactionDao transactionDao = new TransactionDao();
@@ -518,15 +521,15 @@ public class AnalyticsDao {
                 }
             }
             ArrayList<Double> cashList = result.get("cash");
-            cashList.add(cash);
+            cashList.add(((int)(cash*100))/100.0);
             result.put("cash", cashList);
             
             ArrayList<Double> cardList = result.get("card");
-            cardList.add(card);
+            cardList.add(((int)(card*100))/100.0);
             result.put("card", cardList);
             
             ArrayList<Double> snapcashList = result.get("snapcash");
-            snapcashList.add(snapcash);
+            snapcashList.add(((int)(snapcash*100))/100.0);
             result.put("snapcash", snapcashList);
         }
         System.out.println("dateListResult: " + result);
