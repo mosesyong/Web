@@ -38,7 +38,7 @@
                     var doc = new jsPDF('p', 'mm', [230,400]);
                     var dataURL = canvas.toDataURL();
                     doc.text(10, 20, "Analytics Report");
-                    doc.addImage(dataURL, 'PNG', 10, 35, 210, 350);
+                    doc.addImage(dataURL, 'PNG', 10, 35, 210, 370);
                     doc.save("Analytics");
                 }); 
 //                var specialElementHandlers = 
@@ -194,10 +194,31 @@
                                                                                 scales: {
                                                                                     xAxes:[{
                                                                                         stacked: true,
+                                                                                        scaleLabel: {
+                                                                                            display: true,
+                                                                                            fontSize: 14,
+                                                                                            labelString: "Time Period",
+                                                                                        }
                                                                                     }],
-                                                                                yAxes:[{
-                                                                                    stacked: true
-                                                                                }]
+                                                                                    yAxes:[{
+                                                                                        stacked: true,
+                                                                                        scaleLabel: {
+                                                                                            display: true,
+                                                                                            fontSize: 14,
+                                                                                            labelString: "Cash Value",
+                                                                                        }
+                                                                                        
+                                                                                    }]
+                                                                                },
+                                                                                tooltips: {
+                                                                                    enabled: true,
+                                                                                    mode: 'single',
+                                                                                    callbacks: {
+                                                                                        label: function(tooltipItems, data) { 
+                                                                                            tooltipItems.yLabel = '$' + tooltipItems.yLabel;
+                                                                                            return tooltipItems.yLabel; 
+                                                                                       }
+                                                                                    }
                                                                                 }
                                                                             }
                                                                           });
@@ -266,13 +287,23 @@
                                                                                
                                                                                ticks: {
                                                                                     autoSkip: false
+                                                                                },
+                                                                                scaleLabel: {
+                                                                                    display: true,
+                                                                                    fontSize: 14,
+                                                                                    labelString: "Item Name",
                                                                                 }
                    //                                                        stacked: true,
                                                                        }],
                                                                    yAxes:[{
                                                                            ticks:{
                                                                            beginAtZero: true
-                                                                       }
+                                                                       },
+                                                                       scaleLabel: {
+                                                                            display: true,
+                                                                            fontSize: 14,
+                                                                            labelString: "Value",
+                                                                        }
                    //                                                    stacked: true
                                                                    }]
                                                                    ,
