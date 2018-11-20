@@ -82,7 +82,7 @@ public class AnalyticsWebServlet extends HttpServlet {
                 if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
                     cal.add(Calendar.HOUR, 8);
                 }
-                
+                cal.set(Calendar.HOUR_OF_DAY, 0); 
                 cal.clear(Calendar.MINUTE);
                 cal.clear(Calendar.SECOND);
                 cal.clear(Calendar.MILLISECOND);

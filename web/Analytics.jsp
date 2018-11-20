@@ -89,7 +89,7 @@
                                                         <input type="datetime-local" class="form-control" placeholder="End Date Time" name="endDateTime">
                                                     </div> 
                                                 </div>
-                                                <div class='col-md-2'>
+                                                <div class='col-md-3'>
                                                     <div class='form-group'>
                                                         <label>Select Filter</label>
                                                         <select name="filter" class="form-control" placeholder="Select Filter">
@@ -103,7 +103,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class='col-md-2'>
+                                                <div class='col-md-3'>
                                                     <div class='form-group'>
                                                         <label>Select Time-step</label>
                                                         <select name="timestep" class="form-control" placeholder="Select Time-step">
@@ -116,8 +116,10 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
-                                                <input type="submit" name="menu" class="btn pull-right" style="border: solid #9F9F9F 1px; margin-top: 28px" value="Submit">
+                                            </div>
+                                        <div class="row">
+                                                <div class="col-md-1">
+                                                <input type="submit" name="menu" class="btn" style="border: solid #9F9F9F 1px;" value="Submit">
                                                 </div>
                                                 </form>
                                                 <%
@@ -126,8 +128,11 @@
                                                     String period = (String) request.getAttribute("period");
                                                 %>
                                                 <div class="col-md-2">
-                                                    <button id="toPDF" class="btn pull-right" onclick="pdfFunction()" style='border: solid #9F9F9F 1px; margin-top: 35px'>Save page as PDF</button>
+                                                    <button id="toPDF" class="btn pull-left" onclick="pdfFunction()" style='border: solid #9F9F9F 1px;'>Save page as PDF</button>
                                                 </div>
+                                                <br>
+                                                <br>
+                                                <br>
                                             </div>
                                     
                                     <div id="charts">
