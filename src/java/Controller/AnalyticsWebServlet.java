@@ -104,6 +104,10 @@ public class AnalyticsWebServlet extends HttpServlet {
             ArrayList<Transaction> filteredTransactionList = new ArrayList<>();
 //            TransactionDao doNotUse = new TransactionDao();
             for(Transaction t: TransactionDao.transactionList){
+//                if(t.tid.equals("286")){
+//                    System.out.println("Refund check");
+//                    System.out.println(t);
+//                }
                 if(t.dateTime.after(startDateTime) && t.dateTime.before(endDateTime)){
                     if(filter.equals("cash")){
                         if(!t.refunded && t.paymentType.equals("cash")){
@@ -145,9 +149,18 @@ public class AnalyticsWebServlet extends HttpServlet {
             HashMap<String, ArrayList<Double>> resultMap = AnalyticsDao.getResultMap(filteredTransactionList);
             ArrayList<AnalyticsEntity> entry = AnalyticsDao.getTopSellingItems(filteredTransactionList);
             ArrayList<AnalyticsEntity> worstSellers = AnalyticsDao.getWorstSellersByQuantity(5, filteredTransactionList);
-            ArrayList<Transaction> tList = filteredTransactionList;
+            
+            ArrayList<Transaction> tList = AnalyticsDao.getAllTransactions(filteredTransactionList);
             ArrayList<Transaction> nonRList = AnalyticsDao.getNonRefundedTransactions(filteredTransactionList);
             ArrayList<Transaction> rList = AnalyticsDao.getRefundedTransactions(filteredTransactionList);
+            
+            if(filter.equals("All") || filter.length() == 0){
+                tList  = AnalyticsDao.getAllTransactions(TransactionDao.transactionList);
+                nonRList  = AnalyticsDao.getNonRefundedTransactions(TransactionDao.transactionList);
+                rList  = AnalyticsDao.getRefundedTransactions(TransactionDao.transactionList);
+            }
+            
+            
             
             System.out.println("LabelList");
             System.out.println(labelList);

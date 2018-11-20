@@ -115,7 +115,6 @@ public class AnalyticsDao {
                                 e.printStackTrace();
                             }
                         }
-                        
                         TransactionDao.addTransaction(t);
                     }
                 }
@@ -270,7 +269,12 @@ public class AnalyticsDao {
             startCal.clear(Calendar.SECOND);
             startCal.clear(Calendar.MILLISECOND);
             while(startCal.getTime().before(endDateTime)){
-                labelList.add("" + startCal.getTime().getHours());
+                int hour = startCal.getTime().getHours();
+                if(hour < 10){
+                    labelList.add("0" + hour + ":00");
+                }else{
+                    labelList.add("" + hour + ":00");
+                }
                 dateList.add(startCal.getTime());
                 startCal.add(Calendar.HOUR, 1);
             }
@@ -290,18 +294,42 @@ public class AnalyticsDao {
             int endDay = endDateTime.getDate();
             while(startCal.getTime().before(endDateTime)){
 //                System.out.println(startCal.getTime());
-                labelList.add("" + dayMap.get(startCal.getTime().getDay()));
+                labelList.add("" + dayMap.get(startCal.getTime().getDay()) + " (" + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
                 dateList.add(startCal.getTime());
                 startCal.add(Calendar.DATE, 1);
             }
         }else if(duration < 2_629_746_000L){ // smaller than month = breakdown by week
+            
+            HashMap<Integer, String> monthMap = new HashMap<>();
+            monthMap.put(0, "January");
+            monthMap.put(1, "February");
+            monthMap.put(2, "March");
+            monthMap.put(3, "April");
+            monthMap.put(4, "May");
+            monthMap.put(5, "June");
+            monthMap.put(6, "July");
+            monthMap.put(7, "August");
+            monthMap.put(8, "September");
+            monthMap.put(9, "October");
+            monthMap.put(10, "November");
+            monthMap.put(11, "December");
+            
             startCal.clear(Calendar.MINUTE);
             startCal.clear(Calendar.SECOND);
             startCal.clear(Calendar.MILLISECOND);
             int startWeekDay = startCal.getTime().getDate();
             int endWeekDay = endDateTime.getDate();
             while(startCal.getTime().before(endDateTime)){
-                labelList.add("" + startCal.getTime().getDate());
+                int weekOfMonth = startCal.get(Calendar.WEEK_OF_MONTH);
+                if(weekOfMonth == 1){
+                    labelList.add("" + weekOfMonth + "st week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth()+ ")");
+                }else if(weekOfMonth == 2){
+                    labelList.add("" + weekOfMonth + "nd week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
+                }else if(weekOfMonth == 3){
+                    labelList.add("" + weekOfMonth + "rd week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
+                }else{
+                    labelList.add("" + weekOfMonth + "th week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
+                }
                 dateList.add(startCal.getTime());
                 startCal.add(Calendar.DATE, 7);
             }
@@ -326,7 +354,7 @@ public class AnalyticsDao {
             startCal.set(Calendar.DAY_OF_MONTH, 1);
             int startMonth = startCal.getTime().getMonth();
             while(startCal.getTime().before(endDateTime)){
-                labelList.add(monthMap.get(startCal.getTime().getMonth()));
+                labelList.add(monthMap.get(startCal.getTime().getMonth()) + " " + (startCal.getTime().getYear() + 1900));
                 dateList.add(startCal.getTime());
                 startCal.add(Calendar.MONTH, 1);
             }
@@ -391,25 +419,48 @@ public class AnalyticsDao {
         return result;
     }
 
+    public static ArrayList<Transaction> getAllTransactions(ArrayList<Transaction> transactionList) {
+        ArrayList<Transaction> result = new ArrayList<>();
+        
+        HashMap<String, Transaction> resultMap = new HashMap<>();
+        
+        for(Transaction t : transactionList){
+            if(!resultMap.containsKey(t.tid)){
+                resultMap.put(t.tid, t);
+            }
+        }
+        
+        result.addAll(resultMap.values());
+        return result;
+    }
+    
     public static ArrayList<Transaction> getNonRefundedTransactions(ArrayList<Transaction> transactionList) {
         ArrayList<Transaction> result = new ArrayList<>();
         
+        HashMap<String, Transaction> resultMap = new HashMap<>();
+        
         for(Transaction t : transactionList){
-            if(!t.refunded){
-                result.add(t);
+            if(!resultMap.containsKey(t.tid) && !t.refunded){
+                resultMap.put(t.tid, t);
             }
         }
+        
+        result.addAll(resultMap.values());
         return result;
     }
     
     public static ArrayList<Transaction> getRefundedTransactions(ArrayList<Transaction> transactionList) {
         ArrayList<Transaction> result = new ArrayList<>();
         
+        HashMap<String, Transaction> resultMap = new HashMap<>();
+        
         for(Transaction t : transactionList){
-            if(t.refunded){
-                result.add(t);
+            if(!resultMap.containsKey(t.tid) && t.refunded){
+                resultMap.put(t.tid, t);
             }
         }
+        
+        result.addAll(resultMap.values());
         return result;
     }
 }

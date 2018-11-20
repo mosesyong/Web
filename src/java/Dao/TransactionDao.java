@@ -602,7 +602,7 @@ public class TransactionDao {
         double amount = 0.0;
         for(Transaction t : transactionList){
             Date transactionDateTime = t.dateTime;
-            if(transactionDateTime.after(dateMap.get(month)) && transactionDateTime.before(dateMap.get(month+1))){
+            if(!t.refunded && transactionDateTime.after(dateMap.get(month)) && transactionDateTime.before(dateMap.get(month+1))){
                 amount += t.totalPrice;
             }
         }
@@ -625,7 +625,7 @@ public class TransactionDao {
         result.put("snapcash", 0.0);
         for(Transaction t : transactionList){
             Date transactionDateTime = t.dateTime;
-            if(transactionDateTime.after(dateMap.get(month)) && transactionDateTime.before(dateMap.get(month+1))){
+            if(!t.refunded && transactionDateTime.after(dateMap.get(month)) && transactionDateTime.before(dateMap.get(month+1))){
                 if(t.paymentType.equals("cash")){
                     double amount = result.get("cash");
                     result.put("cash", amount + t.totalPrice);
