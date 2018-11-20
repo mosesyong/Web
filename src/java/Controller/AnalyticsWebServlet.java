@@ -66,6 +66,8 @@ public class AnalyticsWebServlet extends HttpServlet {
             }
             String startDateTimeStr = request.getParameter("startDateTime");
             String endDateTimeStr = request.getParameter("endDateTime");
+            
+            String timestep = request.getParameter("timestep");
 
             Date startDateTime = null;
             Date endDateTime = null;
@@ -80,7 +82,11 @@ public class AnalyticsWebServlet extends HttpServlet {
                 if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
                     cal.add(Calendar.HOUR, 8);
                 }
-
+                
+                cal.clear(Calendar.MINUTE);
+                cal.clear(Calendar.SECOND);
+                cal.clear(Calendar.MILLISECOND);
+                cal.set(Calendar.DAY_OF_YEAR, 1);
                 cal.add(Calendar.YEAR, -5);
 
                 startDateTime = cal.getTime();
@@ -148,7 +154,7 @@ public class AnalyticsWebServlet extends HttpServlet {
                 }
             }
             
-            ArrayList<String> labelList = AnalyticsDao.getLabelList(startDateTime, endDateTime);
+            ArrayList<String> labelList = AnalyticsDao.getLabelList(timestep, startDateTime, endDateTime);
             HashMap<String, ArrayList<Double>> resultMap = AnalyticsDao.getResultMap(filteredTransactionList);
             ArrayList<AnalyticsEntity> entry = AnalyticsDao.getTopSellingItems(filteredTransactionList);
             ArrayList<AnalyticsEntity> worstSellers = AnalyticsDao.getWorstSellersByQuantity(5, filteredTransactionList);

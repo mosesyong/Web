@@ -253,123 +253,237 @@ public class AnalyticsDao {
         return result;
     }
 
-    public static ArrayList<String> getLabelList(Date startDateTime, Date endDateTime) {
+    public static ArrayList<String> getLabelList(String timestep, Date startDateTime, Date endDateTime) {
         dateList = new ArrayList<>();
         ArrayList<String> labelList = new ArrayList<>();
-        
-        long duration = endDateTime.getTime() - startDateTime.getTime();
         
         Calendar startCal = Calendar.getInstance();
         startCal.setTime(startDateTime);
         startCal.getTime();
         
-        System.out.println(duration);
-        if(duration < 86_400_000){ // smaller than day = breakdown by hour
-            startCal.clear(Calendar.MINUTE);
-            startCal.clear(Calendar.SECOND);
-            startCal.clear(Calendar.MILLISECOND);
-            while(startCal.getTime().before(endDateTime)){
-                int hour = startCal.getTime().getHours();
-                if(hour < 10){
-                    labelList.add("0" + hour + ":00");
-                }else{
-                    labelList.add("" + hour + ":00");
+        System.out.println("Timestep: " + timestep);
+        
+        if(timestep == null || timestep.length() == 0){
+            long duration = endDateTime.getTime() - startDateTime.getTime();
+
+
+            System.out.println(duration);
+            if(duration < 86_400_000){ // smaller than day = breakdown by hour
+                startCal.clear(Calendar.MINUTE);
+                startCal.clear(Calendar.SECOND);
+                startCal.clear(Calendar.MILLISECOND);
+                while(startCal.getTime().before(endDateTime)){
+                    int hour = startCal.getTime().getHours();
+                    if(hour < 10){
+                        labelList.add("0" + hour + ":00");
+                    }else{
+                        labelList.add("" + hour + ":00");
+                    }
+                    dateList.add(startCal.getTime());
+                    startCal.add(Calendar.HOUR, 1);
                 }
-                dateList.add(startCal.getTime());
-                startCal.add(Calendar.HOUR, 1);
-            }
-        }else if(duration < 604_800_000){  // smaller than week = breakdown by day
-            HashMap<Integer, String> dayMap = new HashMap<>();
-            dayMap.put(0, "Sunday");
-            dayMap.put(1, "Monday");
-            dayMap.put(2, "Tuesday");
-            dayMap.put(3, "Wednesday");
-            dayMap.put(4, "Thursday");
-            dayMap.put(5, "Friday");
-            dayMap.put(6, "Saturday");
-            startCal.clear(Calendar.MINUTE);
-            startCal.clear(Calendar.SECOND);
-            startCal.clear(Calendar.MILLISECOND);
-            int startDay = startCal.getTime().getDate();
-            int endDay = endDateTime.getDate();
-            while(startCal.getTime().before(endDateTime)){
-//                System.out.println(startCal.getTime());
-                labelList.add("" + dayMap.get(startCal.getTime().getDay()) + " (" + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
-                dateList.add(startCal.getTime());
-                startCal.add(Calendar.DATE, 1);
-            }
-        }else if(duration < 2_629_746_000L){ // smaller than month = breakdown by week
-            
-            HashMap<Integer, String> monthMap = new HashMap<>();
-            monthMap.put(0, "January");
-            monthMap.put(1, "February");
-            monthMap.put(2, "March");
-            monthMap.put(3, "April");
-            monthMap.put(4, "May");
-            monthMap.put(5, "June");
-            monthMap.put(6, "July");
-            monthMap.put(7, "August");
-            monthMap.put(8, "September");
-            monthMap.put(9, "October");
-            monthMap.put(10, "November");
-            monthMap.put(11, "December");
-            
-            startCal.clear(Calendar.MINUTE);
-            startCal.clear(Calendar.SECOND);
-            startCal.clear(Calendar.MILLISECOND);
-            int startWeekDay = startCal.getTime().getDate();
-            int endWeekDay = endDateTime.getDate();
-            while(startCal.getTime().before(endDateTime)){
-                int weekOfMonth = startCal.get(Calendar.WEEK_OF_MONTH);
-                if(weekOfMonth == 1){
-                    labelList.add("" + weekOfMonth + "st week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth()+ ")");
-                }else if(weekOfMonth == 2){
-                    labelList.add("" + weekOfMonth + "nd week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
-                }else if(weekOfMonth == 3){
-                    labelList.add("" + weekOfMonth + "rd week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
-                }else{
-                    labelList.add("" + weekOfMonth + "th week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
+            }else if(duration < 604_800_000){  // smaller than week = breakdown by day
+                HashMap<Integer, String> dayMap = new HashMap<>();
+                dayMap.put(0, "Sunday");
+                dayMap.put(1, "Monday");
+                dayMap.put(2, "Tuesday");
+                dayMap.put(3, "Wednesday");
+                dayMap.put(4, "Thursday");
+                dayMap.put(5, "Friday");
+                dayMap.put(6, "Saturday");
+                startCal.clear(Calendar.MINUTE);
+                startCal.clear(Calendar.SECOND);
+                startCal.clear(Calendar.MILLISECOND);
+                int startDay = startCal.getTime().getDate();
+                int endDay = endDateTime.getDate();
+                while(startCal.getTime().before(endDateTime)){
+    //                System.out.println(startCal.getTime());
+                    labelList.add("" + dayMap.get(startCal.getTime().getDay()) + " (" + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
+                    dateList.add(startCal.getTime());
+                    startCal.add(Calendar.DATE, 1);
                 }
-                dateList.add(startCal.getTime());
-                startCal.add(Calendar.DATE, 7);
+            }else if(duration < 2_629_746_000L){ // smaller than month = breakdown by week
+
+                HashMap<Integer, String> monthMap = new HashMap<>();
+                monthMap.put(0, "January");
+                monthMap.put(1, "February");
+                monthMap.put(2, "March");
+                monthMap.put(3, "April");
+                monthMap.put(4, "May");
+                monthMap.put(5, "June");
+                monthMap.put(6, "July");
+                monthMap.put(7, "August");
+                monthMap.put(8, "September");
+                monthMap.put(9, "October");
+                monthMap.put(10, "November");
+                monthMap.put(11, "December");
+
+                startCal.clear(Calendar.MINUTE);
+                startCal.clear(Calendar.SECOND);
+                startCal.clear(Calendar.MILLISECOND);
+                int startWeekDay = startCal.getTime().getDate();
+                int endWeekDay = endDateTime.getDate();
+                while(startCal.getTime().before(endDateTime)){
+                    int weekOfMonth = startCal.get(Calendar.WEEK_OF_MONTH);
+                    if(weekOfMonth == 1){
+                        labelList.add("" + weekOfMonth + "st week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth()+ ")");
+                    }else if(weekOfMonth == 2){
+                        labelList.add("" + weekOfMonth + "nd week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
+                    }else if(weekOfMonth == 3){
+                        labelList.add("" + weekOfMonth + "rd week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
+                    }else{
+                        labelList.add("" + weekOfMonth + "th week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
+                    }
+                    dateList.add(startCal.getTime());
+                    startCal.add(Calendar.DATE, 7);
+                }
+            }else if(duration < 31_556_952_000L){ // smaller than year = breakdown by month
+                HashMap<Integer, String> monthMap = new HashMap<>();
+                monthMap.put(0, "January");
+                monthMap.put(1, "February");
+                monthMap.put(2, "March");
+                monthMap.put(3, "April");
+                monthMap.put(4, "May");
+                monthMap.put(5, "June");
+                monthMap.put(6, "July");
+                monthMap.put(7, "August");
+                monthMap.put(8, "September");
+                monthMap.put(9, "October");
+                monthMap.put(10, "November");
+                monthMap.put(11, "December");
+
+                startCal.clear(Calendar.MINUTE);
+                startCal.clear(Calendar.SECOND);
+                startCal.clear(Calendar.MILLISECOND);
+                startCal.set(Calendar.DAY_OF_MONTH, 1);
+                int startMonth = startCal.getTime().getMonth();
+                while(startCal.getTime().before(endDateTime)){
+                    labelList.add(monthMap.get(startCal.getTime().getMonth()) + " " + (startCal.getTime().getYear() + 1900));
+                    dateList.add(startCal.getTime());
+                    startCal.add(Calendar.MONTH, 1);
+                }
+            }else{ // larger than year = breakdown by year
+                startCal.clear(Calendar.MINUTE);
+                startCal.clear(Calendar.SECOND);
+                startCal.clear(Calendar.MILLISECOND);
+                startCal.set(Calendar.DAY_OF_MONTH, 1);
+                startCal.set(Calendar.DAY_OF_YEAR, 1);
+                int startYear = startDateTime.getYear() + 1900;
+                int endYear = endDateTime.getYear() + 1 + 1900;
+                while(startCal.getTime().before(endDateTime)){
+                    labelList.add( "" + (startCal.getTime().getYear() + 1900));
+                    dateList.add(startCal.getTime());
+                    startCal.add(Calendar.YEAR, 1);
+                }
             }
-        }else if(duration < 31_556_952_000L){ // smaller than year = breakdown by month
-            HashMap<Integer, String> monthMap = new HashMap<>();
-            monthMap.put(0, "January");
-            monthMap.put(1, "February");
-            monthMap.put(2, "March");
-            monthMap.put(3, "April");
-            monthMap.put(4, "May");
-            monthMap.put(5, "June");
-            monthMap.put(6, "July");
-            monthMap.put(7, "August");
-            monthMap.put(8, "September");
-            monthMap.put(9, "October");
-            monthMap.put(10, "November");
-            monthMap.put(11, "December");
-            
-            startCal.clear(Calendar.MINUTE);
-            startCal.clear(Calendar.SECOND);
-            startCal.clear(Calendar.MILLISECOND);
-            startCal.set(Calendar.DAY_OF_MONTH, 1);
-            int startMonth = startCal.getTime().getMonth();
-            while(startCal.getTime().before(endDateTime)){
-                labelList.add(monthMap.get(startCal.getTime().getMonth()) + " " + (startCal.getTime().getYear() + 1900));
-                dateList.add(startCal.getTime());
-                startCal.add(Calendar.MONTH, 1);
-            }
-        }else{ // larger than year = breakdown by year
-            startCal.clear(Calendar.MINUTE);
-            startCal.clear(Calendar.SECOND);
-            startCal.clear(Calendar.MILLISECOND);
-            startCal.set(Calendar.DAY_OF_MONTH, 1);
-            startCal.set(Calendar.DAY_OF_YEAR, 1);
-            int startYear = startDateTime.getYear() + 1900;
-            int endYear = endDateTime.getYear() + 1 + 1900;
-            while(startCal.getTime().before(endDateTime)){
-                labelList.add( "" + (startCal.getTime().getYear() + 1900));
-                dateList.add(startCal.getTime());
-                startCal.add(Calendar.YEAR, 1);
+        }else{
+            if(timestep.equals("hour")){ // smaller than day = breakdown by hour
+                startCal.clear(Calendar.MINUTE);
+                startCal.clear(Calendar.SECOND);
+                startCal.clear(Calendar.MILLISECOND);
+                while(startCal.getTime().before(endDateTime)){
+                    int hour = startCal.getTime().getHours();
+                    if(hour < 10){
+                        labelList.add("0" + hour + ":00");
+                    }else{
+                        labelList.add("" + hour + ":00");
+                    }
+                    dateList.add(startCal.getTime());
+                    startCal.add(Calendar.HOUR, 1);
+                }
+            }else if(timestep.equals("day")){  // smaller than week = breakdown by day
+                HashMap<Integer, String> dayMap = new HashMap<>();
+                dayMap.put(0, "Sunday");
+                dayMap.put(1, "Monday");
+                dayMap.put(2, "Tuesday");
+                dayMap.put(3, "Wednesday");
+                dayMap.put(4, "Thursday");
+                dayMap.put(5, "Friday");
+                dayMap.put(6, "Saturday");
+                startCal.clear(Calendar.MINUTE);
+                startCal.clear(Calendar.SECOND);
+                startCal.clear(Calendar.MILLISECOND);
+                int startDay = startCal.getTime().getDate();
+                int endDay = endDateTime.getDate();
+                while(startCal.getTime().before(endDateTime)){
+    //                System.out.println(startCal.getTime());
+                    labelList.add("" + dayMap.get(startCal.getTime().getDay()) + " (" + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
+                    dateList.add(startCal.getTime());
+                    startCal.add(Calendar.DATE, 1);
+                }
+            }else if(timestep.equals("week")){ // smaller than month = breakdown by week
+
+                HashMap<Integer, String> monthMap = new HashMap<>();
+                monthMap.put(0, "January");
+                monthMap.put(1, "February");
+                monthMap.put(2, "March");
+                monthMap.put(3, "April");
+                monthMap.put(4, "May");
+                monthMap.put(5, "June");
+                monthMap.put(6, "July");
+                monthMap.put(7, "August");
+                monthMap.put(8, "September");
+                monthMap.put(9, "October");
+                monthMap.put(10, "November");
+                monthMap.put(11, "December");
+
+                startCal.clear(Calendar.MINUTE);
+                startCal.clear(Calendar.SECOND);
+                startCal.clear(Calendar.MILLISECOND);
+                int startWeekDay = startCal.getTime().getDate();
+                int endWeekDay = endDateTime.getDate();
+                while(startCal.getTime().before(endDateTime)){
+                    int weekOfMonth = startCal.get(Calendar.WEEK_OF_MONTH);
+                    if(weekOfMonth == 1){
+                        labelList.add("" + weekOfMonth + "st week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth()+ ")");
+                    }else if(weekOfMonth == 2){
+                        labelList.add("" + weekOfMonth + "nd week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
+                    }else if(weekOfMonth == 3){
+                        labelList.add("" + weekOfMonth + "rd week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
+                    }else{
+                        labelList.add("" + weekOfMonth + "th week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
+                    }
+                    dateList.add(startCal.getTime());
+                    startCal.add(Calendar.DATE, 7);
+                }
+            }else if(timestep.equals("month")){ // smaller than year = breakdown by month
+                HashMap<Integer, String> monthMap = new HashMap<>();
+                monthMap.put(0, "January");
+                monthMap.put(1, "February");
+                monthMap.put(2, "March");
+                monthMap.put(3, "April");
+                monthMap.put(4, "May");
+                monthMap.put(5, "June");
+                monthMap.put(6, "July");
+                monthMap.put(7, "August");
+                monthMap.put(8, "September");
+                monthMap.put(9, "October");
+                monthMap.put(10, "November");
+                monthMap.put(11, "December");
+
+                startCal.clear(Calendar.MINUTE);
+                startCal.clear(Calendar.SECOND);
+                startCal.clear(Calendar.MILLISECOND);
+                startCal.set(Calendar.DAY_OF_MONTH, 1);
+                int startMonth = startCal.getTime().getMonth();
+                while(startCal.getTime().before(endDateTime)){
+                    labelList.add(monthMap.get(startCal.getTime().getMonth()) + " " + (startCal.getTime().getYear() + 1900));
+                    dateList.add(startCal.getTime());
+                    startCal.add(Calendar.MONTH, 1);
+                }
+            }else{ // larger than year = breakdown by year
+                startCal.clear(Calendar.MINUTE);
+                startCal.clear(Calendar.SECOND);
+                startCal.clear(Calendar.MILLISECOND);
+                startCal.set(Calendar.DAY_OF_MONTH, 1);
+                startCal.set(Calendar.DAY_OF_YEAR, 1);
+                int startYear = startDateTime.getYear() + 1900;
+                int endYear = endDateTime.getYear() + 1 + 1900;
+                while(startCal.getTime().before(endDateTime)){
+                    labelList.add( "" + (startCal.getTime().getYear() + 1900));
+                    dateList.add(startCal.getTime());
+                    startCal.add(Calendar.YEAR, 1);
+                }
             }
         }
         

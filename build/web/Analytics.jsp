@@ -103,6 +103,19 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <div class='col-md-2'>
+                                                    <div class='form-group'>
+                                                        <label>Select Time-step</label>
+                                                        <select name="timestep" class="form-control" placeholder="Select Time-step">
+                                                            <option selected="true" disabled="disabled" value="auto">Auto</option>
+                                                            <option value='hour'>Hour</option>
+                                                            <option value='day'>Day</option>
+                                                            <option value='week'>Week</option>
+                                                            <option value='month'>Month</option>
+                                                            <option value='year'>Year</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-2">
                                                 <input type="submit" name="menu" class="btn pull-right" style="border: solid #9F9F9F 1px; margin-top: 28px" value="Submit">
                                                 </div>
