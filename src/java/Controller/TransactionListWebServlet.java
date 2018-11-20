@@ -162,12 +162,8 @@ public class TransactionListWebServlet extends HttpServlet {
             } catch (ParseException ex) {
                 Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            int i = 0;
             for(Transaction t : TransactionDao.transactionList){
-                i++;
-                System.out.println(i);
-                System.out.println(t);
-                if(outletName.length() == 0 || t.outletName.equals(outletName)){
+                if(outletName.equals("all") || t.outletName.equals(outletName)){
                     if(startDateTime == null){  // gets from the start of all time
                         Calendar cal = Calendar.getInstance();
                         if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
@@ -187,8 +183,6 @@ public class TransactionListWebServlet extends HttpServlet {
                         
                         endDateTime = cal.getTime();
                     }
-                    System.out.println(i);
-                    System.out.println(t);
                     if(t.dateTime.after(startDateTime) && t.dateTime.before(endDateTime)){
                         if(resultMap.containsKey(t.tid)){
                             Transaction tempTransaction = resultMap.get(t.tid);

@@ -84,6 +84,7 @@ public class LoginWebServlet extends HttpServlet {
                   JsonElement outletJsonElement = jo.get("outletName");
                   String outletNames = outletJsonElement.getAsString();
                   ArrayList<String> outletNameList = new ArrayList<>(Arrays.asList(outletNames.split(",")));
+                  System.out.println("outletNameList: " + outletNameList);
                   accessString = accessString.replace("[","");
                   accessString = accessString.replace("]","");
                   accessString = accessString.replace("\"","");

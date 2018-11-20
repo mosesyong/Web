@@ -68,6 +68,8 @@ public class AnalyticsWebServlet extends HttpServlet {
             if(filter == null){
                 filter = "All";
             }
+            
+            String outletName = request.getParameter("outletName");
             String startDateTimeStr = request.getParameter("startDateTime");
             String endDateTimeStr = request.getParameter("endDateTime");
             
@@ -120,7 +122,7 @@ public class AnalyticsWebServlet extends HttpServlet {
 //                    System.out.println("Refund check");
 //                    System.out.println(t);
 //                }
-                if(t.dateTime.after(startDateTime) && t.dateTime.before(endDateTime)){
+                if((outletName.equals("all") || outletName.equals(t.outletName)) && t.dateTime.after(startDateTime) && t.dateTime.before(endDateTime)){
                     if(filter.equals("cash")){
                         if(!t.refunded && t.paymentType.equals("cash")){
                             totalAmount += t.totalPrice;

@@ -61,7 +61,6 @@
         </style>
    </head>
    <%AnalyticsDao.getAnalytics(u);%>
-    
     <body>
         <div class ="wrapper">
             <div class="main-panel">
@@ -77,6 +76,19 @@
                                         
                                             <div class="row">
                                                 <form action='AnalyticsWebServlet' method='get'>
+                                                <div class='col-md-2'>
+                                                    <div class='form-group'>
+                                                        <label>Select Outlet Name</label>
+                                                        <select name="outletName" class="form-control" placeholder="Select Outlet Name">
+                                                            <option selected="true" value="all">All</option>
+                                                            <%
+                                                                for(String oName : u.getOutletNames()){
+                                                                    out.println("<option value='" + oName + "'>" + oName + "</option>");
+                                                                }
+                                                            %>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label>Enter Start Date Time:</label>
@@ -89,7 +101,7 @@
                                                         <input type="datetime-local" class="form-control" placeholder="End Date Time" name="endDateTime">
                                                     </div> 
                                                 </div>
-                                                <div class='col-md-3'>
+                                                <div class='col-md-2'>
                                                     <div class='form-group'>
                                                         <label>Select Filter</label>
                                                         <select name="filter" class="form-control" placeholder="Select Filter">
@@ -103,7 +115,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class='col-md-3'>
+                                                <div class='col-md-2'>
                                                     <div class='form-group'>
                                                         <label>Select Time-step</label>
                                                         <select name="timestep" class="form-control" placeholder="Select Time-step">

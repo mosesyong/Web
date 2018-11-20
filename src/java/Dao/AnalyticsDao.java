@@ -42,94 +42,93 @@ import org.apache.http.util.EntityUtils;
 public class AnalyticsDao {
     
     public static ArrayList<Date> dateList; 
-    private static DecimalFormat df = new DecimalFormat("#.00"); 
     
             
     public static void getAnalytics(User u){
         TransactionDao transactionDao = new TransactionDao();
         String username = u.getUsername();
         String companyName = u.getCompanyName();
-        ArrayList<String> outletNameList = u.getOutletNames();
-        
-        for(String outletName : outletNameList){
+        String outletName = u.getOutletName();
             
-            DefaultHttpClient httpclient = new DefaultHttpClient();
-            try {
-                // specify the host, protocol, and port 
-                HttpHost target = new HttpHost(Properties.url, Properties.port, "http");
+        DefaultHttpClient httpclient = new DefaultHttpClient();
+        try {
+            // specify the host, protocol, and port 
+            HttpHost target = new HttpHost(Properties.url, Properties.port, "http");
 
-                HttpPost postRequest = new HttpPost("/API/TransactionOutputServlet");
-                ArrayList<NameValuePair> postParams = new ArrayList<>();
-                
-                postParams.add(new BasicNameValuePair("companyName", companyName));
-                postParams.add(new BasicNameValuePair("outletName", outletName));
-                postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
-                HttpResponse httpResponse = httpclient.execute(target, postRequest);
-                HttpEntity entity = httpResponse.getEntity();
+            HttpPost postRequest = new HttpPost("/API/TransactionOutputServlet");
+            ArrayList<NameValuePair> postParams = new ArrayList<>();
+
+            postParams.add(new BasicNameValuePair("companyName", companyName));
+            postParams.add(new BasicNameValuePair("outletName", outletName));
+            postRequest.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
+            HttpResponse httpResponse = httpclient.execute(target, postRequest);
+            HttpEntity entity = httpResponse.getEntity();
 
 
-                int statusCode = httpResponse.getStatusLine().getStatusCode();
+            int statusCode = httpResponse.getStatusLine().getStatusCode();
 
-                if(statusCode == 200){
-                    JsonParser parser = new JsonParser();
-                    JsonObject jo = (JsonObject) parser.parse(EntityUtils.toString(entity));
-                    JsonArray resultArray = jo.get("result").getAsJsonArray();
-                    for(Object obj : resultArray){
-                        JsonObject transactionDataObj = (JsonObject)obj;
-                        String foodName = transactionDataObj.get("foodName").getAsString();
-                        int quantity = transactionDataObj.get("quantity").getAsInt();
-                        double totalPrice = transactionDataObj.get("totalPrice").getAsDouble();
-                        String paymentType = transactionDataObj.get("paymentType").getAsString();
-                        String dateString = transactionDataObj.get("dateTime").getAsString();
-                        String tid = transactionDataObj.get("TID").getAsString();
-                        String cashierName = transactionDataObj.get("cashierName").getAsString();
-                        boolean refunded = transactionDataObj.get("refunded").getAsBoolean();
-                        String discountName = transactionDataObj.get("discountName").getAsString();
-                        
+            if(statusCode == 200){
+                JsonParser parser = new JsonParser();
+                JsonObject jo = (JsonObject) parser.parse(EntityUtils.toString(entity));
+                JsonArray resultArray = jo.get("result").getAsJsonArray();
+                for(Object obj : resultArray){
+                    JsonObject transactionDataObj = (JsonObject)obj;
+                    String recievedCompanyName = transactionDataObj.get("companyName").getAsString();
+                    String recievedOutletName = transactionDataObj.get("outletName").getAsString();
+                    String foodName = transactionDataObj.get("foodName").getAsString();
+                    int quantity = transactionDataObj.get("quantity").getAsInt();
+                    double totalPrice = transactionDataObj.get("totalPrice").getAsDouble();
+                    String paymentType = transactionDataObj.get("paymentType").getAsString();
+                    String dateString = transactionDataObj.get("dateTime").getAsString();
+                    String tid = transactionDataObj.get("TID").getAsString();
+                    String cashierName = transactionDataObj.get("cashierName").getAsString();
+                    boolean refunded = transactionDataObj.get("refunded").getAsBoolean();
+                    String discountName = transactionDataObj.get("discountName").getAsString();
 
-                        String pattern = "yyyy-MM-dd HH:mm:ss";
-                        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 
-                        Date dateTime = null;
-                        try {
-                            dateTime = sdf.parse(dateString);
-                        } catch (ParseException ex) {
-                            Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        
-                        
-                        Transaction t = new Transaction(companyName, outletName, dateTime, paymentType, foodName, quantity, totalPrice, tid, cashierName, refunded, discountName);
-                        
-                        if(refunded){
-                            try{
-                                t.refundedBy = transactionDataObj.get("refundedBy").getAsString();
-                                String refundDateString = transactionDataObj.get("refundedDate").getAsString(); //2018-09-27 13:07:47.0
-                                Date refundDate = null;
+                    String pattern = "yyyy-MM-dd HH:mm:ss";
+                    SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 
-                                try {
-                                    refundDate = sdf.parse(refundDateString);
-                                } catch (ParseException ex) {
-                                    Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
-                                }
-                                t.refundDate = refundDate;
-                            }catch(Exception e){
-                                System.out.println("REFUND ERROR!");
-                                System.out.println(e.getMessage());
-                                e.printStackTrace();
-                            }
-                        }
-                        TransactionDao.addTransaction(t);
+                    Date dateTime = null;
+                    try {
+                        dateTime = sdf.parse(dateString);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
+
+
+                    Transaction t = new Transaction(recievedCompanyName, recievedOutletName, dateTime, paymentType, foodName, quantity, totalPrice, tid, cashierName, refunded, discountName);
+
+                    if(refunded){
+                        try{
+                            t.refundedBy = transactionDataObj.get("refundedBy").getAsString();
+                            String refundDateString = transactionDataObj.get("refundedDate").getAsString(); //2018-09-27 13:07:47.0
+                            Date refundDate = null;
+
+                            try {
+                                refundDate = sdf.parse(refundDateString);
+                            } catch (ParseException ex) {
+                                Logger.getLogger(TransactionListWebServlet.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            t.refundDate = refundDate;
+                        }catch(Exception e){
+                            System.out.println("REFUND ERROR!");
+                            System.out.println(e.getMessage());
+                            e.printStackTrace();
+                        }
+                    }
+                    TransactionDao.addTransaction(t);
                 }
-            } catch (Exception e) {
-              e.printStackTrace();
-            } finally {
-              // When HttpClient instance is no longer needed,
-              // shut down the connection manager to ensure
-              // immediate deallocation of all system resources
-              httpclient.getConnectionManager().shutdown();
             }
+        } catch (Exception e) {
+          e.printStackTrace();
+        } finally {
+          // When HttpClient instance is no longer needed,
+          // shut down the connection manager to ensure
+          // immediate deallocation of all system resources
+          httpclient.getConnectionManager().shutdown();
         }
+        
     }
     
     public static ArrayList<AnalyticsEntity> getTopSellersByAmount(String time, int count, ArrayList<Transaction> transactionList){
