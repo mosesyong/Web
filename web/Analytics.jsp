@@ -170,17 +170,17 @@
                                                                             data: {
                                                                               labels: <%=labelList%>,
                                                                               datasets: [{
-                                                                                label: 'Cash Transactions',
+                                                                                label: 'Cash ($)',
                                                                                 data: <%=cashTransactions%>,
                                                                                 backgroundColor:'rgba(255, 99, 132, 0.6)'
                                                                               },
                                                                                   {
-                                                                                label: 'Card Transactions',
+                                                                                label: 'Card ($)',
                                                                                 data: <%=cardTransactions%>,
                                                                                 backgroundColor:'rgba(54, 162, 235, 0.6)' 
                                                                               },
                                                                                   {
-                                                                                label: 'SnapCash Transactions',
+                                                                                label: 'SnapCash ($)',
                                                                                 data: <%=snapcashTransactions%>,
                                                                                 backgroundColor:'rgba(255, 206, 86, 0.6)' 
                                                                               }]
@@ -197,7 +197,7 @@
                                                                                         scaleLabel: {
                                                                                             display: true,
                                                                                             fontSize: 14,
-                                                                                            labelString: "Time Period",
+                                                                                            labelString: "Time Period"
                                                                                         }
                                                                                     }],
                                                                                     yAxes:[{
@@ -205,23 +205,17 @@
                                                                                         scaleLabel: {
                                                                                             display: true,
                                                                                             fontSize: 14,
-                                                                                            labelString: "Cash Value",
+                                                                                            labelString: "Cash Value ($)"
                                                                                         }
                                                                                         
                                                                                     }]
                                                                                 },
                                                                                 tooltips: {
-                                                                                    enabled: true,
-                                                                                    mode: 'single',
-                                                                                    callbacks: {
-                                                                                        label: function(tooltipItems, data) { 
-                                                                                            tooltipItems.yLabel = '$' + tooltipItems.yLabel;
-                                                                                            return tooltipItems.yLabel; 
-                                                                                       }
+                                                                                    enabled: true
                                                                                     }
                                                                                 }
                                                                             }
-                                                                          });
+                                                                         );
                                                             </script>
                                                         </div>
                                                     </div>
@@ -265,14 +259,14 @@
                                                                    labels: <%=labels%>,
                                                                        datasets: [
                                                                             {
-                                                                               label: 'Amount',
-                                                                               data: <%=cashValue%>,
+                                                                               label: 'Quantity',
+                                                                               data: <%=quantity%>,
                                                                                backgroundColor: "rgba(255, 99, 132, 0.6)"
 
                                                                             },
                                                                             {
-                                                                                label: 'Quantity',
-                                                                                data: <%=quantity%>,
+                                                                                label: 'Cash Value ($)',
+                                                                                data: <%=cashValue%>,
                                                                                 backgroundColor:"rgba(54, 162, 235, 0.6)"
                                                                             }]
                                                                },
@@ -302,12 +296,11 @@
                                                                        scaleLabel: {
                                                                             display: true,
                                                                             fontSize: 14,
-                                                                            labelString: "Value",
+                                                                            labelString: "Value"
                                                                         }
                    //                                                    stacked: true
                                                                    }]
-                                                                   ,
-                                                                   }
+                                                                 }
                                                                }
                                                              });
                                                             </script>

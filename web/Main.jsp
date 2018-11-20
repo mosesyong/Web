@@ -84,20 +84,20 @@
                                                 labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September","October", "November", "December"],
                                                     datasets: [
                                                          {
-                                                            label: 'Total Amount Paid By Cash',
+                                                            label: 'Cash ($)',
                                                             data: <%=cashTrans%>,
                                                             backgroundColor: "rgba(255, 99, 132, 0.6)"
                                                             
                                                          },
                                                          {
-                                                             label: 'Total Amount Paid by Card',
+                                                             label: 'Card ($)',
                                                              data: <%=creditTrans%>,
                                                              backgroundColor:"rgba(54, 162, 235, 0.6)"
                                                          },
                                                          {
-                                                             label: 'Total Amount Paid by SnapCash',
+                                                             label: 'SnapCash ($)',
                                                              data: <%=snapcashTrans%>,
-                                                             backgroundColor:"rgba(255, 254, 110, 0.6)"
+                                                             backgroundColor:"rgba(255, 206, 86, 0.6)"
                                                                  
                                                         }]
                                             },
@@ -121,19 +121,12 @@
                                                     scaleLabel: {
                                                         display: true,
                                                         fontSize: 14,
-                                                        labelString: "Cash Value",
+                                                        labelString: "Cash Value ($)",
                                                     }
                                                 }]
                                                 },
                                                 tooltips: {
-                                                    enabled: true,
-                                                    mode: 'single',
-                                                    callbacks: {
-                                                        label: function(tooltipItems, data) { 
-                                                            tooltipItems.yLabel = '$' + tooltipItems.yLabel;
-                                                            return tooltipItems.yLabel; 
-                                                       }
-                                                    }
+                                                    enabled: true
                                                 }
                                             }
                                           });
@@ -186,7 +179,7 @@
                                                             
                                                          },
                                                          {
-                                                             label: 'Cash Value',
+                                                             label: 'Cash Value ($)',
                                                              data: <%=cashValue%>,
                                                              backgroundColor:"rgba(54, 162, 235, 0.6)"
                                                          }]

@@ -110,6 +110,13 @@
                     </a>
                 </li>
                 
+                <li>
+                    <a href="DisplayDiscount.jsp">
+                        <i class="pe-7s-note2"></i>
+                        <p>View Discounts</p>
+                    </a>
+                </li>
+                
                 <%}if(!u.isLastChild()){%>
                 <li>
                     <a href="Analytics.jsp">
@@ -122,12 +129,6 @@
                     <a href="DisplayTransactions.jsp">
                         <i class="pe-7s-news-paper"></i>
                         <p>View Transactions</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="DisplayDiscount.jsp">
-                        <i class="pe-7s-note2"></i>
-                        <p>View Discounts</p>
                     </a>
                 </li>
                 <%}%>
