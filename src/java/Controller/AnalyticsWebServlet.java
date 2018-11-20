@@ -102,6 +102,8 @@ public class AnalyticsWebServlet extends HttpServlet {
             double totalAmount = 0.0;
             
             ArrayList<Transaction> filteredTransactionList = new ArrayList<>();
+            ArrayList<Transaction> filteredTransactionListForAll = new ArrayList<>();
+            
 //            TransactionDao doNotUse = new TransactionDao();
             for(Transaction t: TransactionDao.transactionList){
 //                if(t.tid.equals("286")){
@@ -141,6 +143,7 @@ public class AnalyticsWebServlet extends HttpServlet {
                             totalAmount += t.totalPrice;
                             filteredTransactionList.add(t);
                         }
+                        filteredTransactionListForAll.add(t);
                     }
                 }
             }
@@ -155,9 +158,9 @@ public class AnalyticsWebServlet extends HttpServlet {
             ArrayList<Transaction> rList = AnalyticsDao.getRefundedTransactions(filteredTransactionList);
             
             if(filter.equals("All") || filter.length() == 0){
-                tList  = AnalyticsDao.getAllTransactions(TransactionDao.transactionList);
-                nonRList  = AnalyticsDao.getNonRefundedTransactions(TransactionDao.transactionList);
-                rList  = AnalyticsDao.getRefundedTransactions(TransactionDao.transactionList);
+                tList  = AnalyticsDao.getAllTransactions(filteredTransactionListForAll);
+                nonRList  = AnalyticsDao.getNonRefundedTransactions(filteredTransactionListForAll);
+                rList  = AnalyticsDao.getRefundedTransactions(filteredTransactionListForAll);
             }
             
             
