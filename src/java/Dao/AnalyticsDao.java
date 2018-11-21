@@ -437,13 +437,13 @@ public class AnalyticsDao {
                 while(startCal.getTime().before(endDateTime)){
                     int weekOfMonth = startCal.get(Calendar.WEEK_OF_MONTH);
                     if(weekOfMonth == 1){
-                        labelList.add("" + weekOfMonth + "st week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth()+ ")");
+                        labelList.add("" + weekOfMonth + "st week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + (startCal.getTime().getMonth() + 1) + ")");
                     }else if(weekOfMonth == 2){
-                        labelList.add("" + weekOfMonth + "nd week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
+                        labelList.add("" + weekOfMonth + "nd week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + (startCal.getTime().getMonth() + 1) + ")");
                     }else if(weekOfMonth == 3){
-                        labelList.add("" + weekOfMonth + "rd week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
+                        labelList.add("" + weekOfMonth + "rd week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + (startCal.getTime().getMonth() + 1) + ")");
                     }else{
-                        labelList.add("" + weekOfMonth + "th week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + startCal.getTime().getMonth() + ")");
+                        labelList.add("" + weekOfMonth + "th week of " + monthMap.get(startCal.getTime().getMonth()) + " (from " + startCal.getTime().getDate() + "/" + (startCal.getTime().getMonth() + 1) + ")");
                     }
                     dateList.add(startCal.getTime());
                     startCal.add(Calendar.DATE, 7);

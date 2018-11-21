@@ -88,7 +88,7 @@
                                      <thead id="headRow">
                                               <%
 
-                                                  out.println("<th>Outlet Name</th><th>Cashier Name</th><th>Total Amount</th><th>Payment Type</th><th>Dine In</th><th>Date</th><th>DiscountName</th><th>Refunded</th><th>Refunded By</th><th>Refunded Date</th>");
+                                                  out.println("<th>Outlet Name</th><th>Cashier Name</th><th>Total Amount</th><th>Payment Type</th><th>Dine In/Takeaway</th><th>Date</th><th>DiscountName</th><th>Refunded</th><th>Refunded By</th><th>Refunded Date</th>");
 
                                                   %>
                                             </thead>

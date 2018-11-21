@@ -79,9 +79,9 @@ public class Transaction implements Cloneable, Comparable<Transaction> {
     
     public String isDineIn(){
         if(dineIn){
-            return "yes";
+            return "Dine In";
         }else{
-            return "no";
+            return "Takeaway";
         }
     }
     
