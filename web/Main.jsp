@@ -113,15 +113,18 @@
                                                         scaleLabel: {
                                                             display: true,
                                                             fontSize: 14,
-                                                            labelString: "Month",
+                                                            labelString: "Month"
                                                         }
                                                     }],
                                                 yAxes:[{
                                                     stacked: true,
+                                                    ticks:{
+                                                    beginAtZero: true
+                                                    },
                                                     scaleLabel: {
                                                         display: true,
                                                         fontSize: 14,
-                                                        labelString: "Cash Value ($)",
+                                                        labelString: "Cash Value ($)"
                                                     }
                                                 }]
                                                 },
@@ -199,7 +202,8 @@
                                                                 display: true,
                                                                 fontSize: 14,
                                                                 labelString: "Item Name",
-                                                            }
+                                                            },
+                                                            beginAtZero: true
 //                                                        stacked: true,
                                                     }],
                                                 yAxes:[{
@@ -207,7 +211,10 @@
                                                             display: true,
                                                             fontSize: 14,
                                                             labelString: "Value",
-                                                        }
+                                                        },
+                                                        ticks:{
+                                                        beginAtZero:true
+                                                    }
 //                                                    stacked: true
                                                 }]
                                                 }
