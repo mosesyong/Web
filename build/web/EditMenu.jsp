@@ -8,6 +8,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
+    <!-- Edit Menu allows users to edit the current Menu the outlet has -->
    <head>
         <%@include file="PanelBars.jsp"%>
 	<meta charset="utf-8" />
@@ -18,32 +20,11 @@
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
-
-
-        <!-- Bootstrap core CSS     -->
-        <link href="design/css/bootstrap.min.css" rel="stylesheet" />
-
-        <!-- Animation library for notifications   -->
-        <link href="design/css/animate.min.css" rel="stylesheet"/>
-
-        <!--  Light Bootstrap Table core CSS    -->
-        <link href="design/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
-
-
-        <!--  CSS for Demo Purpose, don't include it in your project     -->
-        <link href="design/css/demo.css" rel="stylesheet" />
-
-
-        <!--     Fonts and icons     -->
-        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-        <link href="design/css/pe-icon-7-stroke.css" rel="stylesheet" />
    </head>
       
 
     <body>
         <%Menu m = (Menu)session.getAttribute("menuItem");%>
-        <%--<%=m%>--%>
 
         
         <div class ="wrapper">
@@ -52,6 +33,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
+                                <!-- Edit Menu Form -->
                                 <div class="card">
                                     <div class="header">
                                         <h4 class="title">Edit Menu Item</h4>
@@ -89,11 +71,8 @@
                                                         <textarea class="form-control" rows="6"  name="description" required><%=m.desc%></textarea>
                                                     </div>
                                                 </div>
-                                            <!--</div>-->
-                                            
-                                            <!--<div class="row">-->
-                                                <div class="col-md-6">
                                                     
+                                                <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Category</label><br>
                                                             <div class="card">
@@ -101,7 +80,6 @@
                                                                     <div id="table-scroll">
                                                                         <table class ="category-table">
                                                                             <tbody>
-
                                                                          <%
                                                                 ArrayList<String> itemCategory = m.categoryList;
                                                                 ArrayList<String> categoryList = u.getCategoryList();
@@ -124,19 +102,15 @@
                                                                 }   
                                                                     %>
 
-                                                                            </tbody>             
-
+                                                                            </tbody>
                                                                         </table>
                                                                     </div>
                                                                 </div>
-                                                            
                                                             </div>
                                                         </div>
                                                     </div>
                                             </div>
-                                                
-                                            
-                                            
+                                                 
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">

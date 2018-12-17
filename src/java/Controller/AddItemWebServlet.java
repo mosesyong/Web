@@ -65,7 +65,7 @@ public class AddItemWebServlet extends HttpServlet {
             System.out.println(fileName);
             System.out.println(extension);
             if(!extension.equals("png")){
-                request.setAttribute("errorMsg", "Invalid image submitted, must be png filetype");
+                request.setAttribute("errorMsg", "Invalid Image submitted, file must be of type: PNG");
                 request.getRequestDispatcher("AddMenu.jsp").forward(request, response);
                 return;
             }
@@ -99,7 +99,7 @@ public class AddItemWebServlet extends HttpServlet {
                                          .addTextBody("companyName", ((User)session.getAttribute("user")).getCompanyName());
             }else{
                 System.out.println("No image found");
-                request.setAttribute("errorMsg", "Failed to add item to menu");
+                request.setAttribute("errorMsg", "Failed to Add Item to Menu");
                 request.getRequestDispatcher("AddMenu.jsp").forward(request, response);
                 return;
             }
@@ -118,17 +118,17 @@ public class AddItemWebServlet extends HttpServlet {
             int statusCode = httpResponse.getStatusLine().getStatusCode();
             
             if(statusCode == 202){
-                request.setAttribute("successMsg", "Successfully added " + name + " to menu");
+                request.setAttribute("successMsg", "Successfully added Item: " + name + " to menu");
                 request.getRequestDispatcher("AddMenu.jsp").forward(request, response);
                 return;
             }else{
-                request.setAttribute("errorMsg", "Failed to add " + name + " to menu");
+                request.setAttribute("errorMsg", "Failed to add Item: " + name + " to menu");
                 request.getRequestDispatcher("AddMenu.jsp").forward(request, response);
                 return;
             }
         }catch(Exception e){
             e.printStackTrace();
-            request.setAttribute("errorMsg", "Failed to add item to menu");
+            request.setAttribute("errorMsg", "Failed to add Item to menu");
             request.getRequestDispatcher("AddMenu.jsp").forward(request, response);
             return;
         }

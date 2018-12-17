@@ -10,6 +10,8 @@
 <!DOCTYPE html>
 
 <html>
+    <!-- Display Discounts shows a list of discounts or promotions that are currently ongoing in the company -->
+    
     <head>
         <%@include file="PanelBars.jsp"%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,7 +24,7 @@
                     <div class="container-fluid">
                         <div class="card">
                             <div class="header">
-                                <h3>Display Discounts</h3>
+                                <h4 class="title">Display Discounts</h4>
                             </div>
                             
                             <div class="content">

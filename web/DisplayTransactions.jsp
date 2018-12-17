@@ -9,6 +9,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
+    <!-- Display Transactions displays all the transactions depending on the time period the user wishes to view --> 
+    
+    
     <head>
         <%@include file="PanelBars.jsp"%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,7 +27,7 @@
                     <div class="container-fluid">
                         <div class="card">
                             <div class="header">
-                                <h3>List Past Transactions</h3>
+                                <h4 class="title">List Past Transactions</h4>
                             </div>
                             
                             <div class="content">

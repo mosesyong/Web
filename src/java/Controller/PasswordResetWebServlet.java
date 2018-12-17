@@ -66,10 +66,10 @@ public class PasswordResetWebServlet extends HttpServlet {
               int statusCode = httpResponse.getStatusLine().getStatusCode();
               
               if(statusCode == 202){
-                  request.setAttribute("successMsg", "Successfully reset password for " + username);
+                  request.setAttribute("successMsg", "Password has been reset for User: " + username);
                   request.getRequestDispatcher("Login.jsp").forward(request, response);
               }else{
-                  request.setAttribute("errorMsg", "Unable to reset password for " + username);
+                  request.setAttribute("errorMsg", "Unable to reset password for User: " + username);
                   request.getRequestDispatcher("Login.jsp").forward(request, response);
               }
             }catch(Exception e){

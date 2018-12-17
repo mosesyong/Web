@@ -76,7 +76,7 @@ public class EmployeeAccessWebServlet extends HttpServlet {
                 return;
             }catch(Exception e){
                 e.printStackTrace();
-                request.setAttribute("errorMsg", "Unable to access " + employeeName);
+                request.setAttribute("errorMsg", "Unable to Access User: " + employeeName);
                 request.getRequestDispatcher("UserManagement.jsp").forward(request, response);
                 return;
             }

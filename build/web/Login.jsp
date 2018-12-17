@@ -8,6 +8,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
+    <!-- Login Page to Log on to Web Portal -->
+    
     <head>
         <link rel="icon" type="image/png" href="design/img/topbaricon.ico"> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -33,6 +36,7 @@
     <body>
         <div class='modal-dialog text-center'>      
             <div class='col-sm-8 col-md-8 col-lg-8 col-xs-8 main-section'>
+                <!--Login Form-->
                 <div class='modal-content'>
                     <div class='col-12 user-image'>
                         <img src='design/img/webportal.png'>

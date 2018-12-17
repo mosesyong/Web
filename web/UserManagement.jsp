@@ -9,6 +9,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
+    <!-- User Management Page allows users to edit the access of the user or delete the users available in the database -->
+    
     <head>
         <%@include file="PanelBars.jsp"%>
 	<meta charset="utf-8" />
@@ -19,26 +22,6 @@
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
-
-
-        <!-- Bootstrap core CSS     -->
-        <link href="design/css/bootstrap.min.css" rel="stylesheet" />
-
-        <!-- Animation library for notifications   -->
-        <link href="design/css/animate.min.css" rel="stylesheet"/>
-
-        <!--  Light Bootstrap Table core CSS    -->
-        <link href="design/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
-
-
-        <!--  CSS for Demo Purpose, don't include it in your project     -->
-        <link href="design/css/demo.css" rel="stylesheet" />
-
-
-        <!--     Fonts and icons     -->
-        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-        <link href="design/css/pe-icon-7-stroke.css" rel="stylesheet" />
    </head>
     <body>
         <div class="wrapper">
@@ -61,7 +44,7 @@
                     out.println("<font color='red'>"  + errorMsg + "</font>");
                 }
             %>
-           
+           <!-- Table with User Management Links -->
                                     <div class="content table-responsive table-full-width">
                                         <table class="table table-hover table-striped">
                                             <thead>

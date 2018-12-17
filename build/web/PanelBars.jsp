@@ -1,9 +1,13 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="Entity.User"%>
 <%@page import="java.util.ArrayList"%>
 <!doctype html>
 <html lang="en">
     
 <head>
+    
+    <!-- Panel Bars include sidebar and top bar of the pages -->
+    
     <%
 
     Object o = session.getAttribute("user");
@@ -43,13 +47,15 @@
 <body>
 
 <div class="main-wrapper">
+    <!-- additional image for sidebar -->
     <div class="sidebar" data-color="black" data-image="design/img/sidebar-5.jpg">
 
     	<div class="sidebar-wrapper">
             <div class="logo">
                     <img src="design/img/portalsidebar.png">
-                </div>
-
+            </div>
+            
+            <!-- sidebar links with access rights according to user type -->
             <ul class="nav">
                 <li>
                     <a href="Main.jsp">
@@ -135,7 +141,8 @@
             </ul>
     	</div>
     </div>
-        
+    
+    <!-- Top Main Bar -->
     <div class="main-panel">
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">

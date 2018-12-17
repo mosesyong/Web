@@ -7,6 +7,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
+    <!-- Add Menu Page to add new Menu items into the current Menu List -->
+    
    <head>
     <%@include file="PanelBars.jsp"%>
 	<meta charset="utf-8" />
@@ -37,6 +40,9 @@
                                     <div class="header">
                                         <h4 class="title">Add Item To Menu</h4>
                                     </div>
+                                    
+                                    
+                                    <!--Add Item to Menu Form -->
                                     <div class="content">
                                         <form action="AddItemWebServlet" method='post' enctype=multipart/form-data>
                                             <div class="row">

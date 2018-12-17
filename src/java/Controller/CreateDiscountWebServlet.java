@@ -68,12 +68,12 @@ public class CreateDiscountWebServlet extends HttpServlet {
 
             int statusCode = httpResponse.getStatusLine().getStatusCode();
             if(statusCode == 202){
-                request.setAttribute("successMsg", "Successfully created discount: " + discountName);
+                request.setAttribute("successMsg", "Successfully created Discount: " + discountName);
                 request.getRequestDispatcher("CreateDiscount.jsp").forward(request, response);
                 DiscountDao.getDiscounts(u);
                 return;
             }else{
-                request.setAttribute("errorMsg", "Unable to create discount: " + discountName);
+                request.setAttribute("errorMsg", "Unable to create Discount: " + discountName);
                 request.getRequestDispatcher("CreateDiscount.jsp").forward(request, response);
                 return;
             }

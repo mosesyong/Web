@@ -8,6 +8,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
+    <!-- Create User allows an Admin/Manager user to create new users for their company -->
+    
    <head>
        <%@include file="PanelBars.jsp"%>
        <link rel="stylesheet" type="text/css" href="design/css/tooltips.css">

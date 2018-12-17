@@ -10,6 +10,9 @@
 
 <!DOCTYPE html>
 <html>
+    
+    <!-- Employee Edit allows users to change the access rights of each user -->
+    
     <head>
         
       <%@include file="PanelBars.jsp"%>
@@ -29,22 +32,6 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
 
-
-        <!-- Bootstrap core CSS     -->
-        <link href="design/css/bootstrap.min.css" rel="stylesheet" />
-
-        <!-- Animation library for notifications   -->
-        <link href="design/css/animate.min.css" rel="stylesheet"/>
-
-        <!--  Light Bootstrap Table core CSS    -->
-        <link href="design/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
-
-
-
-        <!--     Fonts and icons     -->
-        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-        <link href="design/css/pe-icon-7-stroke.css" rel="stylesheet" />
        <link rel="stylesheet" type="text/css" href="design/css/tooltips.css">
     </head>
    
@@ -61,7 +48,7 @@
                                     <div class="header">
                                         <h4 class="title">Editing access for <%=employeeUsername%></h4>
                                     </div>
-                                    
+                                    <!-- Edit Access Rights for each User -->
                                      <div class="content">
                                         <form action="EmployeeEditWebServlet" method='post' class="editAccess">
                                             <div class="row">

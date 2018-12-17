@@ -8,6 +8,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
+   <!-- Edit User Settings Page for Users to change their password after receiving a temporary one or if they wish to change their passwords -->   
+
    <head>
         <%@include file="PanelBars.jsp"%>
 	<meta charset="utf-8" />
@@ -19,8 +22,6 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
    </head>
-      
-
     <body>
         <div class ="wrapper">
             <div class="main-panel">

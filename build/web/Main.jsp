@@ -25,6 +25,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
+    <!-- Main Page -->
+    
     <head>
      
         <%@include file="PanelBars.jsp"%>
@@ -41,6 +44,8 @@
 
     </head>
     <body> 
+        
+        <!--Analytics for users according to the roles each user holds -->
          
         <%
             AnalyticsDao.getAnalytics(u);
@@ -56,6 +61,8 @@
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">
+                            
+                            <!-- General Analytics Chart -->
                             <div class="col-md-12">
                                 <%
                                    HashMap<String, ArrayList<Double>>resultsMap = TransactionDao.getMainPageTransactionsByPaymentType();
@@ -66,6 +73,7 @@
                                    System.out.println(creditTrans);
                                    System.out.println(snapcashTrans);
                                 %>
+                                <!--Analytics Report: Transaction Overview Analytics Chart -->
                                 <div class="card">
                                     <div class="header">
                                         <h4 class="title">Transactions Overview</h4>
@@ -135,7 +143,8 @@
                                 </div>
                             </div>
                         </div>
-                                    
+                        
+                        <!-- Analytics Report: Top Selling Items for the Year -->                                     
                         <div class='row'>
                             <div class="col-md-12">
                                  <%
@@ -219,7 +228,7 @@
                             </div>
                         </div>
                         
-                                                
+                        <!-- Analytics Report: Least Selling Items for the Year-->                        
                         <div class="row">
                             <div class="col-md-6">
                             <%
@@ -257,6 +266,9 @@
                                     </div> 
                                 </div>
                             </div>
+                                        
+                                        
+                            <!-- Analytics Report: Refunds for the Year -->
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="header">

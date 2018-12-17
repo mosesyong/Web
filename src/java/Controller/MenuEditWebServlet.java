@@ -121,17 +121,17 @@ public class MenuEditWebServlet extends HttpServlet {
             int statusCode = httpResponse.getStatusLine().getStatusCode();
             
             if(statusCode == 202){
-                request.setAttribute("successMsg", "Successfully edited " + name );
+                request.setAttribute("successMsg", "Successfully Edited Menu Item: " + name );
                 request.getRequestDispatcher("MenuManagement.jsp").forward(request, response);
                 return;
             }else{
-                request.setAttribute("errorMsg", "Failed to edit " + name);
+                request.setAttribute("errorMsg", "Failed to Edit Menu Item: " + name);
                 request.getRequestDispatcher("MenuManagement.jsp").forward(request, response);
                 return;
             }
         }catch(Exception e){
             e.printStackTrace();
-            request.setAttribute("errorMsg", "Failed to edit item in menu");
+            request.setAttribute("errorMsg", "Failed to Edit Menu Item");
             request.getRequestDispatcher("MenuManagement.jsp").forward(request, response);
             return;
         }

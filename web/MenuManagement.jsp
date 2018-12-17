@@ -13,6 +13,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
+    <!-- Menu Management allows users to either edit menu item or delete the menu item -->
+    
     <head>
         <%@include file="PanelBars.jsp"%>
 	<meta charset="utf-8" />
@@ -42,6 +45,7 @@
                                     <div class="header">
                                         <h4 class="title">Edit Menu Items</h4>
                                     </div>
+                                    
             <%
             String successMsg = (String)request.getAttribute("successMsg");
                 if(successMsg != null){
@@ -51,8 +55,8 @@
                 if(errorMsg != null){
                     out.println("<font color='red'>"  + errorMsg + "</font>");
                 }
-            %> <!-- idk for what -->
-           
+            %> 
+           <!-- Table to list out current available Menu Items -->
                                     <div class="content table-responsive table-full-width">
                                         <table class="table table-hover table-striped">
                                             <thead>

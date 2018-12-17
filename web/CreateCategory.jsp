@@ -9,6 +9,9 @@
 <!DOCTYPE html>
 
 <html>
+    
+    <!-- Create Category allows users to create new menu categories -->
+    
     <head>
         <%@include file="PanelBars.jsp"%>
 	<meta charset="utf-8" />

@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <!-- Password Reset page is the page users get to change their password if they click "Forget Password" from the Login Page -->
+    
     <head>
         <link rel="icon" type="image/png" href="design/img/topbaricon.ico"> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -36,6 +38,7 @@
                         <h4 style='color: white'>Password Reset</h4>
                     </div>
                     
+                    <!-- Password Reset Form -->
                     <div class='form'>
                         <form action="PasswordResetWebServlet" class='col-12' method='post'>
 

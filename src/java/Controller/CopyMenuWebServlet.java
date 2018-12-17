@@ -75,9 +75,9 @@ public class CopyMenuWebServlet extends HttpServlet {
               MenuDao.updateCategory(u,(String)session.getAttribute("url"), (Integer)session.getAttribute("port"));
               System.out.println("Successfully copied menu");
               if(!overwrite){
-                request.setAttribute("successMsg", "Successfully appended menu from " + sourceOutletName + " to " + outletName);
+                request.setAttribute("successMsg", "Successfully appended Menu from " + sourceOutletName + " to " + outletName);
               }else{
-                request.setAttribute("successMsg", "Successfully copied menu from " + sourceOutletName + " to " + outletName);
+                request.setAttribute("successMsg", "Successfully copied Menu from " + sourceOutletName + " to " + outletName);
               }
               request.getRequestDispatcher("CopyMenu.jsp").forward(request, response);
             }else{

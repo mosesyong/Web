@@ -7,6 +7,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
+    <!-- Copy Menu allows the user to copy or append their menu from other available oulets they own if any -->
+    
     <head>
         <%@include file="PanelBars.jsp"%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -31,8 +34,10 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="header">
-                                        <h3 class="title">Edit Menu Item</h3>
-                                    </div>                                
+                                        <h4 class="title">Copy Menu</h4>
+                                    </div> 
+                                    
+                                    <!-- Form to copy/append menu if company has many different outlets located islandwide -->
                                     <div class="content">
                                         <div class="row">
                                             <div class="col-md-12">

@@ -68,11 +68,11 @@ public class EmployeeDeleteWebServlet extends HttpServlet {
             int statusCode = httpResponse.getStatusLine().getStatusCode();
             
             if(statusCode == 202){
-                request.setAttribute("successMsg", "Successfully deleted " + employeeName);
+                request.setAttribute("successMsg", "Successfully Deleted User: " + employeeName);
                 request.getRequestDispatcher("UserManagement.jsp").forward(request, response);
                 return;
             }else{
-                request.setAttribute("errorMsg", "Unable to delete " + employeeName);
+                request.setAttribute("errorMsg", "Unable to Delete User: " + employeeName);
                 request.getRequestDispatcher("UserManagement.jsp").forward(request, response);
                 return;
             }

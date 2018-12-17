@@ -16,6 +16,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <!-- Analytics Page that include analytics that describe the total sales of the outlet, and breakdown of each category according to the needs of the company -->
+    
     <head>
         <%@include file="PanelBars.jsp"%>
 	<meta charset="utf-8" />
@@ -74,7 +76,7 @@
                                         <h3 class="title">Company Analytics</h3>
                                     </div>
                                     <div class="content">
-                                        
+                                            <!-- Input form for Analytics Type -->
                                             <div class="row">
                                                 <form action='AnalyticsWebServlet' method='get'>
                                                 <div class="col-md-3">
@@ -115,30 +117,32 @@
                                                 <div class="col-md-2">
                                                     <button id="toPDF" class="btn pull-right" onclick="pdfFunction()" style='border: solid #9F9F9F 1px; margin-top: 35px'>Save page as PDF</button>
                                                 </div>
-                                            </div>
+                                            </div>         
+                                            <!-- end of form -->
                                     
-                                    <div id="charts">
-                                        <div class="row">
-                                                <div class="col-lg-3 col-md-6 col-sm-6">
-                                                    <div class="card card-stats aCard">
-                                                        <div class="card-body ">
-                                                            <div class="row">
-                                                                <div class="col-5 col-md-4">
-                                                                  <div class="icon-big text-center icon-warning">
-                                                                    <i class="pe-7s-cash text-success"></i>
-                                                                  </div>
-                                                                </div>
-                                                                <div class="col-7 col-md-8">
-                                                                  <div class="numbers">
-                                                                    <p class="card-category">Total Value:</p>
-                                                                    <p class="card-title">$<%=amount%></p>
-                                                                  </div>
+                                            <!--Total Sales Earned-->
+                                            <div id="charts">
+                                                <div class="row">
+                                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                                            <div class="card card-stats aCard">
+                                                                <div class="card-body ">
+                                                                    <div class="row">
+                                                                        <div class="col-5 col-md-4">
+                                                                          <div class="icon-big text-center icon-warning">
+                                                                            <i class="pe-7s-cash text-success"></i>
+                                                                          </div>
+                                                                        </div>
+                                                                        <div class="col-7 col-md-8">
+                                                                          <div class="numbers">
+                                                                            <p class="card-category">Total Value:</p>
+                                                                            <p class="card-title">$<%=amount%></p>
+                                                                          </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> 
                                                     </div>
-                                                </div> 
-                                            </div>
                                     <%
                                         ArrayList<String> oldLabelList = (ArrayList<String>)request.getAttribute("labelList");
                                         ArrayList<String> labelList = new ArrayList<>();
@@ -150,19 +154,23 @@
                                         ArrayList<Double> cashTransactions = resultMap.get("cash");
                                         ArrayList<Double> cardTransactions = resultMap.get("card");
                                         ArrayList<Double> snapcashTransactions = resultMap.get("snapcash");
+                                        System.out.println(cashTransactions);
+                                        System.out.println(cardTransactions);
+                                        System.out.println(snapcashTransactions);
+                                        
                                     %>                                                   
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="card aCard">
-                                                        <div class="header">
-                                                            <h4 class="title">Transactions Overview</h4>
-                                                            <p class="category">For: <b><%=period%></b></p>
-                                                        </div>
-                                                        <div class="content">
-                                                            <div id="chartPreferences" class="ct-chart" style="height:100%">
-                                                                <canvas id="transactionsOverview"></canvas>
-                                                            </div>
-                                                            <script>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="card aCard">
+                                                                <div class="header">
+                                                                    <h4 class="title">Transactions Overview</h4>
+                                                                    <p class="category">For: <b><%=period%></b></p>
+                                                                </div>
+                                                                <div class="content">
+                                                                    <div id="chartPreferences" class="ct-chart" style="height:100%">
+                                                                        <canvas id="transactionsOverview"></canvas>
+                                                                    </div>
+                                                                    <script>
                                                                         var chartName = new String("transactionsOverview");
                                                                         var pieChart = document.getElementById(chartName).getContext("2d");
                                                                         var barChart = new Chart(pieChart, {
@@ -236,6 +244,7 @@
                                                  cashValue.add(cValue);
                                                  quantity.add(iQuantity);
                                              }
+                                             
                                                  
                                              
                                             %>                                                   
