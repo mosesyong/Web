@@ -73,7 +73,7 @@
                                                  ArrayList<Menu> menuList = u.getMenuList();
                                                  for(Menu m : menuList){
                                                     out.println("<tr><td align='center'>" + m.name + "</td><td align='center'>" + m.price + "</td><td align='center'>" + m.cost + "</td><td align='center'>" + m.desc + "</td><td align='center'>" + m.categoryList + "</td>");
-                                                    out.println("<td align='center'><a href='MenuAccessWebServlet?foodName=" + m.name + "'>Edit</a></td></tr>");
+                                                    out.println("<td align='center'><a href='MenuAccessWebServlet?foodName=" + m.name + "'><b>Edit</b></a></td></tr>");
                                                  }
                                                 %>  
                                                 </tr>

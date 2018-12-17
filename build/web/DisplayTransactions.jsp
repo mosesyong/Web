@@ -37,7 +37,7 @@
                                             <div class="form-group">
                                                 <label>Select Outlet</label>
                                                 <select name="outletName" class="form-control" placeholder="Select Outlet">
-                                                    <option value="" selected hidden></option>
+                                                    <option value="all" selected>All</option>"
                                                     <%
                                                         for(String oName : u.getOutletNames()){
                                                     %>
@@ -92,7 +92,7 @@
                                      <thead id="headRow">
                                               <%
 
-                                                  out.println("<th>Cashier Name</th><th>Total Amount</th><th>Payment Type</th><th>Dine In</th><th>Date</th><th>DiscountName</th><th>Refunded</th><th>Refunded By</th><th>Refunded Date</th>");
+                                                  out.println("<th>Outlet Name</th><th>Cashier Name</th><th>Total Amount</th><th>Payment Type</th><th>Dine In/Takeaway</th><th>Date</th><th>DiscountName</th><th>Refunded</th><th>Refunded By</th><th>Refunded Date</th>");
 
                                                   %>
                                             </thead>
@@ -101,9 +101,9 @@
                                             ArrayList<Transaction> transactionDataList = (ArrayList<Transaction>)obj;
                                             for(Transaction t : transactionDataList){
                                                 if(t.refunded == false){
-                                                    out.println("<tr class='content'><td align='center'>" + t.cashierName + "</td><td align='center'>" + t.totalPrice + "</td><td align='center'>" + t.paymentType + "</td><td align='center'>" + t.isDineIn() +  "</td><td align='center'>" + t.dateTime + "</td><td align='center'>" + t.discountName + "</td><td align='center'>" + t.isRefunded() + "</td><td align='center'>" + t.isNull(t.refundedBy) + "</td><td align='center'>" + t.isNull(t.refundDate) + "</td></tr>");
+                                                    out.println("<tr class='content'><td align='center'>" + t.outletName + "</td><td align='center'>" + t.cashierName + "</td><td align='center'>" + t.totalPrice + "</td><td align='center'>" + t.paymentType + "</td><td align='center'>" + t.isDineIn() +  "</td><td align='center'>" + t.dateTime + "</td><td align='center'>" + t.discountName + "</td><td align='center'>" + t.isRefunded() + "</td><td align='center'>" + t.isNull(t.refundedBy) + "</td><td align='center'>" + t.isNull(t.refundDate) + "</td></tr>");
                                                 }else if(t.refunded != false){
-                                                    out.println("<tr class='content'><td align='center'>" + t.cashierName + "</td><td align='center'>" + t.totalPrice + "</td><td align='center'>" + t.paymentType + "</td><td align='center'>" + t.isDineIn() +  "</td><td align='center'>" + t.dateTime + "</td><td align='center'>" + t.discountName + "</td><td align='center'>" + t.isRefunded() + "</td><td align='center'>" + t.isNull(t.refundedBy) + "</td><td align='center'>" + t.isNull(t.refundDate) + "</td></tr>");
+                                                    out.println("<tr class='content'><td align='center'>" + t.outletName + "</td><td align='center'>" + t.cashierName + "</td><td align='center'>" + t.totalPrice + "</td><td align='center'>" + t.paymentType + "</td><td align='center'>" + t.isDineIn() +  "</td><td align='center'>" + t.dateTime + "</td><td align='center'>" + t.discountName + "</td><td align='center'>" + t.isRefunded() + "</td><td align='center'>" + t.isNull(t.refundedBy) + "</td><td align='center'>" + t.isNull(t.refundDate) + "</td></tr>");
                                                 }
                                             }
                                         }

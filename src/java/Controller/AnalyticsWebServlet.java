@@ -16,6 +16,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,12 +61,19 @@ public class AnalyticsWebServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            
+            DecimalFormat df = new DecimalFormat("#.00"); 
+    
             String filter = request.getParameter("filter"); // All, cash, card, snapcash, refunds
             if(filter == null){
                 filter = "All";
             }
+            
+            String outletName = request.getParameter("outletName");
             String startDateTimeStr = request.getParameter("startDateTime");
             String endDateTimeStr = request.getParameter("endDateTime");
+            
+            String timestep = request.getParameter("timestep");
 
             Date startDateTime = null;
             Date endDateTime = null;
@@ -80,7 +88,11 @@ public class AnalyticsWebServlet extends HttpServlet {
                 if(!cal.getTimeZone().getID().equals("Asia/Singapore")){
                     cal.add(Calendar.HOUR, 8);
                 }
-
+                cal.set(Calendar.HOUR_OF_DAY, 0); 
+                cal.clear(Calendar.MINUTE);
+                cal.clear(Calendar.SECOND);
+                cal.clear(Calendar.MILLISECOND);
+                cal.set(Calendar.DAY_OF_YEAR, 1);
                 cal.add(Calendar.YEAR, -5);
 
                 startDateTime = cal.getTime();
@@ -110,7 +122,7 @@ public class AnalyticsWebServlet extends HttpServlet {
 //                    System.out.println("Refund check");
 //                    System.out.println(t);
 //                }
-                if(t.dateTime.after(startDateTime) && t.dateTime.before(endDateTime)){
+                if((outletName.equals("all") || outletName.equals(t.outletName)) && t.dateTime.after(startDateTime) && t.dateTime.before(endDateTime)){
                     if(filter.equals("cash")){
                         if(!t.refunded && t.paymentType.equals("cash")){
                             totalAmount += t.totalPrice;
@@ -148,7 +160,7 @@ public class AnalyticsWebServlet extends HttpServlet {
                 }
             }
             
-            ArrayList<String> labelList = AnalyticsDao.getLabelList(startDateTime, endDateTime);
+            ArrayList<String> labelList = AnalyticsDao.getLabelList(timestep, startDateTime, endDateTime);
             HashMap<String, ArrayList<Double>> resultMap = AnalyticsDao.getResultMap(filteredTransactionList);
             ArrayList<AnalyticsEntity> entry = AnalyticsDao.getTopSellingItems(filteredTransactionList);
             ArrayList<AnalyticsEntity> worstSellers = AnalyticsDao.getWorstSellersByQuantity(5, filteredTransactionList);
@@ -164,7 +176,7 @@ public class AnalyticsWebServlet extends HttpServlet {
             System.out.println("resultMap");
             System.out.println(resultMap);
             
-            request.setAttribute("totalAmount", "" + totalAmount);
+            request.setAttribute("totalAmount", "" + Double.parseDouble(df.format(totalAmount)));
             request.setAttribute("entry", entry);
             request.setAttribute("worstSellers", worstSellers);
             request.setAttribute("labelList", labelList);

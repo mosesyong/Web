@@ -146,11 +146,15 @@ public class User {
     }
     
     public String getOutletName(){
-        String outletName = outletNameList.get(0);
-        if(outletName.equals("null")){
+        if(Integer.parseInt(type) <= 1){
             return "";
+        }else{
+            String outletName = outletNameList.get(0);
+            if(outletName.equals("null")){
+                return "";
+            }
+            return outletName;
         }
-        return outletName;
     }
     
     public ArrayList<String> getOutletNames(){
